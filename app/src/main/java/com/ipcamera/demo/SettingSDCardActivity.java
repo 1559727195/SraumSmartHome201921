@@ -1,11 +1,9 @@
 package com.ipcamera.demo;
 
-import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.graphics.Color;
 import android.graphics.Shader.TileMode;
 import android.graphics.drawable.BitmapDrawable;
 import android.os.Handler;
@@ -39,10 +37,12 @@ import com.massky.sraum.base.BaseActivity;
 import com.massky.sraum.widget.SlideSwitchButton;
 import com.yanzhenjie.statusview.StatusUtils;
 import com.yanzhenjie.statusview.StatusView;
+
 import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
 
+import androidx.appcompat.app.AlertDialog;
 import butterknife.InjectView;
 import vstc2.nativecaller.NativeCaller;
 

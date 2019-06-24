@@ -50,6 +50,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import androidx.appcompat.app.AppCompatActivity;
 import butterknife.InjectView;
 import de.hdodenhof.circleimageview.CircleImageView;
 import io.reactivex.Observer;
@@ -192,7 +193,12 @@ public class MineFragment extends BaseFragment1 {
             if (intfirst == 1) {
                 intfirst = 2;
             } else {
-                getAccountInfo();
+                new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        getAccountInfo();
+                    }
+                }).start();
             }
         }
     }
@@ -209,7 +215,7 @@ public class MineFragment extends BaseFragment1 {
     private void init_permissions() {
 
         // 清空图片缓存，包括裁剪、压缩后的图片 注意:必须要在上传完成后调用 必须要获取权限
-        RxPermissions permissions = new RxPermissions(getActivity());
+        RxPermissions permissions = new RxPermissions((AppCompatActivity) getActivity());
         permissions.request(Manifest.permission.CAMERA).subscribe(new Observer<Boolean>() {
             @Override
             public void onSubscribe(Disposable d) {

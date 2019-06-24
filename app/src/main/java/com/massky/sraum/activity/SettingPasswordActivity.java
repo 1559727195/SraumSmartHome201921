@@ -49,6 +49,7 @@ public class SettingPasswordActivity extends BaseActivity {
     private String code;
     private DialogUtil dialogUtil;
     private Map mapcode = new HashMap();
+    private String isfrom;
 
     @Override
     protected int viewId() {
@@ -62,6 +63,7 @@ public class SettingPasswordActivity extends BaseActivity {
 //        }
 
         mapcode = (Map) getIntent().getSerializableExtra("mapcode");
+        isfrom = (String) getIntent().getSerializableExtra("from");
         if (mapcode != null) {
             mobilePhone = (String) mapcode.get("mobilePhone");
             code = (String) mapcode.get("code");
@@ -86,9 +88,20 @@ public class SettingPasswordActivity extends BaseActivity {
             // mapcode.put("mobilePhone", mobilePhone);
 
 //            mapcode.remove("code");
-            mapcode.put("loginPwd", password);
-            show_detail_togglen();
+                String api ="";
+            switch (isfrom == null ? "" : isfrom) {
+                case "register":
+                    mapcode.put("loginPwd", password);
+                    api = ApiHelper.sraum_register;
+                    break;
+                case "forget":
+                    mapcode.put("newPwd", password);
+                    api = ApiHelper.sraum_updatePwd;
+                    break;
+            }
 
+
+            show_detail_togglen(api);
         }
     }
 
@@ -107,11 +120,11 @@ public class SettingPasswordActivity extends BaseActivity {
     /**
      * ApiHelper.sraum_register
      */
-    private void show_detail_togglen() {
-        MyOkHttp.postMapObjectnest(ApiHelper.sraum_register, mapcode, new MycallbackNest(new AddTogglenInterfacer() {
+    private void show_detail_togglen(final String api) {
+        MyOkHttp.postMapObjectnest(api, mapcode, new MycallbackNest(new AddTogglenInterfacer() {
             @Override
             public void addTogglenInterfacer() {
-                show_detail_togglen();
+                show_detail_togglen(api);
             }
         }, SettingPasswordActivity.this, dialogUtil) {
             @Override
@@ -132,7 +145,7 @@ public class SettingPasswordActivity extends BaseActivity {
                                 LoginCloudActivity.class));
                         break;
                     default:
-                        ToastUtil.showDelToast(SettingPasswordActivity.this, "注册失败");
+                        ToastUtil.showDelToast(SettingPasswordActivity.this, "操作失败");
                         break;
                 }
             }

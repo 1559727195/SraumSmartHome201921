@@ -27,7 +27,7 @@
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/icon_t_back" />
+                app:srcCompat="@drawable/icon_t_back" />
         </RelativeLayout>
 
         <TextView
@@ -50,7 +50,7 @@
             android:layout_marginRight="@dimen/x8"
             android:paddingLeft="@dimen/x8"
             android:layout_marginTop="8dp"
-            android:src="@drawable/icon_bianji" />
+            app:srcCompat="@drawable/icon_bianji" />
     </RelativeLayout>
     <LinearLayout
         android:layout_width="match_parent"

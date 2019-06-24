@@ -1,14 +1,14 @@
 package com.example.jpushdemo;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.ViewGroup.LayoutParams;
 import android.widget.TextView;
 
+import androidx.appcompat.app.AppCompatActivity;
 import cn.jpush.android.api.JPushInterface;
 
-public class TestActivity extends Activity {
+public class TestActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

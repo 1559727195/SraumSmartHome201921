@@ -62,7 +62,7 @@
                     android:id="@+id/imag_all"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@mipmap/ic_launcher" />
+                    app:srcCompat="@mipmap/ic_launcher" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -90,7 +90,7 @@
                     android:id="@+id/imag_all2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@mipmap/ic_launcher" />
+                    app:srcCompat="@mipmap/ic_launcher" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -118,7 +118,7 @@
                     android:id="@+id/imag_all3"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@mipmap/ic_launcher" />
+                    app:srcCompat="@mipmap/ic_launcher" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -146,7 +146,7 @@
                     android:id="@+id/imag_all4"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@mipmap/ic_launcher" />
+                    app:srcCompat="@mipmap/ic_launcher" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -174,7 +174,7 @@
                     android:id="@+id/imag_all5"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@mipmap/ic_launcher" />
+                    app:srcCompat="@mipmap/ic_launcher" />
 
                 <TextView
                     android:layout_width="wrap_content"

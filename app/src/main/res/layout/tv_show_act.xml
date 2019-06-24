@@ -25,7 +25,7 @@
             android:layout_centerVertical="true"
             android:layout_marginLeft="10dp"
             android:paddingRight="20dp"
-            android:src="@drawable/icon_t_back" />
+            app:srcCompat="@drawable/icon_t_back" />
 
         <TextView
             android:id="@+id/project_select"
@@ -67,7 +67,7 @@
                 android:id="@+id/tv_img"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/btn_open" />
+                app:srcCompat="@drawable/btn_open" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -89,7 +89,7 @@
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/btn_input" />
+                app:srcCompat="@drawable/btn_input" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -111,7 +111,7 @@
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/ykq_btn_shouye" />
+                app:srcCompat="@drawable/ykq_btn_shouye" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -152,7 +152,7 @@
                     android:layout_weight="1"
                     android:paddingLeft="20dp"
                     android:paddingRight="20dp"
-                    android:src="@drawable/add" />
+                    app:srcCompat="@drawable/add" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -170,7 +170,7 @@
                     android:layout_weight="1"
                     android:paddingLeft="25dp"
                     android:paddingRight="25dp"
-                    android:src="@drawable/btn_reduce" />
+                    app:srcCompat="@drawable/btn_reduce" />
             </LinearLayout>
         </LinearLayout>
 
@@ -194,7 +194,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:id="@+id/img_jingyin"
-                    android:src="@drawable/btn_jingyin" />
+                    app:srcCompat="@drawable/btn_jingyin" />
 
                 <RelativeLayout
                     android:layout_width="wrap_content"
@@ -204,7 +204,7 @@
                     <ImageView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:src="@drawable/bg_kaiguan_yuan" />
+                        app:srcCompat="@drawable/bg_kaiguan_yuan" />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -242,7 +242,7 @@
                     android:layout_weight="1"
                     android:paddingLeft="25dp"
                     android:paddingRight="25dp"
-                    android:src="@drawable/add" />
+                    app:srcCompat="@drawable/add" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -260,7 +260,7 @@
                     android:layout_weight="1"
                     android:paddingLeft="25dp"
                     android:paddingRight="25dp"
-                    android:src="@drawable/btn_reduce" />
+                    app:srcCompat="@drawable/btn_reduce" />
             </LinearLayout>
         </LinearLayout>
     </LinearLayout>
@@ -285,7 +285,7 @@
                 android:layout_alignParentTop="true"
                 android:layout_centerHorizontal="true"
                 android:layout_above="@+id/ok_img"
-                android:src="@drawable/bg_shang_active" />
+                app:srcCompat="@drawable/bg_shang_active" />
 
             <ImageView
                 android:id="@+id/down_img"
@@ -294,7 +294,7 @@
                 android:layout_alignParentBottom="true"
                 android:layout_below="@+id/ok_img"
                 android:layout_centerHorizontal="true"
-                android:src="@drawable/bg_xia_active" />
+                app:srcCompat="@drawable/bg_xia_active" />
 
             <ImageView
                 android:id="@+id/left_img"
@@ -303,7 +303,7 @@
                 android:layout_alignParentLeft="true"
                 android:layout_toLeftOf="@id/ok_img"
                 android:layout_centerVertical="true"
-                android:src="@drawable/bg_zuo_active" />
+                app:srcCompat="@drawable/bg_zuo_active" />
 
             <ImageView
                 android:id="@+id/right_img"
@@ -312,14 +312,14 @@
                 android:layout_alignParentRight="true"
                 android:layout_toRightOf="@+id/ok_img"
                 android:layout_centerVertical="true"
-                android:src="@drawable/bg_you_active" />
+                app:srcCompat="@drawable/bg_you_active" />
 
             <ImageView
                 android:id="@+id/ok_img"
                 android:layout_width="60dp"
                 android:layout_height="60dp"
                 android:layout_centerInParent="true"
-                android:src="@drawable/bg_xianshipin" />
+                app:srcCompat="@drawable/bg_xianshipin" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -338,14 +338,14 @@
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/btn_shouye"
+                app:srcCompat="@drawable/btn_shouye"
                 android:visibility="gone" />
 
             <ImageView
                 android:id="@+id/caidan_img"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/btn_caidan" />
+                app:srcCompat="@drawable/btn_caidan" />
         </RelativeLayout>
 
         <RelativeLayout
@@ -357,14 +357,14 @@
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/btn_jingyin"
+                app:srcCompat="@drawable/btn_jingyin"
                 android:visibility="gone" />
 
             <ImageView
                 android:id="@+id/fanhui_img"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/btn_fanhui" />
+                app:srcCompat="@drawable/btn_fanhui" />
         </RelativeLayout>
     </RelativeLayout>
 </LinearLayout>

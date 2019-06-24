@@ -9,8 +9,10 @@ public class ApiHelper {
     //https://app.sraum.com/SmartHome/api/v2/xxxxx
 //            public static String api = "https://app.sraum.com/SmartHome/";//正式：
     //https://test.sraum.com/SmartHome/api/v2/xxxxx接口地址
-    public static String api = "https://test.sraum.com/SmartHome/api/v2/";
-    //public static String api = "https://app.sraum.com/SmartHome/api/v2/";
+    public static String api = "https://app.sraum.com/SmartHome/api/v2/";
+//   public static String api = "https://test.sraum.com/SmartHome/api/v2/";
+
+
     public static String sraum_register = api + "sraum_register";
     public static String sraum_getToken = api + "sraum_getToken";
     public static String sraum_checkMobilePhone = api + "sraum_checkMobilePhone";
@@ -127,4 +129,11 @@ public class ApiHelper {
     public static String sraum_updateGateway = api + "sraum_updateGateway";
     public static String sraum_updateGatewayPassword = api + "sraum_updateGatewayPassword";
     public static String sraum_getComplaintById = api + "sraum_getComplaintById";
+    public static String sraum_cancelUpdateGateway = api + "sraum_cancelUpdateGateway";
+    public static String sraum_addWifiDeviceCommon = api + "sraum_addWifiDeviceCommon";
+    public static String sraum_deleteWifiDeviceCommon = api + "sraum_deleteWifiDeviceCommon";
+    public static String sraum_updateWifiDeviceNameCommon = api + "sraum_updateWifiDeviceNameCommon";
+    public static String sraum_getWifiDeviceCommon = api + "sraum_getWifiDeviceCommon";
+    public static String sraum_setWifiDeviceIsUseCommon  = api + "sraum_setWifiDeviceIsUseCommon";
+    public static String sraum_updatePwd = api + "sraum_updatePwd";
 }

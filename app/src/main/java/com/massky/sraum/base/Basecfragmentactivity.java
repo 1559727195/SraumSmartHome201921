@@ -48,7 +48,7 @@ public abstract class Basecfragmentactivity extends AutoLayoutFragmentActivity i
         setContentView(viewId());
         ButterKnife.inject(this);
         // 添加Activity到堆栈
-        AppManager.getAppManager().addActivity(this);
+//        AppManager.getAppManager().addActivity(this);
         loginPhone = (String) SharedPreferencesUtil.getData(this, "loginPhone", "");
         preferences = getSharedPreferences("sraum" + loginPhone, Context.MODE_PRIVATE);
         screenListener();
@@ -98,7 +98,7 @@ public abstract class Basecfragmentactivity extends AutoLayoutFragmentActivity i
         // 结束Activity&从堆栈中移除
         screen.unregisterListener();
         mHomeWatcher.stopWatch();
-        AppManager.getAppManager().finishActivity(this);
+//        AppManager.getAppManager().finishActivity(this);
         isDestroy = true;
     }
 

@@ -19,7 +19,7 @@
             android:layout_marginLeft="15dp"
             android:layout_marginRight="15dp"
             android:layout_marginTop="60dp"
-            android:src="@drawable/pic_yijianpipei" />
+            app:srcCompat="@drawable/pic_yijianpipei" />
 
         <TextView
             android:id="@+id/yaokong_name_promat"

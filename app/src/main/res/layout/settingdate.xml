@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     style="@style/bg_style"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -115,7 +116,7 @@
                     android:layout_height="1dp"
                     android:layout_marginLeft="5dp"
                     android:layout_marginRight="5dp"
-                    android:src="@color/color_grey" />
+                    app:srcCompat="@color/color_grey" />
 
                 <LinearLayout
                     android:id="@+id/ntp_view"
@@ -163,7 +164,7 @@
                     android:layout_height="1dp"
                     android:layout_marginLeft="5dp"
                     android:layout_marginRight="5dp"
-                    android:src="@color/color_grey" />
+                    app:srcCompat="@color/color_grey" />
 
                 <RelativeLayout
                     android:id="@+id/linearLayout1"
@@ -196,7 +197,7 @@
                     android:layout_height="1dp"
                     android:layout_marginLeft="5dp"
                     android:layout_marginRight="5dp"
-                    android:src="@color/color_grey" />
+                    app:srcCompat="@color/color_grey" />
 
                 <LinearLayout
                     android:id="@+id/date_ntp_view"
@@ -250,7 +251,7 @@
                         android:layout_height="1dp"
                         android:layout_marginLeft="5dp"
                         android:layout_marginRight="5dp"
-                        android:src="@color/color_grey" />
+                        app:srcCompat="@color/color_grey" />
                 </LinearLayout>
 
                 <LinearLayout

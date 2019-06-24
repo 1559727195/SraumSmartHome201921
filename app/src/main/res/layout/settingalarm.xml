@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     style="@style/bg_style"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -102,7 +103,7 @@
                         android:layout_height="1dp"
                         android:layout_alignParentBottom="true"
                         android:layout_alignParentLeft="true"
-                        android:src="@color/color_grey" />
+                        app:srcCompat="@color/color_grey" />
                 </RelativeLayout>
 
                 <RelativeLayout
@@ -137,7 +138,7 @@
                             android:id="@+id/alerm_img_sensitive_drop"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:src="@drawable/rightdown_selector" />
+                            app:srcCompat="@drawable/rightdown_selector" />
                     </LinearLayout>
 
                     <ImageView
@@ -145,7 +146,7 @@
                         android:layout_height="1dp"
                         android:layout_alignParentBottom="true"
                         android:layout_alignParentLeft="true"
-                        android:src="@color/color_grey" />
+                        app:srcCompat="@color/color_grey" />
                 </RelativeLayout>
             </LinearLayout>
 
@@ -183,7 +184,7 @@
                         android:layout_height="1dp"
                         android:layout_alignParentBottom="true"
                         android:layout_alignParentLeft="true"
-                        android:src="@color/color_grey" />
+                        app:srcCompat="@color/color_grey" />
                 </RelativeLayout>
 
                 <RelativeLayout
@@ -216,7 +217,7 @@
                             android:id="@+id/alerm_img_leveldrop"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:src="@drawable/rightdown_selector" />
+                            app:srcCompat="@drawable/rightdown_selector" />
                     </LinearLayout>
 
                     <ImageView
@@ -224,7 +225,7 @@
                         android:layout_height="1dp"
                         android:layout_alignParentBottom="true"
                         android:layout_alignParentLeft="true"
-                        android:src="@color/color_grey" />
+                        app:srcCompat="@color/color_grey" />
                 </RelativeLayout>
             </LinearLayout>
 
@@ -270,7 +271,7 @@
                             android:layout_height="1dp"
                             android:layout_alignParentBottom="true"
                             android:layout_alignParentLeft="true"
-                            android:src="@color/color_grey" />
+                            app:srcCompat="@color/color_grey" />
                     </RelativeLayout>
 
                     <RelativeLayout
@@ -303,7 +304,7 @@
                                 android:id="@+id/alerm_audio_leveldrop"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:src="@drawable/rightdown_selector" />
+                                app:srcCompat="@drawable/rightdown_selector" />
                         </LinearLayout>
 
                         <ImageView
@@ -311,7 +312,7 @@
                             android:layout_height="1dp"
                             android:layout_alignParentBottom="true"
                             android:layout_alignParentLeft="true"
-                            android:src="@color/color_grey" />
+                            app:srcCompat="@color/color_grey" />
                     </RelativeLayout>
                 </LinearLayout>
 
@@ -351,7 +352,7 @@
                             android:layout_height="1dp"
                             android:layout_alignParentBottom="true"
                             android:layout_alignParentLeft="true"
-                            android:src="@color/color_grey" />
+                            app:srcCompat="@color/color_grey" />
                     </RelativeLayout>
 
                     <RelativeLayout
@@ -384,7 +385,7 @@
                                 android:id="@+id/alerm_temp_leveldrop"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:src="@drawable/rightdown_selector" />
+                                app:srcCompat="@drawable/rightdown_selector" />
                         </LinearLayout>
 
                         <ImageView
@@ -392,7 +393,7 @@
                             android:layout_height="1dp"
                             android:layout_alignParentBottom="true"
                             android:layout_alignParentLeft="true"
-                            android:src="@color/color_grey" />
+                            app:srcCompat="@color/color_grey" />
                     </RelativeLayout>
                 </LinearLayout>
             </LinearLayout>
@@ -418,7 +419,7 @@
                 <ImageView
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
-                    android:src="@color/color_grey" />
+                    app:srcCompat="@color/color_grey" />
 
                 <RelativeLayout
                     android:id="@+id/relativeLayout2"
@@ -431,7 +432,7 @@
                         android:layout_height="1dp"
                         android:layout_alignParentBottom="true"
                         android:layout_alignParentLeft="true"
-                        android:src="@color/color_grey" />
+                        app:srcCompat="@color/color_grey" />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -457,7 +458,7 @@
                             android:id="@+id/alerm_img_preset_drop"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:src="@drawable/rightdown_selector" />
+                            app:srcCompat="@drawable/rightdown_selector" />
                     </LinearLayout>
                 </RelativeLayout>
 
@@ -470,7 +471,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="1dp"
                         android:layout_alignParentBottom="true"
-                        android:src="@color/color_grey" />
+                        app:srcCompat="@color/color_grey" />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -499,7 +500,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="1dp"
                         android:layout_alignParentBottom="true"
-                        android:src="@color/color_grey" />
+                        app:srcCompat="@color/color_grey" />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -525,7 +526,7 @@
                             android:id="@+id/alerm_img_ioout_level_drop"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:src="@drawable/rightdown_selector" />
+                            app:srcCompat="@drawable/rightdown_selector" />
                     </LinearLayout>
                 </RelativeLayout>
             </LinearLayout>

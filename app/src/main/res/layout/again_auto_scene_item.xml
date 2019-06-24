@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical" android:layout_width="match_parent"
     android:padding="@dimen/x12"
     android:background="@color/white"
@@ -10,7 +11,7 @@
     android:id="@+id/txt_again_autoscene"
     android:layout_alignParentLeft="true"
     android:layout_centerVertical="true"
-    android:textSize="16sp"
+    android:textSize="14sp"
     android:textColor="@color/dark_gray"
     android:text="执行一次"/>
     <ImageView
@@ -20,5 +21,5 @@
         android:layout_centerVertical="true"
         android:visibility="gone"
         android:id="@+id/img_again_autoscene"
-        android:src="@drawable/icon_check"/>
+        app:srcCompat="@drawable/icon_check"/>
 </RelativeLayout>

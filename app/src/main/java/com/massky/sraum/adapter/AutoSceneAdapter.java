@@ -51,8 +51,8 @@ import okhttp3.Call;
 
 public class AutoSceneAdapter extends BaseAdapter {
     private final Context context;
-    private  boolean vibflag;
-    private  boolean musicflag;
+    private boolean vibflag;
+    private boolean musicflag;
     private boolean is_open_to_close;
     private DialogUtil dialogUtil;
     private View view;
@@ -60,7 +60,7 @@ public class AutoSceneAdapter extends BaseAdapter {
     private RefreshListener refreshListener;
     private List<Map> list = new ArrayList<>();
 
-    public AutoSceneAdapter(Context context, List<Map> list, DialogUtil dialogUtil, boolean vibflag,boolean musicflag,RefreshListener refreshListener) {
+    public AutoSceneAdapter(Context context, List<Map> list, DialogUtil dialogUtil, boolean vibflag, boolean musicflag, RefreshListener refreshListener) {
 //        this.list = list;
         this.dialogUtil = dialogUtil;
         this.refreshListener = refreshListener;
@@ -93,7 +93,7 @@ public class AutoSceneAdapter extends BaseAdapter {
             convertView = LayoutInflater.from(context).inflate(R.layout.auto_scene_item, null);
             viewHolderContentType.device_type_pic = (ImageView) convertView.findViewById(R.id.device_type_pic);
             viewHolderContentType.hand_device_content = (TextView) convertView.findViewById(R.id.hand_device_content);
-//            viewHolderContentType.hand_gateway_content = (TextView) convertView.findViewById(R.id.hand_gateway_content);
+            viewHolderContentType.hand_gateway_content = (TextView) convertView.findViewById(R.id.hand_gateway_content);
             viewHolderContentType.hand_scene_btn = (SlideSwitchForSwitchDeleteButton) convertView.findViewById(R.id.slide_btn);
             viewHolderContentType.swipemenu_layout = (SwipeMenuLayout) convertView.findViewById(R.id.swipemenu_layout);
             viewHolderContentType.btn_rename = (Button) convertView.findViewById(R.id.btn_rename);
@@ -118,6 +118,17 @@ public class AutoSceneAdapter extends BaseAdapter {
                 viewHolderContentType.swipemenu_layout.setSwipeEnable(false);
                 break;//家庭成员
         }
+
+        String type = list.get(position).get("type").toString();
+        switch (type) {
+            case "100":
+                viewHolderContentType.hand_gateway_content.setText("触发场景");
+                break;
+            case "102":
+                viewHolderContentType.hand_gateway_content.setText("定时场景");
+                break;
+        }
+
         String isUse = list.get(position).get("isUse").toString();
         if (isUse != null) {
             switch (isUse) {
@@ -209,7 +220,7 @@ public class AutoSceneAdapter extends BaseAdapter {
         map.put("link_edit", true);
         map.put("linkId", list.get(position).get("id").toString());
         map.put("linkName", list.get(position).get("name").toString());
-        map.put("type", "100");//自动场景
+        map.put("type", list.get(position).get("type").toString());//自动场景
 //                intent.putExtra("link_edit", true);
 //                intent.putExtra("linkId", list.get(position).id);
         intent.putExtra("link_information", (Serializable) map);
@@ -476,18 +487,18 @@ public class AutoSceneAdapter extends BaseAdapter {
 
                     @Override
                     public void wrongBoxnumber() {
-                        ToastUtil.showToast(context,"areaNumber不正确");
+                        ToastUtil.showToast(context, "areaNumber不正确");
                     }
 
                     @Override
                     public void threeCode() {
-                        ToastUtil.showToast(context,"linkId 错误");
+                        ToastUtil.showToast(context, "linkId 错误");
                     }
 
                     @Override
                     public void onSuccess(final User user) {
 //                refreshLayout.autoRefresh();
-                        ToastUtil.showToast(context,"操作成功");
+                        ToastUtil.showToast(context, "操作成功");
 
 //                        if (refreshListener != null)
 //                            refreshListener.refresh();
@@ -598,7 +609,7 @@ public class AutoSceneAdapter extends BaseAdapter {
     class ViewHolderContentType {
         ImageView device_type_pic;
         TextView hand_device_content;
-        //       TextView  hand_gateway_content;
+        TextView hand_gateway_content;
         SlideSwitchForSwitchDeleteButton hand_scene_btn;
         SwipeMenuLayout swipemenu_layout;
         LinearLayout swipe_content_linear;

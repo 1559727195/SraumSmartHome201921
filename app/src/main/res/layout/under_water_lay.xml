@@ -9,14 +9,14 @@
     <com.yanzhenjie.statusview.StatusView
         android:id="@+id/status_view"
         android:layout_width="match_parent"
-        android:background="@color/green"
         android:layout_height="wrap_content"
+        android:background="@color/green"
         app:fitsView="@+id/root_layout" />
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:background="@color/green"
-        android:layout_height="50dp">
+        android:layout_height="50dp"
+        android:background="@color/green">
 
         <ImageView
             android:id="@+id/back"
@@ -25,9 +25,9 @@
             android:layout_centerVertical="true"
             android:layout_marginLeft="10dp"
             android:paddingTop="5dp"
-            android:paddingBottom="5dp"
             android:paddingRight="20dp"
-            android:src="@drawable/icon_t_back" />
+            android:paddingBottom="5dp"
+            app:srcCompat="@drawable/icon_t_back" />
 
         <TextView
             android:id="@+id/project_select"
@@ -44,15 +44,15 @@
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
-            android:layout_marginRight="8dp"
-            android:visibility="gone"
             android:layout_marginTop="8dp"
+            android:layout_marginRight="8dp"
             android:paddingLeft="20dp"
             android:paddingTop="5dp"
             android:paddingBottom="5dp"
             android:text="下一步"
             android:textColor="@color/white"
-            android:textSize="16sp" />
+            android:textSize="16sp"
+            android:visibility="gone" />
 
     </RelativeLayout>
 
@@ -74,8 +74,8 @@
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="10dp"
-                android:src="@mipmap/ic_launcher"
-                android:visibility="gone" />
+                android:visibility="gone"
+                app:srcCompat="@mipmap/ic_launcher" />
 
             <TextView
                 android:id="@+id/panel_scene_name_txt"
@@ -108,8 +108,8 @@
                 android:layout_alignParentRight="true"
                 android:layout_centerVertical="true"
                 android:layout_marginRight="15dp"
-                android:src="@drawable/icon_t_back"
-                android:visibility="gone" />
+                android:visibility="gone"
+                app:srcCompat="@drawable/icon_t_back" />
 
             <CheckBox
                 android:id="@+id/checkbox"
@@ -137,8 +137,8 @@
         android:id="@+id/fangdao_linear"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:visibility="gone"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:visibility="gone">
 
         <RelativeLayout
             android:id="@+id/rel_fangdao_open"
@@ -163,19 +163,21 @@
                 android:layout_alignParentRight="true"
                 android:layout_centerVertical="true"
                 android:layout_marginRight="@dimen/x15"
-                android:visibility="gone"
                 android:background="@drawable/checkbox_new"
                 android:button="@null"
                 android:clickable="false"
                 android:focusable="false"
-                android:focusableInTouchMode="false" />
+                android:focusableInTouchMode="false"
+                android:visibility="gone" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_alignParentBottom="true"
+                android:layout_marginTop="5dp"
+                android:background="@drawable/dottedline" />
         </RelativeLayout>
 
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:layout_marginTop="5dp"
-            android:background="@drawable/dottedline" />
 
         <RelativeLayout
             android:id="@+id/rel_fangdao_close"
@@ -201,27 +203,29 @@
                 android:layout_alignParentRight="true"
                 android:layout_centerVertical="true"
                 android:layout_marginRight="@dimen/x15"
-                android:visibility="gone"
                 android:background="@drawable/checkbox_new"
                 android:button="@null"
                 android:clickable="false"
                 android:focusable="false"
-                android:focusableInTouchMode="false" />
+                android:focusableInTouchMode="false"
+                android:visibility="gone" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_alignParentBottom="true"
+                android:layout_marginTop="5dp"
+                android:background="@drawable/dottedline" />
         </RelativeLayout>
 
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:layout_marginTop="5dp"
-            android:background="@drawable/dottedline" />
     </LinearLayout>
 
     <LinearLayout
         android:id="@+id/humancheck_linear"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:visibility="gone"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:visibility="gone">
 
         <RelativeLayout
             android:id="@+id/rel_humancheck"
@@ -246,12 +250,12 @@
                 android:layout_alignParentRight="true"
                 android:layout_centerVertical="true"
                 android:layout_marginRight="@dimen/x15"
-                android:visibility="gone"
                 android:background="@drawable/checkbox_new"
                 android:button="@null"
                 android:clickable="false"
                 android:focusable="false"
-                android:focusableInTouchMode="false" />
+                android:focusableInTouchMode="false"
+                android:visibility="gone" />
         </RelativeLayout>
 
         <View
@@ -267,8 +271,8 @@
         android:id="@+id/gas_linear"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:visibility="gone"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:visibility="gone">
 
         <RelativeLayout
             android:id="@+id/rel_gas"
@@ -313,8 +317,8 @@
         android:id="@+id/smoke_linear"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:visibility="gone"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:visibility="gone">
 
         <RelativeLayout
             android:id="@+id/rel_smoke"
@@ -359,8 +363,8 @@
         android:id="@+id/jiuzuo_linear"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:visibility="gone"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:visibility="gone">
 
         <RelativeLayout
             android:id="@+id/rel_jiuzuo"
@@ -405,8 +409,8 @@
         android:id="@+id/emergcybtn_linear"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:visibility="gone"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:visibility="gone">
 
         <RelativeLayout
             android:id="@+id/rel_emergcybtn"

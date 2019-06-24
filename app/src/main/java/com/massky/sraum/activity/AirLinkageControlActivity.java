@@ -108,6 +108,7 @@ public class AirLinkageControlActivity extends BaseActivity implements
         }
         project_select.setText(air_control_map.get("name").toString());
         air_control_map.put("name1", air_control_map.get("name"));
+        air_control_map.put("panelName", map_panel.get("panelName"));
         //intent.putExtra("sensor_map", (Serializable)  sensor_map);
         sensor_map = (Map) getIntent().getSerializableExtra("sensor_map");
         back.setOnClickListener(this);
@@ -142,6 +143,9 @@ public class AirLinkageControlActivity extends BaseActivity implements
 
         //温度选择
         String tempture = (String) air_control_map.get("temperature");
+        if (Integer.parseInt(tempture) < 16) {
+            tempture = 16 + "";
+        }
         tmp_txt.setText(tempture + "");
 
         //状态，在线，离线
@@ -341,6 +345,9 @@ public class AirLinkageControlActivity extends BaseActivity implements
                 break;
             case R.id.air_control_tmp_add:
                 tempture = Integer.parseInt(air_control_map.get("temperature").toString());
+                if (tempture < 16) {
+                    tempture = 16 ;
+                }
                 if (tempture < 30)
                     tempture++;
                 tmp_txt.setText(tempture + "");

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/play"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
@@ -117,7 +118,7 @@
                 android:layout_centerVertical="true"
                 android:layout_gravity="center"
                 android:background="@drawable/ptz_takepic_selector"
-                android:src="@drawable/exitbutton" />
+                app:srcCompat="@drawable/exitbutton" />
 
             <TextView
                 android:id="@+id/show_time"
@@ -155,7 +156,7 @@
                     android:layout_height="45dp"
                     android:layout_marginRight="5dp"
                     android:background="#00000000"
-                    android:src="@drawable/ptz_hori_mirror" />
+                    app:srcCompat="@drawable/ptz_hori_mirror" />
 
                 <ImageButton
                     android:id="@+id/ptz_vert_mirror"
@@ -163,7 +164,7 @@
                     android:layout_height="45dp"
                     android:layout_marginRight="5dp"
                     android:background="#00000000"
-                    android:src="@drawable/ptz_vert_mirror" />
+                    app:srcCompat="@drawable/ptz_vert_mirror" />
 
                 <ImageButton
                     android:id="@+id/ptz_hori_tour"
@@ -171,7 +172,7 @@
                     android:layout_height="45dp"
                     android:layout_marginRight="5dp"
                     android:background="#00000000"
-                    android:src="@drawable/ptz_hori_tour" />
+                    app:srcCompat="@drawable/ptz_hori_tour" />
 
                 <ImageButton
                     android:id="@+id/ptz_vert_tour"
@@ -179,7 +180,7 @@
                     android:layout_height="45dp"
                     android:layout_marginRight="5dp"
                     android:background="#00000000"
-                    android:src="@drawable/ptz_vert_tour" />
+                    app:srcCompat="@drawable/ptz_vert_tour" />
             </LinearLayout>
         </RelativeLayout>
     </RelativeLayout>
@@ -205,7 +206,7 @@
                 android:layout_height="45dp"
                 android:layout_weight="1"
                 android:background="@drawable/ptz_takepic_selector"
-                android:src="@drawable/ptz_audio_off" />
+                app:srcCompat="@drawable/ptz_audio_off" />
 
             <ImageButton
                 android:id="@+id/ptz_talk"
@@ -213,7 +214,7 @@
                 android:layout_height="45dp"
                 android:layout_weight="1"
                 android:background="@drawable/ptz_takepic_selector"
-                android:src="@drawable/ptz_microphone_off" />
+                app:srcCompat="@drawable/ptz_microphone_off" />
 
             <ImageButton
                 android:id="@+id/ptz_brightness"
@@ -224,7 +225,7 @@
                 android:layout_weight="1"
                 android:background="@drawable/ptz_takepic_selector"
                 android:padding="5dp"
-                android:src="@drawable/ptz_brightness" />
+                app:srcCompat="@drawable/ptz_brightness" />
 
             <ImageButton
                 android:id="@+id/ptz_contrast"
@@ -235,7 +236,7 @@
                 android:layout_weight="1"
                 android:background="@drawable/ptz_takepic_selector"
                 android:padding="5dp"
-                android:src="@drawable/ptz_contrast" />
+                app:srcCompat="@drawable/ptz_contrast" />
 
             <ImageButton
                 android:id="@+id/ptz_default_set"
@@ -246,7 +247,7 @@
                 android:layout_weight="1"
                 android:background="@drawable/ptz_takepic_selector"
                 android:padding="5dp"
-                android:src="@drawable/ptz_default_set" />
+                app:srcCompat="@drawable/ptz_default_set" />
 
             <ImageButton
                 android:id="@+id/ptz_take_photos"
@@ -257,7 +258,7 @@
                 android:layout_weight="1"
                 android:background="@drawable/ptz_takepic_selector"
                 android:padding="5dp"
-                android:src="@drawable/ptz_takepic" />
+                app:srcCompat="@drawable/ptz_takepic" />
 
             <ImageButton
                 android:id="@+id/ptz_take_videos"
@@ -268,7 +269,7 @@
                 android:layout_weight="1"
                 android:background="@drawable/ptz_takepic_selector"
                 android:padding="5dp"
-                android:src="@drawable/ptz_takevideo" />
+                app:srcCompat="@drawable/ptz_takevideo" />
 
             <ImageButton
                 android:id="@+id/ptz_resolution"
@@ -278,7 +279,7 @@
                 android:layout_marginRight="2dp"
                 android:layout_weight="1"
                 android:background="@drawable/ptz_default_set_selector"
-                android:src="@drawable/easyicon_cn" />
+                app:srcCompat="@drawable/easyicon_cn" />
 
             <ImageButton
                 android:id="@+id/preset"
@@ -286,7 +287,7 @@
                 android:layout_height="45dp"
                 android:layout_marginRight="5dp"
                 android:background="@drawable/ptz_default_set_selector"
-                android:src="@drawable/ptz_resolution_preset" />
+                app:srcCompat="@drawable/ptz_resolution_preset" />
 
         </LinearLayout>
     </HorizontalScrollView>

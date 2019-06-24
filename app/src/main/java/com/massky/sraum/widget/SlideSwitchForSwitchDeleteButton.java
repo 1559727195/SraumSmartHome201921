@@ -13,6 +13,7 @@ import android.os.Looper;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.ViewConfiguration;
 import android.view.animation.AccelerateDecelerateInterpolator;
 
 import com.massky.sraum.R;
@@ -29,6 +30,7 @@ import static com.mcxtzhang.swipemenulib.SwipeMenuLayout.isopen;
 
 public class SlideSwitchForSwitchDeleteButton extends View {
 
+    private final int mTouchSlop;
     private int widthSize = 280;
     private int heightSize = 140;
     private int mInnerRadius;
@@ -49,6 +51,7 @@ public class SlideSwitchForSwitchDeleteButton extends View {
     private SlideSwitch slideswitch;
     boolean srcoll = false;
     boolean isshowSroll;
+    private float startX;
 
     public SlideSwitchForSwitchDeleteButton(Context context, AttributeSet attrs) {
         this(context, attrs, 0);
@@ -57,6 +60,7 @@ public class SlideSwitchForSwitchDeleteButton extends View {
     public SlideSwitchForSwitchDeleteButton(Context context, AttributeSet attrs, int defStyleAttr) {
 
         super(context, attrs, defStyleAttr);
+        mTouchSlop = ViewConfiguration.get(context).getScaledTouchSlop();
         listener = null;
         mPaint = new Paint();
         mPaint.setAntiAlias(true);
@@ -155,6 +159,7 @@ public class SlideSwitchForSwitchDeleteButton extends View {
         switch (action) {
             case MotionEvent.ACTION_DOWN:
                 eventStartX = (int) event.getRawX();//手指点到屏幕最左边
+                startX = event.getX();
                 srcoll = false;
                 break;
             case MotionEvent.ACTION_MOVE://MotionEvent.ACTION_MOVE被执行的话，则说明是滑动，SlideSwitchButton不执行任何动作；
@@ -170,7 +175,14 @@ public class SlideSwitchForSwitchDeleteButton extends View {
 //                        invalidateView();
 //                    }
 //                }
-                srcoll = true;
+                // 获取当前手指位置
+                float endX = event.getX();
+                float distanceX = Math.abs(endX - startX);
+                // 如果X轴位移大于Y轴位移，那么将事件交给viewPager处理。
+                if (distanceX > mTouchSlop) {
+                   srcoll = true;
+                }
+
 
                 break;
             case MotionEvent.ACTION_UP:

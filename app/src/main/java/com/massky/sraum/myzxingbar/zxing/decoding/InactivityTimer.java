@@ -16,13 +16,13 @@
 
 package com.massky.sraum.myzxingbar.zxing.decoding;
 
-import android.app.Activity;
-
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.ScheduledFuture;
 import java.util.concurrent.ThreadFactory;
 import java.util.concurrent.TimeUnit;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 /**
  * Finishes an activity after a period of inactivity.
@@ -33,10 +33,10 @@ public final class InactivityTimer {
 
   private final ScheduledExecutorService inactivityTimer =
       Executors.newSingleThreadScheduledExecutor(new DaemonThreadFactory());
-  private final Activity activity;
+  private final AppCompatActivity activity;
   private ScheduledFuture<?> inactivityFuture = null;
 
-  public InactivityTimer(Activity activity) {
+  public InactivityTimer(AppCompatActivity activity) {
     this.activity = activity;
     onActivity();
   }

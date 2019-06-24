@@ -8,11 +8,9 @@ import android.content.Intent;
 import android.os.Binder;
 import android.os.IBinder;
 import android.util.Log;
-
 import com.ipcamera.demo.utils.ContentCommon;
 import com.ipcamera.demo.utils.MyStringUtils;
 import com.massky.sraum.R;
-
 import vstc2.nativecaller.NativeCaller;
 
 public class BridgeService extends Service

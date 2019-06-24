@@ -2,7 +2,6 @@ package com.massky.sraum.Util;
 
 
 import android.app.Activity;
-import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.Context;
 import android.view.View;
@@ -13,7 +12,8 @@ import android.widget.TextView;
 
 import com.massky.sraum.R;
 
-import java.util.logging.Handler;
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
 
 /**
  * Created by masskywcy on 2016-08-31.
@@ -46,7 +46,7 @@ public class DialogUtil {
 
     /*用于加载progressbar dialog*/
     public void loadDialog() {
-        ((Activity) context).runOnUiThread(new Runnable() {
+        ((AppCompatActivity) context).runOnUiThread(new Runnable() {
             @Override
             public void run() {
                 show_progress();
@@ -72,7 +72,15 @@ public class DialogUtil {
         TextView msg = (TextView) progressDialog.findViewById(R.id.id_tv_loadingmsg);
         msg.setVisibility(View.GONE);
         msg.setText("卖力加载中");
-        progressDialog.show();
+        if (context instanceof Activity) {
+            Activity activity = (Activity) context;
+            if (!activity.isFinishing()) {
+                progressDialog.show();
+            }
+        } else {
+            progressDialog.show();
+        }
+
     }
 
     public void setCanCanCel(boolean istrue) {
@@ -123,7 +131,7 @@ public class DialogUtil {
             window.setAttributes(wl);
         }
         wl.x = 0;
-        wl.y = ((Activity) context).getWindowManager().getDefaultDisplay().getHeight();
+        wl.y = ((AppCompatActivity) context).getWindowManager().getDefaultDisplay().getHeight();
         // 以下这两句是为了保证按钮可以水平满屏
         wl.width = ViewGroup.LayoutParams.MATCH_PARENT;
         wl.height = ViewGroup.LayoutParams.WRAP_CONTENT;

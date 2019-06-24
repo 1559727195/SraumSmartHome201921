@@ -24,7 +24,7 @@
             android:layout_centerVertical="true"
             android:layout_marginLeft="10dp"
             android:paddingRight="20dp"
-            android:src="@drawable/icon_t_back" />
+            app:srcCompat="@drawable/icon_t_back" />
         <TextView
             android:id="@+id/project_select"
             android:layout_width="wrap_content"
@@ -62,7 +62,7 @@
             android:layout_height="wrap_content"
             android:id="@+id/wangguan_set"
             android:layout_centerVertical="true"
-            android:src="@drawable/icon_menci_active"
+            app:srcCompat="@drawable/icon_menci_active"
             android:layout_marginLeft="@dimen/x10"/>
         <LinearLayout
             android:layout_width="wrap_content"
@@ -103,7 +103,7 @@
             android:layout_centerVertical="true"
             android:layout_alignParentRight="true"
             android:layout_marginRight="@dimen/x10"
-            android:src="@drawable/wode_right_arrow"/>
+            app:srcCompat="@drawable/wode_right_arrow"/>
     </RelativeLayout>
 
     <View
@@ -228,7 +228,7 @@
             android:layout_centerVertical="true"
             android:layout_alignParentRight="true"
             android:layout_marginRight="@dimen/x10"
-            android:src="@drawable/wode_right_arrow"/>
+            app:srcCompat="@drawable/wode_right_arrow"/>
     </RelativeLayout>
     <View
         android:layout_width="match_parent"
@@ -265,7 +265,7 @@
             android:layout_centerVertical="true"
             android:layout_alignParentRight="true"
             android:layout_marginRight="@dimen/x10"
-            android:src="@drawable/btn_bottom"/>
+            app:srcCompat="@drawable/btn_bottom"/>
     </RelativeLayout>
     <View
         android:layout_width="match_parent"

@@ -26,7 +26,7 @@
             android:id="@+id/btnCancel"
             android:layout_width="wrap_content"
             android:layout_height="fill_parent"
-            android:src="@drawable/icon_pm_guanbi"
+            app:srcCompat="@drawable/icon_pm_guanbi"
             android:layout_marginRight="10dp"
             android:layout_toLeftOf="@+id/btnSubmit"
           />
@@ -39,7 +39,7 @@
             android:layout_marginLeft="10dp"
             android:layout_height="fill_parent"
             android:layout_alignParentRight="true"
-            android:src="@drawable/icon_pm_baoun"
+            app:srcCompat="@drawable/icon_pm_baoun"
             android:gravity="center_vertical|left"
             />
     </RelativeLayout>

@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:uses-libraryandroid="http://schemas.android.com/apk/res-auto"
     package="com.massky.sraum">
-
 
     <!--<uses-sdk android:targetSdkVersion="21" />-->
 
@@ -11,6 +11,7 @@
         android:name="com.massky.sraum.permission.JPUSH_MESSAGE"
         android:protectionLevel="signature" />
     <!-- Required  一些系统要求的权限，如访问网络等-->
+    <uses-permission android:name="android.permission.KILL_BACKGROUND_PROCESSES" />
     <uses-permission android:name="com.massky.sraum.permission.JPUSH_MESSAGE" />
     <uses-permission android:name="android.permission.RECEIVE_USER_PRESENT" />
     <!--<uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS" />-->
@@ -64,6 +65,25 @@
     <uses-feature android:name="android.hardware.camera.autofocus" />
     <uses-feature android:name="android.permission.CHANGE_WIFI_STATE " />
     <uses-feature android:name="android.permission.WAKE_LOCK" />
+
+    <!-- Required  一些系统要求的权限，如访问网络等 -->
+    <uses-permission android:name="android.permission.RECEIVE_USER_PRESENT" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.READ_LOGS" />
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
+    <!-- SDK 使用权限 -->
+    <!-- SDK 使用权限 -->
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS" />
+    <uses-permission android:name="android.permission.WRITE_SETTINGS" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <!-- 乐鑫配置库中使用的权限（WIFI组播） -->
+    <uses-permission android:name="android.permission.CHANGE_WIFI_MULTICAST_STATE" />
     <uses-feature
         android:glEsVersion="0x00020000"
         android:required="true" />
@@ -99,14 +119,32 @@
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"></uses-permission>
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
 
+    <!--android 9.0上使用前台服务，需要添加权限-->
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+    <!-- 8.0安装apk权限，需要允许安装未知应用 -->
+    <uses-permission android:name="android.permission.REQUEST_INSTALL_PACKAGES" />
+
     <application
         android:name=".Utils.App"
         android:allowBackup="true"
         android:icon="@drawable/logo"
         android:label="@string/app_name"
+        android:persistent="true"
         android:roundIcon="@drawable/img_logo"
         android:supportsRtl="true"
-        android:theme="@android:style/Theme.NoTitleBar">
+        android:theme="@android:style/Theme.NoTitleBar"
+        android:usesCleartextTraffic="true">
+        <!--解决android9.0上使用ProtocolVersion抛异常的bug-->
+        <uses-library
+            android:name="org.apache.http.legacy"
+            android:required="false" />
+
+        <activity
+            android:name="com.iflytek.voicedemo.TtsDemo"
+            android:configChanges="mcc|mnc|locale|touchscreen|keyboard|keyboardHidden|navigation|orientation|screenLayout|fontScale"
+            android:screenOrientation="portrait">
+
+        </activity>
 
         <activity android:name="com.massky.sraum.MainActivity">
 
@@ -317,7 +355,8 @@
         <activity
             android:name="com.ipcamera.demo.PlayActivity"
             android:configChanges="keyboardHidden|orientation"
-            android:screenOrientation="landscape"></activity>
+            android:screenOrientation="landscape"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
 
         <activity
             android:name="com.massky.sraum.activity.AddZigbeeDeviceActivity"
@@ -568,9 +607,19 @@
         <activity
             android:name="com.massky.sraum.activity.Pm25Activity"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar">
+            android:theme="@style/AppTheme.NoActionBar"/>
 
-        </activity>
+        <activity
+            android:name="com.massky.sraum.activity.Pm25SecondActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar"/>
+
+
+        <activity
+            android:name="com.massky.sraum.activity.EditTablePMActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar"/>
+
         <activity
             android:name="com.massky.sraum.activity.AirControlActivity"
             android:screenOrientation="portrait"
@@ -666,8 +715,8 @@
         <activity
             android:name="com.king.photo.activity.MessageSendActivity"
             android:label="@string/app_name"
-            android:windowSoftInputMode="adjustPan"
-            android:theme="@style/AppTheme.NoActionBar">
+            android:theme="@style/AppTheme.NoActionBar"
+            android:windowSoftInputMode="adjustPan">
             <!--<intent-filter>-->
             <!--<action android:name="android.intent.action.MAIN" />-->
 
@@ -803,6 +852,13 @@
             android:name="com.massky.sraum.activity.GuJianWangGuanNewActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar"></activity>
+
+
+        <activity
+            android:name="com.massky.sraum.activity.ChangePassActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+
         <activity
             android:name=".activity.MyDeviceItemActivity"
             android:screenOrientation="portrait"
@@ -993,6 +1049,11 @@
         <!--音乐播放service设置-->
         <service android:name=".MyServcie1" />
 
+        <!--科大讯飞-语音服务-->
+        <service android:name="com.iflytek.speech.service.SpeechServcie" />
+
+        <!--测试无赖service-->
+
 
         <!-- Required  . Enable it you can get statistics data with channel极光配置meta-data -->
         <meta-data
@@ -1031,6 +1092,17 @@
             android:name=".Util.TestPreferencesProvider"
             android:authorities="${applicationId}.TestPreferencesProvider"
             android:exported="false"></provider>
+
+        <!-- 移动统计分析 ，科大讯飞语音 -->
+        <meta-data
+            android:name="IFLYTEK_APPKEY"
+            android:value="'59673ba5'" />
+        <meta-data
+            android:name="IFLYTEK_CHANNEL"
+            android:value="Android_Demo" />
+
+
+
     </application>
 
 </manifest>

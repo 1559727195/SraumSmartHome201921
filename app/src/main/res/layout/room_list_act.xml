@@ -25,7 +25,7 @@
             android:layout_centerVertical="true"
             android:layout_marginLeft="10dp"
             android:paddingRight="20dp"
-            android:src="@drawable/icon_t_back" />
+            app:srcCompat="@drawable/icon_t_back" />
 
         <TextView
             android:id="@+id/project_select"
@@ -43,7 +43,7 @@
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
             android:padding="@dimen/y8"
-            android:src="@drawable/icon_plus" />
+            app:srcCompat="@drawable/icon_plus" />
     </RelativeLayout>
 
     <LinearLayout

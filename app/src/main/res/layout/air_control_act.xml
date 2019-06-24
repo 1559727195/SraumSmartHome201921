@@ -25,7 +25,7 @@
             android:layout_centerVertical="true"
             android:layout_marginLeft="@dimen/x10"
             android:paddingRight="@dimen/x20"
-            android:src="@drawable/icon_t_back" />
+            app:srcCompat="@drawable/icon_t_back" />
 
         <TextView
             android:id="@+id/project_select"
@@ -95,7 +95,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
-                android:src="@drawable/btn_fengsu" />
+                app:srcCompat="@drawable/btn_fengsu" />
         </RelativeLayout>
         <RelativeLayout
             android:id="@+id/moshi_rel"
@@ -120,7 +120,7 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/openbtn_tiao_guang"
                 android:layout_centerInParent="true"
-                android:src="@drawable/btn_kt_close" />
+                app:srcCompat="@drawable/btn_kt_close" />
         </RelativeLayout>
 
     </LinearLayout>

@@ -174,10 +174,14 @@ public class RegistActivity extends BaseActivity {
                     case "100":
 //                        getCode();
                         String registerphone = phone_id.getText().toString();
-                        IntentUtil.startActivity(RegistActivity.this, InputCheckCodeActivity.class, "registerphone", registerphone);
+                        Intent intent = new Intent(RegistActivity.this, InputCheckCodeActivity.class);
+                        intent.putExtra("registerphone",registerphone);
+                        intent.putExtra("from","register");
+                        startActivity(intent);
+                        //IntentUtil.startActivity(RegistActivity.this, InputCheckCodeActivity.class, "registerphone", registerphone);
                         break;
                     case "101":
-                        ToastUtil.showDelToast(RegistActivity.this, "手机号已注册");
+                        ToastUtil.showToast(RegistActivity.this, "手机号已注册");
                         break;
                     default:
                         break;
@@ -191,7 +195,4 @@ public class RegistActivity extends BaseActivity {
             }
         });
     }
-
-
-
 }

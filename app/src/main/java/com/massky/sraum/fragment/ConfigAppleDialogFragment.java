@@ -1,7 +1,6 @@
 package com.massky.sraum.fragment;
 
 import android.app.Dialog;
-import android.app.DialogFragment;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.graphics.drawable.ColorDrawable;
@@ -21,9 +20,8 @@ import android.widget.TextView;
 import com.massky.sraum.R;
 import com.massky.sraum.activity.ConnWifiActivity;
 import com.massky.sraum.view.RoundProgressBar_ChangePosition;
-
 import androidx.appcompat.widget.Toolbar;
-
+import androidx.fragment.app.DialogFragment;
 import static android.content.Context.LAYOUT_INFLATER_SERVICE;
 
 

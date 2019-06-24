@@ -7,10 +7,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.*;
+
 import com.massky.sraum.R;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+
+import androidx.percentlayout.widget.PercentLayoutHelper;
 
 /**
  * Created by masskywcy on 2017-05-16.
@@ -39,6 +43,7 @@ public class DetailDeviceHomeAdapter extends android.widget.BaseAdapter {
     public long getItemId(int position) {
         return position;
     }
+
     @Override
     public View getView(final int position, View convertView, ViewGroup parent) {
         ViewHolderContentType viewHolderContentType = null;
@@ -46,8 +51,8 @@ public class DetailDeviceHomeAdapter extends android.widget.BaseAdapter {
             viewHolderContentType = new ViewHolderContentType();
             convertView = LayoutInflater.from(context).inflate(R.layout.detail_home_device, null);
             // 根据列数计算项目宽度，以使总宽度尽量填充屏幕
-            int itemWidth =  ((context.getResources().getDisplayMetrics().widthPixels
-            ) / 3 * 2 - dip2px(context,6)) / 2;
+            int itemWidth = ((context.getResources().getDisplayMetrics().widthPixels
+            ) / 3 * 2 - dip2px(context, 6)) / 2;
             // Calculate the height by your scale rate, I just use itemWidth here
             // 下面根据比例计算您的item的高度，此处只是使用itemWidth
             int itemHeight = itemWidth;
@@ -76,6 +81,7 @@ public class DetailDeviceHomeAdapter extends android.widget.BaseAdapter {
             //
             viewHolderContentType.scene_img = (ImageView) convertView.findViewById(R.id.scene_img);
             viewHolderContentType.scene_checkbox = (CheckBox) convertView.findViewById(R.id.scene_checkbox);
+            viewHolderContentType.rel_right = (RelativeLayout) convertView.findViewById(R.id.rel_right);
 
             convertView.setTag(viewHolderContentType);
         } else {
@@ -84,8 +90,8 @@ public class DetailDeviceHomeAdapter extends android.widget.BaseAdapter {
 
         viewHolderContentType.scene_img.setVisibility(View.GONE);
         final ViewHolderContentType mHolder = viewHolderContentType;
-        mHolder.device_name.setText(list.get(position).get("name")== null ?
-        "": list.get(position).get("name").toString());
+        mHolder.device_name.setText(list.get(position).get("name") == null ?
+                "" : list.get(position).get("name").toString());
         //type：设备类型，1-灯，2-调光，3-空调，4-窗帘，5-新风，6-地暖
 //        mHolder.itemrela_id.setBackgroundResource(R.drawable.markh);
         switch (list.get(position).get("type").toString()) {
@@ -221,12 +227,12 @@ public class DetailDeviceHomeAdapter extends android.widget.BaseAdapter {
                     mHolder.imageitem_id.setImageResource(R.drawable.icon_type_pm25_70);
                     mHolder.status_txt.setTextColor(context.getResources().getColor(R.color.dark));
 //                    mHolder.status_txt.setText("报警");//#E2C891
-                    mHolder.status_txt.setText(list.get(position).get("dimmer").toString());//#E2C891
+                    mHolder.status_txt.setText("PM2.5:" + list.get(position).get("dimmer").toString());//#E2C891
                 } else {
 //                    mHolder.itemrela_id.setBackgroundResource(R.drawable.markh);
                     mHolder.imageitem_id.setImageResource(R.drawable.icon_type_pm25_70_sy);
 //                    mHolder.status_txt.setText("正常");
-                    mHolder.status_txt.setText(list.get(position).get("dimmer").toString());//#E2C891
+                    mHolder.status_txt.setText("PM2.5:" + list.get(position).get("dimmer").toString());//#E2C891
                     mHolder.status_txt.setTextColor(context.getResources().getColor(R.color.dark_gray_new));
                 }
                 break;
@@ -369,36 +375,78 @@ public class DetailDeviceHomeAdapter extends android.widget.BaseAdapter {
                 }
                 break;
             case "100"://手动场景
+
                 viewHolderContentType.scene_img.setVisibility(View.VISIBLE);
                 if (list.get(position).get("status").toString().equals("1")) {
 //                    mHolder.itemrela_id.setBackgroundResource(R.drawable.markstarh);
                     mHolder.imageitem_id.setImageResource(R.drawable.icon_changjing);
 //                    mHolder.status_txt.setTextColor(context.getResources().getColor(R.color.zongse_color));
                     mHolder.status_txt.setTextColor(context.getResources().getColor(R.color.dark));
-                    mHolder.status_txt.setText("开");//#E2C891
+                    mHolder.status_txt.setText("");//#E2C891
+
                 } else {
 //                    mHolder.itemrela_id.setBackgroundResource(R.drawable.markh);
                     mHolder.imageitem_id.setImageResource(R.drawable.icon_changjing);
-                    mHolder.status_txt.setText("开");
+                    mHolder.status_txt.setText("");
                     mHolder.status_txt.setTextColor(context.getResources().getColor(R.color.dark_gray_new));
                 }
                 break;
-
+            case "102"://桌面PM2.5
+                if (list.get(position).get("status").toString().equals("1")) {
+//                    mHolder.itemrela_id.setBackgroundResource(R.drawable.markstarh);
+                    mHolder.imageitem_id.setImageResource(R.drawable.icon_pmmofang_70);
+//                    mHolder.status_txt.setTextColor(context.getResources().getColor(R.color.zongse_color));
+                    mHolder.status_txt.setTextColor(context.getResources().getColor(R.color.dark));
+                    mHolder.status_txt.setText("PM2.5:" + list.get(position).get("dimmer").toString());//#E2C891
+                } else {
+//                    mHolder.itemrela_id.setBackgroundResource(R.drawable.markh);
+                    mHolder.imageitem_id.setImageResource(R.drawable.icon_pmmofang_70_sy);
+                    mHolder.status_txt.setText("PM2.5:" + list.get(position).get("dimmer").toString());
+                    mHolder.status_txt.setTextColor(context.getResources().getColor(R.color.dark_gray_new));
+                }
+                break;
             default:
                 mHolder.imageitem_id.setImageResource(R.drawable.marklamph);
                 break;
         }
+
+        init_item_params(position, viewHolderContentType);
         return convertView;
+    }
+
+    /**
+     * 动态设置textview在布局中的显示方式layoutparams
+     * @param position
+     * @param viewHolderContentType
+     */
+    private void init_item_params(int position, ViewHolderContentType viewHolderContentType) {
+        RelativeLayout.LayoutParams rlp = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT,
+                RelativeLayout.LayoutParams.WRAP_CONTENT);
+        switch (list.get(position).get("type").toString()) {
+            case "100":
+                rlp.addRule(RelativeLayout.CENTER_IN_PARENT);//addRule参数对应RelativeLayout XML布局的属性
+                viewHolderContentType.device_name.setLayoutParams(
+                        rlp
+                );
+                break;
+            default:
+                rlp.removeRule(RelativeLayout.CENTER_IN_PARENT);
+                viewHolderContentType.device_name.setLayoutParams(
+                        rlp
+                );
+                break;
+        }
     }
 
 
     /**
      * 根据手机分辨率从DP转成PX
+     *
      * @param context
      * @param dpValue
      * @return
      */
-    public  int dip2px(Context context, float dpValue) {
+    public int dip2px(Context context, float dpValue) {
         float scale = context.getResources().getDisplayMetrics().density;
         return (int) (dpValue * scale + 0.5f);
     }
@@ -422,5 +470,6 @@ public class DetailDeviceHomeAdapter extends android.widget.BaseAdapter {
         LinearLayout linear_select;
         ImageView scene_img;//场景图片
         CheckBox scene_checkbox;//场景选中
+        RelativeLayout rel_right;
     }
 }

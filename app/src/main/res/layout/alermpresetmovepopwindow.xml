@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/color_black"
@@ -29,7 +30,7 @@
                 android:layout_height="1dp"
                 android:layout_marginLeft="10dp"
        			android:layout_marginRight="10dp"
-                android:src="@color/color_line" />
+                app:srcCompat="@color/color_line" />
 
             <TextView
                 android:id="@+id/preset_1"
@@ -43,7 +44,7 @@
                 android:layout_height="1dp"
                 android:layout_marginLeft="10dp"
         		android:layout_marginRight="10dp"
-                android:src="@color/color_line" />
+                app:srcCompat="@color/color_line" />
 
             <TextView
                 android:id="@+id/preset_2"
@@ -57,7 +58,7 @@
                 android:layout_height="1dp"
                 android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
-                android:src="@color/color_line" />
+                app:srcCompat="@color/color_line" />
 
             <TextView
                 android:id="@+id/preset_3"
@@ -71,7 +72,7 @@
                 android:layout_height="1dp"
                 android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
-                android:src="@color/color_line" />
+                app:srcCompat="@color/color_line" />
 
             <TextView
                 android:id="@+id/preset_4"
@@ -85,7 +86,7 @@
                 android:layout_height="1dp"
                 android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
-                android:src="@color/color_line" />
+                app:srcCompat="@color/color_line" />
 
             <TextView
                 android:id="@+id/preset_5"
@@ -99,7 +100,7 @@
                 android:layout_height="1dp"
                 android:layout_marginLeft="10dp"
         		android:layout_marginRight="10dp"
-                android:src="@color/color_line" />
+                app:srcCompat="@color/color_line" />
 
             <TextView
                 android:id="@+id/preset_6"
@@ -114,7 +115,7 @@
                 android:layout_height="1dp"
                 android:layout_marginLeft="10dp"
         		android:layout_marginRight="10dp"
-                android:src="@color/color_line" />
+                app:srcCompat="@color/color_line" />
 
             <TextView
                 android:id="@+id/preset_7"
@@ -128,7 +129,7 @@
                 android:layout_height="1dp"
                 android:layout_marginLeft="10dp"
         		android:layout_marginRight="10dp"
-                android:src="@color/color_line" />
+                app:srcCompat="@color/color_line" />
 
             <TextView
                 android:id="@+id/preset_8"
@@ -142,7 +143,7 @@
                 android:layout_height="1dp"
                 android:layout_marginLeft="10dp"
         		android:layout_marginRight="10dp"
-                android:src="@color/color_line" />
+                app:srcCompat="@color/color_line" />
 
             <TextView
                 android:id="@+id/preset_9"
@@ -156,7 +157,7 @@
                 android:layout_height="1dp"
                 android:layout_marginLeft="10dp"
         		android:layout_marginRight="10dp"
-                android:src="@color/color_line" />
+                app:srcCompat="@color/color_line" />
 
             <TextView
                 android:id="@+id/preset_10"
@@ -170,7 +171,7 @@
                 android:layout_height="1dp"
                 android:layout_marginLeft="10dp"
         		android:layout_marginRight="10dp"
-                android:src="@color/color_line" />
+                app:srcCompat="@color/color_line" />
 
             <TextView
                 android:id="@+id/preset_11"
@@ -185,7 +186,7 @@
                 android:layout_height="1dp"
                 android:layout_marginLeft="10dp"
         		android:layout_marginRight="10dp"
-                android:src="@color/color_line" />
+                app:srcCompat="@color/color_line" />
 
             <TextView
                 android:id="@+id/preset_12"
@@ -199,7 +200,7 @@
                 android:layout_height="1dp"
                 android:layout_marginLeft="10dp"
         		android:layout_marginRight="10dp"
-                android:src="@color/color_line" />
+                app:srcCompat="@color/color_line" />
 
             <TextView
                 android:id="@+id/preset_13"
@@ -213,7 +214,7 @@
                 android:layout_height="1dp"
                 android:layout_marginLeft="10dp"
         		android:layout_marginRight="10dp"
-                android:src="@color/color_line" />
+                app:srcCompat="@color/color_line" />
 
             <TextView
                 android:id="@+id/preset_14"
@@ -227,7 +228,7 @@
                 android:layout_height="1dp"
                 android:layout_marginLeft="10dp"
         		android:layout_marginRight="10dp"
-                android:src="@color/color_line" />
+                app:srcCompat="@color/color_line" />
 
             <TextView
                 android:id="@+id/preset_15"
@@ -241,7 +242,7 @@
                 android:layout_height="1dp"
                 android:layout_marginLeft="10dp"
         		android:layout_marginRight="10dp"
-                android:src="@color/color_line" />
+                app:srcCompat="@color/color_line" />
 
             <TextView
                 android:id="@+id/preset_16"
@@ -255,7 +256,7 @@
                 android:layout_height="1dp"
                 android:layout_marginLeft="10dp"
         		android:layout_marginRight="10dp"
-                android:src="@color/color_line" />
+                app:srcCompat="@color/color_line" />
         </LinearLayout>
     </ScrollView>
 

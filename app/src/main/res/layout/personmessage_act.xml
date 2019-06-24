@@ -32,7 +32,7 @@
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="10dp"
                 android:paddingRight="20dp"
-                android:src="@drawable/icon_t_back" />
+                app:srcCompat="@drawable/icon_t_back" />
 
             <TextView
                 android:id="@+id/toolbar_txt"
@@ -68,7 +68,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
-            android:src="@mipmap/ic_launcher"
+            app:srcCompat="@mipmap/ic_launcher"
             android:id="@+id/wode_username"
             android:layout_marginLeft="10dp"/>
         <TextView
@@ -96,7 +96,7 @@
             android:id="@+id/wode_right_arrow2"
             android:layout_alignParentRight="true"
             android:layout_marginRight="10dp"
-            android:src="@mipmap/ic_launcher"/>
+            app:srcCompat="@mipmap/ic_launcher"/>
     </RelativeLayout>
 
     <RelativeLayout
@@ -113,7 +113,7 @@
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
             android:layout_marginLeft="10dp"
-            android:src="@drawable/icon_touxiang" />
+            app:srcCompat="@drawable/icon_touxiang" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -150,7 +150,7 @@
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
             android:layout_marginRight="10dp"
-            android:src="@drawable/wode_right_arrow" />
+            app:srcCompat="@drawable/wode_right_arrow" />
     </RelativeLayout>
     <View
         android:layout_width="match_parent"
@@ -166,7 +166,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
-            android:src="@drawable/icon_nicheng"
+            app:srcCompat="@drawable/icon_nicheng"
             android:id="@+id/wode_nicheng"
             android:layout_marginLeft="10dp"/>
         <TextView
@@ -194,7 +194,7 @@
             android:id="@+id/wode_right_arrow1"
             android:layout_alignParentRight="true"
             android:layout_marginRight="10dp"
-            android:src="@drawable/wode_right_arrow"/>
+            app:srcCompat="@drawable/wode_right_arrow"/>
     </RelativeLayout>
     <View
         android:layout_width="match_parent"
@@ -210,7 +210,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
-            android:src="@drawable/icon_xingbie"
+            app:srcCompat="@drawable/icon_xingbie"
             android:id="@+id/wode_xingbie"
             android:layout_marginLeft="10dp"/>
         <TextView
@@ -270,7 +270,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
-            android:src="@drawable/icon_shengri"
+            app:srcCompat="@drawable/icon_shengri"
             android:id="@+id/wode_year"
             android:layout_marginLeft="10dp"/>
         <TextView
@@ -299,7 +299,7 @@
             android:id="@+id/wode_right_arrow4"
             android:layout_alignParentRight="true"
             android:layout_marginRight="10dp"
-            android:src="@drawable/wode_right_arrow"/>
+            app:srcCompat="@drawable/wode_right_arrow"/>
     </RelativeLayout>
     <View
         android:layout_width="match_parent"
@@ -315,7 +315,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
-            android:src="@drawable/icon_id"
+            app:srcCompat="@drawable/icon_id"
             android:id="@+id/wode_dizhi"
             android:layout_marginLeft="10dp"/>
         <TextView
@@ -345,7 +345,7 @@
             android:id="@+id/wode_right_arrow5"
             android:layout_alignParentRight="true"
             android:layout_marginRight="10dp"
-            android:src="@drawable/wode_right_arrow"/>
+            app:srcCompat="@drawable/wode_right_arrow"/>
     </RelativeLayout>
     <View
         android:layout_width="match_parent"
@@ -361,7 +361,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
-            android:src="@drawable/icon_shoujihao"
+            app:srcCompat="@drawable/icon_shoujihao"
             android:id="@+id/wode_change_pass"
             android:layout_marginLeft="10dp"/>
         <TextView
@@ -382,6 +382,7 @@
             android:textSize="15sp"
             android:layout_centerVertical="true"
             android:layout_marginRight="10dp"
+            android:layout_alignParentRight="true"
             android:layout_toLeftOf="@+id/wode_right_arrow"/>
 
         <ImageView
@@ -391,7 +392,55 @@
             android:id="@+id/wode_right_arrow"
             android:layout_alignParentRight="true"
             android:layout_marginRight="10dp"
-            android:src="@drawable/wode_right_arrow"/>
+            android:visibility="gone"
+            app:srcCompat="@drawable/wode_right_arrow"/>
+    </RelativeLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/gray"></View>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:background="#FFFFFF"
+        android:id="@+id/change_pass"
+        android:paddingLeft="@dimen/x8"
+        android:layout_height="50dp">
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            app:srcCompat="@drawable/icon_xiugaimima"
+            android:id="@+id/img_pass"
+            android:layout_marginLeft="10dp"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@+id/img_pass"
+            android:textColor="#000000"
+            android:layout_marginLeft="5dp"
+            android:text="修改密码"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="189*********"
+            android:textColor="@color/gray"
+            android:visibility="gone"
+            android:textSize="15sp"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="10dp"
+            android:layout_alignParentRight="true"
+           />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="10dp"
+            app:srcCompat="@drawable/wode_right_arrow"/>
     </RelativeLayout>
     <View
         android:layout_width="match_parent"

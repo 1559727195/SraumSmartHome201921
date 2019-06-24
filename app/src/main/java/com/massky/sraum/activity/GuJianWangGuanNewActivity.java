@@ -15,6 +15,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+
 import com.AddTogenInterface.AddTogglenInterfacer;
 import com.massky.sraum.R;
 import com.massky.sraum.User;
@@ -28,10 +29,12 @@ import com.massky.sraum.Utils.ApiHelper;
 import com.massky.sraum.base.BaseActivity;
 import com.yanzhenjie.statusview.StatusUtils;
 import com.yanzhenjie.statusview.StatusView;
+
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Timer;
 import java.util.TimerTask;
+
 import androidx.core.app.ActivityCompat;
 import androidx.percentlayout.widget.PercentRelativeLayout;
 import butterknife.InjectView;
@@ -92,6 +95,7 @@ public class GuJianWangGuanNewActivity extends BaseActivity {
     private boolean is_index;
     private String areaNumber;
     private String gatewayNumber;
+    private String currentVersion;
 
 
     @Override
@@ -107,9 +111,9 @@ public class GuJianWangGuanNewActivity extends BaseActivity {
         registerMessageReceiver();
         dialogUtil = new DialogUtil(this);
         String newVersion = (String) getIntent().getSerializableExtra("newVersion");
-        String currentVersion = (String) getIntent().getSerializableExtra("currentVersion");
+        currentVersion = (String) getIntent().getSerializableExtra("currentVersion");
         String doit = (String) getIntent().getSerializableExtra("doit");
-        areaNumber  =  (String) getIntent().getSerializableExtra("areaNumber");
+        areaNumber = (String) getIntent().getSerializableExtra("areaNumber");
         gatewayNumber = (String) getIntent().getSerializableExtra("number");
 //        intent.putExtra("newVersion",newVersion);
 //        intent.putExtra("currentVersion",currentVersion);
@@ -154,7 +158,7 @@ public class GuJianWangGuanNewActivity extends BaseActivity {
                 break;
             case "old_version":
                 banbenxin_linear.setVisibility(View.VISIBLE);
-                back.setVisibility(View.GONE);
+//                back.setVisibility(View.GONE);
                 icon_banbengenxin.setImageResource(R.drawable.pic_youshengji);
                 new_gujian_promat_txt.setVisibility(View.VISIBLE);
                 current_gujian_version_linear.setVisibility(View.VISIBLE);
@@ -205,6 +209,9 @@ public class GuJianWangGuanNewActivity extends BaseActivity {
                 GuJianWangGuanNewActivity.this.finish();
                 break;
             case R.id.back:
+                if (!isupgrade)
+                    GuJianWangGuanNewActivity.this.finish();
+                break;
             case R.id.btn_upgrade://更新固件
                 back_response();
                 break;
@@ -224,25 +231,31 @@ public class GuJianWangGuanNewActivity extends BaseActivity {
                 new_gujian_promat_txt.setVisibility(View.VISIBLE);
                 current_gujian_version_linear.setVisibility(View.VISIBLE);
                 break;
-            case "升级":
-                btn_upgrade.setText("升级中");
+            case "更新":
+                btn_upgrade.setText("更新中");
+                isupgrade = true;
                 banbenxin_linear.setVisibility(View.GONE);
                 new_gujian_promat_txt.setVisibility(View.GONE);
 //                        current_gujian_version_linear.setVisibility(View.GONE);
                 banben_progress_linear.setVisibility(View.VISIBLE);
+                back.setVisibility(View.GONE);
 //                startTimer();
                 init_timer();
                 updatebox_version();
                 break;
             case "返回":
-              GuJianWangGuanNewActivity.this.finish();
+                GuJianWangGuanNewActivity.this.finish();
                 break;
         }
     }
 
     @Override
     public void onBackPressed() {
-        back_response();
+        if (isupgrade) {//正在更新中
+            back_response();
+        } else {
+            GuJianWangGuanNewActivity.this.finish();
+        }
     }
 
 
@@ -278,6 +291,7 @@ public class GuJianWangGuanNewActivity extends BaseActivity {
                                         miao.setText("00");
                                         stopTimer();
                                         GuJianWangGuanNewActivity.this.finish();
+                                        sraum_cancelUpdateGateway();
                                     } else {
                                         miao.setText("00");
                                         second[0] = 59;
@@ -394,7 +408,7 @@ public class GuJianWangGuanNewActivity extends BaseActivity {
         icon_banbengenxin.setImageResource(R.drawable.icon_edition);
         current_gujian_version_linear.setVisibility(View.VISIBLE);
         current_gujian_version_txt.setText("当前已经是最新版本");
-        new_gujian_version_txt.setText(newVersion);
+        new_gujian_version_txt.setText(currentVersion);
     }
 
 
@@ -411,7 +425,7 @@ public class GuJianWangGuanNewActivity extends BaseActivity {
         map.put("token", TokenUtil.getToken(this));
         map.put("boxNumber", gatewayNumber);
         map.put("regId", regId);
-        map.put("areaNumber",areaNumber);
+        map.put("areaNumber", areaNumber);
 //        map.put("status", "0");//进入设置模式
 //        dialogUtil.loadDialog();
         MyOkHttp.postMapObject(ApiHelper.sraum_updateGateway, map, new Mycallback(new AddTogglenInterfacer() {
@@ -443,6 +457,50 @@ public class GuJianWangGuanNewActivity extends BaseActivity {
                     public void threeCode() {
                         //number 不存在
                         ToastUtil.showToast(GuJianWangGuanNewActivity.this, "number 不存在");
+                    }
+                }
+        );
+    }
+
+
+    /**
+     * 取消网关升级
+     */
+
+    private void sraum_cancelUpdateGateway() {
+        Map map = new HashMap();
+        map.put("token", TokenUtil.getToken(this));
+        map.put("gatewayNumber", gatewayNumber);
+        map.put("areaNumber", areaNumber);
+        MyOkHttp.postMapObject(ApiHelper.sraum_cancelUpdateGateway, map, new Mycallback(new AddTogglenInterfacer() {
+
+                    @Override
+                    public void addTogglenInterfacer() {
+//
+                        updatebox_version();
+
+                    }
+                }, GuJianWangGuanNewActivity.this, dialogUtil) {
+                    @Override
+                    public void onSuccess(User user) {
+
+                    }
+
+                    @Override
+                    public void wrongToken() {
+                        super.wrongToken();
+                    }
+
+                    @Override
+                    public void wrongBoxnumber() {
+                        ToastUtil.showToast(GuJianWangGuanNewActivity.this, "areaNumer 不\n" +
+                                "存在 ");
+                    }
+
+                    @Override
+                    public void threeCode() {
+                        //number 不存在
+                        ToastUtil.showToast(GuJianWangGuanNewActivity.this, "gatewayNumber 不存在");
                     }
                 }
         );
@@ -505,7 +563,8 @@ public class GuJianWangGuanNewActivity extends BaseActivity {
                             onDestory();
                             stopTimer();
                             handler_upgrade.sendEmptyMessage(0);
-                           GuJianWangGuanNewActivity.this.finish();
+                            isupgrade = false;
+                            GuJianWangGuanNewActivity.this.finish();
                         } else {
                             ToastUtil.showToast(GuJianWangGuanNewActivity.this, "网关" +
                                     "升级失败");

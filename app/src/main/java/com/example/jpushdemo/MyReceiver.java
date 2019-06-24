@@ -8,15 +8,15 @@ import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
+
 import com.alibaba.fastjson.JSON;
+import com.iflytek.speech.util.SpeechUtil;
+import com.massky.sraum.R;
 import com.massky.sraum.User;
 import com.massky.sraum.Util.LogUtil;
 import com.massky.sraum.Util.MusicUtil;
-import com.massky.sraum.Util.MyOkHttp;
-import com.massky.sraum.Util.Mycallback;
 import com.massky.sraum.Util.SharedPreferencesUtil;
 import com.massky.sraum.Util.TokenUtil;
-import com.massky.sraum.Utils.ApiHelper;
 import com.massky.sraum.Utils.SystemUtils;
 import com.massky.sraum.activity.FastEditPanelActivity;
 import com.massky.sraum.activity.MainGateWayActivity;
@@ -25,17 +25,21 @@ import com.massky.sraum.base.Basecfragment;
 import com.massky.sraum.base.Basecfragmentactivity;
 import com.massky.sraum.fragment.HomeFragment;
 import com.massky.sraum.fragment.SceneFragment;
+
 import org.json.JSONException;
 import org.json.JSONObject;
-import java.util.ArrayList;
+
+import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+
 import cn.jpush.android.api.JPushInterface;
+
 import static com.massky.sraum.activity.GuJianWangGuanNewActivity.UPDATE_GRADE_BOX;
 import static com.massky.sraum.activity.MainGateWayActivity.ACTION_SRAUM_SETBOX;
-
+import static com.massky.sraum.fragment.HomeFragment.ACTION_INTENT_RECEIVER_TABLE_PM;
 
 
 /**
@@ -103,8 +107,12 @@ public class MyReceiver extends BroadcastReceiver {
                 e.printStackTrace();
             }
             String type = null;
+            String typeno = null;
+            String alert = null;
             try {
                 type = json.getString("type");
+                typeno = json.getString("typeno");
+                alert = json.getString("alert");
             } catch (JSONException e) {
                 e.printStackTrace();
             }
@@ -114,10 +122,18 @@ public class MyReceiver extends BroadcastReceiver {
                 switch (type) {
                     case "1":
                     case "2":
-                    case "51":
                     case "53":
                         SharedPreferencesUtil.saveData(context, "tongzhi_time", 1);//门铃报警通知次数
                         break;
+                    case "51":
+                        if (typeno != null) {
+                            if (typeno.equals("B001")) {
+                                SpeechUtil.startSpeech(context, 1, alert, "time_push");
+                            }
+                        }
+                        SharedPreferencesUtil.saveData(context, "tongzhi_time", 1);//门铃报警通知次数
+                        break;
+
                     case "52":
                         //processCustomMessage_charge(context, bundle);
                         //打开自定义的Activity
@@ -143,8 +159,15 @@ public class MyReceiver extends BroadcastReceiver {
                 switch (type) {
                     case "1":
                     case "2":
-                    case "51":
                     case "53":
+                        SharedPreferencesUtil.saveData(context, "tongzhi_time", 1);//门铃报警通知次数
+                        break;
+                    case "51":
+                        if (typeno != null) {
+                            if (typeno.equals("B001")) {
+                                SpeechUtil.startSpeech(context, 1, alert, "time_push");
+                            }
+                        }
                         SharedPreferencesUtil.saveData(context, "tongzhi_time", 1);//门铃报警通知次数
                         break;
                     case "52":
@@ -317,7 +340,7 @@ public class MyReceiver extends BroadcastReceiver {
             } else if (TokenUtil.getPagetag(context).equals("6")) {
 //                action = MysceneFragment.ACTION_INTENT_RECEIVER;
             }
-            sendBroad(notifactionId, "");
+            sendBroad(notifactionId, "", null);
         } else if (notifactionId == 1) {//
             JSONObject extraJson;
             if (!ExampleUtil.isEmpty(extras)) {//设备状态改变
@@ -325,6 +348,7 @@ public class MyReceiver extends BroadcastReceiver {
                 try {
                     extraJson = new JSONObject(extras);
                     String panelid = extraJson.getString("panelid");
+                    String gatewayid = extraJson.getString("gatewayid");
                     if (panelid != null) {
 //                        if (panelid.equals("")) {
 //                            action = MacFragment.ACTION_INTENT_RECEIVER;
@@ -338,10 +362,10 @@ public class MyReceiver extends BroadcastReceiver {
 //                        sendBroad(notifactionId, "");
 //                    }
                         action = HomeFragment.ACTION_INTENT_RECEIVER;
-                        sendBroad(notifactionId, "");
+                        sendBroad(notifactionId, "", gatewayid);
 
                         action = FastEditPanelActivity.ACTION_SRAUM_FAST_EDIT;
-                        sendBroad(notifactionId, panelid);
+                        sendBroad(notifactionId, panelid, gatewayid);
                     }
                 } catch (JSONException e) {
 
@@ -358,8 +382,9 @@ public class MyReceiver extends BroadcastReceiver {
                 try {
                     extraJson = new JSONObject(extras);
                     String panelid = extraJson.getString("panelid");
+                    String gatewayid = extraJson.getString("gatewayid");
                     if (extraJson.length() > 0) {
-                        sendBroad(notifactionId, panelid);
+                        sendBroad(notifactionId, panelid, gatewayid);
                     }
                 } catch (JSONException e) {
 
@@ -372,8 +397,9 @@ public class MyReceiver extends BroadcastReceiver {
                 try {
                     extraJson = new JSONObject(extras);
                     String panelid = extraJson.getString("panelid");
+                    String gatewayid = extraJson.getString("gatewayid");
                     if (extraJson.length() > 0) {
-                        sendBroad(notifactionId, panelid);
+                        sendBroad(notifactionId, panelid, gatewayid);
                     }
                 } catch (JSONException e) {
 
@@ -382,7 +408,34 @@ public class MyReceiver extends BroadcastReceiver {
         } else if (notifactionId == 52) {//notifactionId = 50 ->升级网关
             //构建对象
             init_soundPool();
+        } else if (notifactionId == 51) {
+            JSONObject extraJson;
+            String type = null;
+            String typeno = null;
+            String alert = bundle.getString(JPushInterface.EXTRA_ALERT);////{"type":"2"}
+            if (!ExampleUtil.isEmpty(extras)) {
+                try {
+                    extraJson = new JSONObject(extras);
+                    typeno = extraJson.getString("typeno");
 
+                    if (typeno != null) {
+                        if (typeno.equals("B001")) {
+                            SpeechUtil.startSpeech(context, 1, alert, "time_push");
+                        }
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        } else if (notifactionId == 54) {//桌面PM2.5广播接收
+            JSONObject extraJson;
+            if (!ExampleUtil.isEmpty(extras)) {//设备状态改变
+                // 在extras中增加了字段panelid
+//                        extraJson = new JSONObject(extras);
+                Intent mIntent = new Intent(ACTION_INTENT_RECEIVER_TABLE_PM);
+                mIntent.putExtra("extras", extras);
+                context.sendBroadcast(mIntent);
+            }
         }
     }
 
@@ -393,10 +446,11 @@ public class MyReceiver extends BroadcastReceiver {
         MusicUtil.startMusic(context, 1, "doorbell");
     }
 
-    private void sendBroad(int notifactionId, String second) {
+    private void sendBroad(int notifactionId, String second, String gatewayid) {
         Intent mIntent = new Intent(action);
         mIntent.putExtra("notifactionId", notifactionId);
         mIntent.putExtra("panelid", second);
+        mIntent.putExtra("gatewayid", gatewayid);
         context.sendBroadcast(mIntent);
     }
 

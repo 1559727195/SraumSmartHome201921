@@ -1,16 +1,10 @@
 package com.king.photo.activity;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.os.Bundle;
-import androidx.viewpager.widget.PagerAdapter;
-import androidx.viewpager.widget.ViewPager.OnPageChangeListener;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -26,6 +20,13 @@ import com.king.photo.zoom.PhotoView;
 import com.king.photo.zoom.ViewPagerFixed;
 import com.yanzhenjie.statusview.StatusUtils;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.viewpager.widget.PagerAdapter;
+import androidx.viewpager.widget.ViewPager.OnPageChangeListener;
+
 /**
  * 这个是用于进行图片浏览时的界面
  *
@@ -33,7 +34,7 @@ import com.yanzhenjie.statusview.StatusUtils;
  * @QQ:595163260
  * @version 2014年10月18日  下午11:47:53
  */
-public class GalleryActivity extends Activity {
+public class GalleryActivity extends AppCompatActivity {
 	private Intent intent;
     // 返回按钮
     private Button back_bt;

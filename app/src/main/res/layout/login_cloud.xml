@@ -109,6 +109,7 @@
                 android:paddingRight="10dp"
                 android:textColor="@color/white"
                 android:textColorHint="@color/gray"
+
                 app:layout_widthPercent="70%" />
 
             <ImageView
@@ -118,7 +119,7 @@
                 android:layout_alignParentRight="true"
                 android:layout_centerVertical="true"
                 android:layout_marginRight="10dp"
-                android:src="@mipmap/eyeclose" />
+                app:srcCompat="@mipmap/eyeclose" />
 
         </androidx.percentlayout.widget.PercentRelativeLayout>
 

@@ -24,7 +24,7 @@
             android:layout_centerVertical="true"
             android:layout_marginLeft="10dp"
             android:paddingRight="20dp"
-            android:src="@drawable/icon_t_back" />
+            app:srcCompat="@drawable/icon_t_back" />
 
         <TextView
             android:id="@+id/project_select"
@@ -91,7 +91,7 @@
                 android:layout_alignParentRight="true"
                 android:layout_centerVertical="true"
                 android:layout_marginRight="15dp"
-                android:src="@drawable/wode_right_arrow"
+                app:srcCompat="@drawable/wode_right_arrow"
             />
 
         </RelativeLayout>
@@ -132,7 +132,7 @@
                 android:layout_alignParentRight="true"
                 android:layout_centerVertical="true"
                 android:layout_marginRight="15dp"
-                android:src="@drawable/wode_right_arrow"
+                app:srcCompat="@drawable/wode_right_arrow"
                 />
         </RelativeLayout>
 

@@ -26,7 +26,7 @@
             android:paddingRight="40dp"
             android:paddingTop="10dp"
             android:paddingBottom="10dp"
-            android:src="@drawable/icon_t_back" />
+            app:srcCompat="@drawable/icon_t_back" />
 
         <TextView
             android:id="@+id/project_select"
@@ -108,7 +108,7 @@
                 android:gravity="left"
                 android:visibility="gone"
                 android:layout_alignParentRight="true"
-                android:src="@drawable/btn_xiala"/>
+                app:srcCompat="@drawable/btn_xiala"/>
         </androidx.percentlayout.widget.PercentRelativeLayout>
 
         <View
@@ -159,7 +159,7 @@
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
                 android:layout_alignParentRight="true"
-                android:src="@drawable/eyeclose" />
+                app:srcCompat="@drawable/eyeclose" />
 
         </androidx.percentlayout.widget.PercentRelativeLayout>
         <View

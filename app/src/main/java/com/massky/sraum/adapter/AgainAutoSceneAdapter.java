@@ -11,11 +11,16 @@ import android.widget.RadioGroup;
 import android.widget.TextView;
 
 import com.massky.sraum.R;
+import com.massky.sraum.activity.AutoAgainSceneActivity;
+import com.massky.sraum.activity.CustomDefineDaySceneActivity;
 import com.massky.sraum.activity.HandAddSceneDeviceDetailActivity;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+
+import static com.massky.sraum.activity.TimeExcuteCordinationActivity.MESSAGE_TIME_EXCUTE_ACTION;
 
 /**
  * Created by masskywcy on 2017-05-16.
@@ -23,10 +28,12 @@ import java.util.Map;
 
 public class AgainAutoSceneAdapter extends BaseAdapter {
     private List<Map> list = new ArrayList<>();
+    private AgainAutoSceneListener againAutoSceneListener;
 
-    public AgainAutoSceneAdapter(Context context, List<Map> list) {
+    public AgainAutoSceneAdapter(Context context, List<Map> list, AgainAutoSceneListener againAutoSceneListener) {
         super(context, list);
         this.list = list;
+        this.againAutoSceneListener = againAutoSceneListener;
     }
 
     @Override
@@ -44,6 +51,7 @@ public class AgainAutoSceneAdapter extends BaseAdapter {
         }
 
         String type = (String) list.get(position).get("type");
+        final String name = (String) list.get(position).get("name");
         switch (type) {
             case "0":
                 viewHolderContentType.img_again_autoscene.setVisibility(View.GONE);//
@@ -72,13 +80,31 @@ public class AgainAutoSceneAdapter extends BaseAdapter {
                     }
                 }
                 notifyDataSetChanged();
+
+                switch (name) {
+                    case "自定义":
+                        context.startActivity(new Intent(context, CustomDefineDaySceneActivity.class));
+                        break;
+                    default:
+                        if (againAutoSceneListener != null)
+                            againAutoSceneListener.again_auto_listen(position);
+                        break;
+                }
+
+                //跳转到时间界面
+
+
             }
         });
         return convertView;
     }
 
     class ViewHolderContentType {
-       ImageView img_again_autoscene;
-       TextView  txt_again_autoscene;
+        ImageView img_again_autoscene;
+        TextView txt_again_autoscene;
+    }
+
+    public interface AgainAutoSceneListener {
+        void again_auto_listen(int position);
     }
 }

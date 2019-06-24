@@ -114,8 +114,14 @@ public class TiaoGuangLightActivity extends BaseActivity implements SeekBar.OnSe
         if (mapalldevice != null) {
             statusflag = (String) bundle.getString("status");
             dimmer = (String) mapalldevice.get("dimmer");
-            bar1.setCurrentValues(Integer.parseInt(dimmer));
-            id_seekBar.setProgress(Integer.parseInt(dimmer));
+            if (Integer.parseInt(dimmer) == 0) {
+                bar1.setCurrentValues(Integer.parseInt(dimmer) + 10);
+                id_seekBar.setProgress(Integer.parseInt(dimmer) + 10);
+            } else {
+                bar1.setCurrentValues(Integer.parseInt(dimmer));
+                id_seekBar.setProgress(Integer.parseInt(dimmer));
+            }
+
             doit_open();
         }
     }
@@ -133,7 +139,7 @@ public class TiaoGuangLightActivity extends BaseActivity implements SeekBar.OnSe
     @Override
     public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
         Log.e("zhu", "onProgressChanged: " + progress);
-        bar1.setCurrentValues(progress);
+        bar1.setCurrentValues(progress + 10);
     }
 
     @Override
@@ -146,7 +152,7 @@ public class TiaoGuangLightActivity extends BaseActivity implements SeekBar.OnSe
         LogUtil.i("停止滑动", "onStopTrackingTouch: ");
         //停止滑动是的状态
         if (statusbo) {
-            statusflag = "1";
+//            statusflag = "1";
             getMapdevice("slop");//控制
         }
     }
@@ -255,10 +261,22 @@ public class TiaoGuangLightActivity extends BaseActivity implements SeekBar.OnSe
                 break;
         }
         mapdevice.put("type", type);
-        mapdevice.put("status", statusflag);
+        switch (slop) {
+            case "onclick":
+                mapdevice.put("status", statusflag);
+                mapdevice.put("dimmer", dimmer);
+                break;
+            default:
+                if (statusbo) {
+                    mapdevice.put("status", "1");
+                } else {
+                    mapdevice.put("status", "0");
+                }
+                mapdevice.put("dimmer", Integer.parseInt(dimmer) + 10);
+                break;
+        }
         mapdevice.put("number", number);
         mapdevice.put("name", name);
-        mapdevice.put("dimmer", dimmer);
         mapdevice.put("mode", modeflag);
         mapdevice.put("temperature", temperature);
         mapdevice.put("speed", windflag);
@@ -281,7 +299,7 @@ public class TiaoGuangLightActivity extends BaseActivity implements SeekBar.OnSe
         map.put("type", mapdevice1.get("type").toString());
         map.put("number", mapdevice1.get("number").toString());
         map.put("name", mapdevice1.get("name").toString());
-        map.put("status", statusflag);
+        map.put("status",mapdevice1.get("status").toString());
         map.put("mode", mapdevice1.get("mode").toString());
         map.put("dimmer", mapdevice1.get("dimmer").toString());
         map.put("temperature", mapdevice1.get("temperature").toString());

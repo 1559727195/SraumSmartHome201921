@@ -30,7 +30,7 @@
             android:paddingTop="5dp"
             android:paddingRight="20dp"
             android:paddingBottom="5dp"
-            android:src="@drawable/icon_t_back" />
+            app:srcCompat="@drawable/icon_t_back" />
 
         <TextView
             android:id="@+id/project_select"
@@ -371,7 +371,7 @@
                     android:layout_height="wrap_content"
                     android:layout_centerHorizontal="true"
                     android:layout_centerVertical="true"
-                    android:src="@drawable/light_turn_on" />
+                    app:srcCompat="@drawable/light_turn_on" />
             </RelativeLayout>
 
             <RelativeLayout
@@ -388,7 +388,7 @@
                     android:layout_height="wrap_content"
                     android:layout_centerHorizontal="true"
                     android:layout_centerVertical="true"
-                    android:src="@drawable/light_turn_on" />
+                    app:srcCompat="@drawable/light_turn_on" />
 
             </RelativeLayout>
 
@@ -406,7 +406,7 @@
                     android:layout_height="wrap_content"
                     android:layout_centerHorizontal="true"
                     android:layout_centerVertical="true"
-                    android:src="@drawable/light_turn_on" />
+                    app:srcCompat="@drawable/light_turn_on" />
             </RelativeLayout>
 
             <RelativeLayout

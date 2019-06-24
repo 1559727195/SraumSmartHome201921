@@ -109,6 +109,7 @@ public class MyDeviceListAdapter extends android.widget.BaseAdapter {
             case "网关":
             case "AA02":
             case "AA03":
+            case "AD02":
                 viewHolderContentType.hand_gateway_name.setVisibility(View.GONE);
                 break;
             default:
@@ -275,6 +276,10 @@ public class MyDeviceListAdapter extends android.widget.BaseAdapter {
             case "网关":
                 mapdevice.put("number", number);
                 send_method = ApiHelper.sraum_deleteGateway;
+                break;
+            case "AD02"://桌面PM2.5
+                mapdevice.put("number", number);
+                send_method = ApiHelper.sraum_deleteWifiDeviceCommon;
                 break;
         }
 

@@ -1,5 +1,14 @@
 package com.king.photo.util;
 
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.os.Handler;
+import android.text.TextUtils;
+import android.util.Log;
+import android.widget.ImageView;
+
+import com.king.photo.activity.MessageSendActivity;
+
 import java.io.BufferedInputStream;
 import java.io.File;
 import java.io.FileInputStream;
@@ -7,16 +16,9 @@ import java.io.IOException;
 import java.lang.ref.SoftReference;
 import java.util.HashMap;
 
-import android.app.Activity;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.os.Handler;
-import android.text.TextUtils;
-import android.util.Log;
-import android.widget.ImageView;
-import com.king.photo.activity.MessageSendActivity;
+import androidx.appcompat.app.AppCompatActivity;
 
-public class BitmapCache extends Activity {
+public class BitmapCache extends AppCompatActivity {
 
 	public Handler h = new Handler();
 	public final String TAG = getClass().getSimpleName();

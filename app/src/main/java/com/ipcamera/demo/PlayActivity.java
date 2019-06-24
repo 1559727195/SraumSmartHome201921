@@ -1,7 +1,5 @@
 package com.ipcamera.demo;
 
-import android.app.Activity;
-import android.app.AlertDialog;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -22,8 +20,6 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.os.Handler;
 import android.os.Message;
-import androidx.viewpager.widget.ViewPager;
-import androidx.viewpager.widget.ViewPager.OnPageChangeListener;
 import android.util.Log;
 import android.view.Display;
 import android.view.GestureDetector;
@@ -79,10 +75,14 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.viewpager.widget.ViewPager;
+import androidx.viewpager.widget.ViewPager.OnPageChangeListener;
 import vstc2.nativecaller.NativeCaller;
 
 
-public class PlayActivity extends Activity implements OnTouchListener,OnGestureListener, OnClickListener, PlayInterface,AudioRecordResult
+public class PlayActivity extends AppCompatActivity implements OnTouchListener,OnGestureListener, OnClickListener, PlayInterface,AudioRecordResult
 {
 
 	private static final String LOG_TAG = "PlayActivity";

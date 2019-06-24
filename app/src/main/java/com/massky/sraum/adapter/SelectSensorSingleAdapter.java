@@ -1,6 +1,5 @@
 package com.massky.sraum.adapter;
 
-import android.app.Activity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,6 +15,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 /**
  * Created by masskywcy on 2017-05-16.
  */
@@ -25,11 +26,11 @@ public class SelectSensorSingleAdapter extends android.widget.BaseAdapter {
     private List<Integer> listint = new ArrayList<>();
     private List<Integer> listintwo = new ArrayList<>();
     private int temp = -1;
-    private Activity activity;//上下文
+    private AppCompatActivity activity;//上下文
     // 用来控制CheckBox的选中状况
     private static HashMap<Integer, Boolean> isSelected = new HashMap<>();
 
-    public SelectSensorSingleAdapter(Activity context, List<Map> list, List<Integer> listint, List<Integer> listintwo, SelectSensorListener selectSensorListener) {
+    public SelectSensorSingleAdapter(AppCompatActivity context, List<Map> list, List<Integer> listint, List<Integer> listintwo, SelectSensorListener selectSensorListener) {
         this.list = list;
         this.listint = listint;
         this.listintwo = listintwo;
@@ -84,26 +85,15 @@ public class SelectSensorSingleAdapter extends android.widget.BaseAdapter {
 
         viewHolderContentType.panel_scene_name_txt.setText((String) list.get(position).get("name"));
         viewHolderContentType.gateway_name_txt.setText((String) list.get(position).get("boxName"));
-//        int element = (Integer) list.get(position).get("image");
-//        viewHolderContentType.img_guan_scene.setImageResource(element);
-//        viewHolderContentType.panel_scene_name_txt.setText(list.get(position).get("name").toString());
+        switch ((String) list.get(position).get("type")) {
+            case "AD02":
+                viewHolderContentType.gateway_name_txt.setVisibility(View.GONE);
+                break;
+            default:
+                viewHolderContentType.gateway_name_txt.setVisibility(View.VISIBLE);
+                break;
+        }
 
-
-//        convertView.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-////                Intent intent = new Intent(context, DeviceExcuteOpenActivity.class);
-////                context.startActivity(intent);
-//
-//
-//            }
-//        });
-//        viewHolderContentType.checkbox.setChecked(getIsSelected().get(position));
-//        if (getIsSelected().get(position)) {
-//            viewHolderContentType.img_guan_scene.setImageResource(listintwo.get(position));
-//        } else {
-//            viewHolderContentType.img_guan_scene.setImageResource(listint.get(position));
-//        }
 
         viewHolderContentType.checkbox.setId(position);//对checkbox的id进行重新设置为当前的position
         viewHolderContentType.checkbox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {

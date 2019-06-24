@@ -95,7 +95,7 @@ public class Pm25Activity extends BaseActivity {
         mode = (String) map_item.get("mode");
         //
         pm25 = (String) map_item.get("pm2.5");
-        bar2.setCurrentValues(Integer.parseInt(pm25));
+        bar2.setCurrentValues(Integer.parseInt("150"));
         list_value = new ArrayList<>();
     }
 

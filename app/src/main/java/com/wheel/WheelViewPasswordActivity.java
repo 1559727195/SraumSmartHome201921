@@ -1,6 +1,5 @@
 package com.wheel;
 
-import android.app.Activity;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.util.TypedValue;
@@ -10,12 +9,15 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.TextView;
+
 import com.massky.sraum.R;
 import com.wheel.widget.TosAdapterView;
 import com.wheel.widget.TosGallery;
 import com.wheel.widget.WheelView;
 
-public class WheelViewPasswordActivity extends Activity {
+import androidx.appcompat.app.AppCompatActivity;
+
+public class WheelViewPasswordActivity extends AppCompatActivity {
     int[] mData = { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, };
 
     WheelView mWheel1 = null;

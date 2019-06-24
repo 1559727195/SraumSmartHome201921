@@ -1,6 +1,5 @@
 package com.ipcamera.demo;
 
-import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
@@ -28,6 +27,8 @@ import java.util.Comparator;
 import java.util.Iterator;
 import java.util.List;
 import java.util.TreeSet;
+
+import androidx.appcompat.app.AlertDialog;
 
 public class SCameraSetPushVideoTiming extends BaseActivity implements
         OnClickListener {

@@ -1,7 +1,6 @@
 package com.massky.sraum.fragment;
 
 import android.app.Dialog;
-import android.app.DialogFragment;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.drawable.ColorDrawable;
@@ -19,7 +18,6 @@ import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
-
 import com.AddTogenInterface.AddTogglenInterfacer;
 import com.massky.sraum.EditGateWayResultActivity;
 import com.massky.sraum.R;
@@ -38,15 +36,14 @@ import com.massky.sraum.activity.SelectZigbeeDeviceActivity;
 import com.massky.sraum.adapter.ShowGatewayListAdapter;
 import com.massky.sraum.myzxingbar.qrcodescanlib.CaptureActivity;
 import com.massky.sraum.tool.Constants;
-
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
-import static android.app.Activity.RESULT_OK;
+import androidx.fragment.app.DialogFragment;
 import static android.content.Context.LAYOUT_INFLATER_SERVICE;
+import static androidx.appcompat.app.AppCompatActivity.RESULT_OK;
 import static com.massky.sraum.Util.AES.Decrypt;
 
 

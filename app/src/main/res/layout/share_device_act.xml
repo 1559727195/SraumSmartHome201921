@@ -26,7 +26,7 @@
             android:layout_centerVertical="true"
             android:layout_marginLeft="10dp"
             android:paddingRight="20dp"
-            android:src="@drawable/icon_t_back" />
+            app:srcCompat="@drawable/icon_t_back" />
 
         <TextView
             android:id="@+id/toolbar_txt"
@@ -46,7 +46,7 @@
             android:paddingRight="@dimen/x8"
             android:paddingTop="@dimen/y8"
             android:paddingBottom="@dimen/y8"
-            android:src="@drawable/icon_bianji" />
+            app:srcCompat="@drawable/icon_bianji" />
 
         <ImageView
             android:id="@+id/load_app_pic"
@@ -56,7 +56,7 @@
             android:layout_marginRight="@dimen/x8"
             android:layout_marginTop="8dp"
             android:layout_toLeftOf="@+id/input_phonenumber"
-            android:src="@drawable/icon_erweima" />
+            app:srcCompat="@drawable/icon_erweima" />
     </RelativeLayout>
 
     <com.mcxtzhang.swipemenulib.SwipeMenuLayout

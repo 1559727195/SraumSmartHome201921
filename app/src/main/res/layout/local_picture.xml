@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     style="@style/bg_style"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -91,7 +92,7 @@
             android:layout_width="fill_parent"
             android:layout_height="2.0dip"
             android:layout_below="@+id/top"
-            android:src="@drawable/background_separate_vertical" />
+            app:srcCompat="@drawable/background_separate_vertical" />
 
         <TextView
             android:id="@+id/tv_camera_setting"

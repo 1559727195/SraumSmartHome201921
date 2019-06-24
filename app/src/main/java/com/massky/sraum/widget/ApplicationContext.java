@@ -5,14 +5,18 @@ import android.app.Application;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
-import androidx.multidex.MultiDex;
-import androidx.multidex.MultiDexApplication;
 import android.util.Log;
+
 import com.massky.sraum.bean.DaoMaster;
 import com.massky.sraum.bean.DaoSession;
 import com.zhy.http.okhttp.OkHttpUtils;
+
 import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.concurrent.TimeUnit;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.multidex.MultiDex;
+import androidx.multidex.MultiDexApplication;
 import cn.jpush.android.api.JPushInterface;
 import okhttp3.OkHttpClient;
 
@@ -26,7 +30,7 @@ public class ApplicationContext extends MultiDexApplication implements Applicati
     private Context context;
     public String calledAcccout;
 
-    private CopyOnWriteArrayList<Activity> activities = new CopyOnWriteArrayList<>();
+    private CopyOnWriteArrayList<AppCompatActivity> activities = new CopyOnWriteArrayList<>();
     //
     private static ApplicationContext _instance;
 //	public static BluetoothOpration _BluetoothOpration;
@@ -150,7 +154,7 @@ public class ApplicationContext extends MultiDexApplication implements Applicati
     /**
      * @param act
      */
-    public void addActivity(Activity act) {
+    public void addActivity(AppCompatActivity act) {
         activities.add(act);
     }
 
@@ -159,16 +163,16 @@ public class ApplicationContext extends MultiDexApplication implements Applicati
      */
     public void removeActivity() {
         for (int i = activities.size() - 1; i >= 0; i--) {
-            Activity activity = activities.get(i);
+            AppCompatActivity activity = activities.get(i);
             activities.remove(activity);
             activity.finish();
         }
     }
 
 
-    public void removeActivity_but_activity(Activity activity_new) {
+    public void removeActivity_but_activity(AppCompatActivity activity_new) {
         for (int i = activities.size() - 1; i >= 0; i--) {
-            Activity activity = activities.get(i);
+            AppCompatActivity activity = activities.get(i);
             if (activity == activity_new) {
                 continue;
             }
@@ -181,7 +185,7 @@ public class ApplicationContext extends MultiDexApplication implements Applicati
     /**
      * 结束指定的Activity
      */
-    public void finishActivity(Activity activity) {
+    public void finishActivity(AppCompatActivity activity) {
         if (activity != null) {
             activities.remove(activity);
             if (!activity.isFinishing()) {
@@ -194,7 +198,7 @@ public class ApplicationContext extends MultiDexApplication implements Applicati
      * 结束指定类名的Activity
      */
     public void finishActivity(Class<?> cls) {
-        for (Activity activity : activities) {
+        for (AppCompatActivity activity : activities) {
             if (activity.getClass().equals(cls)) {
                 finishActivity(activity);
             }
@@ -206,7 +210,7 @@ public class ApplicationContext extends MultiDexApplication implements Applicati
      * 结束除了指定类名的Activity
      */
     public void finishButActivity(Class<?> cls) {
-        for (Activity activity : activities) {
+        for (AppCompatActivity activity : activities) {
             if (!activity.getClass().equals(cls)) {
                 finishActivity(activity);
             }

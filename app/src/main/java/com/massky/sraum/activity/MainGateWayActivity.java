@@ -1,6 +1,5 @@
 package com.massky.sraum.activity;
 
-import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.DownloadManager;
 import android.content.BroadcastReceiver;
@@ -12,18 +11,9 @@ import android.database.ContentObserver;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
-import android.os.Environment;
 import android.os.Handler;
 import android.os.Looper;
 import android.os.Message;
-
-import androidx.annotation.Nullable;
-import androidx.core.app.ActivityCompat;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
-import androidx.localbroadcastmanager.content.LocalBroadcastManager;
-
 import android.telephony.TelephonyManager;
 import android.util.DisplayMetrics;
 import android.util.Log;
@@ -56,9 +46,7 @@ import com.massky.sraum.Util.Mycallback;
 import com.massky.sraum.Util.SharedPreferencesUtil;
 import com.massky.sraum.Util.ToastUtil;
 import com.massky.sraum.Util.TokenUtil;
-import com.massky.sraum.Util.UpdateManager;
 import com.massky.sraum.Utils.ApiHelper;
-import com.massky.sraum.Utils.App;
 import com.massky.sraum.Utils.AppManager;
 import com.massky.sraum.Utils.NetUtils;
 import com.massky.sraum.Utils.VersionUtil;
@@ -84,6 +72,12 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
+import androidx.core.app.ActivityCompat;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import cn.jpush.android.api.JPushInterface;
 import io.reactivex.Observer;
 import io.reactivex.disposables.Disposable;
@@ -159,7 +153,6 @@ public class MainGateWayActivity extends BaseActivity implements InitYkanListene
 
     @Override
     protected void onView() {
-
         add_page_select();
         common_second();
         //        iswait_down_load = false;

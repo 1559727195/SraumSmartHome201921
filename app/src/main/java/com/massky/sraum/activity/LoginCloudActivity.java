@@ -2,16 +2,16 @@ package com.massky.sraum.activity;
 
 import android.Manifest;
 import android.content.Intent;
-
 import androidx.annotation.Nullable;
-
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
-
 import com.AddTogenInterface.AddTogglenInterfacer;
 import com.alibaba.fastjson.JSON;
+import com.data.LoginService;
+import com.google.gson.Gson;
 import com.massky.sraum.R;
 import com.massky.sraum.User;
 import com.massky.sraum.Util.DialogUtil;
@@ -33,16 +33,19 @@ import com.massky.sraum.tool.Constants;
 import com.massky.sraum.view.ClearEditText;
 import com.yanzhenjie.statusview.StatusUtils;
 import com.yanzhenjie.statusview.StatusView;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
-
 import butterknife.InjectView;
 import cn.jpush.android.api.JPushInterface;
 import io.reactivex.Observer;
 import io.reactivex.disposables.Disposable;
 import okhttp3.Call;
+import okhttp3.RequestBody;
+import okhttp3.ResponseBody;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
 
 /**
  * Created by zhu on 2017/12/29.
@@ -99,12 +102,12 @@ public class LoginCloudActivity extends BaseActivity {
      */
     private void clear_hository_first_page_datas() {
         //areaList，roomList，list，list_old，roomList_old，areaList_old
-       SharedPreferencesUtil.saveInfo_Second_List(App.getInstance().getApplicationContext(),"areaList",new ArrayList<Map>());
-       SharedPreferencesUtil.saveInfo_Second_List(App.getInstance().getApplicationContext(),"roomList",new ArrayList<Map>());
-       SharedPreferencesUtil.saveInfo_Second_List(App.getInstance().getApplicationContext(),"list",new ArrayList<Map>());
-       SharedPreferencesUtil.saveInfo_Second_List(App.getInstance().getApplicationContext(),"list_old",new ArrayList<Map>());
-       SharedPreferencesUtil.saveInfo_Second_List(App.getInstance().getApplicationContext(),"roomList_old",new ArrayList<Map>());
-       SharedPreferencesUtil.saveInfo_Second_List(App.getInstance().getApplicationContext(),"areaList_old",new ArrayList<Map>());
+        SharedPreferencesUtil.saveInfo_Second_List(App.getInstance().getApplicationContext(), "areaList", new ArrayList<Map>());
+        SharedPreferencesUtil.saveInfo_Second_List(App.getInstance().getApplicationContext(), "roomList", new ArrayList<Map>());
+        SharedPreferencesUtil.saveInfo_Second_List(App.getInstance().getApplicationContext(), "list", new ArrayList<Map>());
+        SharedPreferencesUtil.saveInfo_Second_List(App.getInstance().getApplicationContext(), "list_old", new ArrayList<Map>());
+        SharedPreferencesUtil.saveInfo_Second_List(App.getInstance().getApplicationContext(), "roomList_old", new ArrayList<Map>());
+        SharedPreferencesUtil.saveInfo_Second_List(App.getInstance().getApplicationContext(), "areaList_old", new ArrayList<Map>());
     }
 
     @Override
@@ -206,8 +209,33 @@ public class LoginCloudActivity extends BaseActivity {
             LogUtil.eLength("传入时间戳", JSON.toJSONString(maptwo) + "时间戳" + time);
             dialogUtil.loadDialog();
             get_token(maptwo);
+//            retrofit_post_json(maptwo);
         }
     }
+
+    /**
+     * retrofit发送json数据
+     * @param maptwo
+     */
+    private void retrofit_post_json(Map<String, Object> maptwo) {
+        String obj = JSON.toJSONString(maptwo);
+        Retrofit retrofit = new Retrofit.Builder().baseUrl(ApiHelper.api).build();
+        RequestBody body = RequestBody.create(okhttp3.MediaType.parse("application/json; charset=utf-8"), obj);
+        final LoginService login = retrofit.create(LoginService.class);
+//        retrofit2.Call<ResponseBody> data = login.getMessage(body);
+//        data.enqueue(new Callback<ResponseBody>() {
+//            @Override
+//            public void onResponse(retrofit2.Call<ResponseBody> call, Response<ResponseBody> response) {
+//
+//            }
+//
+//            @Override
+//            public void onFailure(retrofit2.Call<ResponseBody> call, Throwable t) {
+//
+//            }
+//        });
+    }
+
 
     /**
      * 获取token
@@ -326,7 +354,6 @@ public class LoginCloudActivity extends BaseActivity {
                 }
                 IntentUtil.startActivityAndFinishFirst(LoginCloudActivity.this, MainGateWayActivity.class);
             }
-
 
             @Override
             public void wrongToken() {

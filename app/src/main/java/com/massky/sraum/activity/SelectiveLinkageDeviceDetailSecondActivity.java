@@ -97,7 +97,7 @@ public class SelectiveLinkageDeviceDetailSecondActivity extends BaseActivity imp
         //  intent.putExtra("boxName", (Serializable) listbox.get(position));
         boxName = (String) getIntent().getSerializableExtra("boxName");
         boxNumber = (String) getIntent().getSerializableExtra("boxNumber");
-        gatewayMAC =  (String) getIntent().getSerializableExtra("gatewayMac");
+        gatewayMAC = (String) getIntent().getSerializableExtra("gatewayMac");
         if (panelName != null) project_select.setText(panelName);
         getData(true);
         selectexcutesceneresultadapter = new SelectLinkageItemSecondAdapter(SelectiveLinkageDeviceDetailSecondActivity.this,
@@ -167,7 +167,7 @@ public class SelectiveLinkageDeviceDetailSecondActivity extends BaseActivity imp
 
                         panelType = user.panelType;
                         panelName = user.panelName;
-                        panelMAC    = user.panelMAC;
+                        panelMAC = user.panelMAC;
                         gatewayMAC = user.gatewayMAC;
                         deviceList.clear();
                         deviceActionList.clear();
@@ -407,16 +407,16 @@ public class SelectiveLinkageDeviceDetailSecondActivity extends BaseActivity imp
 
         switch (name) {
             case "全部":
-                common_second(tabname, name, type, "1", "0", i);
+                common_second(tabname, name, type, "1", "0","", i);
                 break;
             case "内纱":
-                common_second(tabname, name, type, "4", "6", i);
+                common_second(tabname, name, type, "4", "6","", i);
                 break;
             case "外纱":
-                common_second(tabname, name, type, "8", "7", i);
+                common_second(tabname, name, type, "8", "7","", i);
                 break;
             default:
-                common_second(tabname, name, type, "1", "0", i);
+                common_second(tabname, name, type, "1", "0", "3",i);
                 break;
         }
     }
@@ -431,7 +431,94 @@ public class SelectiveLinkageDeviceDetailSecondActivity extends BaseActivity imp
      * @param value4
      * @param position
      */
-    private void common_second(String tabname, String name, String type, String value2, String value4, int position) {
+    private void common_second(String tabname, String name, String type, String value2, String value4,String value5, int position) {
+        switch (type) {
+            case "1":
+                light_select(tabname, name, type, value2, value4, value5, position);
+                break;
+            default:
+                default_select(tabname, name, type, value2, value4, position);
+                break;
+        }
+    }
+
+    /**
+     * 灯控选项
+     * @param tabname
+     * @param name
+     * @param type
+     * @param value2
+     * @param value4
+     * @param value5
+     * @param position
+     */
+    private void light_select(String tabname, String name, String type, String value2, String value4, String value5, int position) {
+        for (int j = 0; j < 3; j++) {
+            Map map = new HashMap();
+            switch (j) {
+                case 0://开
+                    map.put("name", name + "打开");
+                    map.put("status", value2);
+                    if (type.equals("4")) {
+                        map.put("action", name + "打开");
+                    } else {
+                        map.put("action", "打开");
+                    }
+                    break;
+                case 1://关
+                    map.put("name", name + "关闭");
+                    map.put("status", value4);
+//                    map.put("action", "关闭");
+                    if (type.equals("4")) {
+                        map.put("action", name + "关闭");
+                    } else {
+                        map.put("action", "关闭");
+                    }
+                    break;
+                case 2://切换
+                    map.put("name", name + "切换");
+                    map.put("status", value5);
+                    if (type.equals("4")) {
+                        map.put("action", name + "关闭");
+                    } else {
+                        map.put("action", "切换");
+                    }
+                    break;
+            }
+
+
+            if (type.equals("4")) {
+                map.put("name1", "窗帘");
+            } else {
+                map.put("name1", name);
+            }
+            map.put("tabname", tabname);
+            map.put("type", type);
+            map.put("value", "");
+            map.put("tiaoguang", "");
+            map.put("position", position);
+            map.put("number", deviceActionList.get(position).get("number"));
+//            map.put("status", deviceActionList.get(position).get("status"));
+            map.put("dimmer", deviceActionList.get(position).get("dimmer"));
+            map.put("mode", deviceActionList.get(position).get("mode"));
+            map.put("temperature", deviceActionList.get(position).get("temperature"));
+            map.put("speed", deviceActionList.get(position).get("speed"));
+            map.put("boxName", deviceActionList.get(position).get("boxName"));
+//            map.put("name", deviceActionList.get(position).get("name"));
+            list_map.add(map);
+        }
+    }
+
+    /**
+     * 默认选项
+     * @param tabname
+     * @param name
+     * @param type
+     * @param value2
+     * @param value4
+     * @param position
+     */
+    private void default_select(String tabname, String name, String type, String value2, String value4, int position) {
         for (int j = 0; j < 2; j++) {
             Map map = new HashMap();
             switch (j) {

@@ -1,9 +1,9 @@
 package com.massky.sraum.activity;
 
-import android.app.FragmentManager;
-import android.app.FragmentTransaction;
 import android.content.Intent;
 import android.os.Handler;
+import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ImageView;
@@ -11,6 +11,7 @@ import android.widget.ImageView;
 import com.AddTogenInterface.AddTogglenInterfacer;
 import com.gizwits.gizwifisdk.api.GizWifiDevice;
 import com.gizwits.gizwifisdk.enumration.GizWifiErrorCode;
+import com.massky.sraum.EditGateWayResultActivity;
 import com.massky.sraum.R;
 import com.massky.sraum.User;
 import com.massky.sraum.Util.DialogUtil;
@@ -25,6 +26,8 @@ import com.massky.sraum.adapter.SelectWifiDevAdapter;
 import com.massky.sraum.base.BaseActivity;
 import com.massky.sraum.fragment.ConfigDialogFragment;
 import com.massky.sraum.fragment.GatewayDialogFragment;
+import com.massky.sraum.myzxingbar.qrcodescanlib.CaptureActivity;
+import com.massky.sraum.tool.Constants;
 import com.massky.sraum.widget.ListViewForScrollView;
 import com.yanzhenjie.statusview.StatusUtils;
 import com.yanzhenjie.statusview.StatusView;
@@ -40,8 +43,12 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import butterknife.InjectView;
 import okhttp3.Call;
+
+import static com.massky.sraum.Util.AES.Decrypt;
 
 /**
  * Created by zhu on 2018/1/3.
@@ -68,7 +75,7 @@ public class SelectZigbeeDeviceActivity extends BaseActivity {
             R.drawable.icon_type_menci_90, R.drawable.icon_type_rentiganying_90,
             R.drawable.icon_type_toa_90, R.drawable.icon_type_yanwucgq_90, R.drawable.icon_type_tianranqibjq_90,
             R.drawable.icon_type_jinjianniu_90, R.drawable.icon_type_zhinengmensuo_90, R.drawable.icon_type_pm25_90,
-            R.drawable.icon_type_shuijin_90, R.drawable.icon_type_duogongneng_90, R.drawable.icon_type_zhinengmensuo_90,
+            R.drawable.icon_type_shuijin_90, R.drawable.icon_type_duogongneng_90, R.drawable.icon_type_zhinengchazuo_90,
             R.drawable.icon_type_wangguan_90
     };
 
@@ -84,7 +91,7 @@ public class SelectZigbeeDeviceActivity extends BaseActivity {
     //wifi类型
     //wifi类型
     private String[] types_wifi = { //红外转发器类型暂定为hongwai,遥控器类型暂定为yaokong
-            "hongwai", "yaokong", "101", "103"
+            "hongwai", "yaokong", "101", "103", "102"
     };
 
     private int[] icon_wifi = {
@@ -92,10 +99,11 @@ public class SelectZigbeeDeviceActivity extends BaseActivity {
             R.drawable.icon_type_yaokongqi_90,
             R.drawable.icon_type_shexiangtou_90,
             // R.drawable.icon_type_pmmofang_90,
-            R.drawable.icon_type_keshimenling_90
+            R.drawable.icon_type_keshimenling_90,
+            R.drawable.icon_pmmofang_90 //桌面PM2.5
 
     };
-    private int[] iconNam_wifi = {R.string.hongwai, R.string.yaokongqi, R.string.shexiangtou, R.string.keshimenling};//, R.string.pm_mofang
+    private int[] iconNam_wifi = {R.string.hongwai, R.string.yaokongqi, R.string.shexiangtou, R.string.keshimenling, R.string.table_pm};//, R.string.pm_mofang
     private int[] iconName = {R.string.yijianlight, R.string.liangjianlight, R.string.sanjianlight, R.string.sijianlight,
             R.string.yilutiaoguang1, R.string.lianglutiaoguang1, R.string.sanlutiao1, R.string.window_panel1, R.string.kongtiao_panel
             , R.string.menci, R.string.rentiganying, R.string.jiuzuo, R.string.yanwu, R.string.tianranqi, R.string.jinjin_btn,
@@ -106,8 +114,8 @@ public class SelectZigbeeDeviceActivity extends BaseActivity {
     private ConfigDialogFragment newFragment;
     private GatewayDialogFragment newGatewayFragment;
     private DialogUtil dialogUtil;
-
     private List<Map> list_hand_scene = new ArrayList<>();
+
 
     /**
      * 小苹果绑定列表
@@ -170,7 +178,7 @@ public class SelectZigbeeDeviceActivity extends BaseActivity {
      */
     private void show_dialog_fragment() {
         if (!newFragment.isAdded()) {//DialogFragment.show()内部调用了FragmentTransaction.add()方法，所以调用DialogFragment.show()方法时候也可能
-            FragmentManager manager = getFragmentManager();
+            FragmentManager manager = getSupportFragmentManager();
             FragmentTransaction ft = manager.beginTransaction();
             ft.add(newFragment, "dialog");
             ft.commit();
@@ -182,7 +190,7 @@ public class SelectZigbeeDeviceActivity extends BaseActivity {
      */
     private void show_gateway_dialog_fragment() {
         if (!newGatewayFragment.isAdded()) {//DialogFragment.show()内部调用了FragmentTransaction.add()方法，所以调用DialogFragment.show()方法时候也可能
-            FragmentManager manager = getFragmentManager();
+            FragmentManager manager = getSupportFragmentManager();
             FragmentTransaction ft = manager.beginTransaction();
             ft.add(newGatewayFragment, "dialog");
             ft.commit();
@@ -265,7 +273,7 @@ public class SelectZigbeeDeviceActivity extends BaseActivity {
                                         startActivity(intent_position);
                                         break;
                                     default:
-                                        set_gateway(0,map);
+                                        set_gateway(0, map);
                                         break;
                                 }
                             } else {
@@ -285,7 +293,7 @@ public class SelectZigbeeDeviceActivity extends BaseActivity {
      *
      * @param position
      */
-    private void set_gateway(int position,Map map1) {
+    private void set_gateway(int position, Map map1) {
         //去设置设置网关模式
 
         final String type = (String) map1.get("type");
@@ -408,6 +416,8 @@ public class SelectZigbeeDeviceActivity extends BaseActivity {
                         startActivity(intent_wifi);
                         break;
                     case "102":
+                        Intent openCameraIntent = new Intent(SelectZigbeeDeviceActivity.this, CaptureActivity.class);
+                        startActivityForResult(openCameraIntent, Constants.SCAN_REQUEST_CODE);
                         break;
                     case "hongwai":
                         intent_wifi = new Intent(SelectZigbeeDeviceActivity.this, AddWifiDevActivity.class);
@@ -689,4 +699,52 @@ public class SelectZigbeeDeviceActivity extends BaseActivity {
         }
 //        adapter.notifyDataSetChanged();
     }
+
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        // 扫描二维码/条码回传
+        if (requestCode == Constants.SCAN_REQUEST_CODE && resultCode == RESULT_OK) {
+            if (data != null) {
+                String content = data.getStringExtra("result");
+                Log.e("robin debug", "content:" + content);
+                if (TextUtils.isEmpty(content))
+                    return;
+                //在这里解析二维码，变成房号
+                // 密钥
+                String key = "ztlmassky6206ztl";
+                // 解密
+                String DeString = null;
+                try {
+//                    content = "0a4ab23ad13aac565069283aac3882e5";
+                    DeString = Decrypt(content, key);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+                if (DeString == null) {
+                    ToastUtil.showToast(SelectZigbeeDeviceActivity.this, "此二维码不是PM2.5二维码");
+                } else {
+//                    scanlinear.setVisibility(View.GONE);
+//                    detairela.setVisibility(View.VISIBLE);
+//                    gateid.setText(DeString);
+//                    gatedditexttwo.setText("");
+                    //跳转到编辑网关界面
+                    if (DeString.length() == 12) {
+
+                        StringBuffer stringBuffer = new StringBuffer();
+                        for (int i = 0; i < 6; i++) {
+                            stringBuffer.append(DeString.substring(i * 2, i * 2 + 2)).append(":");
+                        }
+
+                        Intent intent = new Intent(SelectZigbeeDeviceActivity.this, EditTablePMActivity.class);
+                        intent.putExtra("mac", stringBuffer.toString().substring(0,stringBuffer.length() - 1).toUpperCase());
+                        intent.putExtra("id", DeString.toUpperCase());
+                        startActivity(intent);
+                    }
+                }
+            }
+        }
+    }
+
 }

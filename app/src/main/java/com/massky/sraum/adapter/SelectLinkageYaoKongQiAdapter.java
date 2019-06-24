@@ -1,6 +1,5 @@
 package com.massky.sraum.adapter;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -21,6 +20,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 /**
  * Created by masskywcy on 2017-05-16.
  */
@@ -30,14 +31,14 @@ public class SelectLinkageYaoKongQiAdapter extends android.widget.BaseAdapter {
     private List<Integer> listint = new ArrayList<>();
     private List<Integer> listintwo = new ArrayList<>();
     private int temp = -1;
-    private Activity activity;//上下文
+    private AppCompatActivity activity;//上下文
     DialogUtil dialogUtil;
     RefreshListener refreshListener;
     private Map sensor_map = new HashMap();
     // 用来控制CheckBox的选中状况
     private static HashMap<Integer, Boolean> isSelected = new HashMap<>();
 
-    public SelectLinkageYaoKongQiAdapter(Activity context, List<Map> list, List<Integer> listint, List<Integer> listintwo, DialogUtil dialogUtil,
+    public SelectLinkageYaoKongQiAdapter(AppCompatActivity context, List<Map> list, List<Integer> listint, List<Integer> listintwo, DialogUtil dialogUtil,
                                          RefreshListener refreshListener) {
         this.list = list;
         this.listint = listint;

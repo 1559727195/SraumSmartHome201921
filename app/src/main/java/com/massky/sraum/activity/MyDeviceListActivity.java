@@ -205,6 +205,8 @@ public class MyDeviceListActivity extends BaseActivity implements XListView.IXLi
                             Map<String, String> mapdevice = new HashMap<>();
                             mapdevice.put("number", user.gatewayList.get(i).number);
                             mapdevice.put("name", user.gatewayList.get(i).name);
+                            mapdevice.put("status", user.gatewayList.get(i).status == null ?
+                                    "" : user.gatewayList.get(i).status);
                             mapdevice.put("type", "网关");
                             mapdevice.put("boxNumber", "");
                             mapdevice.put("mac", "");
@@ -213,7 +215,7 @@ public class MyDeviceListActivity extends BaseActivity implements XListView.IXLi
                             mapdevice.put("roomNumber", "");
                             mapdevice.put("roomName", "");
                             mapdevice.put("wifi", "");
-                            mapdevice.put("boxName","");
+                            mapdevice.put("boxName", "");
                             list_hand_scene.add(mapdevice);
                             setPicture("网关");
                         }
@@ -231,7 +233,7 @@ public class MyDeviceListActivity extends BaseActivity implements XListView.IXLi
                             mapdevice.put("roomNumber", "");
                             mapdevice.put("roomName", "");
                             mapdevice.put("wifi", "");
-                            mapdevice.put("boxName",user.panelList.get(i).boxName == null ? "" :
+                            mapdevice.put("boxName", user.panelList.get(i).boxName == null ? "" :
                                     user.panelList.get(i).boxName
                             );
                             list_hand_scene.add(mapdevice);
@@ -241,7 +243,8 @@ public class MyDeviceListActivity extends BaseActivity implements XListView.IXLi
                         for (int i = 0; i < user.wifiList.size(); i++) {
                             Map<String, String> mapdevice = new HashMap<>();
                             mapdevice.put("number", user.wifiList.get(i).id);
-                            mapdevice.put("name", user.wifiList.get(i).name);
+                            mapdevice.put("name", user.wifiList.get(i).name == null ? "" :
+                                    user.wifiList.get(i).name);
                             mapdevice.put("type", user.wifiList.get(i).type);
                             mapdevice.put("isUse", user.wifiList.get(i).isUse);
                             mapdevice.put("mac", "");
@@ -251,7 +254,9 @@ public class MyDeviceListActivity extends BaseActivity implements XListView.IXLi
                             mapdevice.put("roomName", user.wifiList.get(i).roomName);
                             //wifi
                             mapdevice.put("wifi", user.wifiList.get(i).wifi);
-                            mapdevice.put("boxName","");
+                            mapdevice.put("boxName", "");
+
+
                             list_hand_scene.add(mapdevice);
                             setPicture(user.wifiList.get(i).type);
                         }
@@ -339,6 +344,10 @@ public class MyDeviceListActivity extends BaseActivity implements XListView.IXLi
             case "AD01":
                 listint.add(R.drawable.icon_pm25_40);
                 listintwo.add(R.drawable.icon_pm25_40);
+                break;
+            case "AD02":
+                listint.add(R.drawable.icon_pmmofang_40_hs);
+                listintwo.add(R.drawable.icon_pmmofang_40);
                 break;
             case "B001":
                 listint.add(R.drawable.icon_jinjianniu_40);

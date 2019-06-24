@@ -24,7 +24,7 @@
             android:id="@+id/back"
             android:paddingRight="20dp"
             android:layout_marginLeft="10dp"
-            android:src="@drawable/icon_t_back"/>
+            app:srcCompat="@drawable/icon_t_back"/>
 
         <TextView
             android:id="@+id/toolbar_txt"

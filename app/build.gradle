@@ -10,13 +10,16 @@ android {
         applicationId "com.massky.sraum"
         minSdkVersion 19
         targetSdkVersion 28
-        versionCode 51
-        versionName "2.0.1"//最新51 ，2.0.1
+        versionCode 68
+        versionName "2.2.7"//最新68 ，2.2.7
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         //添加如下配置就OK了
         javaCompileOptions { annotationProcessorOptions { includeCompileClasspath = true } }
         ndk {
             //设置支持的SO库架构
+            ndk {
+                moduleName "crypt"
+            }
             abiFilters 'armeabi', 'armeabi-v7a', 'x86'//, , 'x86_64', 'arm64-v8a'方便去除模擬器的，縮小apk體積
         }
 
@@ -36,6 +39,14 @@ android {
     dexOptions {
         incremental true
         javaMaxHeapSize "4g"
+    }
+
+    lintOptions {
+        abortOnError false
+    }
+    sourceSets.main {
+        jni.srcDirs = []//disable automatic ndk-build call
+        jniLibs.srcDir "src/main/libs"
     }
 }
 
@@ -102,7 +113,7 @@ greendao {
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
     //noinspection GradleCompatible
-//    implementation 'com.android.support:appcompat-v7:26.1.0'
+    //implementation 'com.android.support:appcompat-v7:26.1.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.0.0-alpha2'
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test:runner:1.1.1'
@@ -111,7 +122,7 @@ dependencies {
     implementation 'com.yanzhenjie:statusview:1.0.3'
     implementation 'com.jakewharton:butterknife:6.1.0'
     implementation 'androidx.percentlayout:percentlayout:1.0.0'
-//    implementation 'com.android.support:appcompat-v7:28.0.0'
+    //    implementation 'com.android.support:appcompat-v7:28.0.0'
     implementation 'io.reactivex.rxjava2:rxjava:2.0.5'
     implementation 'io.reactivex.rxjava2:rxandroid:2.0.1'
     implementation 'androidx.multidex:multidex:2.0.1'
@@ -135,7 +146,7 @@ dependencies {
     // 添加GreenDao的library
     implementation 'org.greenrobot:greendao:3.2.2'
     implementation 'com.zhy:okhttputils:2.6.2'
-//    implementation 'com.alibaba:fastjson:1.2.49'
+    //    implementation 'com.alibaba:fastjson:1.2.49'
     implementation files('libs/MobCommons-2016.1201.1839.jar')
     implementation files('libs/MobTools-2016.1201.1839.jar')
     implementation(name: 'SMSSDK-2.1.3', ext: 'aar')
@@ -153,6 +164,8 @@ dependencies {
     compile files('libs/easylink2.0.jar')
 //    compile 'com.google.code.gson:gson:2.8.1'
     compile 'com.yaokantv:ykcentersdk:1.6.4'
+    implementation 'org.jbundle.util.osgi.wrapped:org.jbundle.util.osgi.wrapped.org.apache.http.client:4.1.2'
+//    implementation 'com.guardtime:ksi-service-client-apache-http:4.12.181'
     implementation files('libs/jcore-android-1.2.5.jar')
     implementation files('libs/jpush-android-3.1.6.jar')
     implementation 'androidx.vectordrawable:vectordrawable:1.0.1'
@@ -165,6 +178,16 @@ dependencies {
     compile 'org.greenrobot:eventbus:3.0.0'
     implementation 'com.airbnb.android:lottie:2.5.4'
     implementation 'com.github.zhangliangming:PreferencesProvider:v1.3'
+    //引入GIF背景动态图实现依赖
+    compile 'pl.droidsonroids.gif:android-gif-drawable:1.1.+'
+    compile 'com.squareup.retrofit2:retrofit:2.0.0'
+    //     compile 'com.squareup.retrofit2:converter-gson:2.0.0'
+    compile 'com.squareup.okhttp3:logging-interceptor:3.2.0'
+    implementation files('libs/Msc.jar')
+    implementation files('libs/Sunflower.jar')
+//    implementation(name: 'wsface', ext: 'aar')
+//    implementation(name: 'libuvccamera', ext: 'aar')
+
 }
 
 

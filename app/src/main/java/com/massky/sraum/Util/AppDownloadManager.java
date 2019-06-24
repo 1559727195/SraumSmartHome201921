@@ -1,6 +1,5 @@
 package com.massky.sraum.Util;
 
-import android.app.Activity;
 import android.app.DownloadManager;
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -15,12 +14,14 @@ import android.os.Handler;
 import android.text.TextUtils;
 import android.util.Log;
 
+import com.massky.sraum.Utils.App;
 import com.massky.sraum.activity.AndroidOPermissionActivity;
 import com.yaokan.sdk.utils.Logger;
 
 import java.io.File;
 import java.lang.ref.WeakReference;
 
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.FileProvider;
 import webapp.config.SystemParams;
 import webapp.download.DownLoadUtils;
@@ -97,7 +98,7 @@ public class AppDownloadManager {
     }
 
     /**
-     * 对应 {@link Activity }
+     * 对应 {@link AppCompatActivity }
      */
     public void resume1() {
         //设置监听Uri.parse("content://downloads/my_downloads")
@@ -108,7 +109,7 @@ public class AppDownloadManager {
     }
 
     /**
-     * 对应{@link Activity#onPause()} ()}
+     * 对应{@link AppCompatActivity#onPause()} ()}
      */
     public void onPause1() {
         weakReference.get().getContentResolver().unregisterContentObserver(mDownLoadChangeObserver);
@@ -123,7 +124,7 @@ public class AppDownloadManager {
     }
 
     /**
-     * 对应 {@link Activity }
+     * 对应 {@link AppCompatActivity }
      */
     public void resume() {
         //设置监听Uri.parse("content://downloads/my_downloads")
@@ -134,7 +135,7 @@ public class AppDownloadManager {
     }
 
     /**
-     * 对应{@link Activity#onPause()} ()}
+     * 对应{@link AppCompatActivity#onPause()} ()}
      */
     public void onPause() {
         weakReference.get().getContentResolver().unregisterContentObserver(mDownLoadChangeObserver);
@@ -225,9 +226,14 @@ public class AppDownloadManager {
                 };
 
                 AndroidOPermissionActivity.sListener = listener;
-                Intent intent1 = new Intent(context, AndroidOPermissionActivity.class);
-                context.startActivity(intent1);
 
+                Context context1 = App.getInstance().getApplicationContext();
+//                if (null != intent.resolveActivity(pm)) {
+//                    context.startActivity(intent);
+
+                Intent intent1 = new Intent(context1, AndroidOPermissionActivity.class);
+                intent1.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                context.startActivity(intent1);
             } else {
                 installApk(context, intent, appName);
             }

@@ -1,9 +1,7 @@
 package com.king.photo.activity;
 
 
-import android.app.Activity;
 import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.View;
@@ -18,6 +16,8 @@ import com.king.photo.util.PublicWay;
 import com.king.photo.util.Res;
 import com.yanzhenjie.statusview.StatusUtils;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 /**
  * 这个类主要是用来进行显示包含图片的文件夹
  *
@@ -25,7 +25,7 @@ import com.yanzhenjie.statusview.StatusUtils;
  * @QQ:595163260
  * @version 2014年10月18日  下午11:48:06
  */
-public class ImageFile extends Activity {
+public class ImageFile extends AppCompatActivity {
 
 	private FolderAdapter folderAdapter;
 	private Button bt_cancel;

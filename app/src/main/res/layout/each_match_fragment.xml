@@ -18,7 +18,7 @@
         android:id="@+id/pinpai_pic"
         android:layout_gravity="center"
         android:layout_marginTop="15dp"
-        android:src="@drawable/icon_type_kongtiaomb_90" />
+        app:srcCompat="@drawable/icon_type_kongtiaomb_90" />
 
     <TextView
         android:id="@+id/peipai_name"
@@ -128,7 +128,7 @@
         android:id="@+id/add_img"
         android:layout_marginTop="10dp"
         android:layout_gravity="center_horizontal"
-        android:src="@drawable/btn_xiangshang"/>
+        app:srcCompat="@drawable/btn_xiangshang"/>
 
     <ImageView
         android:layout_width="wrap_content"
@@ -136,7 +136,7 @@
         android:id="@+id/delete_img"
         android:layout_marginTop="5dp"
         android:layout_gravity="center_horizontal"
-        android:src="@drawable/btn_xiangxia"/>
+        app:srcCompat="@drawable/btn_xiangxia"/>
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

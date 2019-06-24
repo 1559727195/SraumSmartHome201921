@@ -23,7 +23,7 @@
             android:layout_centerVertical="true"
             android:layout_marginLeft="10dp"
             android:paddingRight="20dp"
-            android:src="@drawable/icon_t_back" />
+            app:srcCompat="@drawable/icon_t_back" />
         <TextView
             android:id="@+id/project_select"
             android:layout_width="wrap_content"
@@ -51,8 +51,12 @@
         android:id="@+id/xListView_scan"
         android:layout_width="fill_parent"
         android:layout_marginTop="@dimen/y5"
-        android:dividerHeight="@dimen/y1"
+        android:dividerHeight="1dp"
         android:divider="#E3E3E3"
         android:layout_height="wrap_content" android:cacheColorHint="#00000000">
     </ListView>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#E3E3E3"></View>
 </LinearLayout>

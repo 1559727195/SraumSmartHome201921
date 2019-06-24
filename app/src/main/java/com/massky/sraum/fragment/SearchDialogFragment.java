@@ -1,7 +1,6 @@
 package com.massky.sraum.fragment;
 
 import android.app.Dialog;
-import android.app.DialogFragment;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.drawable.ColorDrawable;
@@ -31,8 +30,10 @@ import com.massky.sraum.tool.Constants;
 import java.util.ArrayList;
 import java.util.List;
 
-import static android.app.Activity.RESULT_OK;
+import androidx.fragment.app.DialogFragment;
+
 import static android.content.Context.LAYOUT_INFLATER_SERVICE;
+import static androidx.appcompat.app.AppCompatActivity.RESULT_OK;
 import static com.massky.sraum.Util.AES.Decrypt;
 
 

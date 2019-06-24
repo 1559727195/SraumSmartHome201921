@@ -24,7 +24,7 @@
             android:layout_centerVertical="true"
             android:layout_marginLeft="10dp"
             android:paddingRight="20dp"
-            android:src="@drawable/icon_t_back" />
+            app:srcCompat="@drawable/icon_t_back" />
         <TextView
             android:id="@+id/project_select"
             android:layout_width="wrap_content"
@@ -69,7 +69,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="执行一次"
+            android:text="未选择"
             android:id="@+id/again_time_exeute"
             android:layout_marginLeft="@dimen/x8"
             android:layout_gravity="right"
@@ -86,7 +86,7 @@
             android:layout_marginLeft="@dimen/x5"
             android:layout_marginRight="@dimen/x15"
             android:layout_alignParentRight="true"
-            android:src="@drawable/wode_right_arrow"/>
+            app:srcCompat="@drawable/wode_right_arrow"/>
     </RelativeLayout>
     <View
         android:layout_width="match_parent"
@@ -102,7 +102,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/start_scenetime_txt"
-            android:text="开启时间"
+            android:text="执行时间"
             android:layout_toRightOf="@+id/img_guan_scene"
             android:layout_centerVertical="true"
             android:layout_marginLeft="@dimen/x15"
@@ -129,7 +129,7 @@
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
             android:layout_marginLeft="@dimen/x5"
-            android:src="@drawable/wode_right_arrow"/>
+            app:srcCompat="@drawable/wode_right_arrow"/>
     </RelativeLayout>
     <!--<View-->
         <!--android:layout_width="match_parent"-->

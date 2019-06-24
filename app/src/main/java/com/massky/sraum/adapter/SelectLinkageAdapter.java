@@ -14,20 +14,22 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.ConcurrentMap;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 /**
  * Created by masskywcy on 2017-05-16.
  */
 
 public class SelectLinkageAdapter extends android.widget.BaseAdapter {
-    private List<Map> list = new ArrayList<>();
+    private CopyOnWriteArrayList<ConcurrentMap> list = new CopyOnWriteArrayList<>();
     private List<Integer> listint = new ArrayList<>();
     private List<Integer> listintwo = new ArrayList<>();
     private Context context;
     // 用来控制CheckBox的选中状况
     private static HashMap<Integer, Boolean> isSelected = new HashMap<>();
 
-    public SelectLinkageAdapter(Context context, List<Map> list, List<Integer> listint, List<Integer> listintwo) {
+    public SelectLinkageAdapter(Context context, CopyOnWriteArrayList<ConcurrentMap> list, List<Integer> listint, List<Integer> listintwo) {
         this.list = list;
         this.listint = listint;
         this.listintwo = listintwo;
@@ -125,7 +127,7 @@ public class SelectLinkageAdapter extends android.widget.BaseAdapter {
         isSelected = isSelected;
     }
 
-    public void setlist(List<Map> list, List<Integer> listint, List<Integer> listintwo) {
+    public void setlist(CopyOnWriteArrayList<ConcurrentMap> list, List<Integer> listint, List<Integer> listintwo) {
         this.list = list;
         initDate();
         this.listint = listint;

@@ -6,13 +6,13 @@ import android.graphics.RectF;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.util.AttributeSet;
-import android.widget.ImageView;
-
 import com.king.photo.zoom.PhotoViewAttacher.OnMatrixChangedListener;
 import com.king.photo.zoom.PhotoViewAttacher.OnPhotoTapListener;
 import com.king.photo.zoom.PhotoViewAttacher.OnViewTapListener;
 
-public class PhotoView extends ImageView implements IPhotoView {
+import androidx.appcompat.widget.AppCompatImageView;
+
+public class PhotoView extends AppCompatImageView implements IPhotoView {
 
 	private final PhotoViewAttacher mAttacher;
 

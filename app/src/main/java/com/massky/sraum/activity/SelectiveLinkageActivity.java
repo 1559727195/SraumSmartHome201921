@@ -6,6 +6,7 @@ import android.os.Handler;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -30,6 +31,9 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.ConcurrentMap;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 import butterknife.InjectView;
 import okhttp3.Call;
@@ -55,6 +59,8 @@ public class SelectiveLinkageActivity extends BaseActivity implements
     StatusView statusView;
     @InjectView(R.id.rel_scene_set)
     RelativeLayout rel_scene_set;
+    @InjectView(R.id.scene_linear)
+    LinearLayout scene_linear;
     private SelectLinkageAdapter selectexcutesceneresultadapter;
     private List<Map> list_hand_scene = new ArrayList<>();
     private Handler mHandler = new Handler();
@@ -67,7 +73,7 @@ public class SelectiveLinkageActivity extends BaseActivity implements
     private DialogUtil dialogUtil;
     //    private List<User.device> list = new ArrayList<>();
     private List<String> listtype = new ArrayList();
-    private List<Map> panelList = new ArrayList<>();
+    private CopyOnWriteArrayList<ConcurrentMap> panelList = new CopyOnWriteArrayList<>();
     private Map map_link = new HashMap();
     private List<String> listpanelNumber = new ArrayList();
     private List<String> listpanelName = new ArrayList();
@@ -92,6 +98,15 @@ public class SelectiveLinkageActivity extends BaseActivity implements
 //        dialogUtil = new DialogUtil(this);
         map_link = (Map) getIntent().getSerializableExtra("link_map");
         if (map_link == null) return;
+        String action = (String) map_link.get("action");
+        switch (action) {
+            case "执行"://手动场景
+                scene_linear.setVisibility(View.GONE);
+                break;
+            default://自动场景
+                scene_linear.setVisibility(View.VISIBLE);
+                break;
+        }
     }
 
     @Override
@@ -148,7 +163,7 @@ public class SelectiveLinkageActivity extends BaseActivity implements
                         listintwo.clear();
                         listpanelNumber.clear();
                         for (User.panellist ud : user.panelList) {
-                            Map map = new HashMap();
+                            ConcurrentMap map = new ConcurrentHashMap();
                             map.put("panelName", ud.panelName);
                             map.put("panelNumber", ud.panelNumber);
                             map.put("boxNumber", ud.boxNumber);
@@ -157,13 +172,12 @@ public class SelectiveLinkageActivity extends BaseActivity implements
                             map.put("panelMac", ud.panelMac);
                             map.put("gatewayMac", ud.gatewayMac);
                             map.put("controllerId", "");
-
                             panelList.add(map);
                         }
 
                         if (user.wifiList != null)
                             for (User.wifi_device ud : user.wifiList) {
-                                Map map = new HashMap();
+                                ConcurrentHashMap map = new ConcurrentHashMap();
                                 map.put("panelName", ud.name);
                                 map.put("panelNumber", ud.number);
                                 map.put("boxNumber", "");
@@ -179,7 +193,7 @@ public class SelectiveLinkageActivity extends BaseActivity implements
                             listpanelNumber.add(map.get("panelNumber").toString());
                             listpanelName.add(map.get("panelName").toString());
                             listbox.add(map.get("boxName").toString());
-                            setPicture(map.get("panelType").toString());
+                            setPicture(map.get("panelType").toString(), map);
                         }
 
                         selectexcutesceneresultadapter.setlist(panelList, listint, listintwo);
@@ -194,7 +208,7 @@ public class SelectiveLinkageActivity extends BaseActivity implements
     }
 
 
-    private void setPicture(String type) {
+    private void setPicture(String type, Map map) {
         switch (type) {
             case "A201":
                 listint.add(R.drawable.icon_yijiandk_40);
@@ -233,14 +247,17 @@ public class SelectiveLinkageActivity extends BaseActivity implements
                 listintwo.add(R.drawable.icon_chuanglian_40_active);
                 break;
             case "A511":
+            case "A501":
                 listint.add(R.drawable.icon_kongtiao_40);
                 listintwo.add(R.drawable.icon_kongtiao_40_active);
                 break;
             case "A611":
+            case "A601":
                 listint.add(R.drawable.freshair);
                 listintwo.add(R.drawable.freshair);
                 break;
             case "A711":
+            case "A701":
                 listint.add(R.drawable.floorheating);
                 listintwo.add(R.drawable.floorheating);
                 break;
@@ -300,6 +317,11 @@ public class SelectiveLinkageActivity extends BaseActivity implements
                 listint.add(R.drawable.icon_hongwaizfq_40);
                 listintwo.add(R.drawable.icon_hongwaizfq_40);
                 break;
+            default://默认没有的类型直接把这条隐藏掉
+//                listint.add(R.drawable.defaultpic);
+//                listintwo.add(R.drawable.defaultpic);
+                panelList.remove(map);
+                break;
         }
     }
 
@@ -330,6 +352,8 @@ public class SelectiveLinkageActivity extends BaseActivity implements
 
         switch (listtype.get(position)) {
             case "A501":
+            case "A601":
+            case "A701":
                 getAir501Data(listpanelNumber.get(position), listbox.get(position),
                         panelList.get(position).get("boxNumber")
                                 == null ? "" : panelList.get(position).get("boxNumber").toString());
@@ -396,7 +420,7 @@ public class SelectiveLinkageActivity extends BaseActivity implements
         String areaNumber = (String) SharedPreferencesUtil.getData(SelectiveLinkageActivity.this, "areaNumber", "");
         dialogUtil.loadDialog();
         Map<String, String> mapdevice = new HashMap<>();
-        mapdevice.put("token", TokenUtil.getToken(SelectiveLinkageActivity.this));
+        map.put("token", TokenUtil.getToken(SelectiveLinkageActivity.this));
         map.put("boxNumber", boxNumber);
         map.put("panelNumber", panelNumber);
         map.put("areaNumber", areaNumber);

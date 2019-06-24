@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/color_black"
@@ -37,7 +38,7 @@
                 android:layout_height="1dp"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
-                android:src="@color/color_line" />
+                app:srcCompat="@color/color_line" />
 
             <Button
                 android:id="@+id/date_zone_hawaii"
@@ -59,7 +60,7 @@
                 android:layout_height="1dp"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
-                android:src="@color/color_line" />
+                app:srcCompat="@color/color_line" />
 
             <Button
                 android:id="@+id/date_zone_alaska"
@@ -81,7 +82,7 @@
                 android:layout_height="1dp"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
-                android:src="@color/color_line" />
+                app:srcCompat="@color/color_line" />
 
             <Button
                 android:id="@+id/date_zone_pacific_time"
@@ -103,7 +104,7 @@
                 android:layout_height="1dp"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
-                android:src="@color/color_line" />
+                app:srcCompat="@color/color_line" />
 
             <Button
                 android:id="@+id/date_zone_mountain_time"
@@ -125,7 +126,7 @@
                 android:layout_height="1dp"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
-                android:src="@color/color_line" />
+                app:srcCompat="@color/color_line" />
 
             <Button
                 android:id="@+id/date_zone_middle_part_time"
@@ -147,7 +148,7 @@
                 android:layout_height="1dp"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
-                android:src="@color/color_line" />
+                app:srcCompat="@color/color_line" />
 
             <Button
                 android:id="@+id/date_zone_eastern_time"
@@ -169,7 +170,7 @@
                 android:layout_height="1dp"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
-                android:src="@color/color_line" />
+                app:srcCompat="@color/color_line" />
 
             <Button
                 android:id="@+id/date_zone_ocean_time"
@@ -191,7 +192,7 @@
                 android:layout_height="1dp"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
-                android:src="@color/color_line" />
+                app:srcCompat="@color/color_line" />
 
             <Button
                 android:id="@+id/date_zone_newfoundland"
@@ -214,7 +215,7 @@
                 android:layout_height="1dp"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
-                android:src="@color/color_line" />
+                app:srcCompat="@color/color_line" />
 
             <Button
                 android:id="@+id/date_zone_brasilia"
@@ -236,7 +237,7 @@
                 android:layout_height="1dp"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
-                android:src="@color/color_line" />
+                app:srcCompat="@color/color_line" />
 
             <Button
                 android:id="@+id/date_zone_center_ocean"
@@ -258,7 +259,7 @@
                 android:layout_height="1dp"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
-                android:src="@color/color_line" />
+                app:srcCompat="@color/color_line" />
 
             <Button
                 android:id="@+id/date_zone_cap_verde_island"
@@ -280,7 +281,7 @@
                 android:layout_height="1dp"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
-                android:src="@color/color_line" />
+                app:srcCompat="@color/color_line" />
 
             <Button
                 android:id="@+id/date_zone_greenwich"
@@ -302,7 +303,7 @@
                 android:layout_height="1dp"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
-                android:src="@color/color_line" />
+                app:srcCompat="@color/color_line" />
 
             <Button
                 android:id="@+id/date_zone_brussels"
@@ -324,7 +325,7 @@
                 android:layout_height="1dp"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
-                android:src="@color/color_line" />
+                app:srcCompat="@color/color_line" />
 
             <Button
                 android:id="@+id/date_zone_athens"
@@ -346,7 +347,7 @@
                 android:layout_height="1dp"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
-                android:src="@color/color_line" />
+                app:srcCompat="@color/color_line" />
 
             <Button
                 android:id="@+id/date_zone_nairobi"
@@ -368,7 +369,7 @@
                 android:layout_height="1dp"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
-                android:src="@color/color_line" />
+                app:srcCompat="@color/color_line" />
 
             <Button
                 android:id="@+id/date_zone_teheran"
@@ -390,7 +391,7 @@
                 android:layout_height="1dp"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
-                android:src="@color/color_line" />
+                app:srcCompat="@color/color_line" />
 
             <Button
                 android:id="@+id/date_zone_baku"
@@ -412,7 +413,7 @@
                 android:layout_height="1dp"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
-                android:src="@color/color_line" />
+                app:srcCompat="@color/color_line" />
 
             <Button
                 android:id="@+id/date_zone_kebuer"
@@ -434,7 +435,7 @@
                 android:layout_height="1dp"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
-                android:src="@color/color_line" />
+                app:srcCompat="@color/color_line" />
 
             <Button
                 android:id="@+id/date_zone_islamabad"
@@ -456,7 +457,7 @@
                 android:layout_height="1dp"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
-                android:src="@color/color_line" />
+                app:srcCompat="@color/color_line" />
 
             <Button
                 android:id="@+id/date_zone_calcutta"
@@ -478,7 +479,7 @@
                 android:layout_height="1dp"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
-                android:src="@color/color_line" />
+                app:srcCompat="@color/color_line" />
 
             <Button
                 android:id="@+id/date_zone_alamotu"
@@ -500,7 +501,7 @@
                 android:layout_height="1dp"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
-                android:src="@color/color_line" />
+                app:srcCompat="@color/color_line" />
 
             <Button
                 android:id="@+id/date_zone_bangkok"
@@ -522,7 +523,7 @@
                 android:layout_height="1dp"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
-                android:src="@color/color_line" />
+                app:srcCompat="@color/color_line" />
 
             <Button
                 android:id="@+id/date_zone_beijing"
@@ -544,7 +545,7 @@
                 android:layout_height="1dp"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
-                android:src="@color/color_line" />
+                app:srcCompat="@color/color_line" />
 
             <Button
                 android:id="@+id/date_zone_seoul"
@@ -566,7 +567,7 @@
                 android:layout_height="1dp"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
-                android:src="@color/color_line" />
+                app:srcCompat="@color/color_line" />
 
             <Button
                 android:id="@+id/date_zone_darwin"
@@ -588,7 +589,7 @@
                 android:layout_height="1dp"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
-                android:src="@color/color_line" />
+                app:srcCompat="@color/color_line" />
 
             <Button
                 android:id="@+id/date_zone_guam"
@@ -610,7 +611,7 @@
                 android:layout_height="1dp"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
-                android:src="@color/color_line" />
+                app:srcCompat="@color/color_line" />
 
             <Button
                 android:id="@+id/date_zone_soulumen"
@@ -632,7 +633,7 @@
                 android:layout_height="1dp"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
-                android:src="@color/color_line" />
+                app:srcCompat="@color/color_line" />
 
             <Button
                 android:id="@+id/date_zone_auckland"
@@ -654,7 +655,7 @@
                 android:layout_height="1dp"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
-                android:src="@color/color_line" />
+                app:srcCompat="@color/color_line" />
         </LinearLayout>
     </ScrollView>
 

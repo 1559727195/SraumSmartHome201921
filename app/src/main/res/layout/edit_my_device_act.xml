@@ -5,7 +5,7 @@
     android:id="@+id/linear_big"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white"
+    android:background="@color/light_gray"
     android:orientation="vertical">
 
     <com.yanzhenjie.statusview.StatusView
@@ -17,8 +17,8 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:background="@color/green"
-        android:layout_height="50dp">
+        android:layout_height="50dp"
+        android:background="@color/green">
 
         <ImageView
             android:id="@+id/back"
@@ -26,10 +26,10 @@
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
             android:layout_marginLeft="10dp"
-            android:paddingRight="40dp"
             android:paddingTop="10dp"
+            android:paddingRight="40dp"
             android:paddingBottom="10dp"
-            android:src="@drawable/icon_t_back" />
+            app:srcCompat="@drawable/icon_t_back" />
 
         <TextView
             android:id="@+id/project_select"
@@ -46,11 +46,11 @@
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
-            android:layout_marginRight="8dp"
             android:layout_marginTop="8dp"
-            android:paddingBottom="5dp"
+            android:layout_marginRight="8dp"
             android:paddingLeft="20dp"
             android:paddingTop="5dp"
+            android:paddingBottom="5dp"
             android:text="保存"
             android:textColor="@color/white" />
     </RelativeLayout>
@@ -59,10 +59,11 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
-        android:paddingBottom="5dp"
         android:paddingLeft="15dp"
+        android:background="@color/white"
+        android:paddingTop="2dp"
         android:paddingRight="15dp"
-        android:paddingTop="5dp">
+        android:paddingBottom="2dp">
 
         <TextView
             android:id="@+id/txt_dev"
@@ -86,7 +87,7 @@
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="8dp"
-                android:background="@drawable/typein"
+                android:background="@drawable/edit_gateway_shape"
                 android:gravity="left"
                 android:hint="输入自定义名称"
                 android:padding="8dp"
@@ -100,19 +101,27 @@
                 android:layout_toRightOf="@+id/input_panel_name_edit"
                 app:layout_widthPercent="40%">
 
-                <Button
+                <!--<Button-->
+                    <!--android:id="@+id/find_panel_btn"-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:layout_alignParentRight="true"-->
+                    <!--android:layout_centerHorizontal="true"-->
+                    <!--android:layout_centerVertical="true"-->
+                    <!--android:background="@drawable/icon_sousuo"-->
+                    <!--android:paddingLeft="3dp"-->
+                    <!--android:paddingRight="3dp"-->
+                    <!--android:textSize="@dimen/s13"-->
+                    <!--app:layout_widthPercent="30%" />-->
+                <ImageView
                     android:id="@+id/find_panel_btn"
                     android:layout_width="wrap_content"
-                    android:layout_height="@dimen/d30"
-                    android:layout_alignParentRight="true"
-                    android:layout_centerHorizontal="true"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
                     android:layout_centerVertical="true"
-                    android:background="@drawable/graylinerecra"
-                    android:paddingLeft="3dp"
-                    android:paddingRight="3dp"
-                    android:text="找设备"
-                    android:textSize="@dimen/s13"
-                    app:layout_widthPercent="30%" />
+                    android:layout_marginLeft="@dimen/x15"
+                    app:srcCompat="@drawable/icon_sousuo"></ImageView>
+
 
             </RelativeLayout>
         </androidx.percentlayout.widget.PercentRelativeLayout>
@@ -124,6 +133,7 @@
         android:id="@+id/list_for_air_mode"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@color/white"
         android:orientation="vertical"
         android:visibility="gone">
 
@@ -170,12 +180,39 @@
                     android:layout_alignParentTop="true"
                     android:gravity="left"
                     android:maxLength="15"
-                    android:paddingBottom="8dp"
                     android:paddingTop="8dp"
+                    android:paddingBottom="8dp"
                     android:text="第一路灯控名称"
                     android:textColor="@color/dark_gray"
-                    android:textSize="14sp"
+                    android:textSize="12sp"
                     app:layout_widthPercent="65%"></TextView>
+                <RelativeLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_toRightOf="@+id/first_txt"
+                    app:layout_widthPercent="35%">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:layout_centerVertical="true"
+                        android:paddingTop="@dimen/x8"
+                        android:paddingBottom="@dimen/x8"
+                        android:text="找设备"
+                        android:textSize="12sp"></TextView>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:paddingTop="@dimen/x8"
+                        android:paddingBottom="@dimen/x8"
+                        android:text="设为常用"
+                        android:textSize="12sp"
+                        android:visibility="gone"></TextView>
+                </RelativeLayout>
 
             </androidx.percentlayout.widget.PercentRelativeLayout>
 
@@ -184,17 +221,18 @@
                 android:layout_height="50dp"
                 android:layout_marginTop="2dp"
                 android:orientation="horizontal"
-                android:paddingBottom="5dp"
                 android:paddingLeft="15dp"
+                android:background="@color/white"
+                android:paddingTop="5dp"
                 android:paddingRight="15dp"
-                android:paddingTop="5dp">
+                android:paddingBottom="5dp">
 
                 <com.massky.sraum.view.ClearLengthEditText
                     android:id="@+id/edit_one"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
-                    android:background="@drawable/typein"
+                    android:background="@drawable/edit_gateway_shape"
                     android:gravity="left|center_vertical"
                     android:hint="输入第一路灯控自定义名称"
                     android:padding="8dp"
@@ -208,19 +246,27 @@
                     android:layout_toRightOf="@+id/edit_one"
                     app:layout_widthPercent="40%">
 
-                    <Button
+                    <!--<Button-->
+                        <!--android:id="@+id/button_one_id"-->
+                        <!--android:layout_width="wrap_content"-->
+                        <!--android:layout_height="@dimen/d30"-->
+                        <!--android:layout_alignParentRight="true"-->
+                        <!--android:layout_centerHorizontal="true"-->
+                        <!--android:layout_centerVertical="true"-->
+                        <!--android:background="@drawable/graylinerecra"-->
+                        <!--android:paddingLeft="3dp"-->
+                        <!--android:paddingRight="3dp"-->
+                        <!--android:text="找设备"-->
+                        <!--android:textSize="@dimen/s13"-->
+                        <!--app:layout_widthPercent="30%" />-->
+                    <ImageView
                         android:id="@+id/button_one_id"
                         android:layout_width="wrap_content"
-                        android:layout_height="@dimen/d30"
-                        android:layout_alignParentRight="true"
-                        android:layout_centerHorizontal="true"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
                         android:layout_centerVertical="true"
-                        android:background="@drawable/graylinerecra"
-                        android:paddingLeft="3dp"
-                        android:paddingRight="3dp"
-                        android:text="找设备"
-                        android:textSize="@dimen/s13"
-                        app:layout_widthPercent="30%" />
+                        android:layout_marginLeft="@dimen/x15"
+                        app:srcCompat="@drawable/icon_sousuo"></ImageView>
 
                 </RelativeLayout>
             </androidx.percentlayout.widget.PercentRelativeLayout>
@@ -248,12 +294,39 @@
                     android:layout_alignParentTop="true"
                     android:gravity="left"
                     android:maxLength="15"
-                    android:paddingBottom="8dp"
                     android:paddingTop="8dp"
+                    android:paddingBottom="8dp"
                     android:text="第二路灯控名称"
                     android:textColor="@color/dark_gray"
-                    android:textSize="14sp"
+                    android:textSize="12sp"
                     app:layout_widthPercent="65%"></TextView>
+                <RelativeLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_toRightOf="@+id/second_txt"
+                    app:layout_widthPercent="35%">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:layout_centerVertical="true"
+                        android:paddingTop="@dimen/x8"
+                        android:paddingBottom="@dimen/x8"
+                        android:text="找设备"
+                        android:textSize="12sp"></TextView>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:paddingTop="@dimen/x8"
+                        android:paddingBottom="@dimen/x8"
+                        android:text="设为常用"
+                        android:textSize="12sp"
+                        android:visibility="gone"></TextView>
+                </RelativeLayout>
             </androidx.percentlayout.widget.PercentRelativeLayout>
 
             <androidx.percentlayout.widget.PercentRelativeLayout
@@ -261,17 +334,18 @@
                 android:layout_height="50dp"
                 android:layout_marginTop="2dp"
                 android:orientation="horizontal"
-                android:paddingBottom="5dp"
                 android:paddingLeft="15dp"
+                android:background="@color/white"
+                android:paddingTop="5dp"
                 android:paddingRight="15dp"
-                android:paddingTop="5dp">
+                android:paddingBottom="5dp">
 
                 <com.massky.sraum.view.ClearLengthEditText
                     android:id="@+id/edit_two"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
-                    android:background="@drawable/typein"
+                    android:background="@drawable/edit_gateway_shape"
                     android:gravity="left|center_vertical"
                     android:hint="输入第二路灯控自定义名称"
                     android:padding="8dp"
@@ -285,19 +359,27 @@
                     android:layout_toRightOf="@+id/edit_two"
                     app:layout_widthPercent="40%">
 
-                    <Button
+                    <!--<Button-->
+                        <!--android:id="@+id/button_two_id"-->
+                        <!--android:layout_width="wrap_content"-->
+                        <!--android:layout_height="@dimen/d30"-->
+                        <!--android:layout_alignParentRight="true"-->
+                        <!--android:layout_centerHorizontal="true"-->
+                        <!--android:layout_centerVertical="true"-->
+                        <!--android:background="@drawable/graylinerecra"-->
+                        <!--android:paddingLeft="3dp"-->
+                        <!--android:paddingRight="3dp"-->
+                        <!--android:text="找设备"-->
+                        <!--android:textSize="@dimen/s13"-->
+                        <!--app:layout_widthPercent="30%" />-->
+                    <ImageView
                         android:id="@+id/button_two_id"
                         android:layout_width="wrap_content"
-                        android:layout_height="@dimen/d30"
-                        android:layout_alignParentRight="true"
-                        android:layout_centerHorizontal="true"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
                         android:layout_centerVertical="true"
-                        android:background="@drawable/graylinerecra"
-                        android:paddingLeft="3dp"
-                        android:paddingRight="3dp"
-                        android:text="找设备"
-                        android:textSize="@dimen/s13"
-                        app:layout_widthPercent="30%" />
+                        android:layout_marginLeft="@dimen/x15"
+                        app:srcCompat="@drawable/icon_sousuo"></ImageView>
                 </RelativeLayout>
             </androidx.percentlayout.widget.PercentRelativeLayout>
         </LinearLayout>
@@ -323,12 +405,39 @@
                     android:layout_alignParentTop="true"
                     android:gravity="left"
                     android:maxLength="15"
-                    android:paddingBottom="8dp"
                     android:paddingTop="8dp"
+                    android:paddingBottom="8dp"
                     android:text="第三路灯控名称"
                     android:textColor="@color/dark_gray"
-                    android:textSize="14sp"
+                    android:textSize="12sp"
                     app:layout_widthPercent="65%"></TextView>
+                <RelativeLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_toRightOf="@+id/three_txt"
+                    app:layout_widthPercent="35%">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:layout_centerVertical="true"
+                        android:paddingTop="@dimen/x8"
+                        android:paddingBottom="@dimen/x8"
+                        android:text="找设备"
+                        android:textSize="12sp"></TextView>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:paddingTop="@dimen/x8"
+                        android:paddingBottom="@dimen/x8"
+                        android:text="设为常用"
+                        android:textSize="12sp"
+                        android:visibility="gone"></TextView>
+                </RelativeLayout>
             </androidx.percentlayout.widget.PercentRelativeLayout>
 
             <androidx.percentlayout.widget.PercentRelativeLayout
@@ -336,17 +445,18 @@
                 android:layout_height="50dp"
                 android:layout_marginTop="2dp"
                 android:orientation="horizontal"
-                android:paddingBottom="5dp"
+                android:background="@color/white"
                 android:paddingLeft="15dp"
+                android:paddingTop="5dp"
                 android:paddingRight="15dp"
-                android:paddingTop="5dp">
+                android:paddingBottom="5dp">
 
                 <com.massky.sraum.view.ClearLengthEditText
                     android:id="@+id/edit_three"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
-                    android:background="@drawable/typein"
+                    android:background="@drawable/edit_gateway_shape"
                     android:gravity="left|center_vertical"
                     android:hint="输入第三路灯控自定义名称"
                     android:padding="8dp"
@@ -360,19 +470,27 @@
                     android:layout_toRightOf="@+id/edit_three"
                     app:layout_widthPercent="40%">
 
-                    <Button
+                    <!--<Button-->
+                        <!--android:id="@+id/button_three_id"-->
+                        <!--android:layout_width="wrap_content"-->
+                        <!--android:layout_height="@dimen/d30"-->
+                        <!--android:layout_alignParentRight="true"-->
+                        <!--android:layout_centerHorizontal="true"-->
+                        <!--android:layout_centerVertical="true"-->
+                        <!--android:background="@drawable/graylinerecra"-->
+                        <!--android:paddingLeft="3dp"-->
+                        <!--android:paddingRight="3dp"-->
+                        <!--android:text="找设备"-->
+                        <!--android:textSize="@dimen/s13"-->
+                        <!--app:layout_widthPercent="30%" />-->
+                    <ImageView
                         android:id="@+id/button_three_id"
                         android:layout_width="wrap_content"
-                        android:layout_height="@dimen/d30"
-                        android:layout_alignParentRight="true"
-                        android:layout_centerHorizontal="true"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
                         android:layout_centerVertical="true"
-                        android:background="@drawable/graylinerecra"
-                        android:paddingLeft="3dp"
-                        android:paddingRight="3dp"
-                        android:text="找设备"
-                        android:textSize="@dimen/s13"
-                        app:layout_widthPercent="30%" />
+                        android:layout_marginLeft="@dimen/x15"
+                        app:srcCompat="@drawable/icon_sousuo"></ImageView>
                 </RelativeLayout>
             </androidx.percentlayout.widget.PercentRelativeLayout>
         </LinearLayout>
@@ -398,12 +516,39 @@
                     android:layout_alignParentTop="true"
                     android:gravity="left"
                     android:maxLength="15"
-                    android:paddingBottom="8dp"
                     android:paddingTop="8dp"
+                    android:paddingBottom="8dp"
                     android:text="第四路灯控名称"
                     android:textColor="@color/dark_gray"
-                    android:textSize="14sp"
+                    android:textSize="12sp"
                     app:layout_widthPercent="65%"></TextView>
+                <RelativeLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_toRightOf="@+id/four_txt"
+                    app:layout_widthPercent="35%">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:layout_centerVertical="true"
+                        android:paddingTop="@dimen/x8"
+                        android:paddingBottom="@dimen/x8"
+                        android:text="找设备"
+                        android:textSize="12sp"></TextView>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:paddingTop="@dimen/x8"
+                        android:paddingBottom="@dimen/x8"
+                        android:text="设为常用"
+                        android:textSize="12sp"
+                        android:visibility="gone"></TextView>
+                </RelativeLayout>
             </androidx.percentlayout.widget.PercentRelativeLayout>
 
             <androidx.percentlayout.widget.PercentRelativeLayout
@@ -411,17 +556,18 @@
                 android:layout_height="50dp"
                 android:layout_marginTop="2dp"
                 android:orientation="horizontal"
-                android:paddingBottom="5dp"
                 android:paddingLeft="15dp"
+                android:paddingTop="5dp"
+                android:background="@color/white"
                 android:paddingRight="15dp"
-                android:paddingTop="5dp">
+                android:paddingBottom="5dp">
 
                 <com.massky.sraum.view.ClearLengthEditText
                     android:id="@+id/edit_four"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
-                    android:background="@drawable/typein"
+                    android:background="@drawable/edit_gateway_shape"
                     android:gravity="left|center_vertical"
                     android:hint="输入第四路灯控自定义名称"
                     android:padding="8dp"
@@ -435,19 +581,27 @@
                     android:layout_toRightOf="@+id/edit_four"
                     app:layout_widthPercent="40%">
 
-                    <Button
+                    <!--<Button-->
+                        <!--android:id="@+id/button_four_id"-->
+                        <!--android:layout_width="wrap_content"-->
+                        <!--android:layout_height="@dimen/d30"-->
+                        <!--android:layout_alignParentRight="true"-->
+                        <!--android:layout_centerHorizontal="true"-->
+                        <!--android:layout_centerVertical="true"-->
+                        <!--android:background="@drawable/graylinerecra"-->
+                        <!--android:paddingLeft="3dp"-->
+                        <!--android:paddingRight="3dp"-->
+                        <!--android:text="找设备"-->
+                        <!--android:textSize="@dimen/s13"-->
+                        <!--app:layout_widthPercent="30%" />-->
+                    <ImageView
                         android:id="@+id/button_four_id"
                         android:layout_width="wrap_content"
-                        android:layout_height="@dimen/d30"
-                        android:layout_alignParentRight="true"
-                        android:layout_centerHorizontal="true"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
                         android:layout_centerVertical="true"
-                        android:background="@drawable/graylinerecra"
-                        android:paddingLeft="3dp"
-                        android:paddingRight="3dp"
-                        android:text="找设备"
-                        android:textSize="@dimen/s13"
-                        app:layout_widthPercent="30%" />
+                        android:layout_marginLeft="@dimen/x15"
+                        app:srcCompat="@drawable/icon_sousuo"></ImageView>
                 </RelativeLayout>
             </androidx.percentlayout.widget.PercentRelativeLayout>
         </LinearLayout>

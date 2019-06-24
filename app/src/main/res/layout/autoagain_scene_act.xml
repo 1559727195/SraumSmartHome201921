@@ -24,7 +24,7 @@
             android:layout_centerVertical="true"
             android:layout_marginLeft="10dp"
             android:paddingRight="20dp"
-            android:src="@drawable/icon_t_back" />
+            app:srcCompat="@drawable/icon_t_back" />
         <TextView
             android:id="@+id/project_select"
             android:layout_width="wrap_content"
@@ -66,8 +66,14 @@
         android:padding="@dimen/x12"
         android:textSize="16sp"
         android:gravity="left"
+        android:visibility="gone"
         android:id="@+id/custom_again_time"
         android:textColor="@color/dark_gray"
         android:background="@color/white"
         android:text="自定义"/>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:visibility="gone"
+        android:background="#E3E3E3"></View>
 </LinearLayout>

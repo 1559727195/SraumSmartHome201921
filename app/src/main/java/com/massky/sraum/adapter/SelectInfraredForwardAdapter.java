@@ -1,6 +1,5 @@
 package com.massky.sraum.adapter;
 
-import android.app.Activity;
 import android.app.Dialog;
 import android.util.DisplayMetrics;
 import android.view.LayoutInflater;
@@ -21,7 +20,6 @@ import com.massky.sraum.Util.Mycallback;
 import com.massky.sraum.Util.ToastUtil;
 import com.massky.sraum.Util.TokenUtil;
 import com.massky.sraum.Utils.ApiHelper;
-import com.massky.sraum.view.ClearEditText;
 import com.massky.sraum.view.ClearLengthEditText;
 import com.massky.sraum.widget.SlideSwitchButton;
 import com.mcxtzhang.swipemenulib.SwipeMenuLayout;
@@ -31,6 +29,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import androidx.appcompat.app.AppCompatActivity;
 import okhttp3.Call;
 
 /**
@@ -42,13 +41,13 @@ public class SelectInfraredForwardAdapter extends android.widget.BaseAdapter {
     private List<Integer> listint = new ArrayList<>();
     private List<Integer> listintwo = new ArrayList<>();
     private int temp = -1;
-    private Activity activity;//上下文
+    private AppCompatActivity activity;//上下文
     DialogUtil dialogUtil;
     RefreshListener refreshListener;
     // 用来控制CheckBox的选中状况
     private static HashMap<Integer, Boolean> isSelected = new HashMap<>();
 
-    public SelectInfraredForwardAdapter(Activity context, List<Map> list, List<Integer> listint, List<Integer> listintwo, DialogUtil dialogUtil,
+    public SelectInfraredForwardAdapter(AppCompatActivity context, List<Map> list, List<Integer> listint, List<Integer> listintwo, DialogUtil dialogUtil,
                                         RefreshListener refreshListener) {
         this.list = list;
         this.listint = listint;

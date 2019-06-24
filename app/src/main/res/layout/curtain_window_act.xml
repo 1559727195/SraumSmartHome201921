@@ -26,7 +26,7 @@
             android:layout_centerVertical="true"
             android:layout_marginLeft="@dimen/x10"
             android:paddingRight="@dimen/x20"
-            android:src="@drawable/icon_t_back" />
+            app:srcCompat="@drawable/icon_t_back" />
 
         <TextView
             android:id="@+id/project_select"
@@ -78,7 +78,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
-                android:src="@drawable/icon_cl_open" />
+                app:srcCompat="@drawable/icon_cl_open" />
         </RelativeLayout>
 
         <RelativeLayout
@@ -90,7 +90,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
-                android:src="@drawable/icon_cl_zanting" />
+                app:srcCompat="@drawable/icon_cl_zanting" />
         </RelativeLayout>
 
         <RelativeLayout
@@ -102,7 +102,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
-                android:src="@drawable/icon_cl_close" />
+                app:srcCompat="@drawable/icon_cl_close" />
         </RelativeLayout>
 
     </LinearLayout>
@@ -133,7 +133,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
-                android:src="@drawable/icon_cl_open" />
+                app:srcCompat="@drawable/icon_cl_open" />
         </RelativeLayout>
 
         <RelativeLayout
@@ -145,7 +145,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
-                android:src="@drawable/icon_cl_zanting" />
+                app:srcCompat="@drawable/icon_cl_zanting" />
         </RelativeLayout>
 
         <RelativeLayout
@@ -157,7 +157,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
-                android:src="@drawable/icon_cl_close" />
+                app:srcCompat="@drawable/icon_cl_close" />
         </RelativeLayout>
 
     </LinearLayout>
@@ -188,7 +188,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
-                android:src="@drawable/icon_cl_open" />
+                app:srcCompat="@drawable/icon_cl_open" />
         </RelativeLayout>
 
         <RelativeLayout
@@ -200,7 +200,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
-                android:src="@drawable/icon_cl_zanting" />
+                app:srcCompat="@drawable/icon_cl_zanting" />
         </RelativeLayout>
 
         <RelativeLayout
@@ -212,7 +212,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
-                android:src="@drawable/icon_cl_close" />
+                app:srcCompat="@drawable/icon_cl_close" />
         </RelativeLayout>
 
     </LinearLayout>

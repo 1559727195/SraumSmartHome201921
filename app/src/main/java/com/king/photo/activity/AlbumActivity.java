@@ -1,9 +1,5 @@
 package com.king.photo.activity;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import android.app.Activity;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
@@ -12,7 +8,6 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.os.Bundle;
-import android.view.KeyEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
@@ -28,8 +23,12 @@ import com.king.photo.util.ImageBucket;
 import com.king.photo.util.ImageItem;
 import com.king.photo.util.PublicWay;
 import com.king.photo.util.Res;
-import com.massky.sraum.R;
 import com.yanzhenjie.statusview.StatusUtils;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 /**
  * 这个是进入相册显示所有图片的界面
@@ -38,7 +37,7 @@ import com.yanzhenjie.statusview.StatusUtils;
  * @version 2014年10月18日  下午11:47:15
  * @QQ:595163260
  */
-public class AlbumActivity extends Activity {
+public class AlbumActivity extends AppCompatActivity {
     //显示手机里的所有图片的列表控件
     private GridView gridView;
     //当手机里没有图片时，提示用户没有图片的控件

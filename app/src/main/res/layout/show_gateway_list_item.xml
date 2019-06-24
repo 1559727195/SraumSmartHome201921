@@ -32,7 +32,7 @@
                 android:layout_alignParentRight="true"
                 android:layout_centerVertical="true"
                 android:layout_toRightOf="@+id/txt_sao_one"
-                android:src="@drawable/wode_right_arrow" />
+                app:srcCompat="@drawable/wode_right_arrow" />
         </RelativeLayout>
     </androidx.percentlayout.widget.PercentRelativeLayout>
 

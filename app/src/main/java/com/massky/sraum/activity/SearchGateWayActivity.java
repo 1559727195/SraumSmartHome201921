@@ -1,69 +1,43 @@
 package com.massky.sraum.activity;
 
-import android.app.FragmentManager;
-import android.app.FragmentTransaction;
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Message;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 import com.massky.sraum.EditGateWayResultActivity;
 import com.massky.sraum.R;
-import com.massky.sraum.User;
 import com.massky.sraum.Util.ByteUtils;
-import com.massky.sraum.Util.ICallback;
-import com.massky.sraum.Util.IConnectTcpback;
-import com.massky.sraum.Util.NullStringToEmptyAdapterFactory;
-import com.massky.sraum.Util.ToastUtil;
-import com.massky.sraum.Util.UDPClient;
-import com.massky.sraum.Utils.ApiHelper;
 import com.massky.sraum.adapter.ShowUdpServerAdapter;
 import com.massky.sraum.base.BaseActivity;
-import com.massky.sraum.bean.DaoSession;
-import com.massky.sraum.bean.GateWayInfoBean;
-import com.massky.sraum.bean.GateWayInfoBeanDao;
-import com.massky.sraum.fragment.ConfigDialogFragment;
 import com.massky.sraum.fragment.SearchDialogFragment;
-import com.massky.sraum.service.MyService;
 import com.massky.sraum.view.SycleSearchView;
-import com.massky.sraum.widget.ApplicationContext;
 import com.yanzhenjie.statusview.StatusUtils;
 import com.yanzhenjie.statusview.StatusView;
-
-import org.greenrobot.greendao.query.Query;
 
 import java.io.IOException;
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
 import java.net.InetAddress;
 import java.net.SocketException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
-import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
-import java.util.Map;
 import java.util.Timer;
 import java.util.TimerTask;
 import java.util.concurrent.CopyOnWriteArrayList;
-import java.util.logging.Handler;
 
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import butterknife.InjectView;
-import lecho.lib.hellocharts.model.Line;
 
 /**
  * Created by zhu on 2018/1/2.
@@ -185,7 +159,7 @@ public class SearchGateWayActivity extends BaseActivity {
      */
     private void show_dialog_fragment() {
         if (!newFragment.isAdded()) {//DialogFragment.show()内部调用了FragmentTransaction.add()方法，所以调用DialogFragment.show()方法时候也可能
-            FragmentManager manager = getFragmentManager();
+            FragmentManager manager = getSupportFragmentManager();
             FragmentTransaction ft = manager.beginTransaction();
             ft.add(newFragment, "dialog");
             ft.commit();

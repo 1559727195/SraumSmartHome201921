@@ -1,10 +1,11 @@
 package com.massky.sraum.Util;
 
 import android.annotation.TargetApi;
-import android.app.Activity;
 import android.content.Context;
 import android.graphics.Color;
 import android.os.Build;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 /**
  * Created by zhu on 2017/4/19.
@@ -15,7 +16,7 @@ public class StatusBarCompat {
     private static final int COLOR_DEFAULT = Color.parseColor("#20000000");
 
     @TargetApi(Build.VERSION_CODES.LOLLIPOP)
-    public static void compat(Activity activity, int statusColor)
+    public static void compat(AppCompatActivity activity, int statusColor)
     {
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP)
@@ -44,7 +45,7 @@ public class StatusBarCompat {
 
     }
 
-    public static void compat(Activity activity)
+    public static void compat(AppCompatActivity activity)
     {
         compat(activity, INVALID_VAL);
     }

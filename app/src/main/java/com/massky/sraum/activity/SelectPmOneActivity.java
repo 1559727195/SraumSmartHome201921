@@ -40,8 +40,16 @@ public class SelectPmOneActivity extends BaseActivity {
     @InjectView(R.id.project_select)
     TextView project_select;
 
+    @InjectView(R.id.panel_scene_name_txt)
+    TextView panel_scene_name_txt;
+    @InjectView(R.id.door_open_txt)
+    TextView door_open_txt;
+    @InjectView(R.id.door_close_txt)
+    TextView door_close_txt;
+
     private String condition = "0";
     private Map map_link = new HashMap();
+    private String deviceType;
 
     @Override
     protected int viewId() {
@@ -54,6 +62,20 @@ public class SelectPmOneActivity extends BaseActivity {
         onEvent();
         map_link = (Map) getIntent().getSerializableExtra("map_link");
         if (map_link == null) return;
+        deviceType = map_link.get("deviceType").toString();
+        switch (deviceType) {
+            case "10":
+                panel_scene_name_txt.setText("温度");
+                door_open_txt.setText("湿度");
+                door_close_txt.setText("PM2.5");
+
+                break;
+            case "AD02":
+                panel_scene_name_txt.setText("PM1.0");
+                door_open_txt.setText("PM2.5");
+                door_close_txt.setText("PM10");
+                break;
+        }
         setPicture();
     }
 
@@ -81,7 +103,7 @@ public class SelectPmOneActivity extends BaseActivity {
         switch (v.getId()) {
             case R.id.back:
                 SelectPmOneActivity.this.finish();
-                break;
+                return;
             case R.id.wendu_linear:
                 map_link.put("pm_action", "0");
                 break;

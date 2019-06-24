@@ -1,6 +1,5 @@
 package com.ipcamera.demo;
 
-import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -30,9 +29,10 @@ import com.ipcamera.demo.BridgeService.UserInterface;
 import com.ipcamera.demo.utils.ContentCommon;
 import com.massky.sraum.R;
 
+import androidx.appcompat.app.AppCompatActivity;
 import vstc2.nativecaller.NativeCaller;
 
-public class SettingUserActivity extends Activity implements OnCheckedChangeListener, OnClickListener,UserInterface {
+public class SettingUserActivity extends AppCompatActivity implements OnCheckedChangeListener, OnClickListener,UserInterface {
 private boolean successFlag=false;
 private int CAMERAPARAM=0xffffffff;//״̬
 private final int TIMEOUT=3000;

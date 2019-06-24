@@ -26,7 +26,7 @@
             android:layout_centerVertical="true"
             android:layout_marginLeft="10dp"
             android:paddingRight="20dp"
-            android:src="@drawable/icon_t_back" />
+            app:srcCompat="@drawable/icon_t_back" />
 
         <TextView
             android:id="@+id/project_select"
@@ -45,7 +45,7 @@
             android:layout_centerVertical="true"
             android:layout_marginRight="@dimen/x8"
             android:layout_marginTop="8dp"
-            android:src="@drawable/icon_about" />
+            app:srcCompat="@drawable/icon_about" />
     </RelativeLayout>
 
     <LinearLayout
@@ -191,7 +191,7 @@
                     android:layout_alignParentLeft="true"
                     android:layout_centerVertical="true"
                     android:layout_marginLeft="@dimen/x15"
-                    android:src="@drawable/icon_sousuo"></ImageView>
+                    app:srcCompat="@drawable/icon_sousuo"></ImageView>
 
 
                 <com.massky.sraum.widget.SlideSwitchButton
@@ -290,7 +290,7 @@
                     android:layout_alignParentLeft="true"
                     android:layout_centerVertical="true"
                     android:layout_marginLeft="@dimen/x15"
-                    android:src="@drawable/icon_sousuo"></ImageView>
+                    app:srcCompat="@drawable/icon_sousuo"></ImageView>
 
 
                 <com.massky.sraum.widget.SlideSwitchButton
@@ -389,7 +389,7 @@
                     android:layout_alignParentLeft="true"
                     android:layout_centerVertical="true"
                     android:layout_marginLeft="@dimen/x15"
-                    android:src="@drawable/icon_sousuo"></ImageView>
+                    app:srcCompat="@drawable/icon_sousuo"></ImageView>
 
 
                 <com.massky.sraum.widget.SlideSwitchButton
@@ -488,7 +488,7 @@
                     android:layout_alignParentLeft="true"
                     android:layout_centerVertical="true"
                     android:layout_marginLeft="@dimen/x15"
-                    android:src="@drawable/icon_sousuo"></ImageView>
+                    app:srcCompat="@drawable/icon_sousuo"></ImageView>
 
 
                 <com.massky.sraum.widget.SlideSwitchButton
@@ -593,7 +593,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerInParent="true"
-                    android:src="@drawable/icon_cl_open_active" />
+                    app:srcCompat="@drawable/icon_cl_open_active" />
             </RelativeLayout>
 
             <RelativeLayout
@@ -605,7 +605,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerInParent="true"
-                    android:src="@drawable/icon_cl_zanting_active" />
+                    app:srcCompat="@drawable/icon_cl_zanting_active" />
             </RelativeLayout>
 
             <RelativeLayout
@@ -617,7 +617,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerInParent="true"
-                    android:src="@drawable/icon_cl_close" />
+                    app:srcCompat="@drawable/icon_cl_close" />
             </RelativeLayout>
 
         </LinearLayout>
@@ -654,7 +654,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerInParent="true"
-                    android:src="@drawable/icon_cl_open" />
+                    app:srcCompat="@drawable/icon_cl_open" />
             </RelativeLayout>
 
             <RelativeLayout
@@ -666,7 +666,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerInParent="true"
-                    android:src="@drawable/icon_cl_zanting" />
+                    app:srcCompat="@drawable/icon_cl_zanting" />
             </RelativeLayout>
 
             <RelativeLayout
@@ -678,7 +678,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerInParent="true"
-                    android:src="@drawable/icon_cl_close" />
+                    app:srcCompat="@drawable/icon_cl_close" />
             </RelativeLayout>
 
         </LinearLayout>
@@ -716,7 +716,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerInParent="true"
-                    android:src="@drawable/icon_cl_open_active" />
+                    app:srcCompat="@drawable/icon_cl_open_active" />
             </RelativeLayout>
 
             <RelativeLayout
@@ -728,7 +728,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerInParent="true"
-                    android:src="@drawable/icon_cl_zanting_active" />
+                    app:srcCompat="@drawable/icon_cl_zanting_active" />
             </RelativeLayout>
 
             <RelativeLayout
@@ -740,7 +740,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerInParent="true"
-                    android:src="@drawable/icon_cl_close" />
+                    app:srcCompat="@drawable/icon_cl_close" />
             </RelativeLayout>
 
         </LinearLayout>

@@ -35,5 +35,5 @@
         android:layout_below="@+id/status_view"
         android:layout_marginLeft="10dp"
         android:id="@+id/back"
-        android:src="@drawable/icon_t_back"/>
+        app:srcCompat="@drawable/icon_t_back"/>
 </RelativeLayout>

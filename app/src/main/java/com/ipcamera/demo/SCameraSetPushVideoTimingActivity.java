@@ -1,9 +1,7 @@
 package com.ipcamera.demo;
 
-import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.Message;
 import android.util.Log;
 import android.view.View;
@@ -32,7 +30,6 @@ import com.massky.sraum.User;
 import com.massky.sraum.Util.DialogUtil;
 import com.massky.sraum.Util.MyOkHttp;
 import com.massky.sraum.Util.Mycallback;
-import com.massky.sraum.Util.SharedPreferencesUtil;
 import com.massky.sraum.Util.ToastUtil;
 import com.massky.sraum.Util.TokenUtil;
 import com.massky.sraum.Utils.ApiHelper;
@@ -52,6 +49,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.TreeSet;
 
+import androidx.appcompat.app.AlertDialog;
 import butterknife.InjectView;
 
 import static com.massky.sraum.activity.BuFangBaoJingPlanActivity.strDID;

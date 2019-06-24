@@ -27,7 +27,7 @@
             android:paddingTop="10dp"
             android:paddingRight="40dp"
             android:paddingBottom="10dp"
-            android:src="@drawable/icon_t_back" />
+            app:srcCompat="@drawable/icon_t_back" />
 
         <TextView
             android:id="@+id/project_select"
@@ -66,7 +66,7 @@
             android:scaleType="centerCrop"
             android:layout_marginLeft="5dp"
             android:layout_centerVertical="true"
-            android:src="@drawable/logo"
+            app:srcCompat="@drawable/logo"
             android:id="@+id/img_show_6"
            />
         <LinearLayout

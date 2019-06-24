@@ -48,7 +48,7 @@ public class SelectSensorActivity extends BaseActivity implements
     @InjectView(R.id.back)
     ImageView back;
     @InjectView(R.id.next_step_txt)
-   ImageView next_step_txt;
+    ImageView next_step_txt;
     @InjectView(R.id.refresh_view)
     PullToRefreshLayout refresh_view;
     @InjectView(R.id.maclistview_id)
@@ -57,11 +57,15 @@ public class SelectSensorActivity extends BaseActivity implements
     StatusView statusView;
     @InjectView(R.id.rel_scene_set)
     RelativeLayout rel_scene_set;
-
     @InjectView(R.id.hand_txt)
     TextView hand_txt;
     @InjectView(R.id.hand_linear)
     LinearLayout hand_linear;
+    @InjectView(R.id.img_guan_scene)
+    ImageView img_guan_scene;
+    @InjectView(R.id.panel_scene_name_txt)
+    TextView panel_scene_name_txt;
+
 
     private SelectSensorSingleAdapter selectexcutesceneresultadapter;
     private List<Map> list_hand_scene = new ArrayList<>();
@@ -92,11 +96,21 @@ public class SelectSensorActivity extends BaseActivity implements
 //        refresh_view.autoRefresh();
         type = (String) getIntent().getSerializableExtra("type");
         if (type != null) {
-            hand_txt.setVisibility(View.GONE);
-            hand_linear.setVisibility(View.GONE);
+            switch (type) {
+                case "100":
+                    hand_txt.setVisibility(View.GONE);
+                    hand_linear.setVisibility(View.GONE);
+                    break;
+                case "100||102":
+                    panel_scene_name_txt.setText("定时执行");
+                    img_guan_scene.setImageResource(R.drawable.icon_dingshizhixing_sm);
+                    hand_txt.setText("选择定时执行");
+                    break;//ding shi
+            }
         } else {
             hand_txt.setVisibility(View.VISIBLE);
             hand_linear.setVisibility(View.VISIBLE);
+
         }
     }
 
@@ -171,6 +185,10 @@ public class SelectSensorActivity extends BaseActivity implements
             case "16":
                 listint.add(R.drawable.defaultpic);
                 listintwo.add(R.drawable.defaultpic);
+                break;
+            case "AD02":
+                listint.add(R.drawable.icon_pmmofang_40_hs);
+                listintwo.add(R.drawable.icon_pmmofang_40_hs);
                 break;
         }
     }
@@ -259,34 +277,48 @@ public class SelectSensorActivity extends BaseActivity implements
             case R.id.next_step_txt:
                 break;
             case R.id.rel_scene_set:
-                Intent intent = null;
-                Map map_link = new HashMap();
-                map_link.put("type", "101");
-                map_link.put("deviceType", "");
-                map_link.put("deviceId", "");
-                map_link.put("name", "手动执行");
-                map_link.put("action", "执行");
-                map_link.put("condition", "");
-                map_link.put("minValue", "");
-                map_link.put("maxValue", "");
-                map_link.put("boxName", "");
-                map_link.put("name1", "手动执行");
-                boolean add_condition = (boolean) SharedPreferencesUtil.getData(SelectSensorActivity.this, "add_condition", false);
-                if (add_condition) {
-//            AppManager.getAppManager().removeActivity_but_activity_cls(MainfragmentActivity.class);
-                    AppManager.getAppManager().finishActivity_current(SelectSensorActivity.class);
-                    AppManager.getAppManager().finishActivity_current(EditLinkDeviceResultActivity.class);
-                    intent = new Intent(SelectSensorActivity.this, EditLinkDeviceResultActivity.class);
-                    intent.putExtra("sensor_map", (Serializable) map_link);
-                    startActivity(intent);
-                    SelectSensorActivity.this.finish();
-                } else {
-                    intent = new Intent(SelectSensorActivity.this,
-                            SelectiveLinkageActivity.class);
-                    intent.putExtra("link_map", (Serializable) map_link);
-                    startActivity(intent);
+                switch (panel_scene_name_txt.getText().toString()) {
+                    case "定时执行"://跳转到定时执行界面
+                        startActivity(new Intent(SelectSensorActivity.this, TimeExcuteCordinationActivity.class));
+                        break;
+                    case "手动执行":
+                        hand_do_scene();
+                        break;
                 }
                 break;//执行某些手动场景
+        }
+    }
+
+    /**
+     * hand_scene
+     */
+    private void hand_do_scene() {
+        Intent intent = null;
+        Map map_link = new HashMap();
+        map_link.put("type", "101");
+        map_link.put("deviceType", "");
+        map_link.put("deviceId", "");
+        map_link.put("name", "手动执行");
+        map_link.put("action", "执行");
+        map_link.put("condition", "");
+        map_link.put("minValue", "");
+        map_link.put("maxValue", "");
+        map_link.put("boxName", "");
+        map_link.put("name1", "手动执行");
+        boolean add_condition = (boolean) SharedPreferencesUtil.getData(SelectSensorActivity.this, "add_condition", false);
+        if (add_condition) {
+//            AppManager.getAppManager().removeActivity_but_activity_cls(MainfragmentActivity.class);
+            AppManager.getAppManager().finishActivity_current(SelectSensorActivity.class);
+            AppManager.getAppManager().finishActivity_current(EditLinkDeviceResultActivity.class);
+            intent = new Intent(SelectSensorActivity.this, EditLinkDeviceResultActivity.class);
+            intent.putExtra("sensor_map", (Serializable) map_link);
+            startActivity(intent);
+            SelectSensorActivity.this.finish();
+        } else {
+            intent = new Intent(SelectSensorActivity.this,
+                    SelectiveLinkageActivity.class);
+            intent.putExtra("link_map", (Serializable) map_link);
+            startActivity(intent);
         }
     }
 
@@ -351,6 +383,7 @@ public class SelectSensorActivity extends BaseActivity implements
         if (deviceType == null) return;
         switch (deviceType) {
             case "10":
+            case "AD02":
                 intent = new Intent(SelectSensorActivity.this, SelectPmOneActivity.class);
                 intent.putExtra("map_link", (Serializable) map);
                 startActivity(intent);

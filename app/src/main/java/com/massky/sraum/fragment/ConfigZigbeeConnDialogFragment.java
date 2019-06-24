@@ -6,6 +6,8 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import android.util.DisplayMetrics;
 import android.view.Gravity;
@@ -112,7 +114,7 @@ public class ConfigZigbeeConnDialogFragment extends DialogFragment implements Vi
 
         dialog.setContentView(view);
         setCancelable(true);//这句话调用这个方法时，按对话框以外的地方不起作用。按返回键也不起作用 -setCancelable (false);按返回键也不起作用
-        StatusBarCompat.compat(getActivity(), getResources().getColor(R.color.colorgraystatusbar));//更改标题栏的颜色
+        StatusBarCompat.compat((AppCompatActivity) getActivity(), getResources().getColor(R.color.colorgraystatusbar));//更改标题栏的颜色
         return dialog;
     }
 

@@ -24,7 +24,7 @@
             android:layout_centerVertical="true"
             android:layout_marginLeft="10dp"
             android:paddingRight="20dp"
-            android:src="@drawable/icon_t_back" />
+            app:srcCompat="@drawable/icon_t_back" />
 
         <TextView
             android:id="@+id/project_select"
@@ -62,7 +62,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/img_show_zigbee"
-        android:src="@drawable/pic_hongwai"
+        app:srcCompat="@drawable/pic_hongwai"
         android:layout_gravity="center_horizontal"/>
 
     <TextView

@@ -18,6 +18,7 @@ import android.widget.TextView;
 import com.AddTogenInterface.AddTogglenInterfacer;
 import com.bigkoo.pickerview.TimePickerView;
 import com.bigkoo.pickerview.listener.CustomListener;
+import com.ipcamera.demo.bean.TimeSelectBean;
 import com.massky.sraum.R;
 import com.massky.sraum.User;
 import com.massky.sraum.Util.DialogUtil;
@@ -39,6 +40,7 @@ import java.io.Serializable;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Collections;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -212,6 +214,7 @@ public class EditLinkDeviceResultActivity extends BaseActivity {
                         link_edit_from_shoudongbutton(linkId);
                         break;
                     case "100":
+                    case "102":
                         link_edit_from_tokenbutton(linkId);
                         break;
                 }
@@ -223,8 +226,16 @@ public class EditLinkDeviceResultActivity extends BaseActivity {
                 }
                 list_condition = SharedPreferencesUtil.getInfo_List(EditLinkDeviceResultActivity.this, "list_condition");
                 list_result = SharedPreferencesUtil.getInfo_List(EditLinkDeviceResultActivity.this, "list_result");
-                startTime = (String) link_information.get("startTime");
-                endTime = (String) link_information.get("endTime");
+                switch (type) {
+                    case "100"://自动
+                        startTime = (String) link_information.get("startTime");
+                        endTime = (String) link_information.get("endTime");
+                        break;
+                    case "102"://定时
+                        startTime = (String) list_condition.get(0).get("startTime");
+                        endTime = (String) list_condition.get(0).get("endTime");
+                        break;
+                }
                 add_device();
                 SharedPreferencesUtil.saveInfo_List(EditLinkDeviceResultActivity.this, "list_result", list_result);
                 start_time_txt.setText(startTime);
@@ -238,6 +249,7 @@ public class EditLinkDeviceResultActivity extends BaseActivity {
                             time_select_linear.setVisibility(View.VISIBLE);
                             break;
                         case "101"://手动执行条件
+                        case "102":
                             time_select_linear.setVisibility(View.GONE);
                             break;
                     }
@@ -462,10 +474,29 @@ public class EditLinkDeviceResultActivity extends BaseActivity {
                         map.put("type", user.deviceLinkInfo.type);
                         map.put("boxName", user.deviceLinkInfo.boxName == null ? "" : user.deviceLinkInfo.boxName);
                         Map action_map = new HashMap();
+                        type = user.deviceLinkInfo.type;
                         switch (user.deviceLinkInfo.type) {
                             case "100"://自动执行条件
                                 action_map = setAction(user.deviceLinkInfo.deviceType, user.deviceLinkInfo.condition, map);//action字段
                                 time_select_linear.setVisibility(View.VISIBLE);
+                                break;
+                            case "102"://定时场景
+                                map.put("name1", user.deviceLinkInfo.startTime);
+                                switch (user.deviceLinkInfo.condition) {
+                                    case "5"://自定义
+                                        get_time_dingshi(user, action_map);
+                                        break;
+                                    case "2":
+                                        action_map.put("action", "每天");
+                                        break;
+                                    case "3":
+                                        action_map.put("action", "工作日");
+                                        break;
+                                    case "4":
+                                        action_map.put("action", "周末");
+                                        break;
+                                }
+                                time_select_linear.setVisibility(View.GONE);
                                 break;
                             case "101"://手动执行条件
                                 action_map.put("action", "执行");
@@ -535,10 +566,69 @@ public class EditLinkDeviceResultActivity extends BaseActivity {
                 });
     }
 
+    /**
+     * 获取定时
+     *
+     * @param user
+     * @param action_map
+     */
+    private void get_time_dingshi(User user, Map action_map) {
+        String[] splits = user.deviceLinkInfo.minValue.split(",");
+        List<Map> list_hand_scene = new ArrayList<>();
+        List<TimeSelectBean> list = new ArrayList<>();
+        for (String element : splits) {
+            Map map1 = new HashMap();
+            map1.put("name", Integer.parseInt(element));
+            switch (Integer.parseInt(element)) {
+                case 2:
+                    map1.put("time", "周一");
+                    break;
+                case 3:
+                    map1.put("time", "周二");
+                    break;
+                case 4:
+                    map1.put("time", "周三");
+                    break;
+                case 5:
+                    map1.put("time", "周四");
+                    break;
+                case 6:
+                    map1.put("time", "周五");
+                    break;
+                case 7:
+                    map1.put("time", "周六");
+                    break;
+                case 1:
+                    map1.put("time", "周日");
+                    break;
+            }
+            list_hand_scene.add(map1);
+        }
+
+        list.clear();
+        for (Map map2 : list_hand_scene) {
+            list.add(new TimeSelectBean((String) map2.get("time"), (int) map2.get("name")));
+        }
+        Collections.sort(list);
+        StringBuffer stringBuffer_name = new StringBuffer();
+        for (int i = 0; i < list.size(); i++) {
+            if (i != list.size() - 1) {
+                stringBuffer_name.append(list.get(i).getName() + ",");
+            } else {
+                stringBuffer_name.append(list.get(i).getName());
+            }
+        }
+        action_map.put("action", stringBuffer_name.toString());
+    }
+
 
     //7-门磁，8-人体感应，9-水浸检测器，10-入墙PM2.5
     //11-紧急按钮，12-久坐报警器，13-烟雾报警器，14-天然气报警器，15-智能门锁，16-直流电阀机械手
     private Map setAction(String type, String action, Map map_link) {
+        String text_pm = "";
+        String minValue = (String) map_link.get("minValue");
+        String maxValue = (String) map_link.get("maxValue");
+        String temp = "";
         switch (type) {
             case "7":
                 if (action.equals("1")) {
@@ -559,10 +649,6 @@ public class EditLinkDeviceResultActivity extends BaseActivity {
                 }
                 break;
             case "10":
-                String text_pm = "";
-                String minValue = (String) map_link.get("minValue");
-                String maxValue = (String) map_link.get("maxValue");
-                String temp = "";
                 if (!minValue.equals("")) {
                     text_pm = minValue;
                     temp = "小于等于 ";
@@ -582,6 +668,29 @@ public class EditLinkDeviceResultActivity extends BaseActivity {
                         break;
                     case "3":
                         map_link.put("action", "湿度 " + temp + text_pm + "%");
+                        break;
+                }
+                break;
+            case "102"://桌面PM2.5
+                if (!minValue.equals("")) {
+                    text_pm = minValue;
+                    temp = "小于等于 ";
+                }
+
+                if (!maxValue.equals("")) {
+                    text_pm = maxValue;
+                    temp = "大于等于 ";
+                }
+
+                switch (action) {
+                    case "1":
+                        map_link.put("action", "PM2.5 " + temp + text_pm);
+                        break;
+                    case "2":
+                        map_link.put("action", "PM1.0 " + temp + text_pm);
+                        break;
+                    case "3":
+                        map_link.put("action", "PM10 " + temp + text_pm);
                         break;
                 }
                 break;
@@ -664,7 +773,7 @@ public class EditLinkDeviceResultActivity extends BaseActivity {
                 break;
         }
         return action;
-    }
+    } //
 
     /**
      * 窗帘
@@ -891,6 +1000,8 @@ public class EditLinkDeviceResultActivity extends BaseActivity {
             case "1":
                 action = "打开";
                 break;
+            case "3":
+                action = "切换";
         }
 
         return action;
@@ -932,9 +1043,18 @@ public class EditLinkDeviceResultActivity extends BaseActivity {
                 break;
             case R.id.condition_add:
 //                AppManager.getAppManager().removeActivity_but_activity_cls(MainfragmentActivity.class);
-                intent = new Intent(EditLinkDeviceResultActivity.this, SelectSensorActivity.class);
-                startActivity(intent);
+
                 SharedPreferencesUtil.saveData(EditLinkDeviceResultActivity.this, "add_condition", true);
+
+                switch (type) {
+                    case "102":
+                        intent = new Intent(EditLinkDeviceResultActivity.this, TimeExcuteCordinationActivity.class);
+                        break;
+                    default:
+                        intent = new Intent(EditLinkDeviceResultActivity.this, SelectSensorActivity.class);
+                        break;
+                }
+                startActivity(intent);
 //                EditLinkDeviceResultActivity.this.finish();
 //                SharedPreferencesUtil.remove_current_index(EditLinkDeviceResultActivity.this, "list_condition", 0);
 //                SharedPreferencesUtil.saveInfo_List(EditLinkDeviceResultActivity.this, "list_result", new ArrayList<Map>());
@@ -959,6 +1079,7 @@ public class EditLinkDeviceResultActivity extends BaseActivity {
                     case "保存":
                         switch (type) {
                             case "100":
+                            case "102":
                                 getData(true, linkName, linkId, ApiHelper.sraum_updateDeviceLink);
                                 break;
                             case "101":

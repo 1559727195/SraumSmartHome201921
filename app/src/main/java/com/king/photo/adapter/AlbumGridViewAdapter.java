@@ -1,7 +1,5 @@
 package com.king.photo.adapter;
 
-import java.util.ArrayList;
-import android.app.Activity;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.util.DisplayMetrics;
@@ -15,10 +13,15 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.ToggleButton;
+
 import com.king.photo.util.BitmapCache;
 import com.king.photo.util.BitmapCache.ImageCallback;
 import com.king.photo.util.ImageItem;
 import com.king.photo.util.Res;
+
+import java.util.ArrayList;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 /**
  * 这个是显示一个文件夹里面的所有图片时用的适配器
@@ -41,7 +44,7 @@ public class AlbumGridViewAdapter extends BaseAdapter{
 		this.dataList = dataList;
 		this.selectedDataList = selectedDataList;
 		dm = new DisplayMetrics();
-		((Activity) mContext).getWindowManager().getDefaultDisplay()
+		((AppCompatActivity) mContext).getWindowManager().getDefaultDisplay()
 				.getMetrics(dm);
 	}
 

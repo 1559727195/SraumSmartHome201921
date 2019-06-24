@@ -76,7 +76,7 @@ public class AutoSceneFragment extends BaseFragment1 implements XListView.IXList
     protected void onView(View view) {
         dialogUtil = new DialogUtil(getActivity());
         EventBus.getDefault().register(this);
-        autoSceneAdapter = new AutoSceneAdapter(getActivity(), list_atuo_scene, dialogUtil,vibflag,musicflag, new AutoSceneAdapter.RefreshListener() {
+        autoSceneAdapter = new AutoSceneAdapter(getActivity(), list_atuo_scene, dialogUtil, vibflag, musicflag, new AutoSceneAdapter.RefreshListener() {
             @Override
             public void refresh() {
 //                get_myDeviceLink();
@@ -161,8 +161,10 @@ public class AutoSceneFragment extends BaseFragment1 implements XListView.IXList
     private void sraum_getAutoScenes() {
         Map map = new HashMap();
         String areaNumber = (String) SharedPreferencesUtil.getData(getActivity(), "areaNumber", "");
+        String order = (String) SharedPreferencesUtil.getData(getActivity(), "order", "1");
         map.put("areaNumber", areaNumber);
         map.put("token", TokenUtil.getToken(getActivity()));
+        map.put("order", order);
 //        if (dialogUtil != null) {
 //            dialogUtil.loadDialog();
 //        }
@@ -214,7 +216,6 @@ public class AutoSceneFragment extends BaseFragment1 implements XListView.IXList
                             map.put("type", user.deviceLinkList.get(i).type);
                             list_atuo_scene.add(map);
                         }
-
                         handler.sendEmptyMessage(0);
                     }
                 });
@@ -226,7 +227,7 @@ public class AutoSceneFragment extends BaseFragment1 implements XListView.IXList
                 Context.MODE_PRIVATE);
         vibflag = preferences.getBoolean("vibflag", false);
 //        musicflag = preferences.getBoolean("musicflag", false);
-        musicflag = (boolean) SharedPreferencesUtil.getData(getActivity(),"musicflag",false);
+        musicflag = (boolean) SharedPreferencesUtil.getData(getActivity(), "musicflag", false);
     }
 
     Handler handler = new Handler() {
@@ -241,7 +242,7 @@ public class AutoSceneFragment extends BaseFragment1 implements XListView.IXList
                     }
 
                     autoSceneAdapter.addAll(list_atuo_scene);//不要new adapter
-                    autoSceneAdapter.addFlag(vibflag,musicflag);
+                    autoSceneAdapter.addFlag(vibflag, musicflag);
                     autoSceneAdapter.notifyDataSetChanged();
                     break;
                 case 1:

@@ -148,13 +148,18 @@ public class SetSelectLinkActivity extends BaseActivity {
         switch (type) {
             case "100"://自动执行条件
                 time_select_linear.setVisibility(View.VISIBLE);
+                startTime = start_time_txt.getText().toString();
+                endTime = end_time_txt.getText().toString();
                 break;
             case "101"://手动执行条件
                 time_select_linear.setVisibility(View.GONE);
                 break;
+            case "102"://定时场景
+                time_select_linear.setVisibility(View.GONE);
+                startTime = (String) list_condition.get(0).get("startTime");
+                endTime = (String) list_condition.get(0).get("endTime");
+                break;
         }
-        startTime = start_time_txt.getText().toString();
-        endTime = end_time_txt.getText().toString();
         is_editlink = (boolean) SharedPreferencesUtil.getData(SetSelectLinkActivity.this, "editlink", false);
     }
 
@@ -166,8 +171,6 @@ public class SetSelectLinkActivity extends BaseActivity {
                 SetSelectLinkActivity.this.finish();
                 break;
             case R.id.next_step_txt://场景设置
-                startTime = start_time_txt.getText().toString();
-                endTime = end_time_txt.getText().toString();
                 String content = link_name_edit.getText().toString();
                 if (content == null || content.equals("")) {
                     ToastUtil.showToast(SetSelectLinkActivity.this, "请输入联动名称");
@@ -175,6 +178,11 @@ public class SetSelectLinkActivity extends BaseActivity {
                     if (is_editlink) {//说明联动要更新了，编辑更新
                         switch (type) {
                             case "100"://自动执行条件
+                                startTime = start_time_txt.getText().toString();
+                                endTime = end_time_txt.getText().toString();
+                                getData(is_editlink, content, linkId, ApiHelper.sraum_updateDeviceLink);
+                                break;
+                            case "102":
                                 getData(is_editlink, content, linkId, ApiHelper.sraum_updateDeviceLink);
                                 break;
                             case "101"://手动执行条件
@@ -186,8 +194,14 @@ public class SetSelectLinkActivity extends BaseActivity {
 
                         switch (type) {
                             case "100"://自动执行条件
+                                startTime = start_time_txt.getText().toString();
+                                endTime = end_time_txt.getText().toString();
                                 getData(is_editlink, content, linkId, ApiHelper.sraum_setDeviceLink);
                                 break;
+                            case "102":
+                                getData(is_editlink, content, linkId, ApiHelper.sraum_setDeviceLink);
+                                break;
+
                             case "101"://手动执行条件
                                 set_Hand_Data(is_editlink, content, linkId, ApiHelper.sraum_addManuallyScene
                                 );
@@ -396,26 +410,26 @@ public class SetSelectLinkActivity extends BaseActivity {
                     @Override
                     public void fiveCode() {
                         common();
-                        ToastUtil.showToast(SetSelectLinkActivity.this,"添加失败（硬件\n" +
+                        ToastUtil.showToast(SetSelectLinkActivity.this, "添加失败（硬件\n" +
                                 "返回）");
                     }
 
                     @Override
                     public void fourCode() {
                         common();
-                        ToastUtil.showToast(SetSelectLinkActivity.this,"设备列表信息有误");
+                        ToastUtil.showToast(SetSelectLinkActivity.this, "设备列表信息有误");
                     }
 
                     @Override
                     public void threeCode() {
                         common();
-                        ToastUtil.showToast(SetSelectLinkActivity.this,"sceneName 已存在");
+                        ToastUtil.showToast(SetSelectLinkActivity.this, "sceneName 已存在");
                     }
 
                     @Override
                     public void wrongBoxnumber() {
                         common();
-                        ToastUtil.showToast(SetSelectLinkActivity.this,"areaNumber\n" +
+                        ToastUtil.showToast(SetSelectLinkActivity.this, "areaNumber\n" +
                                 "不存在");
                     }
                 });
@@ -439,6 +453,15 @@ public class SetSelectLinkActivity extends BaseActivity {
         map.put("deviceType", list_condition.get(0).get("deviceType"));
         map.put("linkName", linkName);
         map.put("type", list_condition.get(0).get("type"));
+
+        switch (list_condition.get(0).get("deviceType").toString()) {
+            case "AD02":
+                map.put("deviceType", "102");
+                break;
+            default:
+
+                break;
+        }
         map.put("condition", list_condition.get(0).get("condition"));
         map.put("minValue", list_condition.get(0).get("minValue"));
         map.put("maxValue", list_condition.get(0).get("maxValue"));
@@ -490,7 +513,7 @@ public class SetSelectLinkActivity extends BaseActivity {
                     public void wrongToken() {
                         super.wrongToken();
                         common();
-                        ToastUtil.showToast(SetSelectLinkActivity.this,"areaNumber 错\n" +
+                        ToastUtil.showToast(SetSelectLinkActivity.this, "areaNumber 错\n" +
                                 "误");
                     }
 
@@ -517,7 +540,7 @@ public class SetSelectLinkActivity extends BaseActivity {
                     @Override
                     public void threeCode() {
                         common();
-                        ToastUtil.showToast(SetSelectLinkActivity.this,"deviceId 错误");
+                        ToastUtil.showToast(SetSelectLinkActivity.this, "deviceId 错误");
                     }
 
                     @Override

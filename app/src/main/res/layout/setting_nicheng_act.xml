@@ -24,7 +24,7 @@
             android:layout_centerVertical="true"
             android:layout_marginLeft="10dp"
             android:paddingRight="20dp"
-            android:src="@drawable/icon_t_back" />
+            app:srcCompat="@drawable/icon_t_back" />
 
         <TextView
             android:id="@+id/toolbar_txt"
@@ -121,7 +121,7 @@
                 android:paddingBottom="@dimen/y4"
                 android:layout_centerVertical="true"
                 android:layout_toRightOf="@+id/edit_nicheng"
-                android:src="@drawable/btn_bottom" />
+                app:srcCompat="@drawable/btn_bottom" />
         </androidx.percentlayout.widget.PercentRelativeLayout>
     </androidx.percentlayout.widget.PercentRelativeLayout>
 </LinearLayout>

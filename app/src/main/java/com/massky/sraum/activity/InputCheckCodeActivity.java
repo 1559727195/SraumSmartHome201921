@@ -65,6 +65,7 @@ public class InputCheckCodeActivity extends BaseActivity {
     private Map<String, Object> mapcode = new HashMap<>();
     private String phoneId;
     private TimeCount time;
+    private String isfrom;
 
     @Override
     protected int viewId() {
@@ -76,7 +77,9 @@ public class InputCheckCodeActivity extends BaseActivity {
 //        if (!StatusUtils.setStatusBarDarkFont(this, true)) {// Dark font for StatusBar.
 //            statusView.setBackgroundColor(Color.BLACK);
 //        }
-        phoneId = IntentUtil.getIntentString(InputCheckCodeActivity.this, "registerphone");
+
+        phoneId = (String) getIntent().getSerializableExtra("registerphone");
+        isfrom = (String) getIntent().getSerializableExtra("from");
         phone_id.setText("请输入" + phoneId + "收到的短信验证码");
         phone_id.setOnClickListener(this);
         //请输入13812391092收到的短信验证码
@@ -182,6 +185,7 @@ public class InputCheckCodeActivity extends BaseActivity {
                         Intent intent = new Intent(InputCheckCodeActivity.this,
                                 SettingPasswordActivity.class);
                         intent.putExtra("mapcode", (Serializable) mapcode);
+                        intent.putExtra("from",isfrom);
                         startActivity(intent);
                         break;
                     case 3:

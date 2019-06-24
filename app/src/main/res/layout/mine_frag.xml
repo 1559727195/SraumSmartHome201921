@@ -83,7 +83,7 @@
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
                     android:layout_marginLeft="10dp"
-                    android:src="@drawable/icon_shebeigongxiang" />
+                    app:srcCompat="@drawable/icon_shebeigongxiang" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -101,7 +101,7 @@
                     android:layout_alignParentRight="true"
                     android:layout_centerVertical="true"
                     android:layout_marginRight="@dimen/x10"
-                    android:src="@drawable/wode_right_arrow" />
+                    app:srcCompat="@drawable/wode_right_arrow" />
             </RelativeLayout>
             <View
                 android:layout_width="match_parent"
@@ -120,7 +120,7 @@
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
                     android:layout_marginLeft="10dp"
-                    android:src="@drawable/icon_shebeigongxiang" />
+                    app:srcCompat="@drawable/icon_shebeigongxiang" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -138,7 +138,7 @@
                     android:layout_alignParentRight="true"
                     android:layout_centerVertical="true"
                     android:layout_marginRight="@dimen/x10"
-                    android:src="@drawable/wode_right_arrow" />
+                    app:srcCompat="@drawable/wode_right_arrow" />
             </RelativeLayout>
 
             <View
@@ -160,7 +160,7 @@
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
                     android:layout_marginLeft="10dp"
-                    android:src="@drawable/icon_jatingchengyuan" />
+                    app:srcCompat="@drawable/icon_jatingchengyuan" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -179,7 +179,7 @@
                     android:layout_alignParentRight="true"
                     android:layout_centerVertical="true"
                     android:layout_marginRight="@dimen/x10"
-                    android:src="@drawable/wode_right_arrow" />
+                    app:srcCompat="@drawable/wode_right_arrow" />
             </RelativeLayout>
             <View
                 android:layout_width="match_parent"
@@ -205,7 +205,7 @@
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
                     android:layout_marginLeft="10dp"
-                    android:src="@drawable/icon_shebeigongxiang" />
+                    app:srcCompat="@drawable/icon_shebeigongxiang" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -224,7 +224,7 @@
                     android:layout_alignParentRight="true"
                     android:layout_centerVertical="true"
                     android:layout_marginRight="@dimen/x10"
-                    android:src="@drawable/wode_right_arrow" />
+                    app:srcCompat="@drawable/wode_right_arrow" />
             </RelativeLayout>
 
             <View
@@ -249,7 +249,7 @@
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
                     android:layout_marginLeft="10dp"
-                    android:src="@drawable/icon_shebeigongxiang" />
+                    app:srcCompat="@drawable/icon_shebeigongxiang" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -289,7 +289,7 @@
                     android:layout_alignParentRight="true"
                     android:layout_centerVertical="true"
                     android:layout_marginRight="@dimen/x10"
-                    android:src="@drawable/wode_right_arrow" />
+                    app:srcCompat="@drawable/wode_right_arrow" />
             </RelativeLayout>
 
 
@@ -307,7 +307,7 @@
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
                     android:layout_marginLeft="10dp"
-                    android:src="@mipmap/ic_launcher" />
+                    app:srcCompat="@mipmap/ic_launcher" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -336,7 +336,7 @@
                     android:layout_alignParentRight="true"
                     android:layout_centerVertical="true"
                     android:layout_marginRight="@dimen/x10"
-                    android:src="@mipmap/ic_launcher" />
+                    app:srcCompat="@mipmap/ic_launcher" />
             </RelativeLayout>
 
             <RelativeLayout
@@ -353,7 +353,7 @@
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
                     android:layout_marginLeft="@dimen/x10"
-                    android:src="@drawable/icon_wangguan_sm" />
+                    app:srcCompat="@drawable/icon_wangguan_sm" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -384,7 +384,7 @@
                     android:layout_alignParentRight="true"
                     android:layout_centerVertical="true"
                     android:layout_marginRight="@dimen/x10"
-                    android:src="@drawable/wode_right_arrow" />
+                    app:srcCompat="@drawable/wode_right_arrow" />
             </RelativeLayout>
             <!--<View-->
             <!--android:layout_width="match_parent"-->
@@ -409,7 +409,7 @@
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
                     android:layout_marginLeft="@dimen/x10"
-                    android:src="@drawable/icon_yijianfankui" />
+                    app:srcCompat="@drawable/icon_yijianfankui" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -428,7 +428,7 @@
                     android:layout_centerVertical="true"
                     android:layout_marginRight="@dimen/x10"
                     android:layout_toLeftOf="@+id/xingbie_select"
-                    android:src="@mipmap/ic_launcher"
+                    app:srcCompat="@mipmap/ic_launcher"
                     android:visibility="gone" />
 
 
@@ -439,7 +439,7 @@
                     android:layout_alignParentRight="true"
                     android:layout_centerVertical="true"
                     android:layout_marginRight="@dimen/x10"
-                    android:src="@drawable/wode_right_arrow" />
+                    app:srcCompat="@drawable/wode_right_arrow" />
 
             </RelativeLayout>
 
@@ -463,7 +463,7 @@
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
                     android:layout_marginLeft="@dimen/x10"
-                    android:src="@drawable/icon_xitongxiaoxi" />
+                    app:srcCompat="@drawable/icon_xitongxiaoxi" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -494,7 +494,7 @@
                     android:layout_alignParentRight="true"
                     android:layout_centerVertical="true"
                     android:layout_marginRight="@dimen/x10"
-                    android:src="@drawable/wode_right_arrow" />
+                    app:srcCompat="@drawable/wode_right_arrow" />
             </RelativeLayout>
 
             <View
@@ -516,7 +516,7 @@
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
                     android:layout_marginLeft="@dimen/x10"
-                    android:src="@drawable/icon_saoyisao" />
+                    app:srcCompat="@drawable/icon_saoyisao" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -547,7 +547,7 @@
                     android:layout_alignParentRight="true"
                     android:layout_centerVertical="true"
                     android:layout_marginRight="@dimen/x10"
-                    android:src="@drawable/wode_right_arrow" />
+                    app:srcCompat="@drawable/wode_right_arrow" />
             </RelativeLayout>
             <!--<View-->
             <!--android:layout_width="match_parent"-->
@@ -572,7 +572,7 @@
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
                     android:layout_marginLeft="@dimen/x10"
-                    android:src="@drawable/icon_guanyu" />
+                    app:srcCompat="@drawable/icon_guanyu" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -590,7 +590,7 @@
                     android:layout_alignParentRight="true"
                     android:layout_centerVertical="true"
                     android:layout_marginRight="@dimen/x10"
-                    android:src="@drawable/wode_right_arrow" />
+                    app:srcCompat="@drawable/wode_right_arrow" />
             </RelativeLayout>
 
             <View
@@ -611,7 +611,7 @@
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
                     android:layout_marginLeft="@dimen/x10"
-                    android:src="@drawable/icon_shezhi" />
+                    app:srcCompat="@drawable/icon_shezhi" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -642,7 +642,7 @@
                     android:layout_alignParentRight="true"
                     android:layout_centerVertical="true"
                     android:layout_marginRight="@dimen/x10"
-                    android:src="@drawable/wode_right_arrow" />
+                    app:srcCompat="@drawable/wode_right_arrow" />
             </RelativeLayout>
             <View
                 android:layout_width="match_parent"

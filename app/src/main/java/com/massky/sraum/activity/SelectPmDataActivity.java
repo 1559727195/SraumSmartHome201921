@@ -23,7 +23,6 @@ import com.yanzhenjie.statusview.StatusView;
 import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
-
 import butterknife.InjectView;
 
 /**
@@ -130,6 +129,51 @@ public class SelectPmDataActivity extends BaseActivity {
                 init_common_data("PM2.5", 1, 0, 0);
                 break;
         }
+        init_select_title();
+    }
+
+    /**
+     * 标题赋值
+     */
+    private void init_select_title() {
+        //选择PM值-project_select
+
+        String deviceType = map_link.get("deviceType").toString();
+        switch (deviceType) {
+            case "10":
+                switch (map_link.get("pm_action").toString()) {
+                    case "0":
+                        condition = "2";
+                        project_select.setText("选择" +"温度" + "值");
+                        break;
+                    case "1":
+                        condition = "3";
+                        project_select.setText("选择" +"湿度" + "值");
+                        break;
+                    case "2":
+                        condition = "1";
+                        project_select.setText("选择" +"PM2.5" + "值");
+                        break;
+                }
+
+                break;
+            case "AD02":
+                switch (map_link.get("pm_action").toString()) {
+                    case "0":
+                        condition = "2";
+                        project_select.setText("选择" +"PM1.0" + "值");
+                        break;
+                    case "1":
+                        condition = "1";
+                        project_select.setText("选择" +"PM2.5" + "值");
+                        break;
+                    case "2":
+                        condition = "3";
+                        project_select.setText("选择" +"PM10" + "值");
+                        break;
+                }
+                break;
+        }
     }
 
     private void init_common_data(String s, int one, int two, int thee) {
@@ -200,18 +244,36 @@ public class SelectPmDataActivity extends BaseActivity {
                 break;
         }
 
-        switch (map_link.get("pm_action").toString()) {
-            case "0":
-                map_link.put("action", "温度 " + temp + text_pm + "℃");
+        String deviceType = map_link.get("deviceType").toString();
+        switch (deviceType) {
+            case "10":
+                switch (map_link.get("pm_action").toString()) {
+                    case "0":
+                        map_link.put("action", "温度 " + temp + text_pm + "℃");
+                        break;
+                    case "1":
+                        map_link.put("action", "湿度 " + temp + text_pm + "%");
+                        break;
+                    case "2":
+                        map_link.put("action", "PM2.5 " + temp + text_pm);
+                        break;
+                }
+
                 break;
-            case "1":
-                map_link.put("action", "湿度 " + temp + text_pm + "%");
-                break;
-            case "2":
-                map_link.put("action", "PM2.5 " + temp + text_pm);
+            case "AD02":
+                switch (map_link.get("pm_action").toString()) {
+                    case "0":
+                        map_link.put("action", "PM1.0 " + temp + text_pm);
+                        break;
+                    case "1":
+                        map_link.put("action", "PM2.5 " + temp + text_pm);
+                        break;
+                    case "2":
+                        map_link.put("action", "PM10 " + temp + text_pm);
+                        break;
+                }
                 break;
         }
-
 
         if (add_condition) { //
 //                    AppManager.getAppManager().removeActivity_but_activity_cls(MainfragmentActivity.class);

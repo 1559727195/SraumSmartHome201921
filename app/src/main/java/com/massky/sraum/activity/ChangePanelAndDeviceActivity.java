@@ -304,7 +304,8 @@ public class ChangePanelAndDeviceActivity extends BaseActivity {
                 threekey_device.setText("二路灯控名称");
                 break;
             case "A313"://二灯控
-                show_three_item();
+//                show_three_item();
+                four_all_show();
                 onekey_device.setText("一路调光名称");
                 twokey_device.setText("一路灯控名称");
                 threekey_device.setText("二路灯控名称");
@@ -771,6 +772,7 @@ public class ChangePanelAndDeviceActivity extends BaseActivity {
                         map.put("deviceId", panelNumber);
                         map.put("deviceType", panelType);
                         map.put("areaNumber", areaNumber);
+                        map.put("findpaneltype", findpaneltype);
                         map.put("type", "2");
                         Intent intent = new Intent(ChangePanelAndDeviceActivity.this, SelectRoomActivity.class);
                         intent.putExtra("map_deivce", (Serializable) map);
@@ -1301,7 +1303,8 @@ public class ChangePanelAndDeviceActivity extends BaseActivity {
                         Map map = new HashMap();
                         map.put("deviceId", panelNumber);
                         map.put("deviceType", panelType);
-                        map.put ("areaNumber", areaNumber);
+                        map.put("areaNumber", areaNumber);
+                        map.put("findpaneltype", findpaneltype);
                         map.put("type", "1");
                         Intent intent = new Intent(ChangePanelAndDeviceActivity.this, SelectRoomActivity.class);
                         intent.putExtra("map_deivce", (Serializable) map);
@@ -1347,7 +1350,8 @@ public class ChangePanelAndDeviceActivity extends BaseActivity {
                         Map map = new HashMap();
                         map.put("deviceId", panelNumber);
                         map.put("deviceType", panelType);
-                        map.put ("areaNumber", areaNumber);
+                        map.put("areaNumber", areaNumber);
+                        map.put("findpaneltype", findpaneltype);
                         map.put("type", "1");
                         Intent intent = new Intent(ChangePanelAndDeviceActivity.this, SelectRoomActivity.class);
                         intent.putExtra("map_deivce", (Serializable) map);

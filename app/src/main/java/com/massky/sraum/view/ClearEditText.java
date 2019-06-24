@@ -6,6 +6,7 @@ package com.massky.sraum.view;
 
 import android.content.Context;
 import android.graphics.Canvas;
+import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import androidx.appcompat.widget.AppCompatEditText;
 import android.text.Editable;
@@ -18,12 +19,13 @@ import android.view.View.OnFocusChangeListener;
 import android.view.animation.Animation;
 import android.view.animation.CycleInterpolator;
 import android.view.animation.TranslateAnimation;
-
 import com.massky.sraum.R;
+import com.massky.sraum.Util.CursorUtil;
 
 
 public class ClearEditText extends AppCompatEditText implements
         OnFocusChangeListener, TextWatcher {
+    private ClearEditText _this;
     /**
      * 删除按钮的引用
      */
@@ -58,6 +60,9 @@ public class ClearEditText extends AppCompatEditText implements
 //        setClearIconVisible(false);
         setOnFocusChangeListener(this);
         addTextChangedListener(this);
+        _this = this;
+        CursorUtil.setCursorDrawableColor(_this, getResources().getColor(R.color.green));
+        setHighlightColor(getResources().getColor(R.color.green));
     }
 
     @Override
@@ -68,7 +73,6 @@ public class ClearEditText extends AppCompatEditText implements
 //        } else {
 //            init();
 //        }
-
         Log.e("zhu","robin:" + "ondraw");
     }
 
@@ -93,6 +97,7 @@ public class ClearEditText extends AppCompatEditText implements
 //                }
             }
             setCursorVisible(true);
+
         }
         return super.onTouchEvent(event);
     }

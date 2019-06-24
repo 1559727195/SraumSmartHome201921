@@ -1,8 +1,5 @@
 package com.king.photo.activity;
 
-import java.util.ArrayList;
-
-import android.app.Activity;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
@@ -26,6 +23,10 @@ import com.king.photo.util.PublicWay;
 import com.king.photo.util.Res;
 import com.yanzhenjie.statusview.StatusUtils;
 
+import java.util.ArrayList;
+
+import androidx.appcompat.app.AppCompatActivity;
+
 /**
  * 这个是显示一个文件夹里面的所有图片时的界面
  *
@@ -33,7 +34,7 @@ import com.yanzhenjie.statusview.StatusUtils;
  * @QQ:595163260
  * @version 2014年10月18日  下午11:49:10
  */
-public class ShowAllPhoto extends Activity {
+public class ShowAllPhoto extends AppCompatActivity {
 	private GridView gridView;
 	private ProgressBar progressBar;
 	private AlbumGridViewAdapter gridImageAdapter;

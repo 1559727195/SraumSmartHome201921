@@ -48,6 +48,7 @@ import java.util.Map;
 
 import androidx.percentlayout.widget.PercentRelativeLayout;
 import butterknife.InjectView;
+import okhttp3.Call;
 import vstc2.nativecaller.NativeCaller;
 
 
@@ -147,6 +148,10 @@ public class MyDeviceItemActivity extends com.massky.sraum.base.BaseActivity imp
 
     @InjectView(R.id.view_change_pass)
     View view_change_pass;
+    @InjectView(R.id.status_txt_gateway)
+    TextView status_txt_gateway;
+    @InjectView(R.id.bufang_txt)
+    TextView bufang_txt;
 
 
     @InjectView(R.id.slide_btn_plan)
@@ -155,13 +160,14 @@ public class MyDeviceItemActivity extends com.massky.sraum.base.BaseActivity imp
 
     private int[] iconName = {R.string.yijianlight, R.string.liangjianlight, R.string.sanjianlight, R.string.sijianlight,
             R.string.yilutiaoguang, R.string.lianglutiaoguang, R.string.sanlutiao, R.string.window_panel, R.string.air_panel,
+            R.string.fresh_panel, R.string.dinuan_panel,
             R.string.air_mode, R.string.xinfeng_mode, R.string.dinuan_mode
             , R.string.menci, R.string.rentiganying, R.string.jiuzuo, R.string.yanwu, R.string.tianranqi, R.string.jinjin_btn,
             R.string.zhineng, R.string.pm25, R.string.shuijin, R.string.jixieshou, R.string.cha_zuo_1, R.string.cha_zuo, R.string.wifi_hongwai,
             R.string.wifi_camera, R.string.one_light_control, R.string.two_light_control, R.string.three_light_control
             , R.string.two_dimming_one_control, R.string.two_dimming_two_control, R.string.two_dimming_trhee_control, R.string.keshimenling
             , R.string.zhinengwangguan, R.string.one_curtain_zero_light, R.string.one_curtain_one_light, R.string.one_curtain_two_light,
-            R.string.two_curtain
+            R.string.two_curtain, R.string.table_pm
     };
     private String isUse;
     private int option = ContentCommon.INVALID_OPTION;
@@ -220,7 +226,6 @@ public class MyDeviceItemActivity extends com.massky.sraum.base.BaseActivity imp
             switch (panelItem_map.get("type").toString()) {
                 case "网关":
                     wangguan_linear.setVisibility(View.VISIBLE);
-
                     break;
                 default:
                     base_linear.setVisibility(View.VISIBLE);
@@ -285,9 +290,11 @@ public class MyDeviceItemActivity extends com.massky.sraum.base.BaseActivity imp
         switch (panelItem_map.get("status") == null ? "" : panelItem_map.get("status").toString()) {
             case "0":
                 status_txt.setText("离线");
+                status_txt_gateway.setText("离线");
                 break;
             default:
                 status_txt.setText("在线");
+                status_txt_gateway.setText("在线");
                 break;
         }
     }
@@ -297,29 +304,55 @@ public class MyDeviceItemActivity extends com.massky.sraum.base.BaseActivity imp
     /**
      * 传感器类设置是否启用布防
      */
-    private void sensor_set_protection(final String isUse) {
+    private void sensor_set_protection(final String isUse, final String type) {
         dialogUtil.loadDialog();
+        String method = "";
         Map<String, Object> mapbox = new HashMap<String, Object>();
         mapbox.put("token", TokenUtil.getToken(MyDeviceItemActivity.this));
-        mapbox.put("panelNumber", panelNumber);
         mapbox.put("isUse", isUse);
-        MyOkHttp.postMapObject(ApiHelper.sraum_setLinkSensorPanelIsUse, mapbox, new Mycallback(new AddTogglenInterfacer() {
+        mapbox.put("areaNumber", areaNumber);
+        switch (type) {
+            case "AD02"://桌面PM2.5
+                method = ApiHelper.sraum_setWifiDeviceIsUseCommon;
+                mapbox.put("number", panelNumber);
+                break;
+            default:
+                method = ApiHelper.sraum_setLinkSensorPanelIsUse;
+                mapbox.put("panelNumber", panelNumber);
+                break;
+        }
+        MyOkHttp.postMapObject(method, mapbox, new Mycallback(new AddTogglenInterfacer() {
             @Override
             public void addTogglenInterfacer() {
-                sensor_set_protection(isUse);
+                sensor_set_protection(isUse, type);
             }
         }, MyDeviceItemActivity.this, dialogUtil) {
             @Override
             public void onSuccess(User user) {
                 super.onSuccess(user);
-                switch (isUse) {
-                    case "1":
-                        ToastUtil.showToast(MyDeviceItemActivity.this, "布防成功");
+                switch (type) {
+                    case "AD02":
+                        switch (isUse) {
+                            case "1":
+                                ToastUtil.showToast(MyDeviceItemActivity.this, "启用成功");
+                                break;
+                            case "0":
+                                ToastUtil.showToast(MyDeviceItemActivity.this, "禁用成功");
+                                break;
+                        }
                         break;
-                    case "0":
-                        ToastUtil.showToast(MyDeviceItemActivity.this, "撤防成功");
+                    default:
+                        switch (isUse) {
+                            case "1":
+                                ToastUtil.showToast(MyDeviceItemActivity.this, "布防成功");
+                                break;
+                            case "0":
+                                ToastUtil.showToast(MyDeviceItemActivity.this, "撤防成功");
+                                break;
+                        }
                         break;
                 }
+
             }
 
             @Override
@@ -354,7 +387,7 @@ public class MyDeviceItemActivity extends com.massky.sraum.base.BaseActivity imp
         MyOkHttp.postMapObject(ApiHelper.sraum_setWifiCameraIsUse, mapbox, new Mycallback(new AddTogglenInterfacer() {
             @Override
             public void addTogglenInterfacer() {
-                sensor_set_protection(isUse);
+                sensor_set_protection(isUse, "");
             }
         }, MyDeviceItemActivity.this, dialogUtil) {
             @Override
@@ -434,110 +467,124 @@ public class MyDeviceItemActivity extends com.massky.sraum.base.BaseActivity imp
             case "A501":
                 gateway_id_txt.setText(iconName[8]);
                 break;
-            case "A511":
+            case "A601":
                 gateway_id_txt.setText(iconName[9]);
                 break;
-            case "A611":
+            case "A701":
                 gateway_id_txt.setText(iconName[10]);
                 break;
-            case "A711":
+
+            case "A511":
                 gateway_id_txt.setText(iconName[11]);
                 break;
-            case "A801":
+            case "A611":
                 gateway_id_txt.setText(iconName[12]);
-                sensor_common_select();
                 break;
-            case "A901":
+            case "A711":
                 gateway_id_txt.setText(iconName[13]);
-                sensor_common_select();
                 break;
-            case "A902":
+            case "A801":
                 gateway_id_txt.setText(iconName[14]);
                 sensor_common_select();
                 break;
-            case "AB01":
+            case "A901":
                 gateway_id_txt.setText(iconName[15]);
                 sensor_common_select();
                 break;
-            case "AB04":
+            case "A902":
                 gateway_id_txt.setText(iconName[16]);
                 sensor_common_select();
                 break;
-            case "B001":
+            case "AB01":
                 gateway_id_txt.setText(iconName[17]);
+                sensor_common_select();
                 break;
-            case "B201":
+            case "AB04":
                 gateway_id_txt.setText(iconName[18]);
+                sensor_common_select();
                 break;
-            case "AD01":
+            case "B001":
                 gateway_id_txt.setText(iconName[19]);
                 break;
-            case "AC01":
+            case "B201":
                 gateway_id_txt.setText(iconName[20]);
+                break;
+            case "AD01":
+                gateway_id_txt.setText(iconName[21]);
+                break;
+            case "AC01":
+                gateway_id_txt.setText(iconName[22]);
                 sensor_common_select();
                 break;
             case "B301":
-                gateway_id_txt.setText(iconName[21]);
-                break;
-            case "B101":
-                gateway_id_txt.setText(iconName[22]);
-                break;
-            case "B102":
                 gateway_id_txt.setText(iconName[23]);
                 break;
-            case "AA02"://WIFI转发模块
+            case "B101":
                 gateway_id_txt.setText(iconName[24]);
+                break;
+            case "B102":
+                gateway_id_txt.setText(iconName[25]);
+                break;
+            case "AA02"://WIFI转发模块
+                gateway_id_txt.setText(iconName[26]);
                 rel_yaokongqi.setVisibility(View.VISIBLE);
                 view_yaokongqi.setVisibility(View.VISIBLE);
                 dev_txt.setText("WIFI");
                 banben_txt.setText(panelItem_map.get("wifi").toString());
                 //controllerId
-//                mac_txt.setText(panelItem_map.get("controllerId").toString());
+                mac_txt.setText(panelItem_map.get("number").toString() == null ? "" :
+                        panelItem_map.get("number").toString()
+                );
                 break;
 
             case "AA03"://摄像头
-                common_parameter(25);
+                common_parameter(27);
                 break;
             case "A311":
-                gateway_id_txt.setText(iconName[26]);
-                break;
-            case "A312":
-                gateway_id_txt.setText(iconName[27]);
-                break;
-            case "A313":
                 gateway_id_txt.setText(iconName[28]);
                 break;
-            case "A321":
+            case "A312":
                 gateway_id_txt.setText(iconName[29]);
                 break;
-            case "A322":
+            case "A313":
                 gateway_id_txt.setText(iconName[30]);
                 break;
-            case "A331":
+            case "A321":
                 gateway_id_txt.setText(iconName[31]);
+                break;
+            case "A322":
+                gateway_id_txt.setText(iconName[32]);
+                break;
+            case "A331":
+                gateway_id_txt.setText(iconName[33]);
                 break;
             case "AA04"://门铃
 //                common_parameter(32);
-                gateway_id_txt.setText(iconName[32]);
+                gateway_id_txt.setText(iconName[34]);
                 dev_txt.setText("WIFI");
                 banben_txt.setText(panelItem_map.get("wifi").toString());
                 //controllerId
                 mac_txt.setText(panelItem_map.get("controllerId").toString());
                 break;
             case "网关":
-                gateway_id_txt.setText(iconName[33]);
-                break;
-            case "A411":
-                gateway_id_txt.setText(iconName[34]);
-                break;
-            case "A412":
                 gateway_id_txt.setText(iconName[35]);
                 break;
-            case "A413":
+            case "A411":
                 gateway_id_txt.setText(iconName[36]);
                 break;
-            case "A414":
+            case "A412":
                 gateway_id_txt.setText(iconName[37]);
+                break;
+            case "A413":
+                gateway_id_txt.setText(iconName[38]);
+                break;
+            case "A414":
+                gateway_id_txt.setText(iconName[39]);
+                break;
+            case "AD02":
+                gateway_id_txt.setText(iconName[40]);
+                sensor_common_select();
+                bufang_txt.setText("启用");
                 break;
         }
     }
@@ -661,8 +708,8 @@ public class MyDeviceItemActivity extends com.massky.sraum.base.BaseActivity imp
             case R.id.basic_information_wangguan://基本信息
                 Intent intent_gateway = new Intent(MyDeviceItemActivity.this, WangGuanBaseInformationActivity.class
                 );
-                intent_gateway.putExtra("areaNumber",areaNumber);
-                intent_gateway.putExtra("number",panelItem_map.get("number").toString());
+                intent_gateway.putExtra("areaNumber", areaNumber);
+                intent_gateway.putExtra("number", panelItem_map.get("number").toString());
                 startActivity(intent_gateway);
                 break;
             case R.id.gujian_upgrade_rel://固件更新
@@ -676,9 +723,81 @@ public class MyDeviceItemActivity extends com.massky.sraum.base.BaseActivity imp
                 bundle_change_boxpass.putString("areaNumber", areaNumber);
                 IntentUtil.startActivity(MyDeviceItemActivity.this, ChangeWangGuanpassActivity.class, bundle_change_boxpass);
                 break;
-
-
         }
+    }
+
+
+    /**
+     * 通用版获取 wifi 设备详情
+     */
+    private void sraum_getWifiDeviceCommon() {
+
+        Map<String, String> mapdevice = new HashMap<>();
+        mapdevice.put("token", TokenUtil.getToken(this));
+//        String areaNumber = (String) SharedPreferencesUtil.getData(EditMyDeviceActivity.this, "areaNumber", "");
+        mapdevice.put("areaNumber", areaNumber);
+        mapdevice.put("number", panelNumber);
+
+//        mapdevice.put("boxNumber", TokenUtil.getBoxnumber(LinkageListActivity.this));
+        MyOkHttp.postMapString(ApiHelper.sraum_getWifiDeviceCommon, mapdevice, new Mycallback(new AddTogglenInterfacer() {
+            @Override
+            public void addTogglenInterfacer() {//刷新togglen数据
+                sraum_getWifiDeviceCommon();
+            }
+        }, MyDeviceItemActivity.this, dialogUtil) {
+            @Override
+            public void onError(Call call, Exception e, int id) {
+                super.onError(call, e, id);
+            }
+
+            @Override
+            public void pullDataError() {
+                ToastUtil.showToast(MyDeviceItemActivity.this, "更新失败");
+            }
+
+            @Override
+            public void emptyResult() {
+                super.emptyResult();
+            }
+
+            @Override
+            public void wrongToken() {
+                super.wrongToken();
+                //重新去获取togglen,这里是因为没有拉到数据所以需要重新获取togglen
+
+            }
+
+            @Override
+            public void fourCode() {
+
+            }
+
+            @Override
+            public void threeCode() {
+                ToastUtil.showToast(MyDeviceItemActivity.this, "number错误");
+            }
+
+            @Override
+            public void wrongBoxnumber() {
+                super.wrongBoxnumber();
+                ToastUtil.showToast(MyDeviceItemActivity.this, "areaNumber\n" +
+                        "不存在");
+            }
+
+
+            @Override
+            public void onSuccess(final User user) {
+                mac_txt.setText(user.mac);
+                switch (user.status == null ? "" : user.status) {
+                    case "0":
+                        status_txt.setText("离线");
+                        break;
+                    default:
+                        status_txt.setText("在线");
+                        break;
+                }
+            }
+        });
     }
 
     /**
@@ -691,7 +810,7 @@ public class MyDeviceItemActivity extends com.massky.sraum.base.BaseActivity imp
         Map map = new HashMap();
         map.put("token", TokenUtil.getToken(this));
         map.put("number", panelItem_map.get("number").toString());
-        map.put("areaNumber",areaNumber);
+        map.put("areaNumber", areaNumber);
 //        map.put("phoneId", phoned);
 //        map.put("status", "0");//进入设置模式
 //        dialogUtil.loadDialog();
@@ -712,12 +831,12 @@ public class MyDeviceItemActivity extends com.massky.sraum.base.BaseActivity imp
 
                             if (Integer.valueOf(newVersion, 16) >= Integer.valueOf("56", 16)) {
                                 //int d = Integer.valueOf("ff",16);   //d=255
-                                if (Integer.valueOf(newVersion, 16) > Integer.valueOf(currentVersion, 16)) {
-                                    updatebox_version(newVersion, currentVersion,"doit");
+                                if (Integer.valueOf(newVersion, 16) != Integer.valueOf(currentVersion, 16)) {
+                                    updatebox_version(newVersion, currentVersion, "doit");
                                 } else {
 //                                    ToastUtil.showToast(DetailActivity.this, "网关版本已最新");
 //                                    is_index = false;
-                                    updatebox_version(newVersion, currentVersion,"scuess");
+                                    updatebox_version(newVersion, currentVersion, "scuess");
                                     //停止添加网关
                                 }
                             } else {
@@ -742,13 +861,14 @@ public class MyDeviceItemActivity extends com.massky.sraum.base.BaseActivity imp
 
     /**
      * 网关版本更新
-     *  @param newVersion
+     *
+     * @param newVersion
      * @param currentVersion
      * @param doit
      */
     private void updatebox_version(String newVersion, String currentVersion, String doit) {
         Intent intent = new Intent(MyDeviceItemActivity.this,
-               GuJianWangGuanNewActivity.class);
+                GuJianWangGuanNewActivity.class);
         intent.putExtra("newVersion", newVersion);
         intent.putExtra("currentVersion", currentVersion);
         intent.putExtra("doit", doit);
@@ -848,6 +968,10 @@ public class MyDeviceItemActivity extends com.massky.sraum.base.BaseActivity imp
                 mapdevice.put("number", number);
                 send_method = ApiHelper.sraum_deleteGateway;
                 break;
+            case "AD02"://桌面PM2.5
+                mapdevice.put("number", number);
+                send_method = ApiHelper.sraum_deleteWifiDeviceCommon;
+                break;
         }
 
 
@@ -887,6 +1011,13 @@ public class MyDeviceItemActivity extends com.massky.sraum.base.BaseActivity imp
     @Override
     protected void onResume() {
         super.onResume();
+
+
+        switch (panelItem_map.get("type") == null ? "" : panelItem_map.get("type").toString()) {
+            case "AD02":
+                sraum_getWifiDeviceCommon();
+                break;
+        }
     }
 
 
@@ -1105,9 +1236,9 @@ public class MyDeviceItemActivity extends com.massky.sraum.base.BaseActivity imp
         switch (view.getId()) {
             case R.id.slide_btn:
                 if (isChecked) {
-                    sensor_set_protection("1");
+                    sensor_set_protection("1", panelItem_map.get("type").toString());
                 } else {
-                    sensor_set_protection("0");
+                    sensor_set_protection("0", panelItem_map.get("type").toString());
                 }
 
                 //

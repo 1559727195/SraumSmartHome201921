@@ -1,10 +1,11 @@
 package com.ipcamera.demo;
 
-import android.app.Activity;
 import android.os.Bundle;
 import android.widget.Toast;
 
-public class BaseActivity extends Activity {
+import androidx.appcompat.app.AppCompatActivity;
+
+public class BaseActivity extends AppCompatActivity {
 	  @Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);

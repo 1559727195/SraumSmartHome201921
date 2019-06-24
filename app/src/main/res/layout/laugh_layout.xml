@@ -40,7 +40,7 @@
             android:layout_alignParentBottom="true"
            android:layout_marginLeft="@dimen/x15"
             android:layout_marginBottom="@dimen/y10"
-            android:src="@drawable/img_kaijidonghua"/>
+            app:srcCompat="@drawable/img_kaijidonghua"/>
     </RelativeLayout>
 </LinearLayout>
 

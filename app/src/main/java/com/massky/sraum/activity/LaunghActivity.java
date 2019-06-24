@@ -7,6 +7,7 @@ import android.widget.Button;
 
 import com.AddTogenInterface.AddTogglenInterfacer;
 import com.example.jpushdemo.Constants;
+import com.iflytek.speech.util.SpeechUtil;
 import com.massky.sraum.R;
 import com.massky.sraum.User;
 import com.massky.sraum.Util.MyOkHttp;
@@ -64,6 +65,8 @@ public class LaunghActivity extends BaseActivity {
         isAppMainProcess();
         initTimer();
     }
+
+
 
 
     /**

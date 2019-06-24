@@ -24,7 +24,7 @@
             android:id="@+id/back"
             android:paddingRight="20dp"
             android:layout_marginLeft="10dp"
-            android:src="@drawable/icon_t_back"/>
+            app:srcCompat="@drawable/icon_t_back"/>
 
         <TextView
             android:id="@+id/toolbar_txt"
@@ -153,7 +153,7 @@
                 android:layout_marginRight="10dp"
                 android:visibility="gone"
              android:layout_alignParentRight="true"
-                android:src="@mipmap/eyeclose" />
+                app:srcCompat="@mipmap/eyeclose" />
 
         </androidx.percentlayout.widget.PercentRelativeLayout>
         <View

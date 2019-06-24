@@ -24,7 +24,7 @@
             android:layout_centerVertical="true"
             android:layout_marginLeft="10dp"
             android:paddingRight="20dp"
-            android:src="@drawable/icon_t_back" />
+            app:srcCompat="@drawable/icon_t_back" />
         <TextView
             android:id="@+id/project_select"
             android:layout_width="wrap_content"
@@ -117,6 +117,6 @@
             android:layout_marginRight="@dimen/x15"
             android:layout_centerVertical="true"
             android:layout_alignParentRight="true"
-            android:src="@drawable/wode_right_arrow"/>
+            app:srcCompat="@drawable/wode_right_arrow"/>
     </RelativeLayout>
 </LinearLayout>

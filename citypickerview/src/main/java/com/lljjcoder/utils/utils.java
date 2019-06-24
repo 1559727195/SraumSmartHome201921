@@ -1,6 +1,5 @@
 package com.lljjcoder.utils;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.res.AssetManager;
 import android.graphics.Color;
@@ -12,6 +11,8 @@ import android.view.ViewGroupOverlay;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 /**
  * 作者：liji on 2017/7/24 06:42
@@ -46,13 +47,13 @@ public class utils {
 //        ((Activity) mContext).getWindow().setAttributes(lp);
 
         if (bgAlpha == 1f) {
-            clearDim((Activity) mContext);
+            clearDim((AppCompatActivity) mContext);
         }else{
-            applyDim((Activity) mContext, bgAlpha);
+            applyDim((AppCompatActivity) mContext, bgAlpha);
         }
     }
 
-    private static void applyDim(Activity activity, float bgAlpha) {
+    private static void applyDim(AppCompatActivity activity, float bgAlpha) {
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.JELLY_BEAN_MR2) {
             ViewGroup parent = (ViewGroup) activity.getWindow().getDecorView().getRootView();
             //activity跟布局
@@ -65,7 +66,7 @@ public class utils {
         }
     }
 
-    private static void clearDim(Activity activity) {
+    private static void clearDim(AppCompatActivity activity) {
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.JELLY_BEAN_MR2) {
             ViewGroup parent = (ViewGroup) activity.getWindow().getDecorView().getRootView();
             //activity跟布局

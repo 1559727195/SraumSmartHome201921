@@ -16,7 +16,10 @@ import android.view.View.OnLongClickListener;
 import android.view.ViewTreeObserver;
 import android.widget.ImageView;
 import android.widget.ImageView.ScaleType;
+
 import java.lang.ref.WeakReference;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 public class PhotoViewAttacher implements IPhotoView, View.OnTouchListener,
 		VersionedGestureDetector.OnGestureListener,
@@ -168,7 +171,7 @@ public class PhotoViewAttacher implements IPhotoView, View.OnTouchListener,
 	 * Clean-up the resources attached to this object. This needs to be called
 	 * when the ImageView is no longer used. A good example is from
 	 * {@link android.view.View#onDetachedFromWindow()} or from
-	 * {@link android.app.Activity#onDestroy()}. This is automatically called if
+	 * {@link AppCompatActivity#onDestroy()}. This is automatically called if
 	 * you are using {@link uk.co.senab.photoview.PhotoView}.
 	 */
 	@SuppressLint("NewApi")

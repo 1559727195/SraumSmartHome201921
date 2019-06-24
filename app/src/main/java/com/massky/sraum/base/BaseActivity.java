@@ -8,6 +8,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 
+import com.iflytek.sunflower.FlowerCollector;
 import com.massky.sraum.Utils.AppManager;
 
 import butterknife.ButterKnife;
@@ -20,7 +21,7 @@ public abstract class BaseActivity extends AppCompatActivity implements View.OnC
     public static boolean isForegrounds = false;
     public static boolean isDestroy = false;
     public Bundle savedInstanceState;
-    private static final String TAG = "BaseActivity";
+    private static String TAG = BaseActivity.class.getSimpleName();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,6 +52,9 @@ public abstract class BaseActivity extends AppCompatActivity implements View.OnC
     @Override
     protected void onPause() {
         isForegrounds = false;
+        // 开放统计 移动数据统计分析
+//        FlowerCollector.onPageEnd(TAG);
+//        FlowerCollector.onPause(BaseActivity.this);
         super.onPause();
     }
 
@@ -74,6 +78,9 @@ public abstract class BaseActivity extends AppCompatActivity implements View.OnC
     @Override
     protected void onResume() {
         isForegrounds = true;
+        // 开放统计 移动数据统计分析
+        FlowerCollector.onResume(BaseActivity.this);
+        FlowerCollector.onPageStart(TAG);
         super.onResume();
     }
 

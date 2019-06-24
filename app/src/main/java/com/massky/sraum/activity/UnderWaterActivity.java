@@ -184,6 +184,7 @@ public class UnderWaterActivity extends BaseActivity {
             case "15":
 //                project_select.setText("智能门锁");
                 fangdao_linear.setVisibility(View.VISIBLE);
+                rel_fangdao_close.setVisibility(View.GONE);
                 break;
             case "16":
 

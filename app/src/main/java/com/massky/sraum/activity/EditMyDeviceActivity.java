@@ -50,19 +50,19 @@ public class EditMyDeviceActivity extends BaseActivity {
     @InjectView(R.id.edit_one)
     ClearLengthEditText edit_one;
     @InjectView(R.id.button_one_id)
-    Button button_one_id;
+    ImageView button_one_id;
     @InjectView(R.id.edit_two)
     ClearLengthEditText edit_two;
     @InjectView(R.id.button_two_id)
-    Button button_two_id;
+    ImageView button_two_id;
     @InjectView(R.id.edit_three)
     ClearLengthEditText edit_three;
     @InjectView(R.id.button_three_id)
-    Button button_three_id;
+    ImageView button_three_id;
     @InjectView(R.id.edit_four)
     ClearLengthEditText edit_four;
     @InjectView(R.id.button_four_id)
-    Button button_four_id;
+    ImageView button_four_id;
     @InjectView(R.id.linear_one)
     LinearLayout linear_one;
     @InjectView(R.id.linear_two)
@@ -104,7 +104,7 @@ public class EditMyDeviceActivity extends BaseActivity {
     @InjectView(R.id.maclistview_id_condition)
     ListViewForScrollView_New list_view;
     @InjectView(R.id.find_panel_btn)
-    Button find_panel_btn;
+    ImageView find_panel_btn;
     private AirModeListAdapter airmodeadapter;
     @InjectView(R.id.list_for_air_mode)
     LinearLayout list_for_air_mode;
@@ -163,7 +163,7 @@ public class EditMyDeviceActivity extends BaseActivity {
                 case "AA02"://AA02WIFi模块
                 case "AA03"://AA02WIFi模块
                 case "AA04"://AA02WIFi模块
-                    txt_dev.setText("设备名称"+ "(" + panelItem_map.get("roomName").toString()+ ")");
+                    txt_dev.setText("设备名称" + "(" + panelItem_map.get("roomName").toString() + ")");
                     break;
                 case "202":
                 case "206":
@@ -199,6 +199,9 @@ public class EditMyDeviceActivity extends BaseActivity {
             case "202":
             case "206":
                 method = ApiHelper.sraum_updateWifiAppleDeviceName;
+                break;
+            case "AD02"://桌面PM2.5
+                method = ApiHelper.sraum_updateWifiDeviceNameCommon;
                 break;
         }
         mapdevice.put("number", number);
@@ -288,6 +291,8 @@ public class EditMyDeviceActivity extends BaseActivity {
                     case "B101":
                     case "B301":
                     case "A501":
+                    case "A601":
+                    case "A701":
                     case "A801":
                     case "A901":
                     case "AB01":
@@ -313,6 +318,7 @@ public class EditMyDeviceActivity extends BaseActivity {
                         }
                         break;
                     case "AA02"://WIFI红外模块
+                    case "AD02"://wifi桌面PM2.5
                         input_panel_name_edit_txt_str = input_panel_name_edit.getText().toString().trim() == null
                                 || input_panel_name_edit.getText().toString().trim() == "" ? "" : input_panel_name_edit.getText().toString().trim();
                         if (input_panel_name_edit_txt_str.equals("")) {
@@ -754,9 +760,7 @@ public class EditMyDeviceActivity extends BaseActivity {
                         find_device(deviceNumber);
                     }
 
-                }, EditMyDeviceActivity.this, dialogUtil)
-
-                {
+                }, EditMyDeviceActivity.this, dialogUtil) {
                     @Override
                     public void onSuccess(User user) {
                         super.onSuccess(user);
@@ -1062,6 +1066,8 @@ public class EditMyDeviceActivity extends BaseActivity {
                 }
                 break;
             case "A501":
+            case "A601":
+            case "A701":
             case "A801":
             case "A901":
             case "AB01":
@@ -1264,8 +1270,10 @@ public class EditMyDeviceActivity extends BaseActivity {
 //                            case "wangguan_status":
 //                                break;
 //                        }
-                        EditMyDeviceActivity.this.finish();//修改完毕
-                        AppManager.getAppManager().removeActivity_but_activity_cls(MainGateWayActivity.class);
+//                        EditMyDeviceActivity.this.finish();//修改完毕
+//                        AppManager.getAppManager().removeActivity_but_activity_cls(MainGateWayActivity.class);
+                        EditMyDeviceActivity.this.finish();
+                        AppManager.getAppManager().finishActivity_current(MyDeviceItemActivity.class);
 
                     } else {
                         ToastUtil.showDelToast(EditMyDeviceActivity.this, customName + ":" + content);
@@ -1301,8 +1309,10 @@ public class EditMyDeviceActivity extends BaseActivity {
 //                            case "wangguan_status":
 //                                break;
 //                        }
-                        EditMyDeviceActivity.this.finish();//修改完毕
-                        AppManager.getAppManager().removeActivity_but_activity_cls(MainGateWayActivity.class);
+//                        EditMyDeviceActivity.this.finish();//修改完毕
+//                        AppManager.getAppManager().removeActivity_but_activity_cls(MainGateWayActivity.class);
+                        EditMyDeviceActivity.this.finish();
+                        AppManager.getAppManager().finishActivity_current(MyDeviceItemActivity.class);
                         return;
                     }
                 } else {
@@ -1376,8 +1386,8 @@ public class EditMyDeviceActivity extends BaseActivity {
             public void onSuccess(User user) {
                 super.onSuccess(user);
                 if (index == deviceList.size() - 1) {
-                    EditMyDeviceActivity.this.finish();//修改完毕
-                    AppManager.getAppManager().removeActivity_but_activity_cls(MainGateWayActivity.class);
+                    EditMyDeviceActivity.this.finish();
+                    AppManager.getAppManager().finishActivity_current(MyDeviceItemActivity.class);
                     ToastUtil.showToast(EditMyDeviceActivity.this, "更新成功");
                 }
             }
@@ -1416,16 +1426,15 @@ public class EditMyDeviceActivity extends BaseActivity {
                         super.onSuccess(user);
 //                        ChangePanelAndDeviceActivity.this.finish();
 //                        ToastUtil.showToast(ChangePanelAndDeviceActivity.this, panelName+":"+"面板名字更新成功");
-//                        if (!istrue) {
-//                            updateDeviceInfo();//更新设备信息
-//                        } else {
+                        if (!istrue) {
+                            updateDeviceInfo();//更新设备信息
+                        } else {
 //                            EditMyDeviceActivity.this.finish();
 //                            ToastUtil.showToast(EditMyDeviceActivity.this, "更新成功");
-//                        }
-                        EditMyDeviceActivity.this.finish();
-//                        AppManager.getAppManager().finishActivity_current(MyDeviceItemActivity.class);
-                        AppManager.getAppManager().finishActivity_current(MyDeviceItemActivity.class);
-                        ToastUtil.showToast(EditMyDeviceActivity.this, "更新成功");
+                            EditMyDeviceActivity.this.finish();
+                            AppManager.getAppManager().finishActivity_current(MyDeviceItemActivity.class);
+                            ToastUtil.showToast(EditMyDeviceActivity.this, "更新成功");
+                        }
                     }
 
                     @Override
@@ -1582,6 +1591,8 @@ public class EditMyDeviceActivity extends BaseActivity {
                 list_for_air_mode.setVisibility(View.VISIBLE);
                 break;
             case "A501":
+            case "A601":
+            case "A701":
 
                 break;
             case "A801":

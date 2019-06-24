@@ -1,7 +1,6 @@
 package com.massky.sraum.view;
 
 import android.annotation.SuppressLint;
-import android.app.Activity;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.PixelFormat;
@@ -18,9 +17,7 @@ import android.widget.AdapterView;
 import android.widget.GridView;
 import android.widget.ImageView;
 
-import com.massky.sraum.adapter.DetailDeviceHomeAdapter;
-
-import java.lang.reflect.Field;
+import androidx.appcompat.app.AppCompatActivity;
 
 /**
  * @blog http://blog.csdn.net/xiaanming
@@ -411,7 +408,7 @@ public class DragGridView extends GridView{
     private static int getStatusHeight(Context context){
         int statusHeight = 0;
         Rect localRect = new Rect();
-        ((Activity) context).getWindow().getDecorView().getWindowVisibleDisplayFrame(localRect);
+        ((AppCompatActivity) context).getWindow().getDecorView().getWindowVisibleDisplayFrame(localRect);
         statusHeight = localRect.top;
         if (0 == statusHeight){
             Class<?> localClass;

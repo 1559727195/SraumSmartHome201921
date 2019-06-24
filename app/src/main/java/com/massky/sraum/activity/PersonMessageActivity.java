@@ -12,7 +12,9 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
+
 import androidx.core.content.FileProvider;
+
 import android.text.TextUtils;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -24,6 +26,7 @@ import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+
 import com.AddTogenInterface.AddTogglenInterfacer;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
@@ -46,12 +49,15 @@ import com.massky.sraum.widget.SlideSwitchButton;
 import com.massky.sraum.widget.TakePhotoPopWin;
 import com.yanzhenjie.statusview.StatusUtils;
 import com.yanzhenjie.statusview.StatusView;
+
 import org.chenglei.widget.datepicker.DatePicker;
 import org.chenglei.widget.datepicker.Sound;
+
 import java.io.File;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.CopyOnWriteArrayList;
+
 import butterknife.InjectView;
 import cn.forward.androids.views.BitmapScrollPicker;
 import cn.forward.androids.views.ScrollPickerView;
@@ -63,7 +69,7 @@ import io.reactivex.disposables.Disposable;
  * Created by zhu on 2018/1/17.
  */
 
-public class PersonMessageActivity extends BaseActivity  {
+public class PersonMessageActivity extends BaseActivity {
     @InjectView(R.id.status_view)
     StatusView statusView;
     @InjectView(R.id.back)
@@ -120,9 +126,12 @@ public class PersonMessageActivity extends BaseActivity  {
     TextView txt_nan;
     @InjectView(R.id.txt_nv)
     TextView txt_nv;
+
+    @InjectView(R.id.change_pass)
+    RelativeLayout change_pass;
     private String gender;
     private String birthday1;
-    private String birthday_str ="";
+    private String birthday_str = "";
 
 
     @Override
@@ -141,7 +150,6 @@ public class PersonMessageActivity extends BaseActivity  {
         createCameraTempFile(savedInstanceState);
         touxiang_select.setImageBitmap(BitmapUtil.stringtoBitmap((String)
                 SharedPreferencesUtil.getData(PersonMessageActivity.this, "avatar", "")));
-        getAccountInfo();
     }
 
     @Override
@@ -157,6 +165,7 @@ public class PersonMessageActivity extends BaseActivity  {
         account_id_rel.setOnClickListener(this);
         change_phone.setOnClickListener(this);
         slide_btn.setSlideListener(new MySlideSwitchButtonListener());
+        change_pass.setOnClickListener(this);
     }
 
     @Override
@@ -207,18 +216,22 @@ public class PersonMessageActivity extends BaseActivity  {
                 startActivityForResult(intent_account_id, Constants.MyAccountId);
                 break;
             case R.id.change_phone://修改已经绑定的手机号
-                Intent intent_change
-                        = new Intent(PersonMessageActivity.this,
-                        ChangePhoneNumberActivity.class);
-                intent_change.putExtra("account_change_phone", change_phone_txt.getText().toString());
-                startActivityForResult(intent_change, Constants.MyChangePhoneNumber);
+//                Intent intent_change
+//                        = new Intent(PersonMessageActivity.this,
+//                        ChangePhoneNumberActivity.class);
+//                intent_change.putExtra("account_change_phone", change_phone_txt.getText().toString());
+//                startActivityForResult(intent_change, Constants.MyChangePhoneNumber);
                 break;
+            case R.id.change_pass:
+                    startActivity(new Intent(PersonMessageActivity.this,ChangePassActivity.class));
+                break;//修改密码
         }
     }
 
     @Override
     protected void onResume() {
         super.onResume();
+        getAccountInfo();
     }
 
     //账号个人基本信息
@@ -403,11 +416,11 @@ public class PersonMessageActivity extends BaseActivity  {
                 }
                 break;
             case Constants.MyAccountId:
-                if (intent != null) {
-                    account_id = intent.getStringExtra("account_id");// http://weixin.qq.com/r/bWTZwbXEsOjPrfGi9zF-
-                    accountid_txt.setText(account_id);
-                    updateUserId(accountid_txt.getText().toString());
-                }
+//                if (intent != null) {
+//                    account_id = intent.getStringExtra("account_id");// http://weixin.qq.com/r/bWTZwbXEsOjPrfGi9zF-
+//                    accountid_txt.setText(account_id);
+//                    updateUserId(accountid_txt.getText().toString());
+//                }
                 break;
             case Constants.MyChangePhoneNumber:
                 if (intent != null) {
@@ -426,40 +439,6 @@ public class PersonMessageActivity extends BaseActivity  {
         sraum_updateAvatar(bitMap);
     }
 
-
-    //更新用户名
-    private void updateUserId(final String userId) {
-        dialogUtil.loadDialog();
-        sraum_updateUserId(userId);
-    }
-
-    private void sraum_updateUserId(final String userId) {
-        Map<String, Object> map = new HashMap<>();
-        map.put("token", TokenUtil.getToken(PersonMessageActivity.this));
-        map.put("userId", userId);
-        MyOkHttp.postMapObject(ApiHelper.sraum_updateUserId, map, new Mycallback
-                (new AddTogglenInterfacer() {
-                    @Override
-                    public void addTogglenInterfacer() {
-                        sraum_updateUserId(userId);
-                    }
-                }, PersonMessageActivity.this, dialogUtil) {
-            @Override
-            public void onSuccess(User user) {
-                super.onSuccess(user);
-            }
-
-            @Override
-            public void wrongToken() {
-                super.wrongToken();
-            }
-
-            @Override
-            public void wrongBoxnumber() {
-                ToastUtil.showToast(PersonMessageActivity.this,"名字已存在");
-            }
-        });
-    }
 
     private void sraum_updateAvatar(final Bitmap bitMap) {
         Map<String, Object> map = new HashMap<>();

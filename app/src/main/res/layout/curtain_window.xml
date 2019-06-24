@@ -107,7 +107,7 @@
                 android:layout_height="81dp"
                 android:layout_centerHorizontal="true"
                 android:layout_centerVertical="true"
-                android:src="@drawable/open_black_word" />
+                app:srcCompat="@drawable/open_black_word" />
         </androidx.percentlayout.widget.PercentRelativeLayout>
 
         <LinearLayout
@@ -131,7 +131,7 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentTop="true"
                     android:layout_centerHorizontal="true"
-                    android:src="@drawable/open_black_word" />
+                    app:srcCompat="@drawable/open_black_word" />
             </RelativeLayout>
 
             <RelativeLayout
@@ -147,7 +147,7 @@
                     android:layout_height="81dp"
                     android:layout_alignParentTop="true"
                     android:layout_centerHorizontal="true"
-                    android:src="@drawable/guan_black_word" />
+                    app:srcCompat="@drawable/guan_black_word" />
             </RelativeLayout>
 
             <RelativeLayout
@@ -161,7 +161,7 @@
                     android:layout_width="81dp"
                     android:layout_height="81dp"
                     android:layout_centerInParent="true"
-                    android:src="@drawable/change_black_word" />
+                    app:srcCompat="@drawable/change_black_word" />
             </RelativeLayout>
 
         </LinearLayout>
@@ -212,7 +212,7 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentTop="true"
                     android:layout_centerHorizontal="true"
-                    android:src="@drawable/open_black_word" />
+                    app:srcCompat="@drawable/open_black_word" />
             </RelativeLayout>
 
             <RelativeLayout
@@ -226,7 +226,7 @@
                     android:layout_width="81dp"
                     android:layout_height="81dp"
                     android:layout_centerInParent="true"
-                    android:src="@drawable/guan_black_word" />
+                    app:srcCompat="@drawable/guan_black_word" />
             </RelativeLayout>
 
         </LinearLayout>
@@ -253,7 +253,7 @@
                     android:layout_width="81dp"
                     android:layout_height="81dp"
                     android:layout_centerVertical="true"
-                    android:src="@drawable/open_black_word" />
+                    app:srcCompat="@drawable/open_black_word" />
 
             </RelativeLayout>
 
@@ -269,7 +269,7 @@
                     android:id="@+id/close_btn_lignt_xin_feng"
                     android:layout_width="81dp"
                     android:layout_height="81dp"
-                    android:src="@drawable/guan_black_word" />
+                    app:srcCompat="@drawable/guan_black_word" />
             </RelativeLayout>
 
 
@@ -286,7 +286,7 @@
                     android:layout_width="81dp"
                     android:layout_height="81dp"
                     android:layout_centerVertical="true"
-                    android:src="@drawable/change_black_word" />
+                    app:srcCompat="@drawable/change_black_word" />
             </RelativeLayout>
 
             <RelativeLayout
@@ -403,7 +403,7 @@
                 android:layout_width="81dp"
                 android:layout_height="81dp"
                 android:layout_centerInParent="true"
-                android:src="@drawable/open_black_word" />
+                app:srcCompat="@drawable/open_black_word" />
         </RelativeLayout>
 
 
@@ -420,7 +420,7 @@
                 android:layout_width="81dp"
                 android:layout_height="81dp"
                 android:layout_centerInParent="true"
-                android:src="@drawable/guan_black_word" />
+                app:srcCompat="@drawable/guan_black_word" />
         </RelativeLayout>
 
 
@@ -437,7 +437,7 @@
                 android:layout_width="81dp"
                 android:layout_height="81dp"
                 android:layout_centerInParent="true"
-                android:src="@drawable/change_black_word" />
+                app:srcCompat="@drawable/change_black_word" />
         </RelativeLayout>
 
     </androidx.percentlayout.widget.PercentRelativeLayout>
@@ -460,7 +460,7 @@
                 android:id="@+id/img_door_lock"
                 android:layout_height="81dp"
                 android:layout_centerInParent="true"
-                android:src="@drawable/open_black_word" />
+                app:srcCompat="@drawable/open_black_word" />
         </RelativeLayout>
 
 

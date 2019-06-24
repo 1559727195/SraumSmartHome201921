@@ -304,13 +304,20 @@ public class AddDoorLockDevActivity extends BaseActivity {
             if (intent.getAction().equals(ACTION_SRAUM_SETBOX)) {
                 int messflag = intent.getIntExtra("notifactionId", 0);
                 String panelid = intent.getStringExtra("panelid");
-                if (messflag == 8) {//notifactionId = 8 ->设置网关模式，sraum_setBox
-                    //收到服务器端设置网关成功以后，跳转到修改面板名称，以及该面板下设备列表名称
+                String gatewayid = intent.getStringExtra("gatewayid");
+                if (gateway_number != null) {
+                    if (gatewayid != null) {
+                        if (gatewayid.equals(gateway_number)) {
+                            if (messflag == 8) {//notifactionId = 8 ->设置网关模式，sraum_setBox
+                                //收到服务器端设置网关成功以后，跳转到修改面板名称，以及该面板下设备列表名称
 
-                    //在网关转圈界面，下去拉设备，判断设备类型，不是我们的。网关不关，是我们的设备类型；在关网关。
-                    //然后跳转到显示设备列表界面。
+                                //在网关转圈界面，下去拉设备，判断设备类型，不是我们的。网关不关，是我们的设备类型；在关网关。
+                                //然后跳转到显示设备列表界面。
 //                    ToastUtil.showToast(MacdeviceActivity.this,"messflag:" + messflag);
-                    getPanel_devices(panelid);
+                                getPanel_devices(panelid);
+                            }
+                        }
+                    }
                 }
             }
         }

@@ -25,7 +25,7 @@
             android:layout_centerVertical="true"
             android:layout_marginLeft="10dp"
             android:paddingRight="20dp"
-            android:src="@drawable/icon_t_back" />
+            app:srcCompat="@drawable/icon_t_back" />
 
         <TextView
             android:id="@+id/project_select"
@@ -50,19 +50,20 @@
             android:visibility="gone" />
     </RelativeLayout>
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="bottom"
-        android:padding="8dp"
-        android:text="选择场景"
-        android:textSize="14sp" />
+
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:id="@+id/scene_linear"
         android:orientation="vertical">
-
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="bottom"
+            android:padding="8dp"
+            android:text="选择场景"
+            android:textSize="14sp" />
         <RelativeLayout
             android:id="@+id/rel_scene_set"
             android:layout_width="match_parent"
@@ -74,7 +75,7 @@
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="10dp"
-                android:src="@drawable/icon_sense_40" />
+                app:srcCompat="@drawable/icon_sense_40" />
 
             <TextView
                 android:id="@+id/panel_scene_name_txt"
@@ -107,7 +108,7 @@
                 android:layout_alignParentRight="true"
                 android:layout_centerVertical="true"
                 android:layout_marginRight="15dp"
-                android:src="@drawable/wode_right_arrow"
+                app:srcCompat="@drawable/wode_right_arrow"
                 android:visibility="gone" />
 
             <CheckBox

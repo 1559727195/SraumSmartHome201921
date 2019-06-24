@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="horizontal" android:layout_width="match_parent"
     android:layout_height="50dp"
     android:padding="10dp"
@@ -10,14 +11,14 @@
         android:layout_marginLeft="50dp"
         android:layout_width="32dp"
         android:layout_height="32dp"
-        android:src="@drawable/down"/>
+        app:srcCompat="@drawable/down"/>
     <ImageView
         android:visibility="gone"
         android:layout_marginLeft="50dp"
         android:id="@+id/refresh"
         android:layout_width="32dp"
         android:layout_height="32dp"
-        android:src="@drawable/refresh"/>
+        app:srcCompat="@drawable/refresh"/>
     <TextView
         android:id="@+id/header_tv"
         android:layout_width="wrap_content"

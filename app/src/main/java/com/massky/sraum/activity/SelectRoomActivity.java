@@ -62,6 +62,7 @@ public class SelectRoomActivity extends BaseActivity implements XListView.IXList
     private DialogUtil dialogUtil;
     private int position;
     private String areaNumber;
+    private String findpaneltype;
 
     @Override
     protected int viewId() {
@@ -73,8 +74,10 @@ public class SelectRoomActivity extends BaseActivity implements XListView.IXList
         StatusUtils.setFullToStatusBar(this);  // StatusBar.
         dialogUtil = new DialogUtil(this);
         map_device = (Map) getIntent().getSerializableExtra("map_deivce");
-        if (map_device != null)
+        if (map_device != null) {
+            findpaneltype = map_device.get("findpaneltype") == null ? "" : map_device.get("findpaneltype").toString();
             areaNumber = map_device.get("areaNumber").toString();
+        }
         if (areaNumber == null) {
             areaNumber = (String) SharedPreferencesUtil.getData(SelectRoomActivity.this, "areaNumber", "");
         }
@@ -312,7 +315,17 @@ public class SelectRoomActivity extends BaseActivity implements XListView.IXList
 
                     @Override
                     public void onSuccess(final User user) {
-                        AppManager.getAppManager().removeActivity_but_activity_cls(MainGateWayActivity.class);
+                        switch (findpaneltype == null ? "" : findpaneltype) {
+                            case "fastedit"://快速编辑
+                                AppManager.getAppManager().finishActivity_current(SelectRoomActivity.class);
+                                AppManager.getAppManager().finishActivity_current(FastEditPanelActivity.class);
+                                AppManager.getAppManager().finishActivity_current(ChangePanelAndDeviceActivity.class);
+                                break;
+                            case "wangguan_status":
+                            default:
+                                AppManager.getAppManager().removeActivity_but_activity_cls(MainGateWayActivity.class);
+                                break;
+                        }
                     }
 
                     @Override

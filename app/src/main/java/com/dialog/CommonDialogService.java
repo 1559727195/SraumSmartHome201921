@@ -27,6 +27,7 @@ import com.massky.sraum.activity.LoginCloudActivity;
 import java.util.HashMap;
 import java.util.Map;
 
+import androidx.appcompat.app.AppCompatActivity;
 import okhttp3.Call;
 
 
@@ -82,7 +83,7 @@ public class CommonDialogService extends Service implements CommonDialogListener
                     dialog.dismiss();
                     Activity nowactivty = (Activity) CommonData.mNowContext;
 //                    App.getInstance().removeActivity_but_activity(nowactivty);
-                    AppManager.getAppManager().removeActivity_but_activity(nowactivty);
+                    AppManager.getAppManager().removeActivity_but_activity((AppCompatActivity) nowactivty);
                     SharedPreferencesUtil.saveData(CommonData.mNowContext, "loginflag", false);
                     Intent intent = new Intent(CommonData.mNowContext, LoginCloudActivity.class);
                     intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);

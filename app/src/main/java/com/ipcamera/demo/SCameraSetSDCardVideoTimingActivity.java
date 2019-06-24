@@ -1,6 +1,5 @@
 package com.ipcamera.demo;
 
-import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
@@ -21,6 +20,7 @@ import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.TimePicker.OnTimeChangedListener;
 import android.widget.Toast;
+
 import com.bigkoo.pickerview.TimePickerView;
 import com.bigkoo.pickerview.listener.CustomListener;
 import com.ipcamera.demo.bean.DefenseConstant;
@@ -40,6 +40,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.TreeSet;
 
+import androidx.appcompat.app.AlertDialog;
 import butterknife.InjectView;
 
 public class SCameraSetSDCardVideoTimingActivity extends BaseActivity implements

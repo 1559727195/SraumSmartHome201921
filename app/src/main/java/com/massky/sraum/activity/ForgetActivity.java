@@ -93,7 +93,11 @@ public class ForgetActivity extends BaseActivity {
 //                startActivity(new Intent(ForgetActivity.this,InputCheckCodeActivity.class));
 //                ForgetActivity.this.finish();
                 String registerphone = edit_password_gateway.getText().toString();
-                IntentUtil.startActivity(ForgetActivity.this, InputCheckCodeActivity.class, "registerphone", registerphone);
+                Intent intent = new Intent(ForgetActivity.this, InputCheckCodeActivity.class);
+                intent.putExtra("registerphone",registerphone);
+                intent.putExtra("from","forget");
+                startActivity(intent);
+              //  IntentUtil.startActivity(ForgetActivity.this, InputCheckCodeActivity.class, "registerphone", registerphone);
                 break;//登录网关
         }
     }

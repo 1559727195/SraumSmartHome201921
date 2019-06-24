@@ -1,8 +1,5 @@
 package com.king.photo.adapter;
 
-import java.util.ArrayList;
-
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -22,6 +19,10 @@ import com.king.photo.util.BitmapCache;
 import com.king.photo.util.BitmapCache.ImageCallback;
 import com.king.photo.util.ImageItem;
 import com.king.photo.util.Res;
+
+import java.util.ArrayList;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 /**
  * 这个是显示所有包含图片的文件夹的适配器
@@ -45,9 +46,9 @@ public class FolderAdapter extends BaseAdapter {
 	// 初始化
 	public void init(Context c) {
 		mContext = c;
-		mIntent = ((Activity) mContext).getIntent();
+		mIntent = ((AppCompatActivity) mContext).getIntent();
 		dm = new DisplayMetrics();
-		((Activity) mContext).getWindowManager().getDefaultDisplay()
+		((AppCompatActivity) mContext).getWindowManager().getDefaultDisplay()
 				.getMetrics(dm);
 	}
 

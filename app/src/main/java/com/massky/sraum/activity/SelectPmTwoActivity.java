@@ -14,7 +14,6 @@ import com.yanzhenjie.statusview.StatusView;
 import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
-
 import butterknife.InjectView;
 
 /**
@@ -30,10 +29,8 @@ public class SelectPmTwoActivity extends BaseActivity {
     StatusView statusView;
     @InjectView(R.id.big_linear)
     LinearLayout big_linear;
-
     @InjectView(R.id.small_rel)
     RelativeLayout small_rel;
-
     @InjectView(R.id.project_select)
     TextView project_select;
 
@@ -68,15 +65,46 @@ public class SelectPmTwoActivity extends BaseActivity {
     }
 
     private void setPicture() {
-        switch (map_link.get("pm_action").toString()) {
-            case "0":
-                project_select.setText("温度");
+//        switch (map_link.get("pm_action").toString()) {
+//            case "0":
+//                project_select.setText("温度");
+//                break;
+//            case "1":
+//                project_select.setText("湿度");
+//                break;
+//            case "2":
+//                project_select.setText("PM2.5");
+//                break;
+//        }
+
+       String deviceType = map_link.get("deviceType").toString();
+        switch (deviceType) {
+            case "10":
+                switch (map_link.get("pm_action").toString()) {
+                    case "0":
+                        project_select.setText("温度");
+                        break;
+                    case "1":
+                        project_select.setText("湿度");
+                        break;
+                    case "2":
+                        project_select.setText("PM2.5");
+                        break;
+                }
+
                 break;
-            case "1":
-                project_select.setText("湿度");
-                break;
-            case "2":
-                project_select.setText("PM2.5");
+            case "AD02":
+                switch (map_link.get("pm_action").toString()) {
+                    case "0":
+                        project_select.setText("PM1.0");
+                        break;
+                    case "1":
+                        project_select.setText("PM2.5");
+                        break;
+                    case "2":
+                        project_select.setText("PM10");
+                        break;
+                }
                 break;
         }
     }
@@ -86,7 +114,7 @@ public class SelectPmTwoActivity extends BaseActivity {
         switch (v.getId()) {
             case R.id.back:
                 SelectPmTwoActivity.this.finish();
-                break;
+                return;
             case R.id.big_linear:
                 map_link.put("pm_condition", "0");
                 break;

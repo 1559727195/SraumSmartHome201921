@@ -127,9 +127,14 @@ public class AirControlActivity extends BaseActivity {
             switch (type) {
                 case "3"://空调
                     moshi_rel.setVisibility(View.VISIBLE);
+                    project_select.setText("空调");
                     break;
                 case "5"://新风
+                    project_select.setText("新风");
+                    moshi_rel.setVisibility(View.GONE);
+                    break;
                 case "6"://地暖
+                    project_select.setText("地暖");
                     moshi_rel.setVisibility(View.GONE);
                     break;
             }
@@ -186,7 +191,6 @@ public class AirControlActivity extends BaseActivity {
 //                                        id_seekBar.setProgress(Integer.parseInt(temperature) - 16);
                                     volumeView.set_temperature(Integer.parseInt(temperature));
                                 }
-
                             }
                             setModetwo();
                             setSpeed();
@@ -296,7 +300,6 @@ public class AirControlActivity extends BaseActivity {
         mapdevice.put("temperature", temperature);
         mapdevice.put("speed", windflag);
         sraum_device_control(mapdevice, doit);
-
     }
 
 
@@ -307,7 +310,19 @@ public class AirControlActivity extends BaseActivity {
         map.put("type", mapdevice1.get("type").toString());
         map.put("number", mapdevice1.get("number").toString());
         map.put("name", mapdevice1.get("name").toString());
-        map.put("status", statusflag);
+        switch (doit) {
+            case "onclick":
+                map.put("status", statusflag);
+                break;
+            default:
+                if (statusbo) {
+                    map.put("status", "1");
+                } else {
+                    map.put("status", "0");
+                }
+                break;
+        }
+
         map.put("mode", mapdevice1.get("mode").toString());
         map.put("dimmer", mapdevice1.get("dimmer").toString());
         map.put("temperature", mapdevice1.get("temperature").toString());
@@ -366,19 +381,18 @@ public class AirControlActivity extends BaseActivity {
                     MusicUtil.stopMusic(AirControlActivity.this, "");
                 }
             }
-
         });
     }
 
     private void doit_open() {
         if (statusflag.equals("1")) {
-            openbtn_tiao_guang.setImageResource(R.drawable.icon_cl_open_active);
+            openbtn_tiao_guang.setImageResource(R.drawable.icon_cl_close);//icon_cl_close
             statusflag = "0";
             statusbo = true;
             volumeView.setVolumeCliable(true);
         } else {
             //调光灯开关状态
-            openbtn_tiao_guang.setImageResource(R.drawable.icon_cl_close);
+            openbtn_tiao_guang.setImageResource(R.drawable.icon_cl_open_active);
             statusflag = "1";
             statusbo = false;
             volumeView.setVolumeCliable(false);
@@ -507,6 +521,7 @@ public class AirControlActivity extends BaseActivity {
 
     }
 
+    //
     private void setMode() {
         //模式状态
         if (statusbo)
@@ -547,6 +562,16 @@ public class AirControlActivity extends BaseActivity {
      */
     private void speed_kongtiao() {
         //风速状态
+        if (statusbo) {
+            control_wind();
+            getMapdevice("");
+        }
+    }
+
+    /**
+     * 控制风速
+     */
+    private void control_wind() {
         switch (windflag) {
             case "1":
 //                    windspeed_id.setText("中风");
@@ -581,7 +606,6 @@ public class AirControlActivity extends BaseActivity {
             default:
                 break;
         }
-        getMapdevice("");
     }
 
     @Override

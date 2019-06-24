@@ -310,6 +310,7 @@ public class User {
         public String name;
         public String number;
         public String type;
+        public String status;
     }
 
 

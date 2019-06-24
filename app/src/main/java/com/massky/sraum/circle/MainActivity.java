@@ -1,5 +1,5 @@
 package com.massky.sraum.circle;
-import android.app.Activity;
+
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -16,7 +16,9 @@ import android.widget.LinearLayout;
 
 import com.massky.sraum.R;
 
-public class MainActivity extends Activity {
+import androidx.appcompat.app.AppCompatActivity;
+
+public class MainActivity extends AppCompatActivity {
 
 	private ImageView imageView;
 	private Button shop;

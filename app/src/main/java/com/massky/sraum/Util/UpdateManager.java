@@ -1,6 +1,5 @@
 package com.massky.sraum.Util;
 
-import android.app.AlertDialog.Builder;
 import android.app.Dialog;
 import android.app.NotificationManager;
 import android.content.Context;
@@ -12,17 +11,17 @@ import android.os.Build;
 import android.os.Environment;
 import android.os.Handler;
 import android.os.Message;
-import androidx.core.app.NotificationCompat;
-import androidx.core.content.FileProvider;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.Toast;
+
 import com.massky.sraum.R;
 import com.massky.sraum.Util.breakpoint.DownloadProgressListener;
 import com.massky.sraum.Util.breakpoint.FileDownloadered;
 import com.massky.sraum.Utils.App;
 import com.massky.sraum.activity.MainGateWayActivity;
+
 import java.io.File;
 import java.io.IOException;
 import java.net.HttpURLConnection;
@@ -31,6 +30,10 @@ import java.net.ProtocolException;
 import java.net.URL;
 import java.util.List;
 import java.util.Map;
+
+import androidx.appcompat.app.AlertDialog.Builder;
+import androidx.core.app.NotificationCompat;
+import androidx.core.content.FileProvider;
 
 
 /**

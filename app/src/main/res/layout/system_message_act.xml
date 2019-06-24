@@ -29,7 +29,7 @@
             android:paddingRight="40dp"
             android:paddingTop="10dp"
             android:paddingBottom="10dp"
-            android:src="@drawable/icon_t_back" />
+            app:srcCompat="@drawable/icon_t_back" />
 
         <TextView
             android:id="@+id/project_select"
@@ -81,7 +81,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginTop="8dp"
-                android:src="@drawable/btn_gongneng" />
+                app:srcCompat="@drawable/btn_gongneng" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -111,7 +111,7 @@
                     <ImageView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:src="@drawable/btn_bianji_yidu" />
+                        app:srcCompat="@drawable/btn_bianji_yidu" />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -133,7 +133,7 @@
                     <ImageView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:src="@drawable/btn_bianji_quanxuan" />
+                        app:srcCompat="@drawable/btn_bianji_quanxuan" />
 
                     <TextView
                         android:id="@+id/all_select_txt"
@@ -156,7 +156,7 @@
                     <ImageView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:src="@drawable/delete_message" />
+                        app:srcCompat="@drawable/delete_message" />
 
                     <TextView
                         android:layout_width="wrap_content"

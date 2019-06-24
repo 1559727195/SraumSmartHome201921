@@ -1,11 +1,9 @@
 package com.pullableview;
-
-
 import android.content.Context;
 import android.util.AttributeSet;
-import android.widget.TextView;
+import androidx.appcompat.widget.AppCompatTextView;
 
-public class PullableTextView extends TextView implements Pullable
+public class PullableTextView extends AppCompatTextView implements Pullable
 {
 
 	public PullableTextView(Context context)

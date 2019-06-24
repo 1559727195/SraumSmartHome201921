@@ -26,7 +26,7 @@
             android:layout_centerVertical="true"
             android:layout_marginLeft="10dp"
             android:paddingRight="20dp"
-            android:src="@drawable/icon_t_back" />
+            app:srcCompat="@drawable/icon_t_back" />
 
         <TextView
             android:id="@+id/toolbar_txt"
@@ -174,7 +174,7 @@
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="@dimen/y8"
             android:visibility="gone"
-            android:src="@drawable/img_fangdajing" />
+            app:srcCompat="@drawable/img_fangdajing" />
 
         <LinearLayout
             android:id="@+id/search_result"

@@ -1,6 +1,5 @@
 package com.massky.sraum.fragment;
 
-import android.app.AlertDialog;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -17,6 +16,7 @@ import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+
 import com.gizwits.gizwifisdk.api.GizWifiDevice;
 import com.massky.sraum.R;
 import com.massky.sraum.Util.DialogUtil;
@@ -40,12 +40,15 @@ import com.yaokan.sdk.model.YKError;
 import com.yaokan.sdk.wifi.DeviceController;
 import com.yaokan.sdk.wifi.DeviceManager;
 import com.yaokan.sdk.wifi.listener.LearnCodeListener;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+
+import androidx.appcompat.app.AlertDialog;
 import butterknife.InjectView;
 
 import static com.massky.sraum.activity.RemoteControlMatchingActivity.ACTION_INTENT_RECEIVER_WIFI;

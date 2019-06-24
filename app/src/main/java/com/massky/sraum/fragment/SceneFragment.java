@@ -65,6 +65,8 @@ public class SceneFragment extends BaseFragment1 {
     StatusView statusView;
     @InjectView(R.id.add_scene)
     ImageView add_scene;
+    @InjectView(R.id.paixu_img)
+    ImageView paixu_img;
     private LinearLayout[] _navItemLayouts;
     private HandSceneFragment handSceneFragment;
     private AutoSceneFragment autoSceneFragment;
@@ -85,6 +87,8 @@ public class SceneFragment extends BaseFragment1 {
     private String autoCount;
     private int intfirst;
     private String authType;
+    private boolean isleft = true;
+    private PopupWindow popupWindow_sort;
 
     @Override
     protected void onData() {
@@ -103,6 +107,7 @@ public class SceneFragment extends BaseFragment1 {
     @Override
     protected void onEvent() {
         add_scene.setOnClickListener(this);
+        paixu_img.setOnClickListener(this);
     }
 
     @Override
@@ -141,6 +146,25 @@ public class SceneFragment extends BaseFragment1 {
                 break;
             case "2":
                 add_scene.setVisibility(View.GONE);
+                break;
+        }
+        change_select();
+    }
+
+    /**
+     * 选择切换
+     */
+    private void change_select() {
+        switch (fragmentViewPagerAdapter.getCurrentPageIndex()) {
+            case 0:
+                if (!isleft) {//判断当前viewpager选中的是否是leftFragment,
+                    vp_FindFragment_pager.setCurrentItem(1);
+                }
+                break;
+            case 1:
+                if (isleft) {//判断当前viewpager选中的是否是leftFragment,
+                    vp_FindFragment_pager.setCurrentItem(0);
+                }
                 break;
         }
     }
@@ -217,6 +241,9 @@ public class SceneFragment extends BaseFragment1 {
         switch (v.getId()) {
             case R.id.add_scene:
                 showPopWindow();
+                break;
+            case R.id.paixu_img:
+                showPopSortingWindow();
                 break;
         }
     }
@@ -353,14 +380,21 @@ public class SceneFragment extends BaseFragment1 {
         vp_FindFragment_pager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+
             }
 
             @Override
             public void onPageSelected(int position) {
 //                mCurrentViewPagerName = mChannelNames.get(position);
 //                mCurrentPageIndex = position;
-
-
+                switch (position) {
+                    case 1:
+                        isleft = false;
+                        break;
+                    case 0:
+                        isleft = true;
+                        break;
+                }
             }
 
             @Override
@@ -482,6 +516,8 @@ public class SceneFragment extends BaseFragment1 {
                         startActivity(intent);
                     }
 
+                    isleft = true;
+
                 }
             });
 
@@ -491,14 +527,72 @@ public class SceneFragment extends BaseFragment1 {
                     popupWindow.dismiss();
 //                    startActivity(new Intent(getActivity(), AddAutoSceneActivity.class));
                     Intent intent = new Intent(getActivity(), SelectSensorActivity.class);
-                    intent.putExtra("type", "100");//自动场景
+                    intent.putExtra("type", "100||102");//自动场景
                     startActivity(intent);
+                    isleft = false;
+                }
+            });
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    /**
+     * Android popupwindow在指定控件正下方滑动弹出效果
+     */
+    private void showPopSortingWindow() {
+        try {
+            View view = LayoutInflater.from(getActivity()).inflate(
+                    R.layout.add_sort_pop_lay, null);
+            //add_hand_scene_txt, add_auto_scene_txt
+            TextView add_auto_scene_txt = (TextView) view.findViewById(R.id.add_auto_scene_txt);
+            TextView add_hand_scene_txt = (TextView) view.findViewById(R.id.add_hand_scene_txt);
+
+
+            popupWindow_sort = new PopupWindow(view, WindowManager.LayoutParams.WRAP_CONTENT,
+                    WindowManager.LayoutParams.WRAP_CONTENT);
+            popupWindow_sort.setFocusable(true);
+            popupWindow_sort.setOutsideTouchable(true);
+            ColorDrawable cd = new ColorDrawable(0x00ffffff);// 背景颜色全透明
+            popupWindow_sort.setBackgroundDrawable(cd);
+            int[] location = new int[2];
+            paixu_img.getLocationOnScreen(location);//获得textview的location位置信息，绝对位置
+            popupWindow_sort.setAnimationStyle(R.style.style_pop_animation);// 动画效果必须放在showAsDropDown()方法上边，否则无效
+            backgroundAlpha(0.5f);// 设置背景半透明 ,0.0f->1.0f为不透明到透明变化。
+            int xoff = dip2px(getActivity(), 15);
+            popupWindow_sort.showAsDropDown(paixu_img, -location[0] / 3 - xoff, 0);
+//            popupWindow.showAtLocation(tv_pop, Gravity.NO_GRAVITY, location[0]+tv_pop.getWidth(),location[1]);
+            popupWindow_sort.setOnDismissListener(new PopupWindow.OnDismissListener() {
+                @Override
+                public void onDismiss() {
+                    popupWindow_sort = null;// 当点击屏幕时，使popupWindow消失
+                    backgroundAlpha(1.0f);// 当点击屏幕时，使半透明效果取消，1.0f为透明
+                }
+            });
+
+            add_hand_scene_txt.setOnClickListener(new View.OnClickListener() {//while(bool) {postdelay { }}也可以起到定时器的作用
+                @Override
+                public void onClick(View v) {//正序
+                    popupWindow_sort.dismiss();
+                    SharedPreferencesUtil.saveData(getActivity(), "order", "1");
+                    get_scene_second_page();
+                }
+            });
+
+            add_auto_scene_txt.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {//倒序
+                    popupWindow_sort.dismiss();
+                    SharedPreferencesUtil.saveData(getActivity(), "order", "2");
+                    get_scene_second_page();
                 }
             });
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
+
 
     // 设置popupWindow背景半透明
     public void backgroundAlpha(float bgAlpha) {

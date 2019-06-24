@@ -51,6 +51,7 @@ public class SharedPreferencesUtil {
 
         editor.commit();
     }
+
     /**
      * 保存数据到文件
      *
@@ -335,7 +336,7 @@ public class SharedPreferencesUtil {
             }
             mJsonArray.put(object);
         }
-       saveData_second(context, key, mJsonArray.toString());
+        saveData_second(context, key, mJsonArray.toString());
     }
 
 
@@ -376,8 +377,6 @@ public class SharedPreferencesUtil {
         }
         saveInfo_List(context, key, datas);
     }
-
-
 
 
 }

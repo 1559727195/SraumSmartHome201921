@@ -1,6 +1,5 @@
 package com.bigkoo.pickerview_new.view;
 
-import android.app.Activity;
 import android.content.Context;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -13,6 +12,8 @@ import android.widget.FrameLayout;
 
 import com.bigkoo.pickerview_new.listener.OnDismissListener;
 import com.bigkoo.pickerview_new.utils.PickerViewAnimateUtil;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 /**
  * Created by Sai on 15/11/22.
@@ -46,7 +47,7 @@ public class BasePickerView {
 
     protected void initViews(){
         LayoutInflater layoutInflater = LayoutInflater.from(context);
-        decorView = (ViewGroup) ((Activity)context).getWindow().getDecorView().findViewById(android.R.id.content);
+        decorView = (ViewGroup) ((AppCompatActivity)context).getWindow().getDecorView().findViewById(android.R.id.content);
         rootView = (ViewGroup) layoutInflater.inflate(com.bigkoo.pickerview_new.R.layout.layout_basepickerview, decorView, false);
         rootView.setLayoutParams(new FrameLayout.LayoutParams(
                 ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT

@@ -19,7 +19,7 @@
             android:layout_centerVertical="true"
             android:layout_marginLeft="10dp"
             android:paddingRight="20dp"
-            android:src="@drawable/icon_write_cancel" />
+            app:srcCompat="@drawable/icon_write_cancel" />
 
         <TextView
             android:id="@+id/project_select"

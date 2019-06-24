@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:id="@+id/linear_popcamera"
@@ -23,7 +24,7 @@
               android:layout_width="wrap_content"
               android:layout_height="wrap_content"
               android:id="@+id/common_setting_image"
-              android:src="@drawable/icon_write_changyong"/>
+              app:srcCompat="@drawable/icon_write_changyong"/>
           <TextView
               android:layout_width="wrap_content"
               android:layout_marginTop="@dimen/y3"
@@ -44,7 +45,7 @@
           <ImageView
               android:layout_width="wrap_content"
               android:layout_height="wrap_content"
-              android:src="@drawable/icon_write_rename"/>
+              app:srcCompat="@drawable/icon_write_rename"/>
           <TextView
               android:layout_width="wrap_content"
               android:layout_height="wrap_content"
@@ -66,7 +67,7 @@
           <ImageView
               android:layout_width="wrap_content"
               android:layout_height="wrap_content"
-              android:src="@drawable/icon_write_delete"/>
+              app:srcCompat="@drawable/icon_write_delete"/>
           <TextView
               android:layout_width="wrap_content"
               android:layout_height="wrap_content"
@@ -87,7 +88,7 @@
       <ImageView
           android:layout_width="wrap_content"
           android:layout_height="wrap_content"
-          android:src="@drawable/icon_write_cancel"/>
+          app:srcCompat="@drawable/icon_write_cancel"/>
       <TextView
           android:layout_width="wrap_content"
           android:layout_height="wrap_content"

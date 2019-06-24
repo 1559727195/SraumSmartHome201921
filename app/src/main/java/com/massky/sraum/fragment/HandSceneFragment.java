@@ -126,8 +126,10 @@ public class HandSceneFragment extends BaseFragment1 implements XListView.IXList
     private void sraum_getManuallyScenes() {
         Map map = new HashMap();
         String areaNumber = (String) SharedPreferencesUtil.getData(getActivity(), "areaNumber", "");
+        String order = (String) SharedPreferencesUtil.getData(getActivity(), "order", "1");
         map.put("areaNumber", areaNumber);
         map.put("token", TokenUtil.getToken(getActivity()));
+        map.put("order", order);
 //        if (dialogUtil != null) {
 //            dialogUtil.loadDialog();
 //        }

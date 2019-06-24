@@ -26,7 +26,7 @@
             android:layout_centerVertical="true"
             android:layout_marginLeft="@dimen/x10"
             android:paddingRight="@dimen/x20"
-            android:src="@drawable/icon_t_back" />
+            app:srcCompat="@drawable/icon_t_back" />
 
         <TextView
             android:id="@+id/project_select"

@@ -51,25 +51,25 @@ public class AgainAutoDaysSelectSceneAdapter extends BaseAdapter {
         viewHolderContentType.txt_again_autoscene.setText(list.get(position).get("name").toString());
 
         final ViewHolderContentType finalViewHolderContentType = viewHolderContentType;
-        convertView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-//                Intent intent = new Intent(context, ShangChuanBaoJingActivity.class);
-//                intent.putExtra("id", (Serializable) list.get(position).get("id").toString());
-//                context.startActivity(intent);
-//                for (int i = 0; i < list.size(); i++) {
-//                    list.get(i).put("type", "0");
-//                    if (i == position) {
-//                        if (finalViewHolderContentType.img_again_autoscene.getVisibility() == View.VISIBLE) {
-//                            list.get(i).put("type", "0");
-//                        } else {
-//                            list.get(i).put("type", "1");
-//                        }
-//                    }
-//                }
-//                notifyDataSetChanged();
-            }
-        });
+//        convertView.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+////                Intent intent = new Intent(context, ShangChuanBaoJingActivity.class);
+////                intent.putExtra("id", (Serializable) list.get(position).get("id").toString());
+////                context.startActivity(intent);
+////                for (int i = 0; i < list.size(); i++) {
+////                    list.get(i).put("type", "0");
+////                    if (i == position) {
+////                        if (finalViewHolderContentType.img_again_autoscene.getVisibility() == View.VISIBLE) {
+////                            list.get(i).put("type", "0");
+////                        } else {
+////                            list.get(i).put("type", "1");
+////                        }
+////                    }
+////                }
+////                notifyDataSetChanged();
+//            }
+//        });
         return convertView;
     }
 

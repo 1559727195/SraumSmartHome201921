@@ -2,13 +2,10 @@ package com.massky.sraum.activity;
 
 import android.annotation.SuppressLint;
 import android.app.Dialog;
-import android.app.FragmentManager;
-import android.app.FragmentTransaction;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
-import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
@@ -28,6 +25,7 @@ import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.PopupWindow;
 import android.widget.TextView;
+
 import com.gizwits.gizwifisdk.api.GizWifiDevice;
 import com.gizwits.gizwifisdk.enumration.GizWifiErrorCode;
 import com.massky.sraum.R;
@@ -35,7 +33,6 @@ import com.massky.sraum.Util.EyeUtil;
 import com.massky.sraum.Util.ToastUtil;
 import com.massky.sraum.base.BaseActivity;
 import com.massky.sraum.fragment.ConfigAppleDialogFragment;
-import com.massky.sraum.fragment.ConfigDialogFragment;
 import com.massky.sraum.receiver.LocalBroadcastManager;
 import com.massky.sraum.view.ClearEditText;
 import com.yanzhenjie.statusview.StatusUtils;
@@ -48,6 +45,8 @@ import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
 
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.percentlayout.widget.PercentRelativeLayout;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import butterknife.InjectView;
@@ -255,7 +254,7 @@ public class ConnWifiActivity extends BaseActivity implements IDeviceConfigListe
 
     private void show_dialog_fragment() {
         if (!newFragment.isAdded()) {//DialogFragment.show()内部调用了FragmentTransaction.add()方法，所以调用DialogFragment.show()方法时候也可能
-            FragmentManager manager = getFragmentManager();
+            FragmentManager manager = getSupportFragmentManager();
             FragmentTransaction ft = manager.beginTransaction();
             ft.add(newFragment, "dialog");
             ft.commit();

@@ -29,14 +29,14 @@
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/icon_t_alarm" />
+                app:srcCompat="@drawable/icon_t_alarm" />
 
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/x6"
                 android:visibility="gone"
-                android:src="@drawable/icon_t_spot" />
+                app:srcCompat="@drawable/icon_t_spot" />
         </RelativeLayout>
 
         <RelativeLayout
@@ -47,7 +47,7 @@
             android:id="@+id/area_rel"
             android:paddingTop="@dimen/y10"
             android:paddingRight="@dimen/x10"
-            android:paddingBottom="@dimen/y10">
+            android:paddingBottom="@dimen/y8">
 
             <TextView
                 android:id="@+id/area_name_txt"
@@ -64,7 +64,7 @@
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
                 android:layout_toRightOf="@+id/area_name_txt"
-                android:src="@drawable/pull_down" />
+                app:srcCompat="@drawable/pull_down" />
         </RelativeLayout>
 
 
@@ -77,7 +77,7 @@
             android:layout_marginTop="8dp"
             android:layout_marginRight="@dimen/x8"
             android:paddingLeft="@dimen/x8"
-            android:src="@drawable/icon_plus" />
+            app:srcCompat="@drawable/icon_plus" />
     </RelativeLayout>
 
     <LinearLayout
@@ -104,7 +104,7 @@
                     android:id="@+id/imag_all1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/icon_shuijiao_sm" />
+                    app:srcCompat="@drawable/icon_shuijiao_sm" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -138,7 +138,7 @@
                     android:id="@+id/imag_all"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@mipmap/ic_launcher" />
+                    app:srcCompat="@mipmap/ic_launcher" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -167,7 +167,7 @@
                     android:id="@+id/imag_all2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@mipmap/ic_launcher" />
+                    app:srcCompat="@mipmap/ic_launcher" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -196,7 +196,7 @@
                     android:id="@+id/imag_all3"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@mipmap/ic_launcher" />
+                    app:srcCompat="@mipmap/ic_launcher" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -225,7 +225,7 @@
                     android:id="@+id/imag_all4"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@mipmap/ic_launcher" />
+                    app:srcCompat="@mipmap/ic_launcher" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -254,7 +254,7 @@
                     android:id="@+id/imag_all5"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@mipmap/ic_launcher" />
+                    app:srcCompat="@mipmap/ic_launcher" />
 
                 <TextView
                     android:layout_width="wrap_content"
