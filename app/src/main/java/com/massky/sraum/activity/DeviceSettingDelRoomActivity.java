@@ -16,26 +16,26 @@ import com.massky.sraum.base.BaseActivity;
 import com.yanzhenjie.statusview.StatusUtils;
 import com.yanzhenjie.statusview.StatusView;
 
-import butterknife.InjectView;
+import butterknife.BindView;
 
 /**
  * Created by zhu on 2018/1/16.
  */
 
 public class DeviceSettingDelRoomActivity extends BaseActivity{
-    @InjectView(R.id.back)
+    @BindView(R.id.back)
     ImageView back;
-    @InjectView(R.id.status_view)
+    @BindView(R.id.status_view)
     StatusView statusView;
-    @InjectView(R.id.other_information)
+    @BindView(R.id.other_information)
     RelativeLayout other_information;
-    @InjectView(R.id.other_scroll)
+    @BindView(R.id.other_scroll)
     ScrollView other_scroll;
-    @InjectView(R.id.wangguan_set_rel)
+    @BindView(R.id.wangguan_set_rel)
     RelativeLayout wangguan_set_rel;
-    @InjectView(R.id.delete_device_rel)
+    @BindView(R.id.delete_device_rel)
     RelativeLayout delete_device_rel;
-    @InjectView(R.id.room_list_rel)
+    @BindView(R.id.room_list_rel)
     RelativeLayout room_list_rel;
 
     @Override

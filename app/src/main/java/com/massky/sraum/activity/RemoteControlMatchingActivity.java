@@ -25,13 +25,13 @@ import java.util.List;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.viewpager.widget.ViewPager;
-import butterknife.InjectView;
+import butterknife.BindView;
 
 public class RemoteControlMatchingActivity extends BaseActivity implements View.OnClickListener, ViewPager.OnPageChangeListener {
 
-    @InjectView(R.id.back)
+    @BindView(R.id.back)
     ImageView back;
-    @InjectView(R.id.status_view)
+    @BindView(R.id.status_view)
     StatusView statusView;
     private FragmentManager fm;
     private EachMatchFragment eachmatchfragment;
@@ -45,28 +45,28 @@ public class RemoteControlMatchingActivity extends BaseActivity implements View.
     private FragmentViewPagerAdapter adapter;
 
 
-    @InjectView(R.id.viewpager_id)
+    @BindView(R.id.viewpager_id)
     ViewPager viewpager_id;
-    @InjectView(R.id.macrelative_id)
+    @BindView(R.id.macrelative_id)
     RelativeLayout macrelative_id;
-    @InjectView(R.id.scenerelative_id)
+    @BindView(R.id.scenerelative_id)
     RelativeLayout scenerelative_id;
-    @InjectView(R.id.smartrelative_id)
+    @BindView(R.id.smartrelative_id)
 
 
 
     RelativeLayout smartrelative_id;
-    @InjectView(R.id.viewthree)
+    @BindView(R.id.viewthree)
     View viewthree;
-    @InjectView(R.id.smart_id)
+    @BindView(R.id.smart_id)
     TextView smart_id;
-    @InjectView(R.id.viewone)
+    @BindView(R.id.viewone)
     View viewone;
-    @InjectView(R.id.viewtwo)
+    @BindView(R.id.viewtwo)
     View viewtwo;
-    @InjectView(R.id.mactext_id)
+    @BindView(R.id.mactext_id)
     TextView mactext_id;
-    @InjectView(R.id.scene_id)
+    @BindView(R.id.scene_id)
     TextView scene_id;
     private boolean flag;
     public static String ACTION_INTENT_RECEIVER_WIFI = "com.massky.sraum.RemoteControlMatchingActivity";

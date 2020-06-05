@@ -73,6 +73,7 @@ import com.massky.sraum.activity.Pm25SecondActivity;
 import com.massky.sraum.activity.SelectZigbeeDeviceActivity;
 import com.massky.sraum.activity.TVShowActivity;
 import com.massky.sraum.activity.TiaoGuangLightActivity;
+import com.massky.sraum.activity.UpDownLeftRightActivity;
 import com.massky.sraum.activity.WifiAirControlActivity;
 import com.massky.sraum.adapter.AreaListAdapter;
 import com.massky.sraum.adapter.DetailDeviceHomeAdapter;
@@ -108,12 +109,11 @@ import java.util.Set;
 import java.util.Timer;
 import java.util.TimerTask;
 
-import butterknife.InjectView;
+import butterknife.BindView;
 import okhttp3.Call;
 import vstc2.nativecaller.NativeCaller;
 
 import static android.content.Context.ALARM_SERVICE;
-import static androidx.constraintlayout.widget.StateSet.TAG;
 import static com.massky.sraum.Utils.ParceUtil.*;
 import static com.massky.sraum.activity.MainGateWayActivity.MESSAGE_TONGZHI;
 
@@ -122,16 +122,17 @@ import static com.massky.sraum.activity.MainGateWayActivity.MESSAGE_TONGZHI;
  */
 
 public class HomeFragment extends BaseFragment1 implements AdapterView.OnItemClickListener, BridgeService.IpcamClientInterface, BridgeService.CallBackMessageInterface {
+    private static final String TAG = "robin debug";
     private PopupWindow popupWindow;
-    @InjectView(R.id.status_view)
+    @BindView(R.id.status_view)
     StatusView statusView;
-    @InjectView(R.id.area_name_txt)
+    @BindView(R.id.area_name_txt)
     TextView area_name_txt;
-    @InjectView(R.id.dragGridView)
+    @BindView(R.id.dragGridView)
     GridView mDragGridView;
-    @InjectView(R.id.add_device)
+    @BindView(R.id.add_device)
     ImageView add_device;
-    @InjectView(R.id.home_listview)
+    @BindView(R.id.home_listview)
     ListView home_listview;
     private List<Map> list_homedev_items;
     private HomeDeviceListAdapter homeDeviceListAdapter;
@@ -143,17 +144,17 @@ public class HomeFragment extends BaseFragment1 implements AdapterView.OnItemCli
     private LinearLayout delete_scene_linear;
     private LinearLayout cancel_scene_linear;
     private ImageView common_setting_image;
-    @InjectView(R.id.back_rel)
+    @BindView(R.id.back_rel)
     RelativeLayout back_rel;
-    @InjectView(R.id.refresh_view)
+    @BindView(R.id.refresh_view)
     XRefreshView refresh_view;
     private List<Map> roomsInfos = new ArrayList<>();
     private List<Map> singleRoomAssoList = new ArrayList<>();
-    //    @InjectView(R.id.dragGridView)
+    //    @BindView(R.id.dragGridView)
 //    GridView dragGridView;
-    @InjectView(R.id.all_room_rel)
+    @BindView(R.id.all_room_rel)
     RelativeLayout all_room_rel;
-    @InjectView(R.id.area_rel)
+    @BindView(R.id.area_rel)
     RelativeLayout area_rel;
     private String deivce_number;
     private String roomNumber = "";
@@ -2074,6 +2075,11 @@ public class HomeFragment extends BaseFragment1 implements AdapterView.OnItemCli
                 case "18":
                     IntentUtil.startActivity(getActivity(), CurtainWindowActivity.class, bundle);
                     break;
+                case "19":
+                case "20":
+                case "21":
+                    IntentUtil.startActivity(getActivity(), UpDownLeftRightActivity.class, bundle);
+                    break;
                 case "3"://空调
                 case "5"://新风-不含模式
                 case "6"://地暖-不含模式
@@ -2275,7 +2281,11 @@ public class HomeFragment extends BaseFragment1 implements AdapterView.OnItemCli
                         }).start();
                     }
                     //控制部分的二级页面进去要同步更新推送的信息显示 （推送的是消息）。
-                    sendBroad();
+
+                    String panelid = intent.getStringExtra("panelid");
+                    String gateway_number = intent.getStringExtra("gatewayid");
+
+                    sendBroad(panelid, gateway_number);
                     //推送过来的
 //                    ToastUtil.showToast(getActivity(), "我控制的设备时推送过来的" + ",messflag:" + messflag);
                 }
@@ -2339,8 +2349,10 @@ public class HomeFragment extends BaseFragment1 implements AdapterView.OnItemCli
         onitem_wifi_shexiangtou(mapdevice);
     }
 
-    private void sendBroad() {
+    private void sendBroad(String panelid, String gateway_number) {
         Intent mIntent = new Intent(ACTION_INTENT_RECEIVER_TO_SECOND_PAGE);
+        mIntent.putExtra("panelid", panelid);
+        mIntent.putExtra("gatewayid", gateway_number);
         getActivity().sendBroadcast(mIntent);
     }
 

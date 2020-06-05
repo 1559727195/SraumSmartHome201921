@@ -23,7 +23,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import butterknife.InjectView;
+import butterknife.BindView;
 import okhttp3.Call;
 
 /**
@@ -33,14 +33,14 @@ import okhttp3.Call;
 public class AreaSettingActivity extends BaseActivity implements XListView.IXListViewListener {
 
     private List<Map> list_hand_scene;
-    @InjectView(R.id.xListView_scan)
+    @BindView(R.id.xListView_scan)
     XListView xListView_scan;
     private Handler mHandler = new Handler();
-    @InjectView(R.id.back)
+    @BindView(R.id.back)
     ImageView back;
-    @InjectView(R.id.add_area)
+    @BindView(R.id.add_area)
     ImageView add_area;
-//    @InjectView(R.id.btn_cancel_wangguan)
+//    @BindView(R.id.btn_cancel_wangguan)
 //    Button btn_cancel_wangguan;
     private MyAreaListOwnerAdapter homesettingadapter;
     private DialogUtil dialogUtil;

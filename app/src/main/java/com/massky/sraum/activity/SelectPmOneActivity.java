@@ -17,34 +17,34 @@ import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
 
-import butterknife.InjectView;
+import butterknife.BindView;
 
 /**
  * Created by zhu on 2018/6/19.
  */
 
 public class SelectPmOneActivity extends BaseActivity {
-    @InjectView(R.id.back)
+    @BindView(R.id.back)
     ImageView back;
-    @InjectView(R.id.next_step_txt)
+    @BindView(R.id.next_step_txt)
     TextView next_step_txt;
-    @InjectView(R.id.status_view)
+    @BindView(R.id.status_view)
     StatusView statusView;
-    @InjectView(R.id.wendu_linear)
+    @BindView(R.id.wendu_linear)
     LinearLayout wendu_linear;
-    @InjectView(R.id.shidu_rel)
+    @BindView(R.id.shidu_rel)
     RelativeLayout shidu_rel;
-    @InjectView(R.id.pm25_rel)
+    @BindView(R.id.pm25_rel)
     RelativeLayout pm25_rel;
 
-    @InjectView(R.id.project_select)
+    @BindView(R.id.project_select)
     TextView project_select;
 
-    @InjectView(R.id.panel_scene_name_txt)
+    @BindView(R.id.panel_scene_name_txt)
     TextView panel_scene_name_txt;
-    @InjectView(R.id.door_open_txt)
+    @BindView(R.id.door_open_txt)
     TextView door_open_txt;
-    @InjectView(R.id.door_close_txt)
+    @BindView(R.id.door_close_txt)
     TextView door_close_txt;
 
     private String condition = "0";

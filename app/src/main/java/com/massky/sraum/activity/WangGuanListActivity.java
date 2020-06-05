@@ -18,7 +18,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import butterknife.InjectView;
+import butterknife.BindView;
 
 /**
  * Created by zhu on 2018/1/23.
@@ -26,11 +26,11 @@ import butterknife.InjectView;
 
 public class WangGuanListActivity extends BaseActivity implements XListView.IXListViewListener{
 
-    @InjectView(R.id.back)
+    @BindView(R.id.back)
     ImageView back;
-    @InjectView(R.id.status_view)
+    @BindView(R.id.status_view)
     StatusView statusView;
-    @InjectView(R.id.xListView_scan)
+    @BindView(R.id.xListView_scan)
     XListView xListView_scan;
     private Handler mHandler = new Handler();
     private  String [] autoElements  = {"家里的网关","公司的网关"

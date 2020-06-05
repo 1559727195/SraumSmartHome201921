@@ -16,33 +16,33 @@ import com.massky.sraum.base.BaseActivity;
 import com.yanzhenjie.statusview.StatusUtils;
 import com.yanzhenjie.statusview.StatusView;
 
-import butterknife.InjectView;
+import butterknife.BindView;
 
 /**
  * Created by zhu on 2018/1/16.
  */
 
 public class WangGuanDetailItemActivity extends BaseActivity {
-    @InjectView(R.id.back)
+    @BindView(R.id.back)
     ImageView back;
     private String deviceName;
-    @InjectView(R.id.project_select)
+    @BindView(R.id.project_select)
     TextView project_select;
-    @InjectView(R.id.delete_rel)
+    @BindView(R.id.delete_rel)
     RelativeLayout delete_rel;
-    @InjectView(R.id.wangguan_set_rel)
+    @BindView(R.id.wangguan_set_rel)
     RelativeLayout wangguan_set_rel;
-    @InjectView(R.id.basic_information)
+    @BindView(R.id.basic_information)
     RelativeLayout basic_information;
-    @InjectView(R.id.status_view)
+    @BindView(R.id.status_view)
     StatusView statusView;
-//    @InjectView(R.id.device_list)
+//    @BindView(R.id.device_list)
 //    RelativeLayout device_list;
-    @InjectView(R.id.btn_cancel_wangguan)
+    @BindView(R.id.btn_cancel_wangguan)
     Button btn_cancel_wangguan;
-    @InjectView(R.id.gujian_upgrade_rel)
+    @BindView(R.id.gujian_upgrade_rel)
     RelativeLayout gujian_upgrade_rel;
-    @InjectView(R.id.scene_list_rel)
+    @BindView(R.id.scene_list_rel)
     RelativeLayout scene_list_rel;
 
     @Override

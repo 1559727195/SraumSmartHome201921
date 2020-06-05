@@ -38,7 +38,7 @@ import com.yanzhenjie.statusview.StatusView;
 import java.util.HashMap;
 import java.util.Map;
 
-import butterknife.InjectView;
+import butterknife.BindView;
 import io.reactivex.Observer;
 import io.reactivex.disposables.Disposable;
 
@@ -47,41 +47,41 @@ import io.reactivex.disposables.Disposable;
  */
 
 public class SettingActivity extends BaseActivity implements SlideSwitchButton.SlideListener {
-    @InjectView(R.id.status_view)
+    @BindView(R.id.status_view)
     StatusView statusView;
-    @InjectView(R.id.back)
+    @BindView(R.id.back)
     ImageView back;
-    @InjectView(R.id.toolbar_txt)
+    @BindView(R.id.toolbar_txt)
     TextView toolbar_txt;
     private View account_view;
     private Button cancelbtn_id, camera_id, photoalbum;
     private DialogUtil dialogUtil;
     private LinearLayout linear_popcamera;
-    //    @InjectView(R.id.account_nicheng)
+    //    @BindView(R.id.account_nicheng)
 //    RelativeLayout account_nicheng;
-    //    @InjectView(R.id.xingbie_pic)
+    //    @BindView(R.id.xingbie_pic)
 //    ImageView xingbie_pic;//性别选择图片
-    @InjectView(R.id.xingbie_rel)
+    @BindView(R.id.xingbie_rel)
     RelativeLayout xingbie_rel;
-    @InjectView(R.id.account_year)
+    @BindView(R.id.account_year)
     RelativeLayout account_year;
 
-    @InjectView(R.id.account_id_rel)
+    @BindView(R.id.account_id_rel)
     RelativeLayout account_id_rel;
 //
-//    @InjectView(R.id.change_phone)
+//    @BindView(R.id.change_phone)
 //    RelativeLayout change_phone;
 
-    @InjectView(R.id.home_room_manger_rel)
+    @BindView(R.id.home_room_manger_rel)
     RelativeLayout home_room_manger_rel;
 
-    @InjectView(R.id.infor_setting_rel)
+    @BindView(R.id.infor_setting_rel)
     RelativeLayout infor_setting_rel;
-    @InjectView(R.id.btn_quit_gateway)
+    @BindView(R.id.btn_quit_gateway)
     Button btn_quit_gateway;
-    @InjectView(R.id.slide_btn_music)
+    @BindView(R.id.slide_btn_music)
     SlideSwitchButton slide_btn_music;
-    @InjectView(R.id.slide_zhendong)
+    @BindView(R.id.slide_zhendong)
     SlideSwitchButton slide_zhendong;
     private String loginPhone;
     private SharedPreferences preferences;
@@ -89,9 +89,9 @@ public class SettingActivity extends BaseActivity implements SlideSwitchButton.S
     private boolean vibflag;
     private boolean musicflag;
     private Vibrator vibrator;
-    @InjectView(R.id.get_cache_rel)
+    @BindView(R.id.get_cache_rel)
     RelativeLayout get_cache_rel;
-    @InjectView(R.id.get_cache_txt)
+    @BindView(R.id.get_cache_txt)
     TextView get_cache_txt;
     //slide_zhendong
 

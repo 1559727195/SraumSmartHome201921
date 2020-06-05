@@ -27,7 +27,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import butterknife.InjectView;
+import butterknife.BindView;
 import okhttp3.Call;
 
 /**
@@ -36,16 +36,16 @@ import okhttp3.Call;
 
 public class DeviceSettingActivity extends BaseActivity implements XListView.IXListViewListener {
     private List<Map> list_hand_scene;
-    @InjectView(R.id.xListView_scan)
+    @BindView(R.id.xListView_scan)
     XListView xListView_scan;
     private Handler mHandler = new Handler();
-    @InjectView(R.id.back)
+    @BindView(R.id.back)
     ImageView back;
-    @InjectView(R.id.btn_cancel_wangguan)
+    @BindView(R.id.btn_cancel_wangguan)
     Button btn_cancel_wangguan;
-    @InjectView(R.id.add_room)
+    @BindView(R.id.add_room)
     ImageView add_room;
-    @InjectView(R.id.toolbar_txt)
+    @BindView(R.id.toolbar_txt)
     TextView toolbar_txt;
     private MyAreaListAdapter homesettingadapter;
     private DialogUtil dialogUtil;

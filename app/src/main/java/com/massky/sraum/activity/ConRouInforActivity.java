@@ -15,7 +15,7 @@ import com.massky.sraum.tool.Constants;
 import com.yanzhenjie.statusview.StatusUtils;
 import com.yanzhenjie.statusview.StatusView;
 
-import butterknife.InjectView;
+import butterknife.BindView;
 import io.reactivex.Observer;
 import io.reactivex.disposables.Disposable;
 
@@ -24,12 +24,12 @@ import io.reactivex.disposables.Disposable;
  */
 
 public class ConRouInforActivity extends BaseActivity{
-    @InjectView(R.id.status_view)
+    @BindView(R.id.status_view)
     StatusView statusView;
-    @InjectView(R.id.back)
+    @BindView(R.id.back)
     ImageView back;
 
-    @InjectView(R.id.btn_login_gateway)
+    @BindView(R.id.btn_login_gateway)
     Button btn_login_gateway;
     @Override
     protected int viewId() {

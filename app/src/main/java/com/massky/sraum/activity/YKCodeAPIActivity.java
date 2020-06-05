@@ -50,7 +50,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import butterknife.InjectView;
+import butterknife.BindView;
 
 public class YKCodeAPIActivity extends BaseActivity implements View.OnClickListener, LearnCodeListener {
 
@@ -85,11 +85,11 @@ public class YKCodeAPIActivity extends BaseActivity implements View.OnClickListe
     private RelativeLayout first_rel;
     private LinearLayout spand_list_linear;
     private DialogUtil dialogUtil;
-    @InjectView(R.id.project_select)
+    @BindView(R.id.project_select)
     TextView project_select;
-    @InjectView(R.id.back)
+    @BindView(R.id.back)
     ImageView back;
-    @InjectView(R.id.status_view)
+    @BindView(R.id.status_view)
     StatusView statusView;
 
 

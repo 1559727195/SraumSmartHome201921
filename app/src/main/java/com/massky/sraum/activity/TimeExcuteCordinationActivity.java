@@ -32,7 +32,7 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
-import butterknife.InjectView;
+import butterknife.BindView;
 import webapp.download.DownLoadUtils;
 import webapp.download.DownloadApk;
 
@@ -44,21 +44,21 @@ import static com.example.jpushdemo.MyReceiver.ACTION_NOTIFICATION_OPENED_MAIN;
 
 public class TimeExcuteCordinationActivity extends BaseActivity {
     public static final String MESSAGE_TIME_EXCUTE_ACTION = "com.massky.sraum.time_excute";
-    @InjectView(R.id.back)
+    @BindView(R.id.back)
     ImageView back;
-    @InjectView(R.id.next_step_txt)
+    @BindView(R.id.next_step_txt)
     TextView next_step_txt;
-    @InjectView(R.id.again_time_exeute_set)
+    @BindView(R.id.again_time_exeute_set)
     RelativeLayout again_time_exeute_set;
-    @InjectView(R.id.rel_scene_set)
+    @BindView(R.id.rel_scene_set)
     RelativeLayout rel_scene_set;
-    @InjectView(R.id.root_layout)
+    @BindView(R.id.root_layout)
     LinearLayout root_layout;
     private TimePickerView pvCustomTime;
-    @InjectView(R.id.start_scenetime)
+    @BindView(R.id.start_scenetime)
     TextView start_scenetime;
     private Map time_map = new HashMap();
-    @InjectView(R.id.again_time_exeute)
+    @BindView(R.id.again_time_exeute)
     TextView again_time_exeute;
 
     @Override

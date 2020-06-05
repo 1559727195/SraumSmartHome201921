@@ -12,6 +12,7 @@ import com.iflytek.sunflower.FlowerCollector;
 import com.massky.sraum.Utils.AppManager;
 
 import butterknife.ButterKnife;
+import butterknife.Unbinder;
 
 /**
  * Created by zhu on 2017/7/18.
@@ -23,13 +24,19 @@ public abstract class BaseActivity extends AppCompatActivity implements View.OnC
     public Bundle savedInstanceState;
     private static String TAG = BaseActivity.class.getSimpleName();
 
+    /**
+     * 绑定 ButterKnife 时返回的 Unbinder ，用于 ButterKnife 解绑
+     */
+    private Unbinder mUnbinder;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(viewId());
         this.savedInstanceState = savedInstanceState;
         AppManager.getAppManager().addActivity(this);//添加activity
-        ButterKnife.inject(this);
+//        ButterKnife.inject(this);
+        mUnbinder = ButterKnife.bind(this);
         isDestroy = false;
         onView();
         onEvent();
@@ -97,6 +104,10 @@ public abstract class BaseActivity extends AppCompatActivity implements View.OnC
     protected void onDestroy() {
         super.onDestroy();
         isDestroy = true;
+        if (mUnbinder != null && mUnbinder != Unbinder.EMPTY) {
+            mUnbinder.unbind();
+        }
+        this.mUnbinder = null;
     }
 
 }

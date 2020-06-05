@@ -22,24 +22,24 @@ import com.yanzhenjie.statusview.StatusUtils;
 import com.yanzhenjie.statusview.StatusView;
 import java.util.HashMap;
 import java.util.Map;
-import butterknife.InjectView;
+import butterknife.BindView;
 
 /**
  * Created by zhu on 2018/5/30.
  */
 
 public class SelectSmartDoorLockTwoActivity extends BaseActivity {
-    @InjectView(R.id.back)
+    @BindView(R.id.back)
     ImageView back;
-    @InjectView(R.id.status_view)
+    @BindView(R.id.status_view)
     StatusView statusView;
-    @InjectView(R.id.next_step_id)
+    @BindView(R.id.next_step_id)
     Button next_step_id;
-    @InjectView(R.id.open_door_lock)
+    @BindView(R.id.open_door_lock)
     TextView open_door_lock;
-    @InjectView(R.id.open_door_lock_second)
+    @BindView(R.id.open_door_lock_second)
     TextView open_door_lock_second;
-    @InjectView(R.id.img_door_lock)
+    @BindView(R.id.img_door_lock)
     ImageView img_door_lock;
 
     int[] contents = {R.string.open_door_lock, R.string.open_door_lock_txt_one, R.string.open_door_lock_txt_two, R.string.open_door_lock_txt_three

@@ -29,7 +29,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import butterknife.InjectView;
+import butterknife.BindView;
 
 /**
  * Created by zhu on 2018/2/12.
@@ -37,15 +37,15 @@ import butterknife.InjectView;
 
 public class HistoryBackActivity extends BaseActivity implements XListView.IXListViewListener {
     private List<Map> list_hand_scene;
-    @InjectView(R.id.xListView_scan)
+    @BindView(R.id.xListView_scan)
     XListView xListView_scan;
     private Handler mHandler = new Handler();
     private HistoryBackAdapter historybackdapter;
-    @InjectView(R.id.back)
+    @BindView(R.id.back)
     ImageView back;
     private DialogUtil dialogUtil;
     private List<Map> opinionList = new ArrayList<>();
-    @InjectView(R.id.hostory_back_txt)
+    @BindView(R.id.hostory_back_txt)
     TextView hostory_back_txt;
 
     @Override

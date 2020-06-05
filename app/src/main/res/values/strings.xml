@@ -850,6 +850,12 @@
     <string name="text_cn_word">"磁铁，率领，脆弱，动手，古筝"</string>
     <string name="text_cn_sentence">"一座座雪峰插入云霄，峰顶银光闪闪，大大小小的湖泊，像颗颗宝石镶嵌在彩带般的沟谷中。"</string>
     <string name="table_pm">桌面PM2.5</string>
+    <string name="duogongneng1">多功能面板</string>
+    <string name="duogongneng_promat">连续按第一个图标3次，出现提示点加网按钮后确认。</string>
+    <string name="pingyi_control">平移控制器</string>
+    <string name="smart_up_down">智能升降</string>
+    <string name="smart_pingyi">智能平移</string>
+    <string name="smart_top_lower">智能高中低</string>
     <string-array name="ise_language_entries">
         <item>英语</item>
         <item>汉语</item>

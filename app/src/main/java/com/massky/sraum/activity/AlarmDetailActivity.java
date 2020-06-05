@@ -7,14 +7,14 @@ import com.massky.sraum.R;
 import com.massky.sraum.base.BaseActivity;
 import com.yanzhenjie.statusview.StatusUtils;
 
-import butterknife.InjectView;
+import butterknife.BindView;
 
 /**
  * Created by zhu on 2018/2/7.
  */
 
 public class AlarmDetailActivity extends BaseActivity{
-    @InjectView(R.id.back)
+    @BindView(R.id.back)
     ImageView back;
     @Override
     protected int viewId() {

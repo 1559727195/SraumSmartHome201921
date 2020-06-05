@@ -52,6 +52,7 @@ import com.massky.sraum.Utils.NetUtils;
 import com.massky.sraum.Utils.VersionUtil;
 import com.massky.sraum.base.BaseActivity;
 import com.massky.sraum.fragment.HomeFragment;
+import com.massky.sraum.fragment.HomeFragmentNew;
 import com.massky.sraum.fragment.MineFragment;
 import com.massky.sraum.fragment.SceneFragment;
 import com.massky.sraum.permissions.RxPermissions;
@@ -97,7 +98,7 @@ import static com.example.jpushdemo.MyReceiver.ACTION_NOTIFICATION_OPENED_MAIN;
 public class MainGateWayActivity extends BaseActivity implements InitYkanListener {
 
     public static final String MESSAGE_TONGZHI = "com.massky.sraum.message_tongzhi";
-    private HomeFragment fragment1;
+    private HomeFragmentNew fragment1;
     private SceneFragment fragment2;
     private MineFragment fragment3;
     private Fragment currentFragment;
@@ -1143,7 +1144,7 @@ public class MainGateWayActivity extends BaseActivity implements InitYkanListene
                 if (fragment1 == null) {
                     // 如果MessageFragment为空，则创建一个并添加到界面上
 //                    firstPageFragment = new FirstPageFragment(menu1);
-                    fragment1 = HomeFragment.newInstance();
+                    fragment1 = HomeFragmentNew.newInstance();
                     transaction.add(R.id.container, fragment1);
                 } else {
                     // 如果MessageFragment不为空，则直接将它显示出来

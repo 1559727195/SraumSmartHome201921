@@ -29,7 +29,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import butterknife.InjectView;
+import butterknife.BindView;
 import okhttp3.Call;
 
 /**
@@ -38,9 +38,9 @@ import okhttp3.Call;
 
 public class FastEditPanelActivity extends BaseActivity {
     public static String ACTION_SRAUM_FAST_EDIT = "ACTION_SRAUM_FAST_EDIT";//notifactionId = 8 ->设置网关模式，sraum_setBox
-    @InjectView(R.id.back)
+    @BindView(R.id.back)
     ImageView back;
-    //    @InjectView(R.id.addscroll)
+    //    @BindView(R.id.addscroll)
 //    ScrollView addscroll;
     private MessageReceiver mMessageReceiver;
     private DialogUtil dialogUtil;
@@ -53,9 +53,9 @@ public class FastEditPanelActivity extends BaseActivity {
     private List<User.panellist> panelList = new ArrayList<>();
     private boolean is_index;
 
-    @InjectView(R.id.second)
+    @BindView(R.id.second)
     TextView second_txt;
-    @InjectView(R.id.miao)
+    @BindView(R.id.miao)
     TextView miao;
     private String gateway_number = "";
     private String areaNumber;
@@ -307,6 +307,9 @@ public class FastEditPanelActivity extends BaseActivity {
                 case "B202":
                     //智能门锁
                 case "B301"://直流电阀机械手
+                case "B401"://升降
+                case "B402"://左右
+                case "B403"://高中低
                     intent = new Intent(FastEditPanelActivity.this,
                             ChangePanelAndDeviceActivity.class);
                     break;//直流电阀机械手

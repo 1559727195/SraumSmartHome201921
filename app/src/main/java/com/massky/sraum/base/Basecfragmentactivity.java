@@ -27,6 +27,7 @@ import java.util.Map;
 
 import androidx.annotation.Nullable;
 import butterknife.ButterKnife;
+import butterknife.Unbinder;
 /*用于非侧滑侧面fragmentactivity的基类*/
 
 /**
@@ -41,12 +42,13 @@ public abstract class Basecfragmentactivity extends AutoLayoutFragmentActivity i
 //    private List<Allbox> allboxList = new ArrayList<Allbox>();
     public static boolean isForegrounds = false;
     public static boolean isDestroy = false;
+    private Unbinder mUnbinder;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(viewId());
-        ButterKnife.inject(this);
+        mUnbinder = ButterKnife.bind(this);
         // 添加Activity到堆栈
 //        AppManager.getAppManager().addActivity(this);
         loginPhone = (String) SharedPreferencesUtil.getData(this, "loginPhone", "");
@@ -100,6 +102,10 @@ public abstract class Basecfragmentactivity extends AutoLayoutFragmentActivity i
         mHomeWatcher.stopWatch();
 //        AppManager.getAppManager().finishActivity(this);
         isDestroy = true;
+        if (mUnbinder != null && mUnbinder != Unbinder.EMPTY) {
+            mUnbinder.unbind();
+        }
+        this.mUnbinder = null;
     }
 
     @Override

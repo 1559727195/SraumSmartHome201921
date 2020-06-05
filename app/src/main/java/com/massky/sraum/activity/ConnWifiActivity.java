@@ -1,5 +1,6 @@
 package com.massky.sraum.activity;
 
+import android.Manifest;
 import android.annotation.SuppressLint;
 import android.app.Dialog;
 import android.content.BroadcastReceiver;
@@ -11,8 +12,10 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.wifi.WifiInfo;
 import android.net.wifi.WifiManager;
+import android.os.Build;
 import android.os.Handler;
 import android.os.Message;
+import android.provider.Settings;
 import android.util.DisplayMetrics;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -31,6 +34,8 @@ import com.gizwits.gizwifisdk.enumration.GizWifiErrorCode;
 import com.massky.sraum.R;
 import com.massky.sraum.Util.EyeUtil;
 import com.massky.sraum.Util.ToastUtil;
+import com.massky.sraum.Utils.GpsUtil;
+import com.massky.sraum.Utils.WifiUtil;
 import com.massky.sraum.base.BaseActivity;
 import com.massky.sraum.fragment.ConfigAppleDialogFragment;
 import com.massky.sraum.receiver.LocalBroadcastManager;
@@ -45,36 +50,38 @@ import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.percentlayout.widget.PercentRelativeLayout;
 import androidx.recyclerview.widget.LinearLayoutManager;
-import butterknife.InjectView;
+import butterknife.BindView;
+import ru.alexbykov.nopermission.PermissionHelper;
 
 /**
  * Created by zhu on 2018/5/30.
  */
 
 public class ConnWifiActivity extends BaseActivity implements IDeviceConfigListener {
-    @InjectView(R.id.back)
+    @BindView(R.id.back)
     ImageView back;
-    @InjectView(R.id.status_view)
+    @BindView(R.id.status_view)
     StatusView statusView;
-    @InjectView(R.id.select_wlan_rel_big)
+    @BindView(R.id.select_wlan_rel_big)
     PercentRelativeLayout select_wlan_rel_big;
-    @InjectView(R.id.edit_wifi)
+    @BindView(R.id.edit_wifi)
     ClearEditText edit_wifi;
-    @InjectView(R.id.edit_password_gateway)
+    @BindView(R.id.edit_password_gateway)
     ClearEditText edit_password_gateway;
     private ConfigAppleDialogFragment newFragment;
-    @InjectView(R.id.eyeimageview_id_gateway)
+    @BindView(R.id.eyeimageview_id_gateway)
     ImageView eyeimageview_id_gateway;
-    private int CONNWIFI = 101;
+    private final  int   CONNWIFI = 101;
     private EyeUtil eyeUtil;
     private DeviceConfig deviceConfig;
     private LinearLayout wifill;
     private String workSSID;
-    @InjectView(R.id.conn_btn_dev)
+    @BindView(R.id.conn_btn_dev)
     Button conn_btn_dev;
     private String wifi_name = "";
     private GizWifiDevice gizWifiDevice = null;
@@ -93,6 +100,8 @@ public class ConnWifiActivity extends BaseActivity implements IDeviceConfigListe
         }
     };
     private String TAG = "robin debug";
+    private WifiUtil wifiUtil;
+    private PermissionHelper permissionHelper;
 
     @Override
     protected int viewId() {
@@ -173,8 +182,8 @@ public class ConnWifiActivity extends BaseActivity implements IDeviceConfigListe
         StatusUtils.setFullToStatusBar(this);  // StatusBar.
         back.setOnClickListener(this);
         onview();
+        init_wifi();
         initWifiConect();
-        initWifiName();
         initDialog();
         mDeviceManager = DeviceManager
                 .instanceDeviceManager(getApplicationContext());
@@ -185,6 +194,68 @@ public class ConnWifiActivity extends BaseActivity implements IDeviceConfigListe
 //        startService(intentService);
 
     }
+
+
+    private void init_wifi() {
+        wifiUtil = WifiUtil.getInstance(this);
+        permissionHelper = new PermissionHelper(this);
+        getWifiSSid();
+    }
+
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        permissionHelper.onRequestPermissionsResult(requestCode, permissions, grantResults);
+    }
+
+    private void getWifiSSid() {
+//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+//            permissionHelper.check(Manifest.permission.ACCESS_BACKGROUND_LOCATION,
+//                    Manifest.permission.ACCESS_FINE_LOCATION,
+//                    Manifest.permission.ACCESS_COARSE_LOCATION
+//            ).onSuccess(this::onSuccess_29).onDenied(this::onDenied).onNeverAskAgain(this::onNeverAskAgain).run();
+//        } else {
+//            permissionHelper.check(
+//                    Manifest.permission.ACCESS_COARSE_LOCATION
+//            ).onSuccess(this::onSuccess).onDenied(this::onDenied).onNeverAskAgain(this::onNeverAskAgain).run();
+//        }
+
+
+        permissionHelper.check(
+                Manifest.permission.ACCESS_COARSE_LOCATION
+        ).onSuccess(this::onSuccess).onDenied(this::onDenied).onNeverAskAgain(this::onNeverAskAgain).run();
+    }
+
+
+    /**
+     * 打开Gps设置界面
+     */
+    private void openGpsSettings() {
+        Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
+        startActivityForResult(intent, 887);
+    }
+
+
+    private void onSuccess_29() {
+        if(GpsUtil.isOPen(ConnWifiActivity.this)){
+            initWifiName();
+        } else {
+            openGpsSettings();
+        }
+    }
+
+    private void onSuccess() {
+        initWifiName();
+    }
+
+    private void onDenied() {
+        ToastUtil.showToast(this, "权限被拒绝，9.0系统无法获取SSID");
+    }
+
+    private void onNeverAskAgain() {
+        ToastUtil.showToast(this, "权限被拒绝，9.0系统无法获取SSID,下次不会在询问了");
+    }
+
 
     @Override
     protected void onEvent() {
@@ -243,7 +314,6 @@ public class ConnWifiActivity extends BaseActivity implements IDeviceConfigListe
 //                startActivity(new Intent(ConnWifiActivity.this,));
                 //在这里弹出dialogFragment对话框
                 startConfigAirlink();
-
                 break;
 
             case R.id.eyeimageview_id_gateway:
@@ -337,22 +407,13 @@ public class ConnWifiActivity extends BaseActivity implements IDeviceConfigListe
      */
     private void initWifiName() {
         // TODO Auto-generated method stub
-        WifiManager wifiMgr = (WifiManager) getApplicationContext().getSystemService(Context.WIFI_SERVICE);
-        int wifiState = wifiMgr.getWifiState();
-        WifiInfo info = wifiMgr.getConnectionInfo();
-        String wifiId = info != null ? info.getSSID() : "";
-
-        if (wifiId != null && !wifiId.contains("<unknown ss")) {//wifiId在不连WIFI的情况下，去wifi快配wifiId = 0x
-            //取出双引号中的字符
-            String reg = "\"";
-            String[] ss = wifiId.split(reg);
-            if (ss.length >= 2) {
-                edit_wifi.setText(ss[1]);
-                wifi_name = ss[1];
-                edit_password_gateway.setFocusable(true);
-                edit_password_gateway.setFocusableInTouchMode(true);
-                edit_password_gateway.requestFocus();
-            }
+        String wifiId = wifiUtil.getWIFISSID(ConnWifiActivity.this);
+        if (wifiId != null && !wifiId.contains("<unknown ssid>")) {//wifiId在不连WIFI的情况下，去wifi快配wifiId = 0x
+            edit_wifi.setText(wifiId);
+            wifi_name = wifiId;
+            edit_password_gateway.setFocusable(true);
+            edit_password_gateway.setFocusableInTouchMode(true);
+            edit_password_gateway.requestFocus();
         }
     }
 
@@ -389,7 +450,7 @@ public class ConnWifiActivity extends BaseActivity implements IDeviceConfigListe
      */
     private void initDialog() {
         // TODO Auto-generated method stub
-        newFragment = ConfigAppleDialogFragment.newInstance(ConnWifiActivity.this, "", "",null);//初始化快配和搜索设备dialogFragment
+        newFragment = ConfigAppleDialogFragment.newInstance(ConnWifiActivity.this, "", "", null);//初始化快配和搜索设备dialogFragment
 //
         connWifiInterfacer = (ConnWifiInterfacer) newFragment;
     }
@@ -475,6 +536,7 @@ public class ConnWifiActivity extends BaseActivity implements IDeviceConfigListe
         });
 
     }
+
 
     @Override
     protected void onDestroy() {

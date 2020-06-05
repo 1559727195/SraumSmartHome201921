@@ -18,28 +18,28 @@ import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
 
-import butterknife.InjectView;
+import butterknife.BindView;
 
 /**
  * Created by zhu on 2018/6/19.
  */
 
 public class LinkageItemYaoKongQiActivity extends BaseActivity {
-    @InjectView(R.id.back)
+    @BindView(R.id.back)
     ImageView back;
-    @InjectView(R.id.next_step_txt)
+    @BindView(R.id.next_step_txt)
     TextView next_step_txt;
-    @InjectView(R.id.status_view)
+    @BindView(R.id.status_view)
     StatusView statusView;
-    @InjectView(R.id.project_select)
+    @BindView(R.id.project_select)
     TextView project_select;
 
 
-    @InjectView(R.id.fangdao_linear)
+    @BindView(R.id.fangdao_linear)
     LinearLayout fangdao_linear;
-    @InjectView(R.id.rel_fangdao_open)
+    @BindView(R.id.rel_fangdao_open)
     RelativeLayout rel_fangdao_open;
-    @InjectView(R.id.rel_fangdao_close)
+    @BindView(R.id.rel_fangdao_close)
     RelativeLayout rel_fangdao_close;
     private Map device_map = new HashMap();
     private Map sensor_map = new HashMap();//传感器map

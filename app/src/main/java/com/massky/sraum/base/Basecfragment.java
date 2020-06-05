@@ -12,6 +12,7 @@ import com.massky.sraum.fragment.SceneFragment;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import butterknife.ButterKnife;
+import butterknife.Unbinder;
 /*用于fragment的基类*/
 
 /**
@@ -23,11 +24,13 @@ public abstract class Basecfragment extends Fragment implements View.OnClickList
     private boolean isPrepared;
     public static boolean isForegrounds = false;
     public static boolean isDestroy = false;
+    private Unbinder mUnbinder;
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View rootView = inflater.inflate(viewId(), null);
-        ButterKnife.inject(this, rootView);
+        mUnbinder = ButterKnife.bind(this,rootView);
         onView();
         return rootView;
     }
@@ -35,7 +38,6 @@ public abstract class Basecfragment extends Fragment implements View.OnClickList
     @Override
     public void onDestroyView() {
         super.onDestroyView();
-        ButterKnife.reset(this);
     }
 
     @Override
@@ -115,6 +117,10 @@ public abstract class Basecfragment extends Fragment implements View.OnClickList
     @Override
     public void onDestroy() {
         isDestroy = true;
+        if (mUnbinder != null && mUnbinder != Unbinder.EMPTY) {
+            mUnbinder.unbind();
+        }
+        this.mUnbinder = null;
         super.onDestroy();
     }
 }

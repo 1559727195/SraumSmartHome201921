@@ -53,7 +53,7 @@ import com.yanzhenjie.statusview.StatusUtils;
 import java.text.BreakIterator;
 import java.util.HashMap;
 import java.util.Map;
-import butterknife.InjectView;
+import butterknife.BindView;
 
 import static com.massky.sraum.Util.BitmapUtil.bitmapToString;
 import static com.massky.sraum.Util.DipUtil.dip2px;
@@ -74,25 +74,25 @@ public class MessageSendActivity extends BaseActivity {
     private PopupWindow pop = null;
     private LinearLayout ll_popup;
     public static Bitmap bimap;
-    @InjectView(R.id.pic_select_linear)
+    @BindView(R.id.pic_select_linear)
     LinearLayout pic_select_linear;
-    @InjectView(R.id.list_forscrollview)
+    @BindView(R.id.list_forscrollview)
     ScrollView listViewForScrollView;
     private View account_view;
     private Button cancelbtn_id, camera_id, photoalbum;
     private DialogUtil dialogUtil;
     private LinearLayout linear_popcamera;
-    @InjectView(R.id.hostory_back_txt)
+    @BindView(R.id.hostory_back_txt)
     TextView hostory_back_txt;
-    @InjectView(R.id.back)
+    @BindView(R.id.back)
     ImageView back;
-    @InjectView(R.id.btn_cancel_wangguan)
+    @BindView(R.id.btn_cancel_wangguan)
     Button btn_cancel_wangguan;
-    @InjectView(R.id.activity_group_radioGroup_light)
+    @BindView(R.id.activity_group_radioGroup_light)
     RadioGroup activity_group_radioGroup_light;
-    @InjectView(R.id.edit_text_message)
+    @BindView(R.id.edit_text_message)
     ClearEditText edit_text_message;
-    @InjectView(R.id.phone_number)
+    @BindView(R.id.phone_number)
     ClearEditText phone_number;
     private String type = "1";//功能建议
     private DialogUtil dialogUtil_bottom;

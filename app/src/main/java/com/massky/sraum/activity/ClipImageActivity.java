@@ -17,26 +17,26 @@ import com.yanzhenjie.statusview.StatusView;
 import java.io.File;
 import java.io.IOException;
 import java.io.OutputStream;
-import butterknife.InjectView;
+import butterknife.BindView;
 
 
 /**
  * 头像裁剪Activity
  */
 public class ClipImageActivity extends BaseActivity implements View.OnClickListener {
-    @InjectView(R.id.clipViewLayout1)
+    @BindView(R.id.clipViewLayout1)
     ClipViewLayout clipViewLayout1;
-    @InjectView(R.id.clipViewLayout2)
+    @BindView(R.id.clipViewLayout2)
     ClipViewLayout clipViewLayout2;
-    @InjectView(R.id.iv_back)
+    @BindView(R.id.iv_back)
     ImageView back;
-    @InjectView(R.id.btn_cancel)
+    @BindView(R.id.btn_cancel)
     TextView btnCancel;
-    @InjectView(R.id.bt_ok)
+    @BindView(R.id.bt_ok)
     TextView btnOk;
     //类别 1: qq, 2: weixin
     private int type;
-//    @InjectView(R.id.status_view)
+//    @BindView(R.id.status_view)
 //    StatusView mStatusView;
 
     @Override

@@ -40,7 +40,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
 
-import butterknife.InjectView;
+import butterknife.BindView;
 import okhttp3.Call;
 
 /**
@@ -48,33 +48,33 @@ import okhttp3.Call;
  */
 
 public class TVShowActivity extends BaseActivity implements IDeviceControllerListener {
-    @InjectView(R.id.back)
+    @BindView(R.id.back)
     ImageView back;
-    @InjectView(R.id.status_view)
+    @BindView(R.id.status_view)
     StatusView statusView;
-    @InjectView(R.id.tv_status_linear)
+    @BindView(R.id.tv_status_linear)
     LinearLayout tv_status_linear;
-    @InjectView(R.id.input_select_linear)
+    @BindView(R.id.input_select_linear)
     LinearLayout input_select_linear;
-    @InjectView(R.id.home_linear)
+    @BindView(R.id.home_linear)
     LinearLayout home_linear;
 
-    @InjectView(R.id.add_voice)
+    @BindView(R.id.add_voice)
     ImageView add_voice;
-    @InjectView(R.id.delete_voice)
+    @BindView(R.id.delete_voice)
     ImageView delete_voice;
-    @InjectView(R.id.add_chanel)
+    @BindView(R.id.add_chanel)
     ImageView add_chanel;
-    @InjectView(R.id.delete_chanel)
+    @BindView(R.id.delete_chanel)
     ImageView delete_chanel;
 
-    @InjectView(R.id.top_img)
+    @BindView(R.id.top_img)
     ImageView top_img;
-    @InjectView(R.id.down_img)
+    @BindView(R.id.down_img)
     ImageView down_img;
-    @InjectView(R.id.left_img)
+    @BindView(R.id.left_img)
     ImageView left_img;
-    @InjectView(R.id.right_img)
+    @BindView(R.id.right_img)
     ImageView right_img;
     private GizWifiDevice device;
     private HashMap<String, KeyCode> codeDatas = new HashMap<String, KeyCode>();
@@ -97,17 +97,17 @@ public class TVShowActivity extends BaseActivity implements IDeviceControllerLis
     private String LRScavenging = "";
     private String number = "";//遥控器编号
     private String type = "";
-    @InjectView(R.id.tv_img)
+    @BindView(R.id.tv_img)
     ImageView tv_img;
-    @InjectView(R.id.ok_img)
+    @BindView(R.id.ok_img)
     ImageView ok_img;
-    @InjectView(R.id.caidan_img)
+    @BindView(R.id.caidan_img)
     ImageView caidan_img;
-    @InjectView(R.id.fanhui_img)
+    @BindView(R.id.fanhui_img)
     ImageView fanhui_img;
-    @InjectView(R.id.img_jingyin)
+    @BindView(R.id.img_jingyin)
     ImageView img_jingyin;
-    @InjectView(R.id.quit_rel)
+    @BindView(R.id.quit_rel)
     RelativeLayout quit_rel;
     private String code1;
     private Map remoteControl_map_air = new HashMap();

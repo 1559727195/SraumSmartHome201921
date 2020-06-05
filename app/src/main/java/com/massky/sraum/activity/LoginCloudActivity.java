@@ -36,7 +36,7 @@ import com.yanzhenjie.statusview.StatusView;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
-import butterknife.InjectView;
+import butterknife.BindView;
 import cn.jpush.android.api.JPushInterface;
 import io.reactivex.Observer;
 import io.reactivex.disposables.Disposable;
@@ -52,30 +52,30 @@ import retrofit2.Retrofit;
  */
 
 public class LoginCloudActivity extends BaseActivity {
-    @InjectView(R.id.status_view)
+    @BindView(R.id.status_view)
     StatusView statusView;
-    @InjectView(R.id.back)
+    @BindView(R.id.back)
     ImageView back;
-    @InjectView(R.id.toolbar_txt)
+    @BindView(R.id.toolbar_txt)
     TextView toolbar_txt;
-    @InjectView(R.id.scan_gateway)
+    @BindView(R.id.scan_gateway)
     TextView scan_gateway;
-    @InjectView(R.id.search_gateway_btn)
+    @BindView(R.id.search_gateway_btn)
     TextView search_gateway_btn;
-    @InjectView(R.id.btn_login_gateway)
+    @BindView(R.id.btn_login_gateway)
     Button btn_login_gateway;
-    @InjectView(R.id.eyeimageview_id_gateway)
+    @BindView(R.id.eyeimageview_id_gateway)
     ImageView eyeimageview_id_gateway;
 
     private EyeUtil eyeUtil;
-    @InjectView(R.id.regist_new)
+    @BindView(R.id.regist_new)
     TextView regist_new;
-    @InjectView(R.id.forget_pass)
+    @BindView(R.id.forget_pass)
     TextView forget_pass;
 
-    @InjectView(R.id.usertext_id)
+    @BindView(R.id.usertext_id)
     ClearEditText usertext_id;
-    @InjectView(R.id.phonepassword)
+    @BindView(R.id.phonepassword)
     ClearEditText phonepassword;
     private DialogUtil dialogUtil;
     private String token;

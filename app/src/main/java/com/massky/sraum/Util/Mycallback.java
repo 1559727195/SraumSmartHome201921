@@ -92,12 +92,12 @@ public class Mycallback extends StringCallback implements ApiResult {
                 case "105":
                     fiveCode();
                     break;
-                case "106":
-                    sixCode();
-                    break;
-                case "107":
-                    sevenCode();
-                    break;
+//                case "106":
+//                    sixCode();
+//                    break;
+//                case "107":
+//                    sevenCode();
+//                    break;
                 //解析失败
                 case "1":
                     pullDataError();
@@ -168,6 +168,7 @@ public class Mycallback extends StringCallback implements ApiResult {
     }
 
 
+
     @Override
     public void wrongBoxnumber() {
         SharedPreferencesUtil.saveData(context, "boxstatus", "");
@@ -185,7 +186,7 @@ public class Mycallback extends StringCallback implements ApiResult {
     private void getToken() {
         wrongtoken_index--;
         String encryPass = (String) SharedPreferencesUtil.getData(context, "loginPassword", "");
-        String password = DES.decryptDES(encryPass, "12345678");
+       // String password = DES.decryptDES(encryPass, "12345678");
         String loginPhone = (String) SharedPreferencesUtil.getData(context, "loginPhone", "");
         Map<String, Object> map = new HashMap<>();
         String time = Timeuti.getTime();

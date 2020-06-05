@@ -8,6 +8,7 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -35,7 +36,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import butterknife.InjectView;
+import butterknife.BindView;
 import okhttp3.Call;
 
 import static com.massky.sraum.activity.MainGateWayActivity.ACTION_SRAUM_SETBOX;
@@ -46,11 +47,11 @@ import static com.massky.sraum.activity.MainGateWayActivity.ACTION_SRAUM_SETBOX;
  */
 
 public class AddZigbeeDevActivity extends BaseActivity {
-    @InjectView(R.id.back)
+    @BindView(R.id.back)
     ImageView back;
-    @InjectView(R.id.status_view)
+    @BindView(R.id.status_view)
     StatusView statusView;
-    @InjectView(R.id.next_step_id)
+    @BindView(R.id.next_step_id)
     Button next_step_id;
     private ConfigZigbeeConnDialogFragment newFragment;
 
@@ -75,22 +76,24 @@ public class AddZigbeeDevActivity extends BaseActivity {
             R.drawable.pic_zigbee_pm250,
             R.drawable.pic_zigbee_shuijin,
             R.drawable.pic_zigbee_duogongneng,
-            R.drawable.pic_zigbee_chazuo
+            R.drawable.pic_zigbee_chazuo,
+            R.drawable.duogongneng2,
+            R.drawable.pic_zigbee_pingyikzq
     };
 
     private int[] iconString = {
             R.string.yijianlight_promat,
             R.string.zigbee_other_promat, R.string.zigbee_promat_btn_down
-            , R.string.zhinengchazuo_promat
+            , R.string.zhinengchazuo_promat, R.string.duogongneng_promat
     };
 
-    @InjectView(R.id.img_show_zigbee)
+    @BindView(R.id.img_show_zigbee)
     ImageView img_show_zigbee;
-    @InjectView(R.id.promat_zigbee_txt)
+    @BindView(R.id.promat_zigbee_txt)
     TextView promat_zigbee_txt;
-    @InjectView(R.id.roundProgressBar2)
+    @BindView(R.id.roundProgressBar2)
     RoundProgressBar_ChangePosition roundProgressBar2;
-    @InjectView(R.id.txt_remain_time)
+    @BindView(R.id.txt_remain_time)
     TextView txt_remain_time;
     private boolean is_index;
     private int position;//灯控，zigbee设备
@@ -107,6 +110,7 @@ public class AddZigbeeDevActivity extends BaseActivity {
     private String type = "";
     private String gateway_number;
     private String areaNumber;
+    private boolean isfirst;
 
     @Override
     protected int viewId() {
@@ -115,6 +119,7 @@ public class AddZigbeeDevActivity extends BaseActivity {
 
     @Override
     protected void onView() {
+        isfirst = true;
         StatusUtils.setFullToStatusBar(this);  // StatusBar.
         registerMessageReceiver();
         back.setOnClickListener(this);
@@ -211,6 +216,14 @@ public class AddZigbeeDevActivity extends BaseActivity {
                 img_show_zigbee.setImageResource(icon[19]);
                 promat_zigbee_txt.setText(iconString[3]);
                 break;
+            case "多功能面板":
+                img_show_zigbee.setImageResource(icon[20]);
+                promat_zigbee_txt.setText(iconString[4]);
+                break;
+            case "平移控制器":
+                img_show_zigbee.setImageResource(icon[21]);
+                promat_zigbee_txt.setText(iconString[2]);
+                break;
         }
         init_status_bar();
     }
@@ -238,6 +251,10 @@ public class AddZigbeeDevActivity extends BaseActivity {
                 while (is_index) {
                     try {
                         Thread.sleep(1000);
+                        if (roundProgressBar2 == null) {
+                            is_index = false;
+                            return;
+                        }
                         roundProgressBar2.setProgress(i);
                         i++;
                         runOnUiThread(new Runnable() {
@@ -385,6 +402,9 @@ public class AddZigbeeDevActivity extends BaseActivity {
                                 case "A501"://设备2个
                                 case "A601"://设备2个
                                 case "A701"://设备2个
+                                case "B401":
+                                case "B402":
+                                case "B403":
 
                                     intent = new Intent(AddZigbeeDevActivity.this,
                                             ChangePanelAndDeviceActivity.class);
@@ -462,7 +482,7 @@ public class AddZigbeeDevActivity extends BaseActivity {
 //        final String type = (String) map.get("type");
 //        String status = (String) map.get("status");
 //        String gateway_number = (String) gatewayList.get(position).get("number");
-        String areaNumber = (String) SharedPreferencesUtil.getData(AddZigbeeDevActivity.this, "", "areaNumber");
+        String areaNumber = (String) SharedPreferencesUtil.getData(AddZigbeeDevActivity.this, "areaNumber", "");
         map.put("areaNumber", areaNumber);
 
 //        map.put("phoneId", phoned);
@@ -484,7 +504,14 @@ public class AddZigbeeDevActivity extends BaseActivity {
             case "B301":
             case "A902":
             case "A501":
+            case "A601":
+            case "A701":
+            case "A511":
+            case "A611":
+            case "A711":
             case "AD01":
+            case "多功能面板":
+            case "平移控制器":
 //                    case "A501":
 //                    case "A511":
                 map.put("status", "0");//进入设置模式
@@ -517,6 +544,8 @@ public class AddZigbeeDevActivity extends BaseActivity {
         public void onReceive(Context context, Intent intent) {
             // TODO Auto-generated method stub
             if (intent.getAction().equals(ACTION_SRAUM_SETBOX)) {
+
+                Log.e("notifactionId", "receiver");
                 int messflag = intent.getIntExtra("notifactionId", 0);
                 String panelid = intent.getStringExtra("panelid");
                 String gatewayid = intent.getStringExtra("gatewayid");
@@ -529,7 +558,10 @@ public class AddZigbeeDevActivity extends BaseActivity {
                                 //在网关转圈界面，下去拉设备，判断设备类型，不是我们的。网关不关，是我们的设备类型；在关网关。
                                 //然后跳转到显示设备列表界面。
 //                    ToastUtil.showToast(MacdeviceActivity.this,"messflag:" + messflag);
-                                getPanel_devices(panelid);
+                                if (isfirst) {
+                                    isfirst = false;
+                                    getPanel_devices(panelid);
+                                }
                             }
                         }
                     }
@@ -622,6 +654,9 @@ public class AddZigbeeDevActivity extends BaseActivity {
                             case "B201":
                                 //智能门锁
                             case "B301"://直流电阀机械手
+                            case "B401":
+                            case "B402":
+                            case "B403":
                                 sraum_setBox_quit(panelid);
                                 break;
                             default://其他的面板类型的面，界面不跳转并且，网关不关闭

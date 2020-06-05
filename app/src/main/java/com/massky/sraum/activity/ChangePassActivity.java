@@ -26,7 +26,7 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
-import butterknife.InjectView;
+import butterknife.BindView;
 import okhttp3.RequestBody;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
@@ -39,24 +39,24 @@ import retrofit2.Retrofit;
  */
 
 public class ChangePassActivity extends BaseActivity {
-    @InjectView(R.id.status_view)
+    @BindView(R.id.status_view)
     StatusView statusView;
-    @InjectView(R.id.back)
+    @BindView(R.id.back)
     ImageView back;
     private DialogUtil dialogUtil;
-    @InjectView(R.id.btn_login_gateway)
+    @BindView(R.id.btn_login_gateway)
     Button btn_login_gateway;
-    @InjectView(R.id.input_pass_old)
+    @BindView(R.id.input_pass_old)
     ClearEditText input_pass_old;
-    @InjectView(R.id.input_pass_new)
+    @BindView(R.id.input_pass_new)
     ClearEditText input_pass_new;
-    @InjectView(R.id.input_pass_again)
+    @BindView(R.id.input_pass_again)
     ClearEditText input_pass_again;
-    @InjectView(R.id.eyeimageview_id_gateway)
+    @BindView(R.id.eyeimageview_id_gateway)
     ImageView eyeimageview_id_gateway;
-    @InjectView(R.id.eyeimageview_id_gateway_one)
+    @BindView(R.id.eyeimageview_id_gateway_one)
     ImageView eyeimageview_id_gateway_one;
-    @InjectView(R.id.eyeimageview_id_gateway_two)
+    @BindView(R.id.eyeimageview_id_gateway_two)
     ImageView eyeimageview_id_gateway_two;
     private EyeUtil eyeUtil;
     private EyeUtil eyeUtil_1;

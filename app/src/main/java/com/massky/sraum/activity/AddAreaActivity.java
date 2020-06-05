@@ -28,7 +28,7 @@ import com.yanzhenjie.statusview.StatusUtils;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
-import butterknife.InjectView;
+import butterknife.BindView;
 import db.AreaBean;
 import db.CityBean;
 import db.DBManager;
@@ -40,13 +40,13 @@ import okhttp3.Call;
  */
 
 public class AddAreaActivity extends BaseActivity {
-    @InjectView(R.id.back)
+    @BindView(R.id.back)
     ImageView back;
-    @InjectView(R.id.add_home_rel)
+    @BindView(R.id.add_home_rel)
     PercentRelativeLayout add_home_rel;
-    @InjectView(R.id.area_name_rel)
+    @BindView(R.id.area_name_rel)
     PercentRelativeLayout area_name_rel;
-    @InjectView(R.id.txt_area_name)
+    @BindView(R.id.txt_area_name)
     TextView txt_area_name;
     private OptionsPickerView pvOptions;//地址选择器
     private ArrayList<ProvinceBean> options1Items = new ArrayList<>();//省
@@ -55,11 +55,11 @@ public class AddAreaActivity extends BaseActivity {
     private ArrayList<String> Provincestr = new ArrayList<>();//省
     private ArrayList<ArrayList<String>> Citystr = new ArrayList<>();//市
     private ArrayList<ArrayList<ArrayList<String>>> Areastr = new ArrayList<>();//区
-    @InjectView(R.id.location_txt)
+    @BindView(R.id.location_txt)
     TextView location_txt;
-    //    @InjectView(R.id.hostory_back_txt)
+    //    @BindView(R.id.hostory_back_txt)
 //    TextView hostory_back_txt;
-    @InjectView(R.id.save_area)
+    @BindView(R.id.save_area)
     TextView save_area;
 
     String province;

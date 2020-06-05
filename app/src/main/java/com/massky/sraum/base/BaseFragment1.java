@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 import com.massky.sraum.event.MyDialogEvent;
 
 import butterknife.ButterKnife;
+import butterknife.Unbinder;
 
 /**
  * Created by zhu on 2017/7/27.
@@ -24,13 +25,14 @@ public abstract class BaseFragment1 extends Fragment implements View.OnClickList
     private boolean isLoadData = false;
 
     public static boolean isForegrounds = false;
+    private Unbinder mUnbinder;
 
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View rootView = inflater.inflate(viewId(), null);
-        ButterKnife.inject(this, rootView);
+        mUnbinder = ButterKnife.bind(this,rootView);
         isDestroy = false;
         onView(rootView);
         onEvent();
@@ -95,7 +97,6 @@ public abstract class BaseFragment1 extends Fragment implements View.OnClickList
     @Override
     public void onDestroyView() {
         super.onDestroyView();
-        ButterKnife.reset(this);
     }
 
 
@@ -117,6 +118,10 @@ public abstract class BaseFragment1 extends Fragment implements View.OnClickList
     @Override
     public void onDestroy() {
         isDestroy = true;
+        if (mUnbinder != null && mUnbinder != Unbinder.EMPTY) {
+            mUnbinder.unbind();
+        }
+        this.mUnbinder = null;
         super.onDestroy();
     }
 

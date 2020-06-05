@@ -1,6 +1,7 @@
 package com.massky.sraum.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,7 +10,9 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.massky.sraum.R;
+import com.massky.sraum.activity.MyDeviceItemActivity;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -116,8 +119,64 @@ public class SelectLinkageAdapter extends android.widget.BaseAdapter {
         } else {
             viewHolderContentType.img_guan_scene.setImageResource(listint.get(position));
         }
+
+        to_activity(position, viewHolderContentType.img_guan_scene);
         return convertView;
     }
+
+    private void to_activity(int position, ImageView img_guan_scene) {
+        switch (list.get(position).get("panelType").toString()) {
+            case "A201":
+            case "A202":
+            case "A203":
+            case "A204":
+            case "A301":
+            case "A302":
+            case "A303":
+            case "A311":
+            case "A312":
+            case "A313":
+            case "A321":
+            case "A322":
+            case "A331":
+            case "A401":
+            case "A411":
+            case "A412":
+            case "A413":
+            case "A414":
+            case "A501":
+            case "A511":
+            case "A801":
+            case "A901":
+            case "AB01":
+            case "A902":
+            case "AB04":
+            case "AC01":
+            case "AD01":
+            case "AD02":
+            case "B001":
+            case "B101"://86插座两位
+//            case "B102"://86插座两位
+            case "网关":
+            case "B201":
+            case "AA02":
+            case "AA03":
+            case "AA04":
+            case "A611":
+            case "A601":
+            case "A711":
+            case "A701":
+            case "B301":
+            case "B401":
+            case "B402":
+            case "B403":
+                break;
+            default:
+                img_guan_scene.setVisibility(View.GONE);
+                break;
+        }
+    }
+
 
     public static HashMap<Integer, Boolean> getIsSelected() {
         return isSelected;

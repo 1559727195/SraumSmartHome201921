@@ -20,22 +20,22 @@ import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.List;
 
-import butterknife.InjectView;
+import butterknife.BindView;
 
 /**
  * Created by zhu on 2018/2/7.
  */
 
 public class AlarmDeviceMessageActivity extends BaseActivity {
-    @InjectView(R.id.tab_FindFragment_title)
+    @BindView(R.id.tab_FindFragment_title)
     TabLayout tab_FindFragment_title;
-    @InjectView(R.id.vp_FindFragment_pager)
+    @BindView(R.id.vp_FindFragment_pager)
     ViewPager vp_FindFragment_pager;
     private List<Fragment> list_smart_frag;
     private List<String> list_title;
     private int mCurrentPageIndex;
     private DynamicFragmentViewPagerAdapter fragmentViewPagerAdapter;
-    @InjectView(R.id.back_rel)
+    @BindView(R.id.back_rel)
     RelativeLayout back_rel;
 
     @Override

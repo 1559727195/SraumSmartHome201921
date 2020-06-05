@@ -20,27 +20,27 @@ import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
 
-import butterknife.InjectView;
+import butterknife.BindView;
 
 /**
  * Created by zhu on 2018/1/16.
  */
 
 public class WangGuanBaseInformationActivity extends BaseActivity {
-    @InjectView(R.id.back)
+    @BindView(R.id.back)
     ImageView back;
-    @InjectView(R.id.status_view)
+    @BindView(R.id.status_view)
     StatusView statusView;
     private Map gateway_map = new HashMap();
-    @InjectView(R.id.type)
+    @BindView(R.id.type)
     TextView type;
-    @InjectView(R.id.mac)
+    @BindView(R.id.mac)
     TextView mac;
-    @InjectView(R.id.version)
+    @BindView(R.id.version)
     TextView version;
-    @InjectView(R.id.pannel)
+    @BindView(R.id.pannel)
     TextView pannel;
-    @InjectView(R.id.pan_id)
+    @BindView(R.id.pan_id)
     TextView pan_id;
     private String gatewayNumber;//网关编号
     private String areaNumber;

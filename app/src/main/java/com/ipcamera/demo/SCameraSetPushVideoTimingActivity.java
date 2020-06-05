@@ -50,7 +50,7 @@ import java.util.Map;
 import java.util.TreeSet;
 
 import androidx.appcompat.app.AlertDialog;
-import butterknife.InjectView;
+import butterknife.BindView;
 
 import static com.massky.sraum.activity.BuFangBaoJingPlanActivity.strDID;
 
@@ -70,27 +70,27 @@ public class SCameraSetPushVideoTimingActivity extends BaseActivity implements
     private int absValue;
     private LinearLayout timing_edit_layout;  //编辑布局
     private TextView tv_camera_timingaddplan; //标题
-    @InjectView(R.id.status_view)
+    @BindView(R.id.status_view)
     StatusView statusView;
     private DialogUtil dialogUtil;
-    @InjectView(R.id.sleep_time_rel)
+    @BindView(R.id.sleep_time_rel)
     RelativeLayout sleep_time_rel;
-    @InjectView(R.id.get_up_rel)
+    @BindView(R.id.get_up_rel)
     RelativeLayout get_up_rel;
     private String hourPicker;
     private String minutePicker;
     String time_content;
-    @InjectView(R.id.start_time_txt)
+    @BindView(R.id.start_time_txt)
     TextView start_time_txt;
-    @InjectView(R.id.end_time_txt)
+    @BindView(R.id.end_time_txt)
     TextView end_time_txt;
-    @InjectView(R.id.time_select_linear)
+    @BindView(R.id.time_select_linear)
     LinearLayout time_select_linear;
     private TimePickerView pvCustomTime;
     private int index_select;
-    @InjectView(R.id.next_step_txt)
+    @BindView(R.id.next_step_txt)
     TextView next_step_txt;
-    @InjectView(R.id.back)
+    @BindView(R.id.back)
     TextView back;
     private Map map_camera_time_zone;
     private Map map_item_record = new HashMap();//移动侦测某item

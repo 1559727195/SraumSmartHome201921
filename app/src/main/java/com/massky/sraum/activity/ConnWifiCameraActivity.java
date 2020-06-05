@@ -1,5 +1,6 @@
 package com.massky.sraum.activity;
 
+import android.Manifest;
 import android.annotation.SuppressLint;
 import android.app.Dialog;
 import android.content.BroadcastReceiver;
@@ -12,8 +13,10 @@ import android.net.NetworkInfo;
 import android.net.wifi.ScanResult;
 import android.net.wifi.WifiInfo;
 import android.net.wifi.WifiManager;
+import android.os.Build;
 import android.os.Handler;
 import android.os.Message;
+import android.provider.Settings;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -34,8 +37,11 @@ import com.massky.sraum.R;
 import com.massky.sraum.Util.EyeUtil;
 import com.massky.sraum.Util.SharedPreferencesUtil;
 import com.massky.sraum.Util.ToastUtil;
+import com.massky.sraum.Utils.GpsUtil;
+import com.massky.sraum.Utils.WifiUtil;
 import com.massky.sraum.base.BaseActivity;
 import com.massky.sraum.fragment.ConfigDialogCameraFragment;
+import com.massky.sraum.permissions.RxPermissions;
 import com.massky.sraum.view.ClearEditText;
 import com.mediatek.demo.smartconnection.JniLoader;
 import com.yanzhenjie.statusview.StatusUtils;
@@ -48,11 +54,15 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.percentlayout.widget.PercentRelativeLayout;
 import androidx.recyclerview.widget.LinearLayoutManager;
-import butterknife.InjectView;
+import butterknife.BindView;
+import io.reactivex.Observer;
+import io.reactivex.disposables.Disposable;
+import ru.alexbykov.nopermission.PermissionHelper;
 import voice.encoder.DataEncoder;
 import voice.encoder.VoicePlayer;
 import vstc2.nativecaller.NativeCaller;
@@ -63,22 +73,22 @@ import vstc2.nativecaller.NativeCaller;
 
 public class ConnWifiCameraActivity extends BaseActivity implements BridgeService.AddCameraInterface
         , BridgeService.IpcamClientInterface, BridgeService.CallBackMessageInterface {
-    @InjectView(R.id.back)
+    @BindView(R.id.back)
     ImageView back;
-    @InjectView(R.id.status_view)
+    @BindView(R.id.status_view)
     StatusView statusView;
-    @InjectView(R.id.select_wlan_rel_big)
+    @BindView(R.id.select_wlan_rel_big)
     PercentRelativeLayout select_wlan_rel_big;
-    @InjectView(R.id.edit_wifi)
+    @BindView(R.id.edit_wifi)
     ClearEditText edit_wifi;
-    @InjectView(R.id.edit_password_gateway)
+    @BindView(R.id.edit_password_gateway)
     ClearEditText edit_password_gateway;
     private ConfigDialogCameraFragment newFragment;
-    @InjectView(R.id.eyeimageview_id_gateway)
+    @BindView(R.id.eyeimageview_id_gateway)
     ImageView eyeimageview_id_gateway;
     private int CONNWIFI = 101;
     private EyeUtil eyeUtil;
-    @InjectView(R.id.conn_btn_dev)
+    @BindView(R.id.conn_btn_dev)
     Button conn_btn_dev;
     private String wifi_name = "";
     private String TAG = "robin debug";
@@ -102,6 +112,8 @@ public class ConnWifiCameraActivity extends BaseActivity implements BridgeServic
     private JniLoader loader;
     private VoicePlayer player = new VoicePlayer();
     private String type;
+    private PermissionHelper permissionHelper;
+    private WifiUtil wifiUtil;
 
     @Override
     protected int viewId() {
@@ -116,20 +128,73 @@ public class ConnWifiCameraActivity extends BaseActivity implements BridgeServic
         conn_btn_dev.setOnClickListener(this);
         StatusUtils.setFullToStatusBar(this);  // StatusBar.
         back.setOnClickListener(this);
+        init_wifi();
         init_data();
         onview();
         initWifiConect();
-        initWifiName();
         initDialog();
-
-//        /**
-//         * 开启机智云小苹果服务(service)
-//         */
-//        Intent intentService = new Intent(this,SimpleIntentService.class);
-//        startService(intentService);
-
         init_wifi_camera();
     }
+
+    private void init_wifi() {
+        wifiUtil = WifiUtil.getInstance(this);
+        permissionHelper = new PermissionHelper(this);
+        getWifiSSid();
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        permissionHelper.onRequestPermissionsResult(requestCode, permissions, grantResults);
+    }
+
+    private void getWifiSSid() {
+//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+//            permissionHelper.check(Manifest.permission.ACCESS_BACKGROUND_LOCATION,
+//                    Manifest.permission.ACCESS_FINE_LOCATION,
+//                    Manifest.permission.ACCESS_COARSE_LOCATION
+//            ).onSuccess(this::onSuccess_29).onDenied(this::onDenied).onNeverAskAgain(this::onNeverAskAgain).run();
+//        } else {
+//            permissionHelper.check(
+//                    Manifest.permission.ACCESS_FINE_LOCATION
+//            ).onSuccess(this::onSuccess).onDenied(this::onDenied).onNeverAskAgain(this::onNeverAskAgain).run();
+//        }
+        permissionHelper.check(
+                Manifest.permission.ACCESS_FINE_LOCATION
+        ).onSuccess(this::onSuccess).onDenied(this::onDenied).onNeverAskAgain(this::onNeverAskAgain).run();
+    }
+
+
+    /**
+     * 打开Gps设置界面
+     */
+    private void openGpsSettings() {
+        Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
+        startActivityForResult(intent, 887);
+    }
+
+
+    private void onSuccess_29() {
+        if (GpsUtil.isOPen(ConnWifiCameraActivity.this)) {
+            initWifiName();
+        } else {
+            openGpsSettings();
+        }
+    }
+
+
+    private void onSuccess() {
+        initWifiName();
+        // mTvSSID.setText(DeviceUtil.INSTANCE.getWIFISSID(this));
+    }
+
+    private void onDenied() {
+        ToastUtil.showToast(this, "权限被拒绝，9.0系统无法获取SSID");
+    }
+
+    private void onNeverAskAgain() {
+        ToastUtil.showToast(this, "权限被拒绝，9.0系统无法获取SSID,下次不会在询问了");
+    }
+
 
     @Override
     protected void onEvent() {
@@ -160,15 +225,13 @@ public class ConnWifiCameraActivity extends BaseActivity implements BridgeServic
 
     private void getWifi() {
         WifiManager wifiMan = (WifiManager) this.getApplicationContext().getSystemService(Context.WIFI_SERVICE);
-
         WifiInfo wifiInfo = wifiMan.getConnectionInfo();
-
-        wifiName = wifiInfo.getSSID().toString();
-        if (wifiName.length() > 2 && wifiName.charAt(0) == '"'
-                && wifiName.charAt(wifiName.length() - 1) == '"') {
-            wifiName = wifiName.substring(1, wifiName.length() - 1);
+        String wifiId = wifiUtil.getWIFISSID(ConnWifiCameraActivity.this);
+        if (wifiId == null || wifiId.contains("<unknown ssid>")) {//wifiId在不连WIFI的情况下，去wifi快配wifiId = 0x
+            ToastUtil.showToast(ConnWifiCameraActivity.this, "wifiId在不连WIFI的情况下，去wifi快配wifiId = 0x");
+            return;
         }
-
+        wifiName = wifiId;
         List<ScanResult> wifiList = wifiMan.getScanResults();
         ArrayList<String> mList = new ArrayList<String>();
         mList.clear();
@@ -391,7 +454,7 @@ public class ConnWifiCameraActivity extends BaseActivity implements BridgeServic
                                 if (connWifiInterfacer != null) {
                                     connWifiInterfacer.conn_wifi_over();
                                 }
-                                ToastUtil.showToast(ConnWifiCameraActivity.this,"没有搜索到最新设备，请重新配置");
+                                ToastUtil.showToast(ConnWifiCameraActivity.this, "没有搜索到最新设备，请重新配置");
 //                                isOneKey = true;
 //                                doit_onekey = "search";
 //                                searchCamera();
@@ -823,7 +886,6 @@ public class ConnWifiCameraActivity extends BaseActivity implements BridgeServic
             public void onClick(View v) {
                 dialog.dismiss();
                 handler.sendEmptyMessage(0);
-
             }
         });
     }
@@ -848,22 +910,13 @@ public class ConnWifiCameraActivity extends BaseActivity implements BridgeServic
      */
     private void initWifiName() {
         // TODO Auto-generated method stub
-        WifiManager wifiMgr = (WifiManager) getApplicationContext().getSystemService(Context.WIFI_SERVICE);
-        int wifiState = wifiMgr.getWifiState();
-        WifiInfo info = wifiMgr.getConnectionInfo();
-        String wifiId = info != null ? info.getSSID() : "";
-
-        if (wifiId != null && !wifiId.contains("<unknown ss")) {//wifiId在不连WIFI的情况下，去wifi快配wifiId = 0x
-            //取出双引号中的字符
-            String reg = "\"";
-            String[] ss = wifiId.split(reg);
-            if (ss.length >= 2) {
-                edit_wifi.setText(ss[1]);
-                wifi_name = ss[1];
-                edit_password_gateway.setFocusable(true);
-                edit_password_gateway.setFocusableInTouchMode(true);
-                edit_password_gateway.requestFocus();
-            }
+        String wifiId = wifiUtil.getWIFISSID(ConnWifiCameraActivity.this);
+        if (wifiId != null && !wifiId.contains("<unknown ssid>")) {//wifiId在不连WIFI的情况下，去wifi快配wifiId = 0x
+            edit_wifi.setText(wifiId);
+            wifi_name = wifiId;
+            edit_password_gateway.setFocusable(true);
+            edit_password_gateway.setFocusableInTouchMode(true);
+            edit_password_gateway.requestFocus();
         }
     }
 
@@ -937,7 +990,7 @@ public class ConnWifiCameraActivity extends BaseActivity implements BridgeServic
                 index_wifi = 0;
 
                 list_wifi_camera.clear();
-                SharedPreferencesUtil.saveData(ConnWifiCameraActivity.this,"list_wifi_camera",new ArrayList<>());
+                SharedPreferencesUtil.saveData(ConnWifiCameraActivity.this, "list_wifi_camera", new ArrayList<>());
             }
         });//初始化快配和搜索设备dialogFragment
         connWifiInterfacer = (ConnWifiInterfacer) newFragment;

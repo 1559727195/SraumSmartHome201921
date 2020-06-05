@@ -114,7 +114,7 @@ public class CaptureActivity extends AppCompatActivity implements Callback, OnCl
         hasSurface = false;
         inactivityTimer = new InactivityTimer(this);
 
-//		@InjectView(R.id.status_view)
+//		@BindView(R.id.status_view)
 //		StatusView statusView;
         statusView = (StatusView) findViewById(R.id.status_view);//
         StatusUtils.setFullToStatusBar(this);  // StatusBar.

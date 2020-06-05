@@ -39,6 +39,7 @@
 
     <!-- Default Gallery style. -->
     <attr name="galleryStyle" format="reference" />
+
     
     <declare-styleable name="Gallery">
         <attr name="gravity" />

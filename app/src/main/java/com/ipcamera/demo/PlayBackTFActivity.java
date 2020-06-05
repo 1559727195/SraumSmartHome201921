@@ -37,7 +37,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
 
-import butterknife.InjectView;
+import butterknife.BindView;
 import vstc2.nativecaller.NativeCaller;
 
 
@@ -61,9 +61,9 @@ public class PlayBackTFActivity extends BaseActivity implements
 	public View loadMoreView;
 	private Button loadMoreButton;
 
-	@InjectView(R.id.back)
+	@BindView(R.id.back)
     ImageView back;
-	@InjectView(R.id.status_view)
+	@BindView(R.id.status_view)
     StatusView statusView;
 	
 	private Handler mHandler = new Handler() {

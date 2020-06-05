@@ -51,7 +51,7 @@ import okhttp3.Call;
  * Created by masskywcy on 2017-05-16.
  */
 
-public class HandSceneAdapter extends BaseAdapter {
+public class HandSceneAdapter extends BaseAdapter<Map> {
     private  boolean vibflag;
     private  boolean musicflag;
     private List<Map> list = new ArrayList<>();

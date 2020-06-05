@@ -20,16 +20,16 @@ import com.yanzhenjie.statusview.StatusUtils;
 import java.util.HashMap;
 import java.util.Map;
 
-import butterknife.InjectView;
+import butterknife.BindView;
 
 /**
  * Created by zhu on 2018/1/30.
  */
 
 public class TiaoGuangLightClickActivity extends BaseActivity {
-    @InjectView(R.id.back)
+    @BindView(R.id.back)
     ImageView back;
-    @InjectView(R.id.seek_one)
+    @BindView(R.id.seek_one)
     SeekBar seek_one;
     private String progress_now;
     private String status;

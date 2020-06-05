@@ -43,7 +43,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import butterknife.InjectView;
+import butterknife.BindView;
 import okhttp3.Call;
 
 /**
@@ -55,15 +55,15 @@ public class SelectYaoKongQiActivity extends BaseActivity implements
         PullToRefreshLayout.OnRefreshListener {
 
     private static final int REQUEST_SENSOR = 101;
-    @InjectView(R.id.back)
+    @BindView(R.id.back)
     ImageView back;
-    @InjectView(R.id.next_step_txt)
+    @BindView(R.id.next_step_txt)
     TextView next_step_txt;
-    @InjectView(R.id.refresh_view)
+    @BindView(R.id.refresh_view)
     PullToRefreshLayout refresh_view;
-    @InjectView(R.id.maclistview_id)
+    @BindView(R.id.maclistview_id)
     ListView maclistview_id;
-    @InjectView(R.id.status_view)
+    @BindView(R.id.status_view)
     StatusView statusView;
     private SelectYaoKongQiAdapter selectexcutesceneresultadapter;
     private List<Map> list_hand_scene = new ArrayList<>();
@@ -115,27 +115,6 @@ public class SelectYaoKongQiActivity extends BaseActivity implements
     protected void onEvent() {
 
     }
-
-    /**
-     * 初始化wifi连接，快配前wifi一定要连接上
-     */
-    private void initWifiConect() {
-        //初始化连接wifi dialog对话框
-
-
-        // TODO Auto-generated method stub
-        //获取系统服务
-        ConnectivityManager manager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
-        //获取状态
-        NetworkInfo.State wifi = manager.getNetworkInfo(ConnectivityManager.TYPE_WIFI).getState();
-        //判断wifi已连接的条件
-        if (wifi == NetworkInfo.State.CONNECTED || wifi == NetworkInfo.State.CONNECTING) {
-
-        } else {//wifi还没有连接上弹出alertDialog对话框
-            showCenterDeleteDialog();
-        }
-    }
-
 
     //自定义dialog,centerDialog删除对话框
     public void showCenterDeleteDialog() {

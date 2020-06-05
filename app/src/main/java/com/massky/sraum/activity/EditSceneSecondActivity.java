@@ -29,7 +29,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import butterknife.InjectView;
+import butterknife.BindView;
 import okhttp3.Call;
 
 import static com.massky.sraum.Utils.ApiHelper.sraum_getManuallyScenes;
@@ -40,13 +40,13 @@ import static com.massky.sraum.adapter.AddHandSceneAdapter.getIsSelected;
  */
 
 public class EditSceneSecondActivity extends BaseActivity implements XListView.IXListViewListener, AdapterView.OnItemClickListener {
-    @InjectView(R.id.back)
+    @BindView(R.id.back)
     ImageView back;
-    @InjectView(R.id.status_view)
+    @BindView(R.id.status_view)
     StatusView statusView;
-    @InjectView(R.id.next_step_txt)
+    @BindView(R.id.next_step_txt)
     TextView next_step_txt;
-    @InjectView(R.id.xListView_scan)
+    @BindView(R.id.xListView_scan)
     XListView xListView_scan;
     private List<Map> list_hand_scene;
     private Handler mHandler = new Handler();

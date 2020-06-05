@@ -318,17 +318,21 @@ public class SharedPreferencesUtil {
                 Map.Entry entry = iterator.next();
                 try {
 
-                    String type = entry.getValue().getClass().getSimpleName();
-                    if ("Integer".equals(type)) {
-                        object.put((String) entry.getKey(), (Integer) entry.getValue());
-                    } else if ("Boolean".equals(type)) {
-                        object.put((String) entry.getKey(), (Boolean) entry.getValue());
-                    } else if ("String".equals(type)) {
-                        object.put((String) entry.getKey(), (String) entry.getValue());
-                    } else if ("Float".equals(type)) {
-                        object.put((String) entry.getKey(), (Float) entry.getValue());
-                    } else if ("Long".equals(type)) {
-                        object.put((String) entry.getKey(), (Long) entry.getValue());
+                    if (entry.getValue()== null)  {
+                        object.put((String) entry.getKey(), "");
+                    } else {
+                        String type = entry.getValue().getClass().getSimpleName();
+                        if ("Integer".equals(type)) {
+                            object.put((String) entry.getKey(), (Integer) entry.getValue());
+                        } else if ("Boolean".equals(type)) {
+                            object.put((String) entry.getKey(), (Boolean) entry.getValue());
+                        } else if ("String".equals(type)) {
+                            object.put((String) entry.getKey(), (String) entry.getValue());
+                        } else if ("Float".equals(type)) {
+                            object.put((String) entry.getKey(), (Float) entry.getValue());
+                        } else if ("Long".equals(type)) {
+                            object.put((String) entry.getKey(), (Long) entry.getValue());
+                        }
                     }
                 } catch (JSONException e) {
 

@@ -51,7 +51,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import butterknife.InjectView;
+import butterknife.BindView;
 
 import static com.massky.sraum.Util.DipUtil.dip2px;
 
@@ -61,11 +61,11 @@ import static com.massky.sraum.Util.DipUtil.dip2px;
 
 public class SceneFragment extends BaseFragment1 {
     private List<Fragment> _fragments = new ArrayList<>();
-    @InjectView(R.id.status_view)
+    @BindView(R.id.status_view)
     StatusView statusView;
-    @InjectView(R.id.add_scene)
+    @BindView(R.id.add_scene)
     ImageView add_scene;
-    @InjectView(R.id.paixu_img)
+    @BindView(R.id.paixu_img)
     ImageView paixu_img;
     private LinearLayout[] _navItemLayouts;
     private HandSceneFragment handSceneFragment;
@@ -73,9 +73,9 @@ public class SceneFragment extends BaseFragment1 {
     private View[] views;
     private PopupWindow popupWindow;
 
-    @InjectView(R.id.tab_FindFragment_title)
+    @BindView(R.id.tab_FindFragment_title)
     TabLayout tab_FindFragment_title;
-    @InjectView(R.id.vp_FindFragment_pager)
+    @BindView(R.id.vp_FindFragment_pager)
     ViewPager vp_FindFragment_pager;
     private List<Fragment> list_smart_frag;
     private List<String> list_title;
@@ -327,9 +327,7 @@ public class SceneFragment extends BaseFragment1 {
                 Field field = c.getDeclaredField("view");
 
                 if (field == null) {
-
                     continue;
-
                 }
 
                 field.setAccessible(true);
@@ -337,9 +335,7 @@ public class SceneFragment extends BaseFragment1 {
                 final View view = (View) field.get(tab);
 
                 if (view == null) {
-
                     continue;
-
                 }
 
                 view.setTag(i);
@@ -354,10 +350,8 @@ public class SceneFragment extends BaseFragment1 {
                         vp_FindFragment_pager.setCurrentItem(mCurrentPageIndex, false);
                     }
                 });
-
             } catch (NoSuchFieldException e) {
                 e.printStackTrace();
-
             } catch (IllegalAccessException e) {
                 e.printStackTrace();
             }

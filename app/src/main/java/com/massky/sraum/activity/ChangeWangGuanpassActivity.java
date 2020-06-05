@@ -23,32 +23,32 @@ import com.yanzhenjie.statusview.StatusUtils;
 
 import java.util.HashMap;
 import java.util.Map;
-import butterknife.InjectView;
+import butterknife.BindView;
 
 /**
  * Created by masskywcy on 2016-09-26.
  */
 /*重新设置密码界面*/
 public class ChangeWangGuanpassActivity extends BaseActivity {
-    @InjectView(R.id.backrela_id)
+    @BindView(R.id.backrela_id)
     RelativeLayout backrela_id;
-    @InjectView(R.id.titlecen_id)
+    @BindView(R.id.titlecen_id)
     TextView titlecen_id;
-    @InjectView(R.id.completebtn_id)
+    @BindView(R.id.completebtn_id)
     Button completebtn_id;
-    @InjectView(R.id.originalpassword)
+    @BindView(R.id.originalpassword)
     ClearEditText originalpassword;
-    @InjectView(R.id.newpassword)
+    @BindView(R.id.newpassword)
     ClearEditText newpassword;
-    @InjectView(R.id.againpassword)
+    @BindView(R.id.againpassword)
     ClearEditText againpassword;
-    @InjectView(R.id.eyeone)
+    @BindView(R.id.eyeone)
     ImageView eyeone;
-    @InjectView(R.id.eyetwo)
+    @BindView(R.id.eyetwo)
     ImageView eyetwo;
-    @InjectView(R.id.eyethree)
+    @BindView(R.id.eyethree)
     ImageView eyethree;
-    @InjectView(R.id.back)
+    @BindView(R.id.back)
     ImageView back;
 
     private DialogUtil dialogUtil;

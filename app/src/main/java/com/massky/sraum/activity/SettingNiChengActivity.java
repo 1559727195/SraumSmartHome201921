@@ -18,7 +18,7 @@ import com.massky.sraum.base.BaseActivity;
 import com.massky.sraum.widget.ApplicationContext;
 import com.yanzhenjie.statusview.StatusUtils;
 import com.yanzhenjie.statusview.StatusView;
-import butterknife.InjectView;
+import butterknife.BindView;
 import static com.massky.sraum.Util.DipUtil.dip2px;
 
 /**
@@ -26,17 +26,17 @@ import static com.massky.sraum.Util.DipUtil.dip2px;
  */
 
 public class SettingNiChengActivity extends BaseActivity{
-    @InjectView(R.id.back)
+    @BindView(R.id.back)
     ImageView back;
-    @InjectView(R.id.status_view)//
+    @BindView(R.id.status_view)//
     StatusView statusView;
-    @InjectView(R.id.next_step_txt)
+    @BindView(R.id.next_step_txt)
     TextView next_step_txt;
     private PopupWindow popupWindow;
     private final String[] strs = new String[] {
         "爸爸", "妈妈", "爷爷", "奶奶", "儿子","女儿"
     };//定义一个String数组用来显示ListView的内容private ListView lv;/** Called when the activity is first created. */
-    @InjectView(R.id.xiala_nicheng)
+    @BindView(R.id.xiala_nicheng)
     ImageView xiala_nicheng;
 
     @Override

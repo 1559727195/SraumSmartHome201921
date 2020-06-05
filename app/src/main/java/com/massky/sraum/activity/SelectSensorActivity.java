@@ -33,7 +33,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import butterknife.InjectView;
+import butterknife.BindView;
 import okhttp3.Call;
 
 /**
@@ -45,25 +45,25 @@ public class SelectSensorActivity extends BaseActivity implements
         PullToRefreshLayout.OnRefreshListener {
 
     private static final int REQUEST_SENSOR = 101;
-    @InjectView(R.id.back)
+    @BindView(R.id.back)
     ImageView back;
-    @InjectView(R.id.next_step_txt)
+    @BindView(R.id.next_step_txt)
     ImageView next_step_txt;
-    @InjectView(R.id.refresh_view)
+    @BindView(R.id.refresh_view)
     PullToRefreshLayout refresh_view;
-    @InjectView(R.id.maclistview_id)
+    @BindView(R.id.maclistview_id)
     ListView maclistview_id;
-    @InjectView(R.id.status_view)
+    @BindView(R.id.status_view)
     StatusView statusView;
-    @InjectView(R.id.rel_scene_set)
+    @BindView(R.id.rel_scene_set)
     RelativeLayout rel_scene_set;
-    @InjectView(R.id.hand_txt)
+    @BindView(R.id.hand_txt)
     TextView hand_txt;
-    @InjectView(R.id.hand_linear)
+    @BindView(R.id.hand_linear)
     LinearLayout hand_linear;
-    @InjectView(R.id.img_guan_scene)
+    @BindView(R.id.img_guan_scene)
     ImageView img_guan_scene;
-    @InjectView(R.id.panel_scene_name_txt)
+    @BindView(R.id.panel_scene_name_txt)
     TextView panel_scene_name_txt;
 
 

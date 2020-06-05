@@ -3,7 +3,6 @@ package com.massky.sraum.activity;
 import android.content.Intent;
 import android.os.Handler;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -16,7 +15,6 @@ import com.massky.sraum.Util.Mycallback;
 import com.massky.sraum.Util.SharedPreferencesUtil;
 import com.massky.sraum.Util.TokenUtil;
 import com.massky.sraum.Utils.ApiHelper;
-import com.massky.sraum.adapter.GuanLianSceneAdapter;
 import com.massky.sraum.adapter.MyDeviceListAdapter;
 import com.massky.sraum.base.BaseActivity;
 import com.massky.sraum.view.XListView;
@@ -27,7 +25,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import butterknife.InjectView;
+import butterknife.BindView;
 import okhttp3.Call;
 
 /**
@@ -37,13 +35,13 @@ import okhttp3.Call;
 public class MyDeviceListActivity extends BaseActivity implements XListView.IXListViewListener {
     private List<Map> list_hand_scene;
     private MyDeviceListAdapter guanlianSceneAdapter;
-    @InjectView(R.id.back)
+    @BindView(R.id.back)
     ImageView back;
-    @InjectView(R.id.xListView_scan)
+    @BindView(R.id.xListView_scan)
     XListView xListView_scan;
-    @InjectView(R.id.project_select)
+    @BindView(R.id.project_select)
     TextView project_select;
-    @InjectView(R.id.next_step_txt)
+    @BindView(R.id.next_step_txt)
     TextView next_step_txt;
     private Handler mHandler = new Handler();
     private MyDeviceListAdapter mydeviceadapter;
@@ -71,17 +69,18 @@ public class MyDeviceListActivity extends BaseActivity implements XListView.IXLi
         boxnumber = (String) SharedPreferencesUtil.getData(MyDeviceListActivity.this, "boxnumber", "");
         list_hand_scene = new ArrayList<>();
 
-        mydeviceadapter = new MyDeviceListAdapter(MyDeviceListActivity.this, list_hand_scene,
-                listint, listintwo, authType, accountType, areaNumber, new MyDeviceListAdapter.RefreshListener() {
+        mydeviceadapter = new MyDeviceListAdapter(MyDeviceListActivity.this, list_hand_scene, listint, listintwo,
+                authType, accountType, areaNumber, new MyDeviceListAdapter.RefreshListener() {
             @Override
             public void refresh() {
                 onResumes();//界面出现之后，调数据刷新
             }
         });
+
         xListView_scan.setAdapter(mydeviceadapter);
         xListView_scan.setPullLoadEnable(false);
         xListView_scan.setFootViewHide();
-        xListView_scan.setXListViewListener(this);
+        xListView_scan.setXListViewListener(MyDeviceListActivity.this);
 
         if (authType != null) {
             switch (authType) {
@@ -261,8 +260,10 @@ public class MyDeviceListActivity extends BaseActivity implements XListView.IXLi
                             setPicture(user.wifiList.get(i).type);
                         }
                         project_select.setText("设备列表(" + list_hand_scene.size() + ")");
-                        mydeviceadapter.setLists(list_hand_scene, listint, listintwo);
-                        mydeviceadapter.notifyDataSetChanged();
+//                        mydeviceadapter.setLists(list_hand_scene, listint, listintwo);
+//                        mydeviceadapter.notifyDataSetChanged();
+                        init_main();
+
                         switch (doit) {
                             case "refresh":
 
@@ -270,6 +271,26 @@ public class MyDeviceListActivity extends BaseActivity implements XListView.IXLi
                             case "load":
                                 break;
                         }
+                    }
+
+                    private void init_main() {
+                        runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                mydeviceadapter = new MyDeviceListAdapter(MyDeviceListActivity.this, list_hand_scene,
+                                        listint, listintwo, authType, accountType, areaNumber, new MyDeviceListAdapter.RefreshListener() {
+                                    @Override
+                                    public void refresh() {
+                                        onResumes();//界面出现之后，调数据刷新
+                                    }
+                                });
+                                xListView_scan.setAdapter(mydeviceadapter);
+                                xListView_scan.setPullLoadEnable(false);
+                                xListView_scan.setFootViewHide();
+                                xListView_scan.setXListViewListener(MyDeviceListActivity.this);
+                            }
+                        });
+
                     }
                 });
     }
@@ -380,10 +401,12 @@ public class MyDeviceListActivity extends BaseActivity implements XListView.IXLi
                 listintwo.add(R.drawable.icon_keshimenling_40);
                 break;
             case "A611":
+            case "A601":
                 listint.add(R.drawable.freshair);
                 listintwo.add(R.drawable.freshair);
                 break;
             case "A711":
+            case "A701":
                 listint.add(R.drawable.floorheating);
                 listintwo.add(R.drawable.floorheating);
                 break;
@@ -391,12 +414,25 @@ public class MyDeviceListActivity extends BaseActivity implements XListView.IXLi
                 listint.add(R.drawable.icon_jixieshou_40);
                 listintwo.add(R.drawable.icon_jixieshou_40);
                 break;
+            case "B401":
+                listint.add(R.drawable.icon_zhinengshengjiang_40);
+                listintwo.add(R.drawable.icon_zhinengshengjiang_40);
+                break;
+            case "B402":
+                listint.add(R.drawable.icon_zhinengpingyi_40);
+                listintwo.add(R.drawable.icon_zhinengpingyi_40);
+                break;
+            case "B403":
+                listint.add(R.drawable.icon_zhinenggaozhongdii_40);
+                listintwo.add(R.drawable.icon_zhinenggaozhongdii_40);
+                break;
             default:
                 listint.add(R.drawable.defaultpic);
                 listintwo.add(R.drawable.defaultpic);
                 break;
         }
     }
+
 
     @Override
     protected void onResume() {

@@ -35,7 +35,7 @@ import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentMap;
 import java.util.concurrent.CopyOnWriteArrayList;
 
-import butterknife.InjectView;
+import butterknife.BindView;
 import okhttp3.Call;
 
 /**
@@ -47,19 +47,19 @@ public class SelectiveLinkageActivity extends BaseActivity implements
         PullToRefreshLayout.OnRefreshListener {
 
     private static final int REQUEST_SENSOR = 101;
-    @InjectView(R.id.back)
+    @BindView(R.id.back)
     ImageView back;
-    @InjectView(R.id.next_step_txt)
+    @BindView(R.id.next_step_txt)
     TextView next_step_txt;
-    @InjectView(R.id.refresh_view)
+    @BindView(R.id.refresh_view)
     PullToRefreshLayout refresh_view;
-    @InjectView(R.id.maclistview_id)
+    @BindView(R.id.maclistview_id)
     ListView maclistview_id;
-    @InjectView(R.id.status_view)
+    @BindView(R.id.status_view)
     StatusView statusView;
-    @InjectView(R.id.rel_scene_set)
+    @BindView(R.id.rel_scene_set)
     RelativeLayout rel_scene_set;
-    @InjectView(R.id.scene_linear)
+    @BindView(R.id.scene_linear)
     LinearLayout scene_linear;
     private SelectLinkageAdapter selectexcutesceneresultadapter;
     private List<Map> list_hand_scene = new ArrayList<>();
@@ -318,9 +318,20 @@ public class SelectiveLinkageActivity extends BaseActivity implements
                 listintwo.add(R.drawable.icon_hongwaizfq_40);
                 break;
             default://默认没有的类型直接把这条隐藏掉
-//                listint.add(R.drawable.defaultpic);
-//                listintwo.add(R.drawable.defaultpic);
-                panelList.remove(map);
+                listint.add(R.drawable.defaultpic);
+                listintwo.add(R.drawable.defaultpic);
+                break;
+            case "B401":
+                listint.add(R.drawable.icon_zhinengshengjiang_40);
+                listintwo.add(R.drawable.icon_zhinengshengjiang_40);
+                break;
+            case "B402":
+                listint.add(R.drawable.icon_zhinengpingyi_40);
+                listintwo.add(R.drawable.icon_zhinengpingyi_40);
+                break;
+            case "B403":
+                listint.add(R.drawable.icon_zhinenggaozhongdii_40);
+                listintwo.add(R.drawable.icon_zhinenggaozhongdii_40);
                 break;
         }
     }
@@ -359,27 +370,7 @@ public class SelectiveLinkageActivity extends BaseActivity implements
                                 == null ? "" : panelList.get(position).get("boxNumber").toString());
                 break;
             default:
-                intent = new Intent(SelectiveLinkageActivity.this, SelectiveLinkageDeviceDetailSecondActivity.class);
-//            intent.putExtra("type", (Serializable) listtype.get(position));
-                intent.putExtra("panelNumber", (Serializable) listpanelNumber.get(position));
-                intent.putExtra("panelType", (Serializable) listtype.get(position));
-                intent.putExtra("panelName", (Serializable) listpanelName.get(position));
-                intent.putExtra("boxName", (Serializable) listbox.get(position) == null ? "" : listbox.get(position));
-                intent.putExtra("gatewayMac", panelList.get(position).get("gatewayMac").toString());
-                //boxNumber
-                intent.putExtra("boxNumber", (Serializable) panelList.get(position).get("boxNumber")
-                        == null ? "" : panelList.get(position).get("boxNumber").toString());
-                //传感器参数
-//                Map mapdevice = new HashMap();
-//                mapdevice.put("sensorType", map_link.get("deviceType"));
-//                mapdevice.put("sensorId", map_link.get("deviceId"));
-//                mapdevice.put("sensorName",map_link.get("name"));
-//                mapdevice.put("sensorCondition", map_link.get("condition"));
-//                mapdevice.put("sensorMinValue", map_link.get("minValue"));
-//                mapdevice.put("sensorMaxValue", map_link.get("maxValue"));
-                intent.putExtra("sensor_map", (Serializable) map_link);
-                //
-                startActivityForResult(intent, REQUEST_SENSOR);
+                base_Activity(position);
                 break;
             case "AA02"://wifi红外模块
                 intent = new Intent(SelectiveLinkageActivity.this, SelectLinkageYaoKongQiActivity.class);
@@ -407,6 +398,81 @@ public class SelectiveLinkageActivity extends BaseActivity implements
 
 //        SelectSensorSingleAdapter.ViewHolderContentType viewHolder = (SelectSensorSingleAdapter.ViewHolderContentType) view.getTag();
 //        viewHolder.checkbox.toggle();// 把CheckBox的选中状态改为当前状态的反,gridview确保是单一选
+    }
+
+    private void base_Activity(int position) {
+        Intent intent;
+        switch (listtype.get(position)) {
+            case "A201":
+            case "A202":
+            case "A203":
+            case "A204":
+            case "A301":
+            case "A302":
+            case "A303":
+            case "A311":
+            case "A312":
+            case "A313":
+            case "A321":
+            case "A322":
+            case "A331":
+            case "A401":
+            case "A411":
+            case "A412":
+            case "A413":
+            case "A414":
+            case "A501":
+            case "A511":
+            case "A801":
+            case "A901":
+            case "AB01":
+            case "A902":
+            case "AB04":
+            case "AC01":
+            case "AD01":
+            case "AD02":
+            case "B001":
+            case "B101"://86插座两位
+//            case "B102"://86插座两位
+            case "网关":
+            case "B201":
+            case "AA02":
+            case "AA03":
+            case "AA04":
+            case "A611":
+            case "A601":
+            case "A711":
+            case "A701":
+            case "B301":
+            case "B401":
+            case "B402":
+            case "B403":
+
+                intent = new Intent(SelectiveLinkageActivity.this, SelectiveLinkageDeviceDetailSecondActivity.class);
+//            intent.putExtra("type", (Serializable) listtype.get(position));
+                intent.putExtra("panelNumber", (Serializable) listpanelNumber.get(position));
+                intent.putExtra("panelType", (Serializable) listtype.get(position));
+                intent.putExtra("panelName", (Serializable) listpanelName.get(position));
+                intent.putExtra("boxName", (Serializable) listbox.get(position) == null ? "" : listbox.get(position));
+                intent.putExtra("gatewayMac", panelList.get(position).get("gatewayMac").toString());
+                //boxNumber
+                intent.putExtra("boxNumber", (Serializable) panelList.get(position).get("boxNumber")
+                        == null ? "" : panelList.get(position).get("boxNumber").toString());
+                //传感器参数
+//                Map mapdevice = new HashMap();
+//                mapdevice.put("sensorType", map_link.get("deviceType"));
+//                mapdevice.put("sensorId", map_link.get("deviceId"));
+//                mapdevice.put("sensorName",map_link.get("name"));
+//                mapdevice.put("sensorCondition", map_link.get("condition"));
+//                mapdevice.put("sensorMinValue", map_link.get("minValue"));
+//                mapdevice.put("sensorMaxValue", map_link.get("maxValue"));
+                intent.putExtra("sensor_map", (Serializable) map_link);
+                //
+                startActivityForResult(intent, REQUEST_SENSOR);
+                break;
+            default:
+                break;
+        }
     }
 
     /**

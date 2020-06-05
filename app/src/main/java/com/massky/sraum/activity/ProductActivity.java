@@ -13,22 +13,22 @@ import com.massky.sraum.base.BaseActivity;
 import com.yanzhenjie.statusview.StatusUtils;
 import com.yanzhenjie.statusview.StatusView;
 
-import butterknife.InjectView;
+import butterknife.BindView;
 
 /**
  * Created by zhu on 2017/8/25.
  */
 
 public class ProductActivity extends BaseActivity {
-    @InjectView(R.id.wvMain)
+    @BindView(R.id.wvMain)
     WebView wvMain;
-    @InjectView(R.id.pbMain)
+    @BindView(R.id.pbMain)
     ProgressBar pbMain;
-    @InjectView(R.id.back)
+    @BindView(R.id.back)
     ImageView back;
-    @InjectView(R.id.status_view)
+    @BindView(R.id.status_view)
     StatusView   statusView;
-    private String _url = "http://app.sraum.com/sraumApp/product/index.html";
+    private String _url = "https://app.sraum.com/sraumApp/instructions/index.html";
     @Override
     protected int viewId() {
         return R.layout.product_act;
@@ -61,11 +61,8 @@ public class ProductActivity extends BaseActivity {
             public void onPageFinished(WebView view, String url) {
                 // TODO Auto-generated method stub
                 super.onPageFinished(view, url);
-
                 pbMain.setVisibility(View.GONE);
-
             }
-
         });
         wvMain.loadUrl(_url);
         back.setOnClickListener(this);

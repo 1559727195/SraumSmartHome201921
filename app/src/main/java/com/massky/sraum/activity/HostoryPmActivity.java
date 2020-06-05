@@ -20,7 +20,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import butterknife.InjectView;
+import butterknife.BindView;
 import lecho.lib.hellocharts.listener.ViewportChangeListener;
 import lecho.lib.hellocharts.model.Axis;
 import lecho.lib.hellocharts.model.Line;
@@ -35,9 +35,9 @@ import lecho.lib.hellocharts.view.LineChartView;
  */
 
 public class HostoryPmActivity extends BaseActivity{
-    @InjectView(R.id.status_view)
+    @BindView(R.id.status_view)
     StatusView statusView;
-    @InjectView(R.id.back)
+    @BindView(R.id.back)
     ImageView back;
 
     private static final String TAG = "MessageSendActivity";
@@ -48,7 +48,7 @@ public class HostoryPmActivity extends BaseActivity{
     private Axis axisY;
     private ProgressDialog progressDialog;
     private boolean isBiss;
-    @InjectView(R.id.xListView_scan)
+    @BindView(R.id.xListView_scan)
     ListView xListView_scan;
     private List<Map> list_hand_scene;
     private HostoryPmListAdapter hostory_pmlist_adapter;

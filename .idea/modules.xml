@@ -2,14 +2,15 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/SraumSmartHome.iml" filepath="$PROJECT_DIR$/SraumSmartHome.iml" />
-      <module fileurl="file://$PROJECT_DIR$/aircontrolprogressbar/aircontrolprogressbar.iml" filepath="$PROJECT_DIR$/aircontrolprogressbar/aircontrolprogressbar.iml" />
-      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
-      <module fileurl="file://$PROJECT_DIR$/citypickerview/citypickerview.iml" filepath="$PROJECT_DIR$/citypickerview/citypickerview.iml" />
-      <module fileurl="file://$PROJECT_DIR$/datepicker/datepicker.iml" filepath="$PROJECT_DIR$/datepicker/datepicker.iml" />
-      <module fileurl="file://$PROJECT_DIR$/pickerview/pickerview.iml" filepath="$PROJECT_DIR$/pickerview/pickerview.iml" />
-      <module fileurl="file://$PROJECT_DIR$/pm2.5progressbar/pm2.5progressbar.iml" filepath="$PROJECT_DIR$/pm2.5progressbar/pm2.5progressbar.iml" />
-      <module fileurl="file://$PROJECT_DIR$/swipemenulib/swipemenulib.iml" filepath="$PROJECT_DIR$/swipemenulib/swipemenulib.iml" />
+      <module fileurl="file://$PROJECT_DIR$/SraumSmartHome.iml" filepath="$PROJECT_DIR$/SraumSmartHome.iml" group="SraumSmartHome" />
+      <module fileurl="file://$PROJECT_DIR$/aircontrolprogressbar/aircontrolprogressbar.iml" filepath="$PROJECT_DIR$/aircontrolprogressbar/aircontrolprogressbar.iml" group="SraumSmartHome/aircontrolprogressbar" />
+      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" group="SraumSmartHome/app" />
+      <module fileurl="file://$PROJECT_DIR$/citypickerview/citypickerview.iml" filepath="$PROJECT_DIR$/citypickerview/citypickerview.iml" group="SraumSmartHome/citypickerview" />
+      <module fileurl="file://$PROJECT_DIR$/datepicker/datepicker.iml" filepath="$PROJECT_DIR$/datepicker/datepicker.iml" group="SraumSmartHome/datepicker" />
+      <module fileurl="file://$PROJECT_DIR$/pickerview/pickerview.iml" filepath="$PROJECT_DIR$/pickerview/pickerview.iml" group="SraumSmartHome/pickerview" />
+      <module fileurl="file://$PROJECT_DIR$/pm2.5progressbar/pm2.5progressbar.iml" filepath="$PROJECT_DIR$/pm2.5progressbar/pm2.5progressbar.iml" group="SraumSmartHome/pm2.5progressbar" />
+      <module fileurl="file://$PROJECT_DIR$/swipemenulib/swipemenulib.iml" filepath="$PROJECT_DIR$/swipemenulib/swipemenulib.iml" group="SraumSmartHome/swipemenulib" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/verticaltablayout/verticaltablayout.iml" filepath="$PROJECT_DIR$/.idea/modules/verticaltablayout/verticaltablayout.iml" group="SraumSmartHome/verticaltablayout" />
     </modules>
   </component>
 </project>

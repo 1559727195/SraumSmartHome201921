@@ -13,21 +13,21 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import butterknife.InjectView;
+import butterknife.BindView;
 
 /**
  * Created by zhu on 2018/1/25.
  */
 
 public class AddRoomActivity extends BaseActivity {
-    @InjectView(R.id.status_view)
+    @BindView(R.id.status_view)
     StatusView statusView;
-    @InjectView(R.id.mineRoom_list)
+    @BindView(R.id.mineRoom_list)
     GridView mineRoom_list;
     private AddRoomAdapter addRoomAdapter;
     String [] again_elements = {"客厅","卧室","厨房","游戏","餐厅","影音室","老人房","院子"};
     private List<Map> list_hand_scene;
-    @InjectView(R.id.back)
+    @BindView(R.id.back)
     ImageView back;
 
     @Override

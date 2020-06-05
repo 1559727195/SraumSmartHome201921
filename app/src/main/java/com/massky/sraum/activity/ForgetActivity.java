@@ -12,21 +12,21 @@ import com.massky.sraum.view.ClearEditText;
 import com.yanzhenjie.statusview.StatusUtils;
 import com.yanzhenjie.statusview.StatusView;
 
-import butterknife.InjectView;
+import butterknife.BindView;
 
 /**
  * Created by zhu on 2017/12/29.
  */
 
 public class ForgetActivity extends BaseActivity {
-    @InjectView(R.id.status_view)
+    @BindView(R.id.status_view)
     StatusView statusView;
-    @InjectView(R.id.back)
+    @BindView(R.id.back)
     ImageView back;
 
-    @InjectView(R.id.edit_password_gateway)
+    @BindView(R.id.edit_password_gateway)
     ClearEditText edit_password_gateway;
-    @InjectView(R.id.btn_login_gateway)
+    @BindView(R.id.btn_login_gateway)
     Button btn_login_gateway;
 
     @Override

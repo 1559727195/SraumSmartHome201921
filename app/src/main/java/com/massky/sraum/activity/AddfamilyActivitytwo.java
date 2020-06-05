@@ -21,7 +21,7 @@ import com.massky.sraum.base.BaseActivity;
 import com.yanzhenjie.statusview.StatusUtils;
 import java.util.HashMap;
 import java.util.Map;
-import butterknife.InjectView;
+import butterknife.BindView;
 import okhttp3.Call;
 
 /**
@@ -29,13 +29,13 @@ import okhttp3.Call;
  */
 
 public class AddfamilyActivitytwo extends BaseActivity {
-    @InjectView(R.id.familytwoedit)
+    @BindView(R.id.familytwoedit)
     TextView familytwoedit;
-    @InjectView(R.id.nametwoedit)
+    @BindView(R.id.nametwoedit)
     TextView nametwoedit;
-    @InjectView(R.id.famtwobtn_id)
+    @BindView(R.id.famtwobtn_id)
     Button famtwobtn_id;
-    @InjectView(R.id.back)
+    @BindView(R.id.back)
     ImageView back;
     private String mobilePhone, familyName;
     private DialogUtil dialogUtil;

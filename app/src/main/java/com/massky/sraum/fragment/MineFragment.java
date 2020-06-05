@@ -51,7 +51,7 @@ import java.util.List;
 import java.util.Map;
 
 import androidx.appcompat.app.AppCompatActivity;
-import butterknife.InjectView;
+import butterknife.BindView;
 import de.hdodenhof.circleimageview.CircleImageView;
 import io.reactivex.Observer;
 import io.reactivex.disposables.Disposable;
@@ -64,37 +64,37 @@ public class MineFragment extends BaseFragment1 {
     private List<Map> list_alarm = new ArrayList<>();
     private int currentpage = 1;
     private Handler mHandler = new Handler();
-    @InjectView(R.id.status_view)
+    @BindView(R.id.status_view)
     StatusView statusView;
     private View account_view;
     private Button cancelbtn_id, camera_id, photoalbum;
     private DialogUtil dialogUtil;
-    @InjectView(R.id.headportrait)
+    @BindView(R.id.headportrait)
     CircleImageView headportrait;
-    @InjectView(R.id.wode_device_share_rel)
+    @BindView(R.id.wode_device_share_rel)
     RelativeLayout wode_device_share_rel;
     private LinearLayout linear_popcamera;
-    @InjectView(R.id.wangguan_list_rel)
+    @BindView(R.id.wangguan_list_rel)
     RelativeLayout wangguan_list_rel;
-    @InjectView(R.id.sugestion_rel)
+    @BindView(R.id.sugestion_rel)
     RelativeLayout sugestion_rel;
-    @InjectView(R.id.wode_sao_rel)
+    @BindView(R.id.wode_sao_rel)
     RelativeLayout wode_sao_rel;
-    @InjectView(R.id.system_infor_rel)
+    @BindView(R.id.system_infor_rel)
     RelativeLayout system_infor_rel;
-    @InjectView(R.id.about_rel)
+    @BindView(R.id.about_rel)
     RelativeLayout about_rel;
-    @InjectView(R.id.setting_rel)
+    @BindView(R.id.setting_rel)
     RelativeLayout setting_rel;
-    @InjectView(R.id.dev_manager_rel)
+    @BindView(R.id.dev_manager_rel)
     RelativeLayout dev_manager_rel;
-    @InjectView(R.id.room_manager_rel)
+    @BindView(R.id.room_manager_rel)
     RelativeLayout room_manager_rel;
-    @InjectView(R.id.area_manager_rel)
+    @BindView(R.id.area_manager_rel)
     RelativeLayout area_manager_rel;
-    @InjectView(R.id.add_family_rel)
+    @BindView(R.id.add_family_rel)
     RelativeLayout add_family_rel;
-    @InjectView(R.id.nicheng_name)
+    @BindView(R.id.nicheng_name)
     TextView nicheng_name;
     private User.userinfo userinfo;
     private int intfirst;

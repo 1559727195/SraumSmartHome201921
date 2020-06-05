@@ -26,7 +26,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import butterknife.InjectView;
+import butterknife.BindView;
 import okhttp3.Call;
 
 /**
@@ -37,17 +37,17 @@ public class SelectLinkageYaoKongQiActivity extends BaseActivity implements
         AdapterView.OnItemClickListener,
         PullToRefreshLayout.OnRefreshListener {
 
-    @InjectView(R.id.back)
+    @BindView(R.id.back)
     ImageView back;
-    @InjectView(R.id.next_step_txt)
+    @BindView(R.id.next_step_txt)
     TextView next_step_txt;
-    @InjectView(R.id.refresh_view)
+    @BindView(R.id.refresh_view)
     PullToRefreshLayout refresh_view;
-    @InjectView(R.id.maclistview_id)
+    @BindView(R.id.maclistview_id)
     ListView maclistview_id;
-    @InjectView(R.id.status_view)
+    @BindView(R.id.status_view)
     StatusView statusView;
-    @InjectView(R.id.project_select)
+    @BindView(R.id.project_select)
     TextView project_select;
     private SelectLinkageYaoKongQiAdapter selectexcutesceneresultadapter;
     private List<Map> list_hand_scene = new ArrayList<>();

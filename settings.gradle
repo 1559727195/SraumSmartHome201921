@@ -1,1 +1,2 @@
+include ':verticaltablayout'
 include ':app', ':datepicker', ':swipemenulib', ':pm2.5progressbar', ':aircontrolprogressbar', ':pickerview', ':citypickerview'

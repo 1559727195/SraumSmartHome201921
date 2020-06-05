@@ -25,7 +25,8 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import butterknife.InjectView;
+import butterknife.BindView;
+
 import static com.massky.sraum.activity.TimeExcuteCordinationActivity.MESSAGE_TIME_EXCUTE_ACTION;
 
 /**
@@ -33,11 +34,11 @@ import static com.massky.sraum.activity.TimeExcuteCordinationActivity.MESSAGE_TI
  */
 
 public class CustomDefineDaySceneActivity extends BaseActivity implements AdapterView.OnItemClickListener {
-    @InjectView(R.id.back)
+    @BindView(R.id.back)
     ImageView back;
-    @InjectView(R.id.xListView_scan)
+    @BindView(R.id.xListView_scan)
     ListView xListView_scan;
-    @InjectView(R.id.next_step_txt)
+    @BindView(R.id.next_step_txt)
     TextView next_step_txt;
     String[] again_elements = {"周一", "周二", "周三", "周四", "周五", "周六", "周日"};
     private List<TimeSelectBean> list;

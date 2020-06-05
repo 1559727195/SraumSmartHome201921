@@ -10,18 +10,18 @@ import com.massky.sraum.R;
 import com.massky.sraum.base.BaseActivity;
 import com.yanzhenjie.statusview.StatusUtils;
 
-import butterknife.InjectView;
+import butterknife.BindView;
 
 /**
  * Created by zhu on 2018/1/9.
  */
 
 public class AddAutoSceneActivity extends BaseActivity{
-    @InjectView(R.id.back)
+    @BindView(R.id.back)
     ImageView back;
-    @InjectView(R.id.auto_time_exeute)
+    @BindView(R.id.auto_time_exeute)
     RelativeLayout auto_time_exeute;
-    @InjectView(R.id.smart_device_exeute)
+    @BindView(R.id.smart_device_exeute)
    RelativeLayout smart_device_exeute;
 
     @Override

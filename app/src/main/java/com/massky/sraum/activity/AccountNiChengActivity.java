@@ -14,20 +14,20 @@ import com.massky.sraum.widget.SlideSwitchButton;
 import com.yanzhenjie.statusview.StatusUtils;
 import com.yanzhenjie.statusview.StatusView;
 
-import butterknife.InjectView;
+import butterknife.BindView;
 
 /**
  * Created by zhu on 2018/1/18.
  */
 
 public class AccountNiChengActivity extends BaseActivity{
-    @InjectView(R.id.status_view)
+    @BindView(R.id.status_view)
     StatusView statusView;
-    @InjectView(R.id.back)
+    @BindView(R.id.back)
     ImageView back;
-    @InjectView(R.id.complute_setting)
+    @BindView(R.id.complute_setting)
     TextView complute_setting;
-    @InjectView(R.id.edit_nicheng)
+    @BindView(R.id.edit_nicheng)
     ClearEditText edit_nicheng;
 
 

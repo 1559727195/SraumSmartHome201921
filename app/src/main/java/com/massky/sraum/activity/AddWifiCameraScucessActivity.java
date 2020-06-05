@@ -36,7 +36,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import butterknife.InjectView;
+import butterknife.BindView;
 import okhttp3.Call;
 
 import static com.massky.sraum.Util.DipUtil.dip2px;
@@ -46,11 +46,11 @@ import static com.massky.sraum.Util.DipUtil.dip2px;
  */
 
 public class AddWifiCameraScucessActivity extends BaseActivity {
-    @InjectView(R.id.next_step_txt)
+    @BindView(R.id.next_step_txt)
     ImageView next_step_txt;
-    @InjectView(R.id.back)
+    @BindView(R.id.back)
     ImageView back;
-    @InjectView(R.id.status_view)
+    @BindView(R.id.status_view)
     StatusView statusView;
     private PopupWindow popupWindow;
     private String device_name;
@@ -62,9 +62,9 @@ public class AddWifiCameraScucessActivity extends BaseActivity {
     private String panelNumber;
     private String deviceNumber;
     private String panelMAC;
-    @InjectView(R.id.dev_name)
+    @BindView(R.id.dev_name)
     ClearEditText dev_name;
-    @InjectView(R.id.btn_login_gateway)
+    @BindView(R.id.btn_login_gateway)
     Button btn_login_gateway;
     private String TAG = "robin debug";
     List<GizWifiDevice> wifiDevices = new ArrayList<GizWifiDevice>();

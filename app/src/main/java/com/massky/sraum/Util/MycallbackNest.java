@@ -169,7 +169,7 @@ public class MycallbackNest extends StringCallback implements ApiResult {
     private void getToken() {
         wrongtoken_index--;
         String encryPass = (String) SharedPreferencesUtil.getData(context, "loginPassword", "");
-        String password = DES.decryptDES(encryPass, "12345678");
+       // String password = DES.decryptDES(encryPass, "12345678");
         String loginPhone = (String) SharedPreferencesUtil.getData(context, "loginPhone", "");
         Map<String, Object> map = new HashMap<>();
         String time = Timeuti.getTime();

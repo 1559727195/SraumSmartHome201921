@@ -30,7 +30,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import butterknife.InjectView;
+import butterknife.BindView;
 
 /**
  * Created by zhu on 2018/1/2.
@@ -38,15 +38,15 @@ import butterknife.InjectView;
 
 public class EditTablePMActivity extends BaseActivity {
     private String mac;
-    @InjectView(R.id.gatedditexttwo)
+    @BindView(R.id.gatedditexttwo)
     ClearLengthEditText gatedditexttwo;
-    @InjectView(R.id.standard)
+    @BindView(R.id.standard)
     TextView standard;
-    @InjectView(R.id.save_btn)
+    @BindView(R.id.save_btn)
     Button save_btn;
     private DialogUtil dialogUtil;
     private String areaNumber;
-    @InjectView(R.id.back)
+    @BindView(R.id.back)
     ImageView back;
     private String id;
 

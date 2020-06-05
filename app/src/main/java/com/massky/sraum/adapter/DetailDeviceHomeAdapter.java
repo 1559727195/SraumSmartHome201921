@@ -405,6 +405,64 @@ public class DetailDeviceHomeAdapter extends android.widget.BaseAdapter {
                     mHolder.status_txt.setTextColor(context.getResources().getColor(R.color.dark_gray_new));
                 }
                 break;
+
+            case "19":
+                switch (list.get(position).get("status").toString()) {
+                    case "1":
+                        mHolder.status_txt.setTextColor(context.getResources().getColor(R.color.dark));
+                        mHolder.status_txt.setText("上升");//#E2C891
+                        break;
+                    case "2":
+                        mHolder.status_txt.setTextColor(context.getResources().getColor(R.color.dark));
+                        mHolder.status_txt.setText("下降");//#E2C891
+                        break;
+                    case "0":
+                        mHolder.status_txt.setTextColor(context.getResources().getColor(R.color.dark_gray_new));
+                        mHolder.status_txt.setText("暂停");//#E2C891
+                        break;
+                }
+                mHolder.imageitem_id.setImageResource(R.drawable.icon_zhinengshengjiang_70_sy);
+                break;
+            case "20":
+                switch (list.get(position).get("status").toString()) {
+                    case "1":
+                        mHolder.status_txt.setTextColor(context.getResources().getColor(R.color.dark));
+                        mHolder.status_txt.setText("向左");//#E2C891
+                        break;
+                    case "2":
+                        mHolder.status_txt.setTextColor(context.getResources().getColor(R.color.dark));
+                        mHolder.status_txt.setText("向右");//#E2C891
+                        break;
+                    case "0":
+                        mHolder.status_txt.setTextColor(context.getResources().getColor(R.color.dark_gray_new));
+                        mHolder.status_txt.setText("暂停");//#E2C891
+                        break;
+                }
+                mHolder.imageitem_id.setImageResource(R.drawable.icon_zhinengpingyi_70_sy);
+                break;
+            case "21":
+                switch (list.get(position).get("status").toString()) {
+                    case "1":
+                        mHolder.status_txt.setTextColor(context.getResources().getColor(R.color.dark));
+                        mHolder.status_txt.setText("高位");//#E2C891
+                        break;
+                    case "2":
+                        mHolder.status_txt.setTextColor(context.getResources().getColor(R.color.dark));
+                        mHolder.status_txt.setText("中位");//#E2C891
+                        break;
+                    case "3":
+                        mHolder.status_txt.setTextColor(context.getResources().getColor(R.color.dark));
+                        mHolder.status_txt.setText("低位");//#E2C891
+                        break;
+                    case "0":
+                        mHolder.status_txt.setTextColor(context.getResources().getColor(R.color.dark_gray_new));
+                        mHolder.status_txt.setText("暂停");//#E2C891
+                        break;
+                }
+                mHolder.imageitem_id.setImageResource(R.drawable.icon_zhinenggaozhongdii_70_sy);
+                break;
+
+
             default:
                 mHolder.imageitem_id.setImageResource(R.drawable.marklamph);
                 break;
@@ -416,6 +474,7 @@ public class DetailDeviceHomeAdapter extends android.widget.BaseAdapter {
 
     /**
      * 动态设置textview在布局中的显示方式layoutparams
+     *
      * @param position
      * @param viewHolderContentType
      */

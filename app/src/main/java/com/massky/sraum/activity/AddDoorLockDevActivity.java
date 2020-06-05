@@ -33,7 +33,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import butterknife.InjectView;
+import butterknife.BindView;
 import okhttp3.Call;
 
 import static com.massky.sraum.activity.MainGateWayActivity.ACTION_SRAUM_SETBOX;
@@ -44,11 +44,11 @@ import static com.massky.sraum.activity.MainGateWayActivity.ACTION_SRAUM_SETBOX;
  */
 
 public class AddDoorLockDevActivity extends BaseActivity {
-    @InjectView(R.id.back)
+    @BindView(R.id.back)
     ImageView back;
-    @InjectView(R.id.status_view)
+    @BindView(R.id.status_view)
     StatusView statusView;
-    @InjectView(R.id.next_step_id)
+    @BindView(R.id.next_step_id)
     Button next_step_id;
 
 //    private int[] icon = {R.drawable.icon_type_switch, R.drawable.menci_big,
@@ -56,9 +56,9 @@ public class AddDoorLockDevActivity extends BaseActivity {
 //            R.drawable.emergency_button};
 
 
-    @InjectView(R.id.roundProgressBar2)
+    @BindView(R.id.roundProgressBar2)
     RoundProgressBar_ChangePosition roundProgressBar2;
-    @InjectView(R.id.txt_remain_time)
+    @BindView(R.id.txt_remain_time)
     TextView txt_remain_time;
     private boolean is_index;
     private int position;//灯控，zigbee设备

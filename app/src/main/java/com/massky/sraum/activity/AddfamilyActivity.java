@@ -20,7 +20,7 @@ import com.massky.sraum.view.ClearEditText;
 import com.yanzhenjie.statusview.StatusUtils;
 import java.util.HashMap;
 import java.util.Map;
-import butterknife.InjectView;
+import butterknife.BindView;
 
 /**
  * Created by xufuchao on 2017-02-21.
@@ -28,13 +28,13 @@ import butterknife.InjectView;
 /*
 * 添加成员界面*/
 public class AddfamilyActivity extends BaseActivity {
-    @InjectView(R.id.familyedit)
+    @BindView(R.id.familyedit)
     ClearEditText familyedit;
-    @InjectView(R.id.nameedit)
+    @BindView(R.id.nameedit)
     ClearEditText nameedit;
-    @InjectView(R.id.fambtn_id)
+    @BindView(R.id.fambtn_id)
     Button fambtn_id;
-    @InjectView(R.id.back)
+    @BindView(R.id.back)
     ImageView   back;
     private DialogUtil dialogUtil;
     private Bundle bundle;

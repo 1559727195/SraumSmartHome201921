@@ -39,7 +39,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import butterknife.InjectView;
+import butterknife.BindView;
 import okhttp3.Call;
 
 /**
@@ -47,32 +47,32 @@ import okhttp3.Call;
  */
 
 public class SetSelectLinkActivity extends BaseActivity {
-    @InjectView(R.id.back)
+    @BindView(R.id.back)
     ImageView back;
-    @InjectView(R.id.next_step_txt)
+    @BindView(R.id.next_step_txt)
     TextView next_step_txt;
-    @InjectView(R.id.status_view)
+    @BindView(R.id.status_view)
     StatusView statusView;
     private TimePickerView pvCustomTime;
-    @InjectView(R.id.sleep_time_rel)
+    @BindView(R.id.sleep_time_rel)
     RelativeLayout sleep_time_rel;
-    @InjectView(R.id.get_up_rel)
+    @BindView(R.id.get_up_rel)
     RelativeLayout get_up_rel;
-    //    @InjectView(R.id.sleep_time_txt)
+    //    @BindView(R.id.sleep_time_txt)
 //    TextView sleep_time_txt;
-//    @InjectView(R.id.get_up_time_txt)
+//    @BindView(R.id.get_up_time_txt)
 //    TextView get_up_time_txt;
     private String hourPicker;
     private String minutePicker;
     String time_content;
-    @InjectView(R.id.start_time_txt)
+    @BindView(R.id.start_time_txt)
     TextView start_time_txt;
-    @InjectView(R.id.end_time_txt)
+    @BindView(R.id.end_time_txt)
     TextView end_time_txt;
     private int index_select;
-    @InjectView(R.id.link_name_edit)
+    @BindView(R.id.link_name_edit)
     ClearLengthEditText link_name_edit;
-    @InjectView(R.id.time_select_linear)
+    @BindView(R.id.time_select_linear)
     LinearLayout time_select_linear;
     private DialogUtil dialogUtil;
     private List<Map> list_condition = new ArrayList<>();

@@ -5,6 +5,7 @@ import android.graphics.Color;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.SeekBar;
 import android.widget.TextView;
@@ -19,7 +20,7 @@ import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
 
-import butterknife.InjectView;
+import butterknife.BindView;
 
 /**
  * Created by zhu on 2018/6/6.
@@ -27,13 +28,13 @@ import butterknife.InjectView;
 
 public class AirLinkageControlActivity extends BaseActivity implements
         SeekBar.OnSeekBarChangeListener {
-    @InjectView(R.id.back)
+    @BindView(R.id.back)
     ImageView back;
-    @InjectView(R.id.next_step_txt)
+    @BindView(R.id.next_step_txt)
     TextView next_step_txt;
-    @InjectView(R.id.project_select)
+    @BindView(R.id.project_select)
     TextView project_select;
-    @InjectView(R.id.status_view)
+    @BindView(R.id.status_view)
     StatusView statusView;
 
 
@@ -43,25 +44,40 @@ public class AirLinkageControlActivity extends BaseActivity implements
      * @return
      */
 
-    @InjectView(R.id.air_control_radio_model)
+    @BindView(R.id.air_control_radio_model)
     RadioGroup air_control_radio_model;
-    @InjectView(R.id.air_control_tmp_del)
+    @BindView(R.id.air_control_tmp_del)
     ImageView air_control_tmp_del;
     //air_control_tmp_add
-    @InjectView(R.id.air_control_tmp_add)
+    @BindView(R.id.air_control_tmp_add)
     ImageView air_control_tmp_add;
-    @InjectView(R.id.air_control_speed)
+    @BindView(R.id.air_control_speed)
     RadioGroup air_control_speed;
-    @InjectView(R.id.air_control_radio_open_close)
+    @BindView(R.id.air_control_radio_open_close)
     RadioGroup air_control_radio_open_close;
-    @InjectView(R.id.tmp_txt)
+    @BindView(R.id.tmp_txt)
     TextView tmp_txt;
     private Map air_control_map = new HashMap();
     private int tempture;
     private Map sensor_map = new HashMap();//传感器map
-    @InjectView(R.id.mode_linear)
+    @BindView(R.id.mode_linear)
     LinearLayout mode_linear;
+    @BindView(R.id.speed_linear)
+    LinearLayout speed_linear;
+    @BindView(R.id.view_speed)
+    View view_speed;
+    @BindView(R.id.radio_one_model)
+    RadioButton radio_one_model;
+    @BindView(R.id.radio_two_model)
+    RadioButton radio_two_model;
+    @BindView(R.id.radio_three_model)
+    RadioButton radio_three_model;
+    @BindView(R.id.radio_four_model)
+    RadioButton radio_four_model;
+
+
     private Map map_panel = new HashMap();
+    private String type;
 
     /**
      * 空调
@@ -76,6 +92,7 @@ public class AirLinkageControlActivity extends BaseActivity implements
 
     @Override
     protected void onView() {
+        // radio_one_model.setText("gdfklgmdfdfg");
 
         StatusUtils.setFullToStatusBar(this);  // StatusBar.
 //        String type = (String) getIntent().getSerializableExtra("type");
@@ -94,7 +111,7 @@ public class AirLinkageControlActivity extends BaseActivity implements
         map_panel = (Map) getIntent().getSerializableExtra("panel_map");
 //
 
-        String type = air_control_map.get("type").toString();
+        type = air_control_map.get("type").toString();
         switch (type) {
             case "3":
                 mode_linear.setVisibility(View.VISIBLE);
@@ -103,7 +120,8 @@ public class AirLinkageControlActivity extends BaseActivity implements
                 mode_linear.setVisibility(View.GONE);
                 break;
             case "6":
-                mode_linear.setVisibility(View.GONE);
+                speed_linear.setVisibility(View.GONE);
+                view_speed.setVisibility(View.GONE);
                 break;
         }
         project_select.setText(air_control_map.get("name").toString());
@@ -159,6 +177,18 @@ public class AirLinkageControlActivity extends BaseActivity implements
                 break;
         }
 
+        speed();
+        switch (type) {
+            case "3":
+                air_mode();
+                break;
+            case "6":
+                dinuan_mode();
+                break;
+        }
+    }
+
+    private void speed() {
         String speed = (String) air_control_map.get("speed");
         switch (speed) {
             case "1":
@@ -177,6 +207,9 @@ public class AirLinkageControlActivity extends BaseActivity implements
                 air_control_speed.check(R.id.radio_four_speed);
                 break;
         }
+    }
+
+    private void air_mode() {
         String model = (String) air_control_map.get("mode");
         //
 
@@ -195,6 +228,26 @@ public class AirLinkageControlActivity extends BaseActivity implements
                 break;
             default:
                 air_control_radio_model.check(R.id.radio_four_model);
+                break;
+        }
+    }
+
+
+    private void dinuan_mode() {
+        String model = (String) air_control_map.get("mode");
+        radio_one_model.setText("加热");
+        radio_two_model.setText("睡眠");
+        radio_three_model.setText("外出");
+        radio_four_model.setVisibility(View.GONE);
+        switch (model) {
+            case "1":
+                air_control_radio_model.check(R.id.radio_one_model);
+                break;
+            case "2":
+                air_control_radio_model.check(R.id.radio_two_model);
+                break;
+            case "3":
+                air_control_radio_model.check(R.id.radio_three_model);
                 break;
         }
     }
@@ -346,7 +399,7 @@ public class AirLinkageControlActivity extends BaseActivity implements
             case R.id.air_control_tmp_add:
                 tempture = Integer.parseInt(air_control_map.get("temperature").toString());
                 if (tempture < 16) {
-                    tempture = 16 ;
+                    tempture = 16;
                 }
                 if (tempture < 30)
                     tempture++;
@@ -408,6 +461,9 @@ public class AirLinkageControlActivity extends BaseActivity implements
             case "3":
                 common_mode(temp);
                 break;
+            case "6":
+                common_mode_dinuan(temp);
+                break;
         }
         return temp;
     }
@@ -431,6 +487,25 @@ public class AirLinkageControlActivity extends BaseActivity implements
                 break;
             default:
                 temp.append("自动");
+                break;
+        }
+    }
+
+
+
+    private void common_mode_dinuan(StringBuffer temp) {
+        String model = (String) air_control_map.get("mode");
+        //
+
+        switch (model) {
+            case "1":
+                temp.append("  " + "加热");
+                break;
+            case "2":
+                temp.append("  " + "睡眠");
+                break;
+            case "3":
+                temp.append("  " + "外出");
                 break;
         }
     }

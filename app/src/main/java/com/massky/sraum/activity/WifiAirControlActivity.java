@@ -36,7 +36,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
-import butterknife.InjectView;
+import butterknife.BindView;
 import okhttp3.Call;
 
 /**
@@ -44,40 +44,40 @@ import okhttp3.Call;
  */
 
 public class WifiAirControlActivity extends BaseActivity implements IDeviceControllerListener {
-    @InjectView(R.id.back)
+    @BindView(R.id.back)
     ImageView back;
-    @InjectView(R.id.status_view)
+    @BindView(R.id.status_view)
     StatusView statusView;
-    @InjectView(R.id.air_text)
+    @BindView(R.id.air_text)
     TextView air_text;
-    @InjectView(R.id.text_clond)
+    @BindView(R.id.text_clond)
     TextView text_clond;
-    @InjectView(R.id.text_model)
+    @BindView(R.id.text_model)
     TextView text_model;
-    @InjectView(R.id.wendu_txt)
+    @BindView(R.id.wendu_txt)
     TextView wendu_txt;
-    //    @InjectView(R.id.air_fuhao)
+    //    @BindView(R.id.air_fuhao)
 //    TextView air_fuhao;
-    @InjectView(R.id.feng_liang)
+    @BindView(R.id.feng_liang)
     ImageView feng_liang;
-    @InjectView(R.id.mode_img)
+    @BindView(R.id.mode_img)
     ImageView mode_img;
-    @InjectView(R.id.down_up_img)
+    @BindView(R.id.down_up_img)
     ImageView down_up_img;
-    @InjectView(R.id.zouyou_img)
+    @BindView(R.id.zouyou_img)
     ImageView zouyou_img;
-    @InjectView(R.id.add_img)
+    @BindView(R.id.add_img)
     ImageView add_img;
-    @InjectView(R.id.delete_img)
+    @BindView(R.id.delete_img)
     ImageView delete_img;
-    @InjectView(R.id.open_close_img)
+    @BindView(R.id.open_close_img)
     ImageView open_close_img;
     private DialogUtil dialogUtil;
     private String mac = "";
     private String rid = "";//遥控器编码
-    @InjectView(R.id.icon_shangxia)
+    @BindView(R.id.icon_shangxia)
     ImageView icon_shangxia;
-    @InjectView(R.id.icon_zuoyou)
+    @BindView(R.id.icon_zuoyou)
     ImageView icon_zuoyou;
 
     private GizWifiDevice device;

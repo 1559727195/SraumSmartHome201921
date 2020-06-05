@@ -41,7 +41,7 @@ import java.util.Map;
 
 import androidx.fragment.app.Fragment;
 import androidx.viewpager.widget.ViewPager;
-import butterknife.InjectView;
+import butterknife.BindView;
 
 import static com.massky.sraum.fragment.HomeFragment.ACTION_INTENT_RECEIVER_TABLE_PM;
 import static com.massky.sraum.fragment.HomeFragment.ACTION_INTENT_RECEIVER_TO_SECOND_PAGE;
@@ -51,21 +51,21 @@ import static com.massky.sraum.fragment.HomeFragment.ACTION_INTENT_RECEIVER_TO_S
  */
 
 public class Pm25SecondActivity extends BaseActivity {
-    @InjectView(R.id.back)
+    @BindView(R.id.back)
     ImageView back;
-    @InjectView(R.id.temp_label)
+    @BindView(R.id.temp_label)
     TextView temp_label;
-    @InjectView(R.id.temp_txt)
+    @BindView(R.id.temp_txt)
     TextView temp_txt;
-    @InjectView(R.id.pm_label)
+    @BindView(R.id.pm_label)
     TextView pm_label;
-    @InjectView(R.id.pm_txt)
+    @BindView(R.id.pm_txt)
     TextView pm_txt;
-    @InjectView(R.id.shidu_label)
+    @BindView(R.id.shidu_label)
     TextView shidu_label;
-    @InjectView(R.id.shidu_txt)
+    @BindView(R.id.shidu_txt)
     TextView shidu_txt;
-    @InjectView(R.id.project_select)
+    @BindView(R.id.project_select)
     TextView project_select;
 
     private String loginPhone;

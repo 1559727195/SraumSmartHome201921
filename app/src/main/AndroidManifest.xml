@@ -124,6 +124,28 @@
     <!-- 8.0安装apk权限，需要允许安装未知应用 -->
     <uses-permission android:name="android.permission.REQUEST_INSTALL_PACKAGES" />
 
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE"/>
+
+
+<!--    &lt;!&ndash;使用网络&ndash;&gt;-->
+<!--    <uses-permission android:name="android.permission.INTERNET" />-->
+<!--    &lt;!&ndash;网络状态&ndash;&gt;-->
+<!--    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />-->
+<!--    &lt;!&ndash;wifi状态权限&ndash;&gt;-->
+<!--    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />-->
+<!--    &lt;!&ndash;位置信息&ndash;&gt;-->
+<!--    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />-->
+<!--    &lt;!&ndash;如果是安卓10.0，需要后台获取连接的wifi名称则添加进程获取位置信息权限 &ndash;&gt;-->
+<!--    <uses-permission android:name="android.permission.ACCESS_BACKGROUND_LOCATION" />-->
+<!--    &lt;!&ndash;android 10.0使用wifi api新添加的权限&ndash;&gt;-->
+<!--    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />-->
+
+    <uses-permission android:name="android.permission.CHANGE_WIFI_MULTICAST_STATE" />
+
+
+
     <application
         android:name=".Utils.App"
         android:allowBackup="true"
@@ -631,7 +653,13 @@
         <activity
             android:name="com.massky.sraum.activity.CurtainWindowActivity"
             android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+
+        <activity
+            android:name="com.massky.sraum.activity.UpDownLeftRightActivity"
+            android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar">
+
 
         </activity>
 

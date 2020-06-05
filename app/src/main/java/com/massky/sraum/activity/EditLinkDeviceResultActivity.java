@@ -46,7 +46,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import butterknife.InjectView;
+import butterknife.BindView;
 import okhttp3.Call;
 
 /**
@@ -54,38 +54,38 @@ import okhttp3.Call;
  */
 
 public class EditLinkDeviceResultActivity extends BaseActivity {
-    @InjectView(R.id.back)
+    @BindView(R.id.back)
     TextView back;
-    @InjectView(R.id.next_step_txt)
+    @BindView(R.id.next_step_txt)
     TextView next_step_txt;
-    //    @InjectView(R.id.maclistview_id)
+    //    @BindView(R.id.maclistview_id)
 //    ListView maclistview_id;
-    @InjectView(R.id.status_view)
+    @BindView(R.id.status_view)
     StatusView statusView;
-    @InjectView(R.id.maclistview_id_condition)
+    @BindView(R.id.maclistview_id_condition)
     ListView maclistview_id_condition;
-    @InjectView(R.id.maclistview_id_result)
+    @BindView(R.id.maclistview_id_result)
     ListView maclistview_id_result;
-    @InjectView(R.id.result_add)
+    @BindView(R.id.result_add)
     TextView result_add;
-    @InjectView(R.id.condition_add)
+    @BindView(R.id.condition_add)
     TextView condition_add;
-    @InjectView(R.id.sleep_time_rel)
+    @BindView(R.id.sleep_time_rel)
     RelativeLayout sleep_time_rel;
-    @InjectView(R.id.get_up_rel)
+    @BindView(R.id.get_up_rel)
     RelativeLayout get_up_rel;
-    //    @InjectView(R.id.sleep_time_txt)
+    //    @BindView(R.id.sleep_time_txt)
 //    TextView sleep_time_txt;
-//    @InjectView(R.id.get_up_time_txt)
+//    @BindView(R.id.get_up_time_txt)
 //    TextView get_up_time_txt;
     private String hourPicker;
     private String minutePicker;
     String time_content;
-    @InjectView(R.id.start_time_txt)
+    @BindView(R.id.start_time_txt)
     TextView start_time_txt;
-    @InjectView(R.id.end_time_txt)
+    @BindView(R.id.end_time_txt)
     TextView end_time_txt;
-    @InjectView(R.id.time_select_linear)
+    @BindView(R.id.time_select_linear)
     LinearLayout time_select_linear;
 
     private DialogUtil dialogUtil;
@@ -506,7 +506,7 @@ public class EditLinkDeviceResultActivity extends BaseActivity {
                                 break;
                         }
 
-                        map.put("action", action_map.get("action"));
+                        map.put("action", action_map.get("action") == null ? "" : action_map.get("action"));
                         link_information.put("startTime", user.deviceLinkInfo.startTime);
                         link_information.put("endTime", user.deviceLinkInfo.endTime);
                         if (link_information != null) {
@@ -736,7 +736,8 @@ public class EditLinkDeviceResultActivity extends BaseActivity {
      */
     private String get_action(Map map) {
         String action = "";
-        switch (map.get("type").toString()) {
+        String type = map.get("type").toString();
+        switch (type) {
             case "1"://调光关闭
             case "17":
                 action = init_action_light((String) map.get("status"));
@@ -770,6 +771,11 @@ public class EditLinkDeviceResultActivity extends BaseActivity {
             case "16":
 //            case "17":
                 action = init_action_smart_door_lock((String) map.get("status"));
+                break;
+            case "19":
+            case "20":
+            case "21":
+                action = init_action_smart_pingyi((String) map.get("status"), type);
                 break;
         }
         return action;
@@ -879,6 +885,55 @@ public class EditLinkDeviceResultActivity extends BaseActivity {
         return action;
     }
 
+
+    /**
+     * 平移控制器
+     */
+    private String init_action_smart_pingyi(String status, String type) {
+        String action = "";
+        switch (type) {
+            case "19":
+                action = common_select_pingyi(status, action, "上升", "下降");
+                break;
+            case "20":
+                action = common_select_pingyi(status, action, "向左", "向右");
+                break;
+            case "21":
+                switch (status) {
+                    case "1":
+                        action = "高位";
+                        break;
+                    case "2":
+                        action = "中位";
+                        break;
+                    case "3":
+                        action = "低位";
+                        break;
+                    case "0":
+                        action = "暂停";
+                        break;
+                }
+                break;
+        }
+        return action;
+    }
+
+    private String common_select_pingyi(String status, String action, String action1, String action2) {
+        switch (status) {
+            case "1":
+                action = action1;
+                break;
+            case "2":
+                action = action2;
+                break;
+            case "0":
+                action = "停";
+                break;
+        }
+        return action;
+    }
+
+
     /**
      * 空调
      *
@@ -926,7 +981,6 @@ public class EditLinkDeviceResultActivity extends BaseActivity {
             case "5":
                 temp.append("送风");
                 break;
-
             case "6":
                 temp.append("自动");
                 break;
@@ -938,12 +992,15 @@ public class EditLinkDeviceResultActivity extends BaseActivity {
             case "3":
                 init_common_air(model, temp);
                 break;
+            case "6":
+                common_mode_dinuan(model, temp);
+                break;
         }
 //        common_doit("action", temp.toString());
         return temp.toString();
     }
 
-    private void init_common_air(String model, StringBuffer temp) {
+    private void init_common_air(String model, StringBuffer temp) {//亮堂着
         switch (model) {
             case "1":
                 temp.append("  " + "制冷");
@@ -962,6 +1019,22 @@ public class EditLinkDeviceResultActivity extends BaseActivity {
                 break;
         }
     }
+
+    private void common_mode_dinuan(String model, StringBuffer temp) {
+
+        switch (model) {
+            case "1":
+                temp.append("  " + "加热");
+                break;
+            case "2":
+                temp.append("  " + "睡眠");
+                break;
+            case "3":
+                temp.append("  " + "外出");
+                break;
+        }
+    }
+
 
     /**
      * 调光灯
@@ -1441,23 +1514,7 @@ public class EditLinkDeviceResultActivity extends BaseActivity {
                 handler.sendEmptyMessage(index_select);
 //                start_scenetime.setText(hourPicker + ":" + minutePicker);
             }
-        })
-                /*.setType(TimePickerView.Type.ALL)//default is all
-                .setCancelText("Cancel")
-                .setSubmitText("Sure")
-                .setContentSize(18)
-                .setTitleSize(20)
-                .setTitleText("Title")
-                .setTitleColor(Color.BLACK)
-               /*.setDividerColor(Color.WHITE)//设置分割线的颜色
-                .setTextColorCenter(Color.LTGRAY)//设置选中项的颜色
-                .setLineSpacingMultiplier(1.6f)//设置两横线之间的间隔倍数
-                .setTitleBgColor(Color.DKGRAY)//标题背景颜色 Night mode
-                .setBgColor(Color.BLACK)//滚轮背景颜色 Night mode
-                .setSubmitColor(Color.WHITE)
-                .setCancelColor(Color.WHITE)*/
-                /*.gravity(Gravity.RIGHT)// default is center*/
-                .setDate(selectedDate)
+        }).setDate(selectedDate)
                 .setRangDate(startDate, endDate)
                 .setLayoutRes(R.layout.pickerview_custom_time, new CustomListener() {
                     @Override

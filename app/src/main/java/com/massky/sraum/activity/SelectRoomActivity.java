@@ -35,7 +35,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import butterknife.InjectView;
+import butterknife.BindView;
 import okhttp3.Call;
 
 /**
@@ -43,19 +43,19 @@ import okhttp3.Call;
  */
 
 public class SelectRoomActivity extends BaseActivity implements XListView.IXListViewListener, AdapterView.OnItemClickListener {
-    @InjectView(R.id.back)
+    @BindView(R.id.back)
     ImageView back;
-    @InjectView(R.id.xListView_scan)
+    @BindView(R.id.xListView_scan)
     XListView xListView_scan;
     String[] again_elements = {"客厅", "卧室", "厨房", "客厅", "餐厅", "阳台", "儿童房", "老年房"};
     private List<Map> list_hand_scene;
     private RoomListAdapter roomlistadapter;
     private Handler mHandler = new Handler();
-    @InjectView(R.id.save_select_room)
+    @BindView(R.id.save_select_room)
     Button save_select_room;
-    @InjectView(R.id.manager_room_txt)
+    @BindView(R.id.manager_room_txt)
     TextView manager_room_txt;
-    @InjectView(R.id.status_view)
+    @BindView(R.id.status_view)
     StatusView statusView;
     private Map map_device = new HashMap();
     private List<Map> roomList = new ArrayList<>();

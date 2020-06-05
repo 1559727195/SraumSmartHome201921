@@ -2,6 +2,7 @@ package com.massky.sraum.activity;
 
 import android.content.Intent;
 import android.graphics.Color;
+import android.os.Parcelable;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.GridView;
@@ -21,21 +22,22 @@ import com.massky.sraum.base.BaseActivity;
 import com.yanzhenjie.statusview.StatusUtils;
 import com.yanzhenjie.statusview.StatusView;
 
+import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
 
-import butterknife.InjectView;
+import butterknife.BindView;
 
 /**
  * Created by zhu on 2018/1/3.
  */
 
 public class SelectControlApplianceActivity extends BaseActivity {
-    @InjectView(R.id.status_view)
+    @BindView(R.id.status_view)
     StatusView statusView;
-    @InjectView(R.id.mac_wifi_dev_id)
+    @BindView(R.id.mac_wifi_dev_id)
     GridView mac_wifi_dev_id;
-    @InjectView(R.id.back)
+    @BindView(R.id.back)
     ImageView back;
 
     //wifi类型
@@ -92,7 +94,7 @@ public class SelectControlApplianceActivity extends BaseActivity {
                 }
                 intent_wifi = new Intent(SelectControlApplianceActivity.this, YKCodeAPIActivity.class);
                 intent_wifi.putExtra("tid", tid);
-                intent_wifi.putExtra("GizWifiDevice", getIntent().getParcelableExtra(
+                intent_wifi.putExtra("GizWifiDevice", (Parcelable)getIntent().getParcelableExtra(
                         "GizWifiDevice"));
                 intent_wifi.putExtra("number", getIntent().getSerializableExtra("number"));
                 // intent.putExtra("number", list_hand_scene.get(position).get("number").toString())

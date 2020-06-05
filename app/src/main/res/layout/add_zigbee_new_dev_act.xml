@@ -50,8 +50,8 @@
 
     <ImageView
         android:id="@+id/img_show_zigbee"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="@dimen/x130"
+        android:layout_height="@dimen/x130"
         android:layout_gravity="center_horizontal"
         app:srcCompat="@drawable/pic_zigbee" />
 

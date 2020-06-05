@@ -14,7 +14,7 @@ import java.util.List;
 import java.util.Map;
 
 import butterknife.ButterKnife;
-import butterknife.InjectView;
+import butterknife.BindView;
 
 /**
  * Created by zhu on 2017/7/4.
@@ -49,13 +49,14 @@ public class ShowGatewayListAdapter extends BaseAdapter {
 
     class ViewHolder {
 
-        @InjectView(R.id.txt_sao_one)
+        @BindView(R.id.txt_sao_one)
         TextView txt_sao_one;
-        @InjectView(R.id.sao_rel)
+        @BindView(R.id.sao_rel)
         RelativeLayout sao_rel;
 
         public ViewHolder(View view) {
-            ButterKnife.inject(this, view);
+            //ButterKnife.inject(this, view);
+            ButterKnife.bind(this,view);
         }
     }
 }

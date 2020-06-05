@@ -14,20 +14,20 @@ import com.yanzhenjie.statusview.StatusView;
 
 import org.w3c.dom.Text;
 
-import butterknife.InjectView;
+import butterknife.BindView;
 
 /**
  * Created by zhu on 2018/1/2.
  */
 
 public class EditGateWayActivity extends BaseActivity {
-    @InjectView(R.id.status_view)
+    @BindView(R.id.status_view)
     StatusView statusView;
-    @InjectView(R.id.back)
+    @BindView(R.id.back)
     ImageView back;
-    @InjectView(R.id.toolbar_txt)
+    @BindView(R.id.toolbar_txt)
     TextView toolbar_txt;
-    @InjectView(R.id.edit_next_step)
+    @BindView(R.id.edit_next_step)
     TextView edit_next_step;
     @Override
     protected int viewId() {

@@ -28,7 +28,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import butterknife.InjectView;
+import butterknife.BindView;
 import lecho.lib.hellocharts.listener.ViewportChangeListener;
 import lecho.lib.hellocharts.model.Axis;
 import lecho.lib.hellocharts.model.AxisValue;
@@ -45,9 +45,9 @@ import lecho.lib.hellocharts.view.LineChartView;
  */
 
 public class Pm25Activity extends BaseActivity {
-    @InjectView(R.id.back)
+    @BindView(R.id.back)
     ImageView back;
-//    @InjectView(R.id.status_view)
+//    @BindView(R.id.status_view)
 //    StatusView statusView;
 
     private static final String TAG = "MessageSendActivity";
@@ -58,11 +58,11 @@ public class Pm25Activity extends BaseActivity {
     private Axis axisY;
     private ProgressDialog progressDialog;
     private boolean isBiss;
-    @InjectView(R.id.sleep_pm)
+    @BindView(R.id.sleep_pm)
     LinearLayout sleep_pm;
-    @InjectView(R.id.history_pm)
+    @BindView(R.id.history_pm)
     LinearLayout history_pm;
-    @InjectView(R.id.bar2)
+    @BindView(R.id.bar2)
     ColorArcProgressBar bar2;
     private String status;
     private String number;

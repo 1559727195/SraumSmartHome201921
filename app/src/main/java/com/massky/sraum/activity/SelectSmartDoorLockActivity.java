@@ -11,24 +11,24 @@ import com.massky.sraum.R;
 import com.massky.sraum.base.BaseActivity;
 import com.yanzhenjie.statusview.StatusUtils;
 import com.yanzhenjie.statusview.StatusView;
-import butterknife.InjectView;
+import butterknife.BindView;
 
 /**
  * Created by zhu on 2018/6/19.
  */
 
 public class SelectSmartDoorLockActivity extends BaseActivity {
-    @InjectView(R.id.back)
+    @BindView(R.id.back)
     ImageView back;
-    @InjectView(R.id.next_step_txt)
+    @BindView(R.id.next_step_txt)
     TextView next_step_txt;
-    @InjectView(R.id.status_view)
+    @BindView(R.id.status_view)
     StatusView statusView;
-    @InjectView(R.id.wendu_linear)
+    @BindView(R.id.wendu_linear)
     LinearLayout wendu_linear;
-    @InjectView(R.id.shidu_rel)
+    @BindView(R.id.shidu_rel)
     RelativeLayout shidu_rel;
-    @InjectView(R.id.project_select)
+    @BindView(R.id.project_select)
     TextView project_select;
 
 

@@ -31,30 +31,30 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import butterknife.InjectView;
+import butterknife.BindView;
 
 /**
  * Created by zhu on 2018/1/9.
  */
 
 public class RoomListActivity extends BaseActivity implements XListView.IXListViewListener {
-    @InjectView(R.id.back)
+    @BindView(R.id.back)
     ImageView back;
-    @InjectView(R.id.xListView_scan)
+    @BindView(R.id.xListView_scan)
     XListView xListView_scan;
-    @InjectView(R.id.project_select)
+    @BindView(R.id.project_select)
     TextView project_select;
-    @InjectView(R.id.add_room)
+    @BindView(R.id.add_room)
     ImageView add_room;
-    //    @InjectView(R.id.next_step_txt)
+    //    @BindView(R.id.next_step_txt)
 //    TextView next_step_txt;
     String[] again_elements = {"客厅", "卧室", "厨房", "客厅", "餐厅", "阳台", "儿童房", "老年房"};
     private List<Map> list_hand_scene;
     private Handler mHandler = new Handler();
-    //    @InjectView(R.id.add_room)
+    //    @BindView(R.id.add_room)
 //    TextView add_room;
     private RoomListNewAdapter managerroomadapter;
-    @InjectView(R.id.status_view)
+    @BindView(R.id.status_view)
     StatusView statusView;
     private List<Map> roomsInfos = new ArrayList<>();
     private String areaNumber;

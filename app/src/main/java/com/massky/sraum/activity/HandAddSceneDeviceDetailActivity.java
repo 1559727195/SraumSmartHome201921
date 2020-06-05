@@ -17,24 +17,24 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import butterknife.InjectView;
+import butterknife.BindView;
 
 /**
  * Created by zhu on 2018/1/5.
  */
 
 public class HandAddSceneDeviceDetailActivity extends BaseActivity {
-    @InjectView(R.id.back)
+    @BindView(R.id.back)
     ImageView back;
-    @InjectView(R.id.air_control_linear)
+    @BindView(R.id.air_control_linear)
     LinearLayout air_control_linear;//空调
-    @InjectView(R.id.window_linear)
+    @BindView(R.id.window_linear)
     LinearLayout window_linear;//窗帘
-    @InjectView(R.id.tiaoguangdeng_linear)
+    @BindView(R.id.tiaoguangdeng_linear)
     LinearLayout tiaoguangdeng_linear;//调光灯
-    @InjectView(R.id.next_step_txt)
+    @BindView(R.id.next_step_txt)
     TextView next_step_txt;
-    @InjectView(R.id.project_select)
+    @BindView(R.id.project_select)
     TextView project_select;
     private List<Map> list_scene = new ArrayList<>();
     private List<User.device> deviceList = new ArrayList<>();

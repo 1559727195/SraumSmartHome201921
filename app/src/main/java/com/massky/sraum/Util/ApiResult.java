@@ -1,7 +1,6 @@
 package com.massky.sraum.Util;
 
 
-
 /**
  * Created by xfc on 2017-03-02.
  */
@@ -33,6 +32,7 @@ public interface ApiResult {
      * 解析失败 1
      */
     public void pullDataError();
+
 
     /**
      * 返回数据为空
@@ -69,6 +69,6 @@ public interface ApiResult {
      */
     public void defaultCode();
 
-    void  response(String response);
+    void response(String response);
 
 }

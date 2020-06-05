@@ -43,7 +43,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import androidx.appcompat.app.AlertDialog;
-import butterknife.InjectView;
+import butterknife.BindView;
 import vstc2.nativecaller.NativeCaller;
 
 
@@ -75,13 +75,13 @@ public class SettingSDCardActivity extends BaseActivity implements
     private static String cmark = "147258369"; //APP唯一标示
     public static SwitchBean switchBean;
     private static AlermBean alermBean;
-    @InjectView(R.id.status_view)
+    @BindView(R.id.status_view)
     StatusView statusView;
-    @InjectView(R.id.next_step_txt)
+    @BindView(R.id.next_step_txt)
     TextView next_step_txt;
-    @InjectView(R.id.cbx_record_time)
+    @BindView(R.id.cbx_record_time)
    SlideSwitchButton cbx_record_time;
-    @InjectView(R.id.plan_luxiang_rel)
+    @BindView(R.id.plan_luxiang_rel)
     RelativeLayout plan_luxiang_rel;
 
 

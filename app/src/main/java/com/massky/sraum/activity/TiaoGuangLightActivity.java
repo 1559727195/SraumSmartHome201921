@@ -35,7 +35,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import butterknife.InjectView;
+import butterknife.BindView;
 
 import static com.massky.sraum.fragment.HomeFragment.ACTION_INTENT_RECEIVER_TO_SECOND_PAGE;
 
@@ -44,11 +44,11 @@ import static com.massky.sraum.fragment.HomeFragment.ACTION_INTENT_RECEIVER_TO_S
  */
 
 public class TiaoGuangLightActivity extends BaseActivity implements SeekBar.OnSeekBarChangeListener {
-    @InjectView(R.id.back)
+    @BindView(R.id.back)
     ImageView back;
-    @InjectView(R.id.id_seekBar)
+    @BindView(R.id.id_seekBar)
     SeekBar id_seekBar;
-    @InjectView(R.id.openbtn_tiao_guang)
+    @BindView(R.id.openbtn_tiao_guang)
     ImageView openbtn_tiao_guang;
     private String progress_now;
     private String status;
@@ -66,7 +66,7 @@ public class TiaoGuangLightActivity extends BaseActivity implements SeekBar.OnSe
     private String temperature;
     private String windflag;
 
-    @InjectView(R.id.bar1)
+    @BindView(R.id.bar1)
     ColorArcProgressBar bar1;
     private boolean addflag;
     private boolean mapflag;

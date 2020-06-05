@@ -19,90 +19,90 @@ import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
 
-import butterknife.InjectView;
+import butterknife.BindView;
 
 /**
  * Created by zhu on 2018/6/19.
  */
 
 public class UnderWaterActivity extends BaseActivity {
-    @InjectView(R.id.back)
+    @BindView(R.id.back)
     ImageView back;
-    @InjectView(R.id.next_step_txt)
+    @BindView(R.id.next_step_txt)
     TextView next_step_txt;
-    @InjectView(R.id.status_view)
+    @BindView(R.id.status_view)
     StatusView statusView;
-    @InjectView(R.id.rel_scene_set)
+    @BindView(R.id.rel_scene_set)
     RelativeLayout rel_scene_set;
-    @InjectView(R.id.checkbox)
+    @BindView(R.id.checkbox)
     CheckBox checkbox;
-    @InjectView(R.id.panel_scene_name_txt)
+    @BindView(R.id.panel_scene_name_txt)
     TextView panel_scene_name_txt;
-    @InjectView(R.id.project_select)
+    @BindView(R.id.project_select)
     TextView project_select;
 
 
-    @InjectView(R.id.fangdao_linear)
+    @BindView(R.id.fangdao_linear)
     LinearLayout fangdao_linear;
-    @InjectView(R.id.rel_fangdao_open)
+    @BindView(R.id.rel_fangdao_open)
     RelativeLayout rel_fangdao_open;
-    @InjectView(R.id.door_open_txt)
+    @BindView(R.id.door_open_txt)
     TextView door_open_txt;
-    @InjectView(R.id.checkbox_fangdao_open)
+    @BindView(R.id.checkbox_fangdao_open)
     CheckBox checkbox_fangdao_open;
-    @InjectView(R.id.rel_fangdao_close)
+    @BindView(R.id.rel_fangdao_close)
     RelativeLayout rel_fangdao_close;
-    @InjectView(R.id.door_close_txt)
+    @BindView(R.id.door_close_txt)
     TextView door_close_txt;
-    @InjectView(R.id.checkbox_fangdao_close)
+    @BindView(R.id.checkbox_fangdao_close)
     CheckBox checkbox_fangdao_close;
 
-    @InjectView(R.id.humancheck_linear)
+    @BindView(R.id.humancheck_linear)
     LinearLayout humancheck_linear;
-    @InjectView(R.id.rel_humancheck)
+    @BindView(R.id.rel_humancheck)
     RelativeLayout rel_humancheck;
-    @InjectView(R.id.humancheck_txt)
+    @BindView(R.id.humancheck_txt)
     TextView humancheck_txt;
-    @InjectView(R.id.checkbox_humancheck)
+    @BindView(R.id.checkbox_humancheck)
     CheckBox checkbox_humancheck;
 
 
-    @InjectView(R.id.jiuzuo_linear)
+    @BindView(R.id.jiuzuo_linear)
     LinearLayout jiuzuo_linear;
-    @InjectView(R.id.rel_jiuzuo)
+    @BindView(R.id.rel_jiuzuo)
     RelativeLayout rel_jiuzuo;
-    @InjectView(R.id.jiuzuo_txt)
+    @BindView(R.id.jiuzuo_txt)
     TextView jiuzuo_txt;
-    @InjectView(R.id.checkbox_jiuzuo)
+    @BindView(R.id.checkbox_jiuzuo)
     CheckBox checkbox_jiuzuo;
 
-    @InjectView(R.id.gas_linear)
+    @BindView(R.id.gas_linear)
     LinearLayout gas_linear;
-    @InjectView(R.id.rel_gas)
+    @BindView(R.id.rel_gas)
     RelativeLayout rel_gas;
-    @InjectView(R.id.gas_txt)
+    @BindView(R.id.gas_txt)
     TextView gas_txt;
-    @InjectView(R.id.checkbox_gas)
+    @BindView(R.id.checkbox_gas)
     CheckBox checkbox_gas;
 
-    @InjectView(R.id.smoke_linear)
+    @BindView(R.id.smoke_linear)
     LinearLayout smoke_linear;
-    @InjectView(R.id.rel_smoke)
+    @BindView(R.id.rel_smoke)
     RelativeLayout rel_smoke;
-    @InjectView(R.id.smoke_txt)
+    @BindView(R.id.smoke_txt)
     TextView smoke_txt;
-    @InjectView(R.id.checkbox_smoke)
+    @BindView(R.id.checkbox_smoke)
     CheckBox checkbox_smoke;
 
-    @InjectView(R.id.
+    @BindView(R.id.
             emergcybtn_linear)
     LinearLayout
             emergcybtn_linear;
-    @InjectView(R.id.rel_emergcybtn)
+    @BindView(R.id.rel_emergcybtn)
     RelativeLayout rel_emergcybtn;
-    @InjectView(R.id.emergcybtn_txt)
+    @BindView(R.id.emergcybtn_txt)
     TextView emergcybtn_txt;
-    @InjectView(R.id.checkbox_emergcybtn)
+    @BindView(R.id.checkbox_emergcybtn)
     CheckBox checkbox_emergcybtn;
     private String condition = "0";
     private Map map_link = new HashMap();

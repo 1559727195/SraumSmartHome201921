@@ -45,7 +45,7 @@ import java.util.Map;
 
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
-import butterknife.InjectView;
+import butterknife.BindView;
 import okhttp3.Call;
 
 import static com.massky.sraum.Util.AES.Decrypt;
@@ -55,14 +55,14 @@ import static com.massky.sraum.Util.AES.Decrypt;
  */
 
 public class SelectZigbeeDeviceActivity extends BaseActivity {
-    @InjectView(R.id.status_view)
+    @BindView(R.id.status_view)
     StatusView statusView;
-    @InjectView(R.id.back)
+    @BindView(R.id.back)
     ImageView back;
 
-    @InjectView(R.id.mineRoom_list)
+    @BindView(R.id.mineRoom_list)
     ListViewForScrollView macfragritview_id;
-    @InjectView(R.id.mac_wifi_dev_id)
+    @BindView(R.id.mac_wifi_dev_id)
     ListViewForScrollView mac_wifi_dev_id;
     private SelectWifiDevAdapter adapter_wifi;
     private List<Map> gatewayList = new ArrayList<>();
@@ -76,13 +76,14 @@ public class SelectZigbeeDeviceActivity extends BaseActivity {
             R.drawable.icon_type_toa_90, R.drawable.icon_type_yanwucgq_90, R.drawable.icon_type_tianranqibjq_90,
             R.drawable.icon_type_jinjianniu_90, R.drawable.icon_type_zhinengmensuo_90, R.drawable.icon_type_pm25_90,
             R.drawable.icon_type_shuijin_90, R.drawable.icon_type_duogongneng_90, R.drawable.icon_type_zhinengchazuo_90,
-            R.drawable.icon_type_wangguan_90
+            R.drawable.pic_zigbee_pingyikzq,
+            R.drawable.icon_type_wangguan_90,R.drawable.duogongneng1
     };
 
     //"B301"暂时为多功能模块
     private String[] types = {
             "A201", "A202", "A203", "A204", "A301", "A302", "A303", "A401", "A501",
-            "A801", "A901", "A902", "AB01", "AB04", "B001", "B201", "AD01", "AC01", "B301", "B101", "网关"
+            "A801", "A901", "A902", "AB01", "AB04", "B001", "B201", "AD01", "AC01", "B301", "B101", "平移控制器","网关","多功能面板"
     };
 
     //        //type：设备类型，1-灯，2-调光，3-空调，4-窗帘，5-新风，6-地暖,7-门磁，8-人体感应，9-水浸检测器，10-入墙PM2.5
@@ -103,11 +104,12 @@ public class SelectZigbeeDeviceActivity extends BaseActivity {
             R.drawable.icon_pmmofang_90 //桌面PM2.5
 
     };
+
     private int[] iconNam_wifi = {R.string.hongwai, R.string.yaokongqi, R.string.shexiangtou, R.string.keshimenling, R.string.table_pm};//, R.string.pm_mofang
     private int[] iconName = {R.string.yijianlight, R.string.liangjianlight, R.string.sanjianlight, R.string.sijianlight,
             R.string.yilutiaoguang1, R.string.lianglutiaoguang1, R.string.sanlutiao1, R.string.window_panel1, R.string.kongtiao_panel
             , R.string.menci, R.string.rentiganying, R.string.jiuzuo, R.string.yanwu, R.string.tianranqi, R.string.jinjin_btn,
-            R.string.zhineng, R.string.pm25, R.string.shuijin, R.string.duogongneng, R.string.cha_zuo_2, R.string.wangguan
+            R.string.zhineng, R.string.pm25, R.string.shuijin, R.string.duogongneng, R.string.cha_zuo_2,R.string.pingyi_control, R.string.wangguan,R.string.duogongneng1
     };
 
     private SelectDevTypeAdapter adapter;
@@ -328,7 +330,7 @@ public class SelectZigbeeDeviceActivity extends BaseActivity {
                     }
 
                     @Override
-                    public void wrongToken() {//
+                    public void wrongToken() {
                         super.wrongToken();
                     }
 
@@ -376,6 +378,8 @@ public class SelectZigbeeDeviceActivity extends BaseActivity {
                     case "AD01":
                     case "A501":
                     case "B201":
+                    case "多功能面板":
+                    case "平移控制器":
 //                    case "A511":
 //                        sraum_setBox_accent(types[position], "normal");
                         sraum_setBox_accent(types[position], "normal");

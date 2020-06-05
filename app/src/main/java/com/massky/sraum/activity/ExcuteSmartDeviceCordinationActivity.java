@@ -17,7 +17,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import butterknife.InjectView;
+import butterknife.BindView;
 
 /**
  * Created by zhu on 2018/1/16.
@@ -25,11 +25,11 @@ import butterknife.InjectView;
 
 public class ExcuteSmartDeviceCordinationActivity extends BaseActivity implements XListView.IXListViewListener{
 
-    @InjectView(R.id.back)
+    @BindView(R.id.back)
     ImageView back;
-    @InjectView(R.id.next_step_txt)
+    @BindView(R.id.next_step_txt)
     TextView next_step_txt;
-    @InjectView(R.id.xListView_scan)
+    @BindView(R.id.xListView_scan)
     XListView xListView_scan;
     private Handler mHandler = new Handler();
     private List<Map> list_hand_scene = new ArrayList<>();

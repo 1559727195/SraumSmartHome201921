@@ -32,7 +32,7 @@ import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
 
-import butterknife.InjectView;
+import butterknife.BindView;
 import cn.smssdk.EventHandler;
 import cn.smssdk.OnSendMessageHandler;
 import cn.smssdk.SMSSDK;
@@ -43,20 +43,20 @@ import okhttp3.Call;
  */
 
 public class InputCheckCodeActivity extends BaseActivity {
-    @InjectView(R.id.status_view)
+    @BindView(R.id.status_view)
     StatusView statusView;
-    @InjectView(R.id.back)
+    @BindView(R.id.back)
     ImageView back;
-    @InjectView(R.id.btn_login_gateway)
+    @BindView(R.id.btn_login_gateway)
     Button btn_login_gateway;
-    @InjectView(R.id.checkcode_id)
+    @BindView(R.id.checkcode_id)
     ClearEditText checkcode_id;
-    @InjectView(R.id.phone_id)
+    @BindView(R.id.phone_id)
     TextView phone_id;
     private DialogUtil dialogUtil;
     private String des;
     private Handler handler;
-    @InjectView(R.id.timebutton_id)
+    @BindView(R.id.timebutton_id)
     TextView timebutton_id;
 
     //mob短信的key

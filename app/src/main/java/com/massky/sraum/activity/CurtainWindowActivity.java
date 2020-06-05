@@ -39,7 +39,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import butterknife.InjectView;
+import butterknife.BindView;
 import okhttp3.Call;
 import static com.massky.sraum.fragment.HomeFragment.ACTION_INTENT_RECEIVER_TO_SECOND_PAGE;
 
@@ -48,7 +48,7 @@ import static com.massky.sraum.fragment.HomeFragment.ACTION_INTENT_RECEIVER_TO_S
  */
 
 public class CurtainWindowActivity extends BaseActivity {
-    @InjectView(R.id.back)
+    @BindView(R.id.back)
     ImageView back;
     private String status;
     private String number;
@@ -56,17 +56,17 @@ public class CurtainWindowActivity extends BaseActivity {
     private String name;
     private String name1;
     private String name2;
-    @InjectView(R.id.project_select)
+    @BindView(R.id.project_select)
     TextView project_select;
-    @InjectView(R.id.name1_txt)
+    @BindView(R.id.name1_txt)
     TextView name1_txt;
-    @InjectView(R.id.name2_txt)
+    @BindView(R.id.name2_txt)
     TextView name2_txt;
-    @InjectView(R.id.radio_group_out)
+    @BindView(R.id.radio_group_out)
     LinearLayout radio_group_out;
-    @InjectView(R.id.radio_group_in)
+    @BindView(R.id.radio_group_in)
     LinearLayout radio_group_in;
-    @InjectView(R.id.radio_group_all)
+    @BindView(R.id.radio_group_all)
     LinearLayout radio_group_all;
     private String loginPhone;
     private boolean vibflag;

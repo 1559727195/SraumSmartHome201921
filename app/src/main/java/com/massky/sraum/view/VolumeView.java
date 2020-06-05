@@ -42,6 +42,10 @@ public class VolumeView extends View {
     private int width = 930;
     // 最大音量
     private int MAX = 32;
+    //最小音量
+    private int MIN = 16;
+
+
     // 两个音量矩形最左侧之间的间隔
     private int rectMargen = 25;
     // 音量矩形高
@@ -173,6 +177,9 @@ public class VolumeView extends View {
         canvas.drawText(current + "℃", reduceBitmap.getWidth() / 2 + textSize, (height - textSize * 4) / 2, vTextPaint);
     }
 
+
+  /*  0 - 32 刻度值代表->16 - 30实际温度值*/
+
     @Override
     public boolean onTouchEvent(MotionEvent event) {
         switch (event.getAction()) {
@@ -181,6 +188,7 @@ public class VolumeView extends View {
                     if (current > 0) {
                         current -= 1;
                         if (onChangeListener != null) {
+
                             onChangeListener.onChange(current);
                         }
                     }

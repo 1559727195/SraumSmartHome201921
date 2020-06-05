@@ -9,19 +9,19 @@ import com.massky.sraum.base.BaseActivity;
 import com.massky.sraum.view.RoundProgressBar;
 import com.yanzhenjie.statusview.StatusUtils;
 import com.yanzhenjie.statusview.StatusView;
-import butterknife.InjectView;
+import butterknife.BindView;
 
 /**
  * Created by zhu on 2018/1/3.
  */
 
 public class AddZigbeeDeviceConnectingActivity extends BaseActivity {
-    @InjectView(R.id.status_view)
+    @BindView(R.id.status_view)
     StatusView statusView;
-    @InjectView(R.id.roundProgressBar2)
+    @BindView(R.id.roundProgressBar2)
     RoundProgressBar roundProgressBar2;
     private boolean is_index = true;
-    @InjectView(R.id.back)
+    @BindView(R.id.back)
     ImageView back;
 
     @Override

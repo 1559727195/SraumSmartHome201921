@@ -16,20 +16,20 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import butterknife.InjectView;
+import butterknife.BindView;
 
 /**
  * Created by zhu on 2018/1/12.
  */
 
 public class SelectExecuteSceneResultActivity extends BaseActivity implements XListView.IXListViewListener{
-    @InjectView(R.id.back)
+    @BindView(R.id.back)
     ImageView back;
-    @InjectView(R.id.next_step_txt)
+    @BindView(R.id.next_step_txt)
     TextView next_step_txt;
-    @InjectView(R.id.xListView_scan)
+    @BindView(R.id.xListView_scan)
     XListView xListView_scan;
-    @InjectView(R.id.rel_scene_set)
+    @BindView(R.id.rel_scene_set)
     RelativeLayout rel_scene_set;
     private SelectExcuteSceneResultAdapter selectexcutesceneresultadapter;
     private List<Map> list_hand_scene = new ArrayList<>();

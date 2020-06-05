@@ -18,12 +18,14 @@ import com.massky.sraum.Util.MusicUtil;
 import com.massky.sraum.Util.SharedPreferencesUtil;
 import com.massky.sraum.Util.TokenUtil;
 import com.massky.sraum.Utils.SystemUtils;
+import com.massky.sraum.activity.AirControlActivity;
 import com.massky.sraum.activity.FastEditPanelActivity;
 import com.massky.sraum.activity.MainGateWayActivity;
 import com.massky.sraum.base.BaseActivity;
 import com.massky.sraum.base.Basecfragment;
 import com.massky.sraum.base.Basecfragmentactivity;
 import com.massky.sraum.fragment.HomeFragment;
+import com.massky.sraum.fragment.HomeFragmentNew;
 import com.massky.sraum.fragment.SceneFragment;
 
 import org.json.JSONException;
@@ -72,6 +74,7 @@ public class MyReceiver extends BroadcastReceiver {
             LogUtil.i(TAG, "[MyReceiver] 接收到推送下来的自定义消息: " + bundle.getString(JPushInterface.EXTRA_MESSAGE));
 //            ToastUtil.showToast(context,"接收到推送下来的自定义消息");
             processCustomMessage_toMainActivity(context, bundle);
+            Log.e("processCustomMessage","processCustomMessage");
             //接收下来的json数据
 //            User user = new GsonBuilder().registerTypeAdapterFactory(new NullStringToEmptyAdapterFactory()).
 //                    create().fromJson(bundle.getString(JPushInterface.EXTRA_EXTRA), User.class);
@@ -91,6 +94,7 @@ public class MyReceiver extends BroadcastReceiver {
             LogUtil.d(TAG, "[MyReceiver] 接收到推送下来的通知的ID: " + notifactionId);
             //进行广播通知是否刷新设备和场景
             processCustomMessage(Integer.parseInt(user.type), bundle);
+            Log.e("processCustomMessage","processCustomMessage");
             LogUtil.i(TAG, Integer.parseInt(user.type) + "");
         } else if (JPushInterface.ACTION_NOTIFICATION_OPENED.equals(intent.getAction())) {
 //            User user = new GsonBuilder().registerTypeAdapterFactory(new NullStringToEmptyAdapterFactory()).
@@ -361,8 +365,14 @@ public class MyReceiver extends BroadcastReceiver {
 //                        action = MacFragment.ACTION_INTENT_RECEIVER;
 //                        sendBroad(notifactionId, "");
 //                    }
-                        action = HomeFragment.ACTION_INTENT_RECEIVER;
-                        sendBroad(notifactionId, "", gatewayid);
+                        action = HomeFragmentNew.ACTION_INTENT_RECEIVER;
+                        sendBroad(notifactionId, panelid, gatewayid);
+
+
+                        action = AirControlActivity.Companion.getACTION_AIRCONTROL_RECEIVER();
+                        sendBroad(notifactionId, panelid, gatewayid);
+
+
 
                         action = FastEditPanelActivity.ACTION_SRAUM_FAST_EDIT;
                         sendBroad(notifactionId, panelid, gatewayid);
@@ -376,6 +386,7 @@ public class MyReceiver extends BroadcastReceiver {
             mapbox.put("token", TokenUtil.getToken(context));
 //            getBox(mapbox, notifactionId);
         } else if (notifactionId == 8) {//notifactionId = 8 ->设置网关模式，sraum_setBox
+            Log.e("notifactionId",notifactionId + "");
             action = ACTION_SRAUM_SETBOX;
             JSONObject extraJson;
             if (!ExampleUtil.isEmpty(extras)) {
@@ -453,5 +464,4 @@ public class MyReceiver extends BroadcastReceiver {
         mIntent.putExtra("gatewayid", gatewayid);
         context.sendBroadcast(mIntent);
     }
-
 }

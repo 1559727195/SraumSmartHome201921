@@ -38,7 +38,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import butterknife.InjectView;
+import butterknife.BindView;
 
 import static com.massky.sraum.Util.DipUtil.dip2px;
 import static com.massky.sraum.activity.MainGateWayActivity.MESSAGE_RECEIVED_FROM_ABOUT_FRAGMENT;
@@ -48,11 +48,11 @@ import static com.massky.sraum.activity.MainGateWayActivity.MESSAGE_RECEIVED_FRO
  */
 
 public class AboutActivity extends BaseActivity {
-    @InjectView(R.id.back)
+    @BindView(R.id.back)
     ImageView back;
-    @InjectView(R.id.btn_common_problems)
-    Button btn_common_problems;
-    @InjectView(R.id.btn_privacy_policy)
+    @BindView(R.id.direct_for_use)
+    Button direct_for_use;
+    @BindView(R.id.btn_privacy_policy)
     Button btn_privacy_policy;
 
     private Button checkbutton_id, qxbutton_id;
@@ -61,7 +61,7 @@ public class AboutActivity extends BaseActivity {
     private int versionCode;
     private String Version;
     private WeakReference<Context> weakReference;
-    @InjectView(R.id.check_btn_version)
+    @BindView(R.id.check_btn_version)
     Button check_btn_version;
 
 
@@ -80,7 +80,7 @@ public class AboutActivity extends BaseActivity {
     @Override
     protected void onEvent() {
         back.setOnClickListener(this);
-        btn_common_problems.setOnClickListener(this);
+        direct_for_use.setOnClickListener(this);
         btn_privacy_policy.setOnClickListener(this);
         check_btn_version.setOnClickListener(this);
     }
@@ -111,7 +111,7 @@ public class AboutActivity extends BaseActivity {
             case R.id.back:
                 AboutActivity.this.finish();
                 break;
-            case R.id.btn_common_problems:
+            case R.id.direct_for_use:
                 startActivity(new Intent(AboutActivity.this, ProductActivity.class));
                 break;
             case R.id.btn_privacy_policy:

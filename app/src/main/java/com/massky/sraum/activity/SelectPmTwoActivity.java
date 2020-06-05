@@ -14,24 +14,24 @@ import com.yanzhenjie.statusview.StatusView;
 import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
-import butterknife.InjectView;
+import butterknife.BindView;
 
 /**
  * Created by zhu on 2018/6/19.
  */
 
 public class SelectPmTwoActivity extends BaseActivity {
-    @InjectView(R.id.back)
+    @BindView(R.id.back)
     ImageView back;
-    @InjectView(R.id.next_step_txt)
+    @BindView(R.id.next_step_txt)
     TextView next_step_txt;
-    @InjectView(R.id.status_view)
+    @BindView(R.id.status_view)
     StatusView statusView;
-    @InjectView(R.id.big_linear)
+    @BindView(R.id.big_linear)
     LinearLayout big_linear;
-    @InjectView(R.id.small_rel)
+    @BindView(R.id.small_rel)
     RelativeLayout small_rel;
-    @InjectView(R.id.project_select)
+    @BindView(R.id.project_select)
     TextView project_select;
 
     private String condition = "0";

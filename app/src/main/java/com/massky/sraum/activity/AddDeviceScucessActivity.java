@@ -16,7 +16,7 @@ import com.massky.sraum.base.BaseActivity;
 import com.massky.sraum.widget.ApplicationContext;
 import com.yanzhenjie.statusview.StatusUtils;
 import com.yanzhenjie.statusview.StatusView;
-import butterknife.InjectView;
+import butterknife.BindView;
 import static com.massky.sraum.Util.DipUtil.dip2px;
 
 /**
@@ -24,19 +24,19 @@ import static com.massky.sraum.Util.DipUtil.dip2px;
  */
 
 public class AddDeviceScucessActivity extends BaseActivity{
-    @InjectView(R.id.next_step_txt)
+    @BindView(R.id.next_step_txt)
     ImageView next_step_txt;
-    @InjectView(R.id.back)
+    @BindView(R.id.back)
     ImageView back;
-    @InjectView(R.id.status_view)
+    @BindView(R.id.status_view)
     StatusView statusView;
-    @InjectView(R.id.btn_login_gateway)
+    @BindView(R.id.btn_login_gateway)
     Button btn_login_gateway;
     private PopupWindow popupWindow;
     private String device_name;
-    @InjectView(R.id.light_control_panel)
+    @BindView(R.id.light_control_panel)
     LinearLayout light_control_panel;
-    @InjectView(R.id.window_linear)
+    @BindView(R.id.window_linear)
     LinearLayout window_linear;
 
     @Override

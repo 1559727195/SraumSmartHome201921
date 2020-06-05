@@ -20,44 +20,44 @@ import java.io.IOException;
 import java.util.Timer;
 import java.util.TimerTask;
 
-import butterknife.InjectView;
+import butterknife.BindView;
 
 /**
  * Created by zhu on 2018/1/8.
  */
 
 public class GuJianWangGuanActivity extends BaseActivity {
-    @InjectView(R.id.next_step_txt)
+    @BindView(R.id.next_step_txt)
     TextView next_step_txt;
-    @InjectView(R.id.back)
+    @BindView(R.id.back)
     ImageView back;
-    @InjectView(R.id.status_view)
+    @BindView(R.id.status_view)
     StatusView statusView;
 
-    @InjectView(R.id.banbenxin_linear)
+    @BindView(R.id.banbenxin_linear)
     LinearLayout banbenxin_linear;
-    @InjectView(R.id.banben_pic)
+    @BindView(R.id.banben_pic)
     ImageView icon_banbengenxin;
-    @InjectView(R.id.new_gujian_promat_txt)
+    @BindView(R.id.new_gujian_promat_txt)
     TextView new_gujian_promat_txt;
 
-    @InjectView(R.id.banben_progress_linear)
+    @BindView(R.id.banben_progress_linear)
     LinearLayout banben_progress_linear;
-    @InjectView(R.id.progress_txt)
+    @BindView(R.id.progress_txt)
     TextView progress_txt;
-    @InjectView(R.id.progress)
+    @BindView(R.id.progress)
     ProgressBar progress;
 
-    @InjectView(R.id.current_gujian_version_linear)
+    @BindView(R.id.current_gujian_version_linear)
     LinearLayout current_gujian_version_linear;
-    @InjectView(R.id.current_gujian_version_txt)
+    @BindView(R.id.current_gujian_version_txt)
     TextView current_gujian_version_txt;
-    @InjectView(R.id.new_gujian_version_txt)
+    @BindView(R.id.new_gujian_version_txt)
     TextView new_gujian_version_txt;
 
-    @InjectView(R.id.upgrade_rel)
+    @BindView(R.id.upgrade_rel)
     PercentRelativeLayout upgrade_rel;
-    @InjectView(R.id.btn_upgrade)
+    @BindView(R.id.btn_upgrade)
     Button btn_upgrade;
     private String version;
     private boolean isupgrade;//是否正在更新固态版本

@@ -47,7 +47,7 @@ import java.util.List;
 import java.util.Map;
 
 import androidx.percentlayout.widget.PercentRelativeLayout;
-import butterknife.InjectView;
+import butterknife.BindView;
 import okhttp3.Call;
 import vstc2.nativecaller.NativeCaller;
 
@@ -59,102 +59,106 @@ import vstc2.nativecaller.NativeCaller;
 public class MyDeviceItemActivity extends com.massky.sraum.base.BaseActivity implements SlideSwitchButton.SlideListener
         , BridgeService.AlarmInterface {
     public static final String MESSAGE_TONGZHI_VIDEO_FROM_MYDEVICE = "com.sraum.massky.from.mydevice";
-    @InjectView(R.id.back)
+    @BindView(R.id.back)
     ImageView back;
-    @InjectView(R.id.status_view)
+    @BindView(R.id.status_view)
     StatusView statusView;
     private Map panelItem_map = new HashMap();
-    @InjectView(R.id.device_name_txt)
+    @BindView(R.id.device_name_txt)
     TextView device_name_txt;
-    @InjectView(R.id.mac_txt)
+    @BindView(R.id.mac_txt)
     TextView mac_txt;
-    @InjectView(R.id.status_txt)
+    @BindView(R.id.status_txt)
     TextView status_txt;
-    @InjectView(R.id.project_select)
+    @BindView(R.id.project_select)
     TextView project_select;
-    @InjectView(R.id.wangguan_set_rel)
+    @BindView(R.id.wangguan_set_rel)
     RelativeLayout wangguan_set_rel;
-    @InjectView(R.id.scene_list_rel)
+    @BindView(R.id.scene_list_rel)
     RelativeLayout scene_list_rel;
-    @InjectView(R.id.list_gujian_rel)
+    @BindView(R.id.list_gujian_rel)
     PercentRelativeLayout list_gujian_rel;
-    @InjectView(R.id.banben_txt)
+    @BindView(R.id.banben_txt)
     TextView banben_txt;
-    @InjectView(R.id.panid_txt)
+    @BindView(R.id.panid_txt)
     TextView panid_txt;
-    @InjectView(R.id.xindao_txt)
+    @BindView(R.id.xindao_txt)
     TextView xindao_txt;
-    @InjectView(R.id.gateway_id_txt)
+    @BindView(R.id.gateway_id_txt)
     TextView gateway_id_txt;
-    @InjectView(R.id.other_jiantou)
+    @BindView(R.id.other_jiantou)
     ImageView other_jiantou;
-    @InjectView(R.id.delete_device_rel)
+    @BindView(R.id.delete_device_rel)
     RelativeLayout delete_device_rel;
     private DialogUtil dialogUtil;
     private String panelNumber = "";
-    @InjectView(R.id.next_step_id)
+    @BindView(R.id.next_step_id)
     Button next_step_id;
-    @InjectView(R.id.wangguan_set)
+    @BindView(R.id.wangguan_set)
     ImageView wangguan_set;
-    @InjectView(R.id.rel_yaokongqi)
+    @BindView(R.id.rel_yaokongqi)
     RelativeLayout rel_yaokongqi;
-    @InjectView(R.id.view_yaokongqi)
+    @BindView(R.id.view_yaokongqi)
     View view_yaokongqi;
-    @InjectView(R.id.dev_txt)
+    @BindView(R.id.dev_txt)
     TextView dev_txt;
-    @InjectView(R.id.slide_btn)
+    @BindView(R.id.slide_btn)
     SlideSwitchButton slide_btn;
-    @InjectView(R.id.view_bufang)
+    @BindView(R.id.view_bufang)
     View view_bufang;
-    @InjectView(R.id.rel_bufang)
+    @BindView(R.id.rel_bufang)
     RelativeLayout rel_bufang;
 
-    @InjectView(R.id.view_bufang_baojing)
+    @BindView(R.id.view_bufang_baojing)
     View view_bufang_baojing;
-    @InjectView(R.id.rel_bufang_baojing)
+    @BindView(R.id.rel_bufang_baojing)
     RelativeLayout rel_bufang_baojing;
 
-    @InjectView(R.id.view_bufang_plan)
+    @BindView(R.id.view_bufang_plan)
     View view_bufang_plan;
-    @InjectView(R.id.rel_bufang_plan)
+    @BindView(R.id.rel_bufang_plan)
     RelativeLayout rel_bufang_plan;
     //slide_btn_baojing
-    @InjectView(R.id.slide_btn_baojing)
+    @BindView(R.id.slide_btn_baojing)
     SlideSwitchButton slide_btn_baojing;
 
-    @InjectView(R.id.view_sd_set)
+    @BindView(R.id.view_sd_set)
     View view_sd_set;
-    @InjectView(R.id.rel_sd_set)
+    @BindView(R.id.rel_sd_set)
     RelativeLayout rel_sd_set;
 
-    @InjectView(R.id.view_sdcard_remotevideo)
+    @BindView(R.id.view_sdcard_remotevideo)
     View view_sdcard_remotevideo;
-    @InjectView(R.id.rel_sdcard_remotevideo)
+    @BindView(R.id.rel_sdcard_remotevideo)
     RelativeLayout rel_sdcard_remotevideo;
 
-    @InjectView(R.id.base_linear)
+    @BindView(R.id.base_linear)
     LinearLayout base_linear;
-    @InjectView(R.id.wangguan_linear)
+    @BindView(R.id.wangguan_linear)
     LinearLayout wangguan_linear;
 
-    @InjectView(R.id.basic_information_wangguan)
+    @BindView(R.id.basic_information_wangguan)
     RelativeLayout basic_information_wangguan;
-    @InjectView(R.id.gujian_upgrade_rel)
+    @BindView(R.id.gujian_upgrade_rel)
     RelativeLayout gujian_upgrade_rel;
-    @InjectView(R.id.change_password_rel)
+    @BindView(R.id.change_password_rel)
     RelativeLayout change_password_rel;
-    @InjectView(R.id.view_gujian_upgrade)
+    @BindView(R.id.view_gujian_upgrade)
     View view_gujian_upgrade;
 
-    @InjectView(R.id.view_change_pass)
+    @BindView(R.id.view_change_pass)
     View view_change_pass;
-    @InjectView(R.id.status_txt_gateway)
+    @BindView(R.id.status_txt_gateway)
     TextView status_txt_gateway;
-    @InjectView(R.id.bufang_txt)
+    @BindView(R.id.bufang_txt)
     TextView bufang_txt;
+    @BindView(R.id.update_time_rel)
+    RelativeLayout update_time_rel;
+    @BindView(R.id.update_time_view)
+    View update_time_view;
 
 
-    @InjectView(R.id.slide_btn_plan)
+    @BindView(R.id.slide_btn_plan)
     SlideSwitchButton slide_btn_plan;
     private final int ALERMPARAMS = 3;
 
@@ -167,7 +171,8 @@ public class MyDeviceItemActivity extends com.massky.sraum.base.BaseActivity imp
             R.string.wifi_camera, R.string.one_light_control, R.string.two_light_control, R.string.three_light_control
             , R.string.two_dimming_one_control, R.string.two_dimming_two_control, R.string.two_dimming_trhee_control, R.string.keshimenling
             , R.string.zhinengwangguan, R.string.one_curtain_zero_light, R.string.one_curtain_one_light, R.string.one_curtain_two_light,
-            R.string.two_curtain, R.string.table_pm
+            R.string.two_curtain, R.string.table_pm,R.string.smart_up_down,R.string.smart_pingyi,
+            R.string.smart_top_lower
     };
     private String isUse;
     private int option = ContentCommon.INVALID_OPTION;
@@ -223,15 +228,6 @@ public class MyDeviceItemActivity extends com.massky.sraum.base.BaseActivity imp
                     init_status();//初始化状态
                     break;
             }
-            switch (panelItem_map.get("type").toString()) {
-                case "网关":
-                    wangguan_linear.setVisibility(View.VISIBLE);
-                    break;
-                default:
-                    base_linear.setVisibility(View.VISIBLE);
-                    break;
-            }
-
             wangguan_set.setImageResource(imgtype);
             set_type(panelItem_map.get("type").toString());
             //成员，业主accountType->addrelative_id
@@ -249,6 +245,7 @@ public class MyDeviceItemActivity extends com.massky.sraum.base.BaseActivity imp
                     break;//业主
                 case "2":
                     delete_device_rel.setVisibility(View.GONE);
+                    update_time_view.setVisibility(View.GONE);
                     gujian_upgrade_rel.setVisibility(View.GONE);
                     change_password_rel.setVisibility(View.GONE
                     );
@@ -256,6 +253,16 @@ public class MyDeviceItemActivity extends com.massky.sraum.base.BaseActivity imp
                     view_gujian_upgrade.setVisibility(View.GONE);
 //                    wangguan_set_rel.setEnabled(false);
                     break;//家庭成员
+            }
+
+            switch (panelItem_map.get("type").toString()) {
+                case "网关":
+                    wangguan_linear.setVisibility(View.VISIBLE);
+                    view_change_pass.setVisibility(View.VISIBLE);
+                    break;
+                default:
+                    base_linear.setVisibility(View.VISIBLE);
+                    break;
             }
         }
 //        onEvent();
@@ -284,6 +291,7 @@ public class MyDeviceItemActivity extends com.massky.sraum.base.BaseActivity imp
         scene_list_rel.setOnClickListener(this);
         next_step_id.setOnClickListener(this);
         rel_sdcard_remotevideo.setOnClickListener(this);
+        update_time_rel.setOnClickListener(this);
     }
 
     private void init_status() {
@@ -586,6 +594,16 @@ public class MyDeviceItemActivity extends com.massky.sraum.base.BaseActivity imp
                 sensor_common_select();
                 bufang_txt.setText("启用");
                 break;
+            case "B401":
+                gateway_id_txt.setText(iconName[41]);
+                break;
+            case "B402":
+                gateway_id_txt.setText(iconName[42]);
+                break;
+            case "B403":
+                gateway_id_txt.setText(iconName[43]);
+                break;
+
         }
     }
 
@@ -647,6 +665,16 @@ public class MyDeviceItemActivity extends com.massky.sraum.base.BaseActivity imp
     public void onClick(View v) {
         Intent intent = null;
         switch (v.getId()) {
+            case R.id.update_time_rel://网关时间同步
+                switch (authType) {
+                    case "1":
+                        sraum_setGatewayTime();
+                        break;//业主
+                    case "2":
+                        ToastUtil.showToast(MyDeviceItemActivity.this, "家庭成员不能同步时间");
+                        break;//家庭成员
+                }
+                break;
             case R.id.back:
                 MyDeviceItemActivity.this.finish();
                 break;
@@ -799,6 +827,51 @@ public class MyDeviceItemActivity extends com.massky.sraum.base.BaseActivity imp
             }
         });
     }
+
+
+    /**
+     * 新增网关同步时间
+     */
+
+    private void sraum_setGatewayTime() {
+        //在这里先调
+        //设置网关模式-sraum-setBox
+        Map map = new HashMap();
+        map.put("token", TokenUtil.getToken(this));
+        map.put("boxNumber", panelNumber);
+        map.put("areaNumber", areaNumber);
+        if (dialogUtil != null)
+            dialogUtil.loadDialog();
+        MyOkHttp.postMapObject(ApiHelper.sraum_setGatewayTime, map, new Mycallback(new AddTogglenInterfacer() {
+                    @Override
+                    public void addTogglenInterfacer() {//
+                        sraum_setGatewayTime();
+                    }
+                }, MyDeviceItemActivity.this, dialogUtil) {
+                    @Override
+                    public void onSuccess(User user) {
+                        ToastUtil.showToast(MyDeviceItemActivity.this, "同步时间成功");
+                    }
+
+                    @Override
+                    public void wrongToken() {
+                        super.wrongToken();
+                    }
+
+                    @Override
+                    public void wrongBoxnumber() {
+                        ToastUtil.showToast(MyDeviceItemActivity.this, "areaNumber 错 误");
+                    }
+
+                    @Override
+                    public void threeCode() {
+                        super.threeCode();
+                        ToastUtil.showToast(MyDeviceItemActivity.this, "网关编号不正确");
+                    }
+                }
+        );
+    }
+
 
     /**
      * 获取网关版本号

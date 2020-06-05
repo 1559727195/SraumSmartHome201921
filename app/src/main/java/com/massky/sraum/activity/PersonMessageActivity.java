@@ -58,7 +58,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.CopyOnWriteArrayList;
 
-import butterknife.InjectView;
+import butterknife.BindView;
 import cn.forward.androids.views.BitmapScrollPicker;
 import cn.forward.androids.views.ScrollPickerView;
 import de.hdodenhof.circleimageview.CircleImageView;
@@ -70,37 +70,37 @@ import io.reactivex.disposables.Disposable;
  */
 
 public class PersonMessageActivity extends BaseActivity {
-    @InjectView(R.id.status_view)
+    @BindView(R.id.status_view)
     StatusView statusView;
-    @InjectView(R.id.back)
+    @BindView(R.id.back)
     ImageView back;
-    @InjectView(R.id.toolbar_txt)
+    @BindView(R.id.toolbar_txt)
     TextView toolbar_txt;
     private View account_view;
     private Button cancelbtn_id, camera_id, photoalbum;
     private DialogUtil dialogUtil;
     private LinearLayout linear_popcamera;
-    @InjectView(R.id.touxiang_select)
+    @BindView(R.id.touxiang_select)
     CircleImageView touxiang_select;
-    @InjectView(R.id.account_nicheng)
+    @BindView(R.id.account_nicheng)
     RelativeLayout account_nicheng;
-    @InjectView(R.id.nicheng_txt)
+    @BindView(R.id.nicheng_txt)
     TextView nicheng_txt;
-    //    @InjectView(R.id.xingbie_pic)
+    //    @BindView(R.id.xingbie_pic)
 //    ImageView xingbie_pic;//性别选择图片
-    @InjectView(R.id.xingbie_rel)
+    @BindView(R.id.xingbie_rel)
     RelativeLayout xingbie_rel;
-    @InjectView(R.id.account_year)
+    @BindView(R.id.account_year)
     RelativeLayout account_year;
-    @InjectView(R.id.birthday)
+    @BindView(R.id.birthday)
     TextView birthday;
-    @InjectView(R.id.account_id_rel)
+    @BindView(R.id.account_id_rel)
     RelativeLayout account_id_rel;
-    @InjectView(R.id.accountid_txt)
+    @BindView(R.id.accountid_txt)
     TextView accountid_txt;
-    @InjectView(R.id.change_phone)
+    @BindView(R.id.change_phone)
     RelativeLayout change_phone;
-    @InjectView(R.id.change_phone_txt)
+    @BindView(R.id.change_phone_txt)
     TextView change_phone_txt;//手机号修改
 
     //请求相机
@@ -120,14 +120,14 @@ public class PersonMessageActivity extends BaseActivity {
     private String account_id;
     private String change_phone_string;
 
-    @InjectView(R.id.slide_btn)
+    @BindView(R.id.slide_btn)
     SlideSwitchButton slide_btn;
-    @InjectView(R.id.txt_nan)
+    @BindView(R.id.txt_nan)
     TextView txt_nan;
-    @InjectView(R.id.txt_nv)
+    @BindView(R.id.txt_nv)
     TextView txt_nv;
 
-    @InjectView(R.id.change_pass)
+    @BindView(R.id.change_pass)
     RelativeLayout change_pass;
     private String gender;
     private String birthday1;

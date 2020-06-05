@@ -50,7 +50,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
-import butterknife.InjectView;
+import butterknife.BindView;
 
 import static com.massky.sraum.activity.RemoteControlMatchingActivity.ACTION_INTENT_RECEIVER_WIFI;
 
@@ -61,34 +61,34 @@ import static com.massky.sraum.activity.RemoteControlMatchingActivity.ACTION_INT
 /*用于第一个fragment主界面*/
 public class EachMatchFragment extends Basecfragment implements View.OnTouchListener {
     private static final int DEVICE_MESSAGE_BACK = 100;
-    @InjectView(R.id.pinpai_pic)
+    @BindView(R.id.pinpai_pic)
     ImageView pinpai_pic;
-    @InjectView(R.id.peipai_name)
+    @BindView(R.id.peipai_name)
     TextView peipai_name;
     //yaokong_name_promat
-    @InjectView(R.id.yaokong_name_promat)
+    @BindView(R.id.yaokong_name_promat)
     TextView yaokong_name_promat;
-    @InjectView(R.id.yaokongqi_linear)
+    @BindView(R.id.yaokongqi_linear)
     LinearLayout yaokongqi_linear;
     //yaokong_name_promat_one,yaokong_name_promat_two,yaokong_name_promat_three
-    @InjectView(R.id.yaokong_name_promat_one)
+    @BindView(R.id.yaokong_name_promat_one)
     TextView yaokong_name_promat_one;
-    @InjectView(R.id.yaokong_name_promat_two)
+    @BindView(R.id.yaokong_name_promat_two)
     TextView yaokong_name_promat_two;
-    @InjectView(R.id.yaokong_name_promat_three)
+    @BindView(R.id.yaokong_name_promat_three)
     TextView yaokong_name_promat_three;
     //add_img,delete_img
-    @InjectView(R.id.add_img)
+    @BindView(R.id.add_img)
     ImageView add_img;
-    @InjectView(R.id.delete_img)
+    @BindView(R.id.delete_img)
     ImageView delete_img;
     //next_step_id
-    @InjectView(R.id.next_step_id)
+    @BindView(R.id.next_step_id)
     Button next_step_id;
-    @InjectView(R.id.num_txt)
+    @BindView(R.id.num_txt)
     TextView num_txt;
 
-    @InjectView(R.id.select_name)
+    @BindView(R.id.select_name)
     TextView select_name;
 
     private YkanIRInterface ykanInterface;

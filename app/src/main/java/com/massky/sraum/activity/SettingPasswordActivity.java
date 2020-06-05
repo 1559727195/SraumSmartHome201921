@@ -23,7 +23,7 @@ import com.yanzhenjie.statusview.StatusView;
 import java.util.HashMap;
 import java.util.Map;
 
-import butterknife.InjectView;
+import butterknife.BindView;
 import cn.smssdk.SMSSDK;
 import okhttp3.Call;
 
@@ -32,17 +32,17 @@ import okhttp3.Call;
  */
 
 public class SettingPasswordActivity extends BaseActivity {
-    @InjectView(R.id.status_view)
+    @BindView(R.id.status_view)
     StatusView statusView;
-    @InjectView(R.id.back)
+    @BindView(R.id.back)
     ImageView back;
-    @InjectView(R.id.btn_login_gateway)
+    @BindView(R.id.btn_login_gateway)
     Button btn_login_gateway;
 
-    @InjectView(R.id.eyeimageview_id)
+    @BindView(R.id.eyeimageview_id)
     ImageView eyeimageview_id;
 
-    @InjectView(R.id.edit_password_again)
+    @BindView(R.id.edit_password_again)
     ClearEditText edit_password_again;
     private EyeUtil eyeUtil;
     private String mobilePhone;

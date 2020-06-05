@@ -12,35 +12,35 @@ import com.yanzhenjie.statusview.StatusUtils;
 
 import java.util.ArrayList;
 
-import butterknife.InjectView;
+import butterknife.BindView;
 
 /**
  * Created by zhu on 2018/1/16.
  */
 
 public class ExcuteSmartDeviceDetailItemActivity extends BaseActivity{
-    @InjectView(R.id.back)
+    @BindView(R.id.back)
     ImageView back;
     private String deviceName;
-    @InjectView(R.id.water_in_linear)
+    @BindView(R.id.water_in_linear)
     LinearLayout water_in_linear;
-    @InjectView(R.id.door_open_close_linear)
+    @BindView(R.id.door_open_close_linear)
     LinearLayout door_open_close_linear;
-    @InjectView(R.id.door_ringeye_linear)
+    @BindView(R.id.door_ringeye_linear)
     LinearLayout door_ringeye_linear;
-    @InjectView(R.id.check_person_linear)
+    @BindView(R.id.check_person_linear)
     LinearLayout check_person_linear;
-    @InjectView(R.id.fordoor_close_linear)
+    @BindView(R.id.fordoor_close_linear)
     LinearLayout fordoor_close_linear;
-    @InjectView(R.id.project_select)
+    @BindView(R.id.project_select)
     TextView project_select;
-    @InjectView(R.id.check_verify_body_wrong_linear)
+    @BindView(R.id.check_verify_body_wrong_linear)
     LinearLayout check_verify_body_wrong_linear;
-    @InjectView(R.id.check_code_txt)
+    @BindView(R.id.check_code_txt)
     TextView check_code_txt;
     private OptionsPickerView pvNoLinkOptions;
     private ArrayList<String> clothes = new ArrayList<>();
-    @InjectView(R.id.pepole_body_linear)
+    @BindView(R.id.pepole_body_linear)
     LinearLayout pepole_body_linear;
 
     @Override

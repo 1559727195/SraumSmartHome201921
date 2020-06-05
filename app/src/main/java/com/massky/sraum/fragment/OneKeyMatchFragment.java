@@ -49,7 +49,7 @@ import java.util.Map;
 import java.util.Set;
 
 import androidx.appcompat.app.AlertDialog;
-import butterknife.InjectView;
+import butterknife.BindView;
 
 import static com.massky.sraum.activity.RemoteControlMatchingActivity.ACTION_INTENT_RECEIVER_WIFI;
 
@@ -89,16 +89,16 @@ public class OneKeyMatchFragment extends Basecfragment implements LearnCodeListe
     private String key = "";
     List<MatchRemoteControl> list = new ArrayList<>();
     private ControlAdapter controlAdapter;
-    @InjectView(R.id.first_linear)
+    @BindView(R.id.first_linear)
     LinearLayout first_linear;
     private MessageReceiver mMessageReceiver;
-    @InjectView(R.id.power_id)
+    @BindView(R.id.power_id)
     TextView power_id;
-    @InjectView(R.id.loading_error_linear)
+    @BindView(R.id.loading_error_linear)
     LinearLayout loading_error_linear;
-    @InjectView(R.id.again_btn)
+    @BindView(R.id.again_btn)
     Button again_btn;
-    @InjectView(R.id.learn_btn)
+    @BindView(R.id.learn_btn)
     Button learn_btn;
 
 

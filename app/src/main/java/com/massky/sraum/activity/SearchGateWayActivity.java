@@ -1,6 +1,9 @@
 package com.massky.sraum.activity;
 
+import android.Manifest;
+import android.content.Context;
 import android.content.Intent;
+import android.net.wifi.WifiManager;
 import android.os.Bundle;
 import android.os.Message;
 import android.util.Log;
@@ -15,6 +18,7 @@ import android.widget.TextView;
 import com.massky.sraum.EditGateWayResultActivity;
 import com.massky.sraum.R;
 import com.massky.sraum.Util.ByteUtils;
+import com.massky.sraum.Util.ToastUtil;
 import com.massky.sraum.adapter.ShowUdpServerAdapter;
 import com.massky.sraum.base.BaseActivity;
 import com.massky.sraum.fragment.SearchDialogFragment;
@@ -35,42 +39,44 @@ import java.util.Timer;
 import java.util.TimerTask;
 import java.util.concurrent.CopyOnWriteArrayList;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
-import butterknife.InjectView;
+import butterknife.BindView;
+import ru.alexbykov.nopermission.PermissionHelper;
 
 /**
  * Created by zhu on 2018/1/2.
  */
 
 public class SearchGateWayActivity extends BaseActivity {
-    @InjectView(R.id.status_view)
+    @BindView(R.id.status_view)
     StatusView statusView;
-    @InjectView(R.id.back)
+    @BindView(R.id.back)
     ImageView back;
-    @InjectView(R.id.toolbar_txt)
+    @BindView(R.id.toolbar_txt)
     TextView toolbar_txt;
-    @InjectView(R.id.sycle_search)
+    @BindView(R.id.sycle_search)
     SycleSearchView sycle_search;
     Boolean test_start = false;
-    @InjectView(R.id.fangdajing)
+    @BindView(R.id.fangdajing)
     ImageView fangdajing;
-    @InjectView(R.id.search_result)
+    @BindView(R.id.search_result)
     LinearLayout search_result;
 
-    @InjectView(R.id.list_show_rev_item)
+    @BindView(R.id.list_show_rev_item)
     ListView list_show_rev_item;
-    @InjectView(R.id.search_txt)
+    @BindView(R.id.search_txt)
     TextView search_txt;
-    //    @InjectView(R.id.list_show_rev_item_detail)
+    //    @BindView(R.id.list_show_rev_item_detail)
 //    ListView list_show_rev_item_detail;
-    @InjectView(R.id.rel_list_show)
+    @BindView(R.id.rel_list_show)
     RelativeLayout rel_list_show;
-    @InjectView(R.id.goimage_id)
+    @BindView(R.id.goimage_id)
     ImageView goimage_id;
-    @InjectView(R.id.detailimage_id)
+    @BindView(R.id.detailimage_id)
     ImageView detailimage_id;
-    @InjectView(R.id.stopimage_id)
+    @BindView(R.id.stopimage_id)
     ImageView stopimage_id;
     boolean isFirst = true;
     WThread t;
@@ -90,6 +96,9 @@ public class SearchGateWayActivity extends BaseActivity {
     private boolean tiaozhuan_bool;//跳转判断
     private boolean istiaozhuan;
     private SearchDialogFragment newFragment;
+    private WifiManager.MulticastLock lock;
+    private PermissionHelper permissionHelper;
+    private boolean islocked;
 
     @Override
     protected int viewId() {
@@ -98,7 +107,8 @@ public class SearchGateWayActivity extends BaseActivity {
 
     @Override
     protected void onView() {
-        StatusUtils.setFullToStatusBar(this);  // StatusBar.
+        StatusUtils.setFullToStatusBar(this);
+        init_wifi_quanxian();
         toolbar_txt.setText("搜索网关");
         fangdajing.setOnClickListener(this);
         serSocFlag = true;
@@ -114,6 +124,35 @@ public class SearchGateWayActivity extends BaseActivity {
         list_show_rev_item.setAdapter(showUdpServerAdapter);
         list_show_rev_item.setOnItemClickListener(new MyOnItemCLickListener());
         initDialog();
+
+
+    }
+
+    private void init_wifi_quanxian() {
+        permissionHelper = new PermissionHelper(this);
+        permissionHelper.check(
+                Manifest.permission.CHANGE_WIFI_MULTICAST_STATE
+        ).onSuccess(this::onSuccess).onDenied(this::onDenied).onNeverAskAgain(this::onNeverAskAgain).run();
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        permissionHelper.onRequestPermissionsResult(requestCode, permissions, grantResults);
+    }
+
+
+    private void onSuccess() {
+        WifiManager manager = (WifiManager) this.getApplicationContext()
+                .getSystemService(Context.WIFI_SERVICE);
+        lock = manager.createMulticastLock("UDPwifi");
+    }
+
+    private void onDenied() {
+        ToastUtil.showToast(this, "权限被拒绝，10.0系统无法获取wifi锁");
+    }
+
+    private void onNeverAskAgain() {
+        ToastUtil.showToast(this, "权限被拒绝，10.0系统无法获取wifi锁,下次不会在询问了");
     }
 
 
@@ -241,6 +280,7 @@ public class SearchGateWayActivity extends BaseActivity {
                 break;
             case R.id.goimage_id:
                 t.onResume();
+                islocked = false;
                 serSocFlag = true;
                 if (UDPServerSocket_is_death) {
                     sycle_search.startsycle();
@@ -262,6 +302,7 @@ public class SearchGateWayActivity extends BaseActivity {
                 break;
             case R.id.stopimage_id://停止搜索
                 serSocFlag = false;
+                islocked = false;
                 sycle_search.stopsycle();
                 t.onPause();
                 break;
@@ -331,7 +372,6 @@ public class SearchGateWayActivity extends BaseActivity {
                             this.interrupt();
                             continue;
                         }
-
                     }
                     n++;
                     if (n == 13) {
@@ -367,6 +407,7 @@ public class SearchGateWayActivity extends BaseActivity {
             try {
                 udpSocket = new DatagramSocket(9991);
 
+
                 dataPacket = new DatagramPacket(buffer, MAX_DATA_PACKET_LENGTH);
 //				byte[] data = dataString.getBytes();
                 byte[] data = ByteUtils.hexStringToBytes(dataString);//字符串转换为byte
@@ -385,6 +426,7 @@ public class SearchGateWayActivity extends BaseActivity {
                 udpSocket.close();
                 //客户端UDP发送之后就开始监听，服务器端UDP返回数据
 
+                if (islocked) return;
                 new ReceivBroadCastUdp().start();
 //				sleep(10);
             } catch (Exception e) {
@@ -437,11 +479,20 @@ public class SearchGateWayActivity extends BaseActivity {
             } catch (SocketException e1) {
                 e1.printStackTrace();
             }
+            Log.e("udp","start_udpSocket");
             while (UDPServer) {
                 try {
+                    if (lock != null) {
+                        islocked = true;
+                        lock.acquire();
+                    }
+                    Log.e("udp","start-receiver");
                     udpSocket.receive(udpPacket);
                 } catch (Exception e) {
-
+                    islocked = false;
+                    Log.e("udp","end-receiver");
+                    if (lock != null)
+                        lock.release();
                 }
                 if (udpPacket != null) {
                     if (null != udpPacket.getAddress()) {
@@ -459,7 +510,16 @@ public class SearchGateWayActivity extends BaseActivity {
                         }
                     }
                 }
+                if (lock != null) {
+                    if (islocked) {
+                        Log.e("udp","end-receiver");
+                        lock.release();
+                        islocked = false;
+                    }
+                }
             }
+
+            Log.e("udp","close_udpSocket");
             if (udpSocket != null)
                 udpSocket.close();
         }
@@ -519,9 +579,13 @@ public class SearchGateWayActivity extends BaseActivity {
          * 关闭UDPServerSocket服务器端
          */
         private void closeUDPServerSocket() {
+            islocked = false;
             UDPServer = false;
             UDPServerSocket_is_death = true;
+            if (sycle_search == null) return;
             sycle_search.stopsycle();
+
+            Log.e("udp","close_udpSocket");
             if (udpSocket != null)
                 udpSocket.close();
             t.onPause();
@@ -570,6 +634,12 @@ public class SearchGateWayActivity extends BaseActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
+
+//        WifiManager manager = (WifiManager) this.getApplicationContext()
+//                .getSystemService(Context.WIFI_SERVICE);
+//        lock = manager.createMulticastLock("test wifi");
+
+
         // 扫描二维码/条码回传
         if (requestCode == REQUEST_SCAN_WANGGUAN && resultCode == RESULT_OK) {
             t.onResume();

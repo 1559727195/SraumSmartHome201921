@@ -4,7 +4,7 @@ import android.widget.ImageView;
 import com.massky.sraum.R;
 import com.massky.sraum.base.BaseActivity;
 import com.yanzhenjie.statusview.StatusUtils;
-import butterknife.InjectView;
+import butterknife.BindView;
 
 /**
  * Created by zhu on 2018/2/12.
@@ -12,7 +12,7 @@ import butterknife.InjectView;
 
 public class SystemDetailMessageActivity extends BaseActivity {
 
-    @InjectView(R.id.back)
+    @BindView(R.id.back)
     ImageView back;
 
     @Override

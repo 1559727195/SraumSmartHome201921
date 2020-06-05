@@ -34,7 +34,7 @@ import java.util.List;
 import java.util.Map;
 
 import butterknife.ButterKnife;
-import butterknife.InjectView;
+import butterknife.BindView;
 import cn.forward.androids.utils.StatusBarUtil;
 
 /**
@@ -42,87 +42,87 @@ import cn.forward.androids.utils.StatusBarUtil;
  */
 //关联面板界面
 public class AssociatedpanelActivity extends BaseActivity implements AdapterView.OnItemClickListener {
-    @InjectView(R.id.backrela_id)
+    @BindView(R.id.backrela_id)
     RelativeLayout backrelaId;
-    @InjectView(R.id.titlecen_id)
+    @BindView(R.id.titlecen_id)
     TextView titlecenId;
-    @InjectView(R.id.panelistview)
+    @BindView(R.id.panelistview)
     ListView panelistview;
-    @InjectView(R.id.paonebtn)
+    @BindView(R.id.paonebtn)
     Button paonebtn;
-    @InjectView(R.id.patwobtn)
+    @BindView(R.id.patwobtn)
     Button patwobtn;
-    @InjectView(R.id.pathreebtn)
+    @BindView(R.id.pathreebtn)
     Button pathreebtn;
-    @InjectView(R.id.pafourbtn)
+    @BindView(R.id.pafourbtn)
     Button pafourbtn;
-    @InjectView(R.id.pafivebtn)
+    @BindView(R.id.pafivebtn)
     ImageView pafivebtn;
-    @InjectView(R.id.pasixbtn)
+    @BindView(R.id.pasixbtn)
     ImageView pasixbtn;
-    @InjectView(R.id.pasevenbtn)
+    @BindView(R.id.pasevenbtn)
     ImageView pasevenbtn;
-    @InjectView(R.id.paeightbtn)
+    @BindView(R.id.paeightbtn)
     ImageView paeightbtn;
-    @InjectView(R.id.panelrela)
+    @BindView(R.id.panelrela)
     RelativeLayout panelrela;
-    @InjectView(R.id.paonerela)
+    @BindView(R.id.paonerela)
     RelativeLayout paonerela;
-    @InjectView(R.id.patworela)
+    @BindView(R.id.patworela)
     RelativeLayout patworela;
-    @InjectView(R.id.pathreerela)
+    @BindView(R.id.pathreerela)
     RelativeLayout pathreerela;
-    @InjectView(R.id.pafourrela)
+    @BindView(R.id.pafourrela)
     RelativeLayout pafourrela;
-    @InjectView(R.id.pafiverela)
+    @BindView(R.id.pafiverela)
     RelativeLayout pafiverela;
-    @InjectView(R.id.pasixrela)
+    @BindView(R.id.pasixrela)
     RelativeLayout pasixrela;
-    @InjectView(R.id.pasevenrela)
+    @BindView(R.id.pasevenrela)
     RelativeLayout pasevenrela;
-    @InjectView(R.id.paeightrela)
+    @BindView(R.id.paeightrela)
     RelativeLayout paeightrela;
-    @InjectView(R.id.backsave)
+    @BindView(R.id.backsave)
     RelativeLayout backsave;
-    @InjectView(R.id.pafivetext)
+    @BindView(R.id.pafivetext)
     TextView pafivetext;
-    @InjectView(R.id.pasixtext)
+    @BindView(R.id.pasixtext)
     TextView pasixtext;
-    @InjectView(R.id.paseventext)
+    @BindView(R.id.paseventext)
     TextView paseventext;
-    @InjectView(R.id.paeighttext)
+    @BindView(R.id.paeighttext)
     TextView paeighttext;
-    @InjectView(R.id.panelinearone)
+    @BindView(R.id.panelinearone)
     LinearLayout panelinearone;
-    @InjectView(R.id.panelineartwo)
+    @BindView(R.id.panelineartwo)
     LinearLayout panelineartwo;
-    @InjectView(R.id.panelinearthree)
+    @BindView(R.id.panelinearthree)
     LinearLayout panelinearthree;
-    @InjectView(R.id.panelinearfour)
+    @BindView(R.id.panelinearfour)
     LinearLayout panelinearfour;
-    @InjectView(R.id.ptlitone)
+    @BindView(R.id.ptlitone)
     RelativeLayout ptlitone;
-    @InjectView(R.id.ptlittwo)
+    @BindView(R.id.ptlittwo)
     RelativeLayout ptlittwo;
-    @InjectView(R.id.ptlitthree)
+    @BindView(R.id.ptlitthree)
     RelativeLayout ptlitthree;
-    @InjectView(R.id.ptlittwoone)
+    @BindView(R.id.ptlittwoone)
     RelativeLayout ptlittwoone;
-    @InjectView(R.id.ptlittwotwo)
+    @BindView(R.id.ptlittwotwo)
     RelativeLayout ptlittwotwo;
-    @InjectView(R.id.ptlitoneone)
+    @BindView(R.id.ptlitoneone)
     RelativeLayout ptlitoneone;
-    @InjectView(R.id.paneThreeLuTiaoGuang)
+    @BindView(R.id.paneThreeLuTiaoGuang)
     LinearLayout paneThreeLuTiaoGuang;
-    @InjectView(R.id.paonerela_sanlu)
+    @BindView(R.id.paonerela_sanlu)
     RelativeLayout paonerela_sanlu;
-    @InjectView(R.id.patworela_sanlu)
+    @BindView(R.id.patworela_sanlu)
     RelativeLayout patwobtn_sanlu;
-    @InjectView(R.id.pathreerela_sanlu)
+    @BindView(R.id.pathreerela_sanlu)
     RelativeLayout pathreebtn_sanlu;
-    @InjectView(R.id.pafourrela_sanlu)
+    @BindView(R.id.pafourrela_sanlu)
     RelativeLayout pafourbtn_sanlu;
-    @InjectView(R.id.back)
+    @BindView(R.id.back)
     ImageView back;
 
     private DialogUtil dialogUtil, dialogUtilview;
@@ -209,10 +209,10 @@ public class AssociatedpanelActivity extends BaseActivity implements AdapterView
 
     private void replacePanel() {
         View view = getLayoutInflater().inflate(R.layout.check, null);
-        dtext_id = ButterKnife.findById(view, R.id.dtext_id);
-        belowtext_id = ButterKnife.findById(view, R.id.belowtext_id);
-        qxbutton_id = ButterKnife.findById(view, R.id.qxbutton_id);
-        checkbutton_id = ButterKnife.findById(view, R.id.checkbutton_id);
+        dtext_id =       view.findViewById(R.id.dtext_id);
+        belowtext_id =   view.findViewById(R.id.belowtext_id);
+        qxbutton_id =    view.findViewById(R.id.qxbutton_id);
+        checkbutton_id = view.findViewById(R.id.checkbutton_id);
         dtext_id.setText("替换面板");
         qxbutton_id.setOnClickListener(this);
         checkbutton_id.setOnClickListener(this);

@@ -7,18 +7,18 @@ import com.massky.sraum.R;
 import com.massky.sraum.base.BaseActivity;
 import com.yanzhenjie.statusview.StatusUtils;
 import com.yanzhenjie.statusview.StatusView;
-import butterknife.InjectView;
+import butterknife.BindView;
 
 /**
  * Created by zhu on 2017/12/27.
  */
 
  public class LaunghSecondActivity extends BaseActivity {
-   @InjectView(R.id.status_view)
+   @BindView(R.id.status_view)
    StatusView statusView;
-   @InjectView(R.id.login)
+   @BindView(R.id.login)
     Button login;
-   @InjectView(R.id.regist)
+   @BindView(R.id.regist)
    Button regist;
     @Override
     protected int viewId() {

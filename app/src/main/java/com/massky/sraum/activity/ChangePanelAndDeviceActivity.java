@@ -37,7 +37,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import butterknife.InjectView;
+import butterknife.BindView;
 import okhttp3.Call;
 
 
@@ -46,59 +46,59 @@ import okhttp3.Call;
  */
 
 public class ChangePanelAndDeviceActivity extends BaseActivity {
-    @InjectView(R.id.next_step_txt)
+    @BindView(R.id.next_step_txt)
     ImageView next_step_txt;
-    @InjectView(R.id.back)
+    @BindView(R.id.back)
     ImageView back;
-    @InjectView(R.id.status_view)
+    @BindView(R.id.status_view)
     StatusView statusView;
-    @InjectView(R.id.btn_login_gateway)
+    @BindView(R.id.btn_login_gateway)
     Button btn_login_gateway;
     private PopupWindow popupWindow;
     private String device_name;
-    @InjectView(R.id.light_control_panel)
+    @BindView(R.id.light_control_panel)
     LinearLayout light_control_panel;
-    @InjectView(R.id.window_linear)
+    @BindView(R.id.window_linear)
     LinearLayout window_linear;
 
-    @InjectView(R.id.onekey_device)
+    @BindView(R.id.onekey_device)
     TextView onekey_device;
-    @InjectView(R.id.twokey_device)
+    @BindView(R.id.twokey_device)
     TextView twokey_device;
-    @InjectView(R.id.threekey_device)
+    @BindView(R.id.threekey_device)
     TextView threekey_device;
-    @InjectView(R.id.fourkey_device)
+    @BindView(R.id.fourkey_device)
     TextView fourkey_device;
 
-    @InjectView(R.id.onekey_device_txt)
+    @BindView(R.id.onekey_device_txt)
     ClearLengthEditText onekey_device_txt;
-    @InjectView(R.id.twokey_device_txt)
+    @BindView(R.id.twokey_device_txt)
     ClearLengthEditText twokey_device_txt;
-    @InjectView(R.id.threekey_device_txt)
+    @BindView(R.id.threekey_device_txt)
     ClearLengthEditText threekey_device_txt;
-    @InjectView(R.id.fourkey_device_txt)
+    @BindView(R.id.fourkey_device_txt)
     ClearLengthEditText fourkey_device_txt;
-    @InjectView(R.id.linear_one_only)
+    @BindView(R.id.linear_one_only)
     LinearLayout linear_one_only;
-    @InjectView(R.id.linear_two_only)
+    @BindView(R.id.linear_two_only)
     LinearLayout linear_two_only;
-    @InjectView(R.id.linear_three_only)
+    @BindView(R.id.linear_three_only)
     LinearLayout linear_three_only;
-    @InjectView(R.id.linear_four_only)
+    @BindView(R.id.linear_four_only)
     LinearLayout linear_four_only;
 
 
-    @InjectView(R.id.panelname)
+    @BindView(R.id.panelname)
     ClearLengthEditText panelname;
 
-    @InjectView(R.id.findButton_four)
+    @BindView(R.id.findButton_four)
     ImageView findButton_four;
 
-    @InjectView(R.id.findButton_three)
+    @BindView(R.id.findButton_three)
     ImageView findButton_three;
-    @InjectView(R.id.findButton_two)
+    @BindView(R.id.findButton_two)
     ImageView findButton_two;
-    @InjectView(R.id.findButton_one)
+    @BindView(R.id.findButton_one)
     ImageView findButton_one;
 
     private List<User.panellist> panelList = new ArrayList<>();
@@ -230,6 +230,9 @@ public class ChangePanelAndDeviceActivity extends BaseActivity {
             case "AD01":
             case "AC01":
             case "B301":
+            case "B401":
+            case "B402":
+            case "B403":
                 onekey_device_txt.setText(deviceList.get(0).name);
                 break;
             default:
@@ -391,10 +394,12 @@ public class ChangePanelAndDeviceActivity extends BaseActivity {
                 onekey_device.setText("空调名称");
                 break;
             case "A601"://新风
+            case "A611":
                 show_one_item();
                 onekey_device.setText("新风名称");
                 break;
             case "A701"://地暖
+            case "A711":
                 show_one_item();
                 onekey_device.setText("地暖名称");
             case "A511":
@@ -439,6 +444,12 @@ public class ChangePanelAndDeviceActivity extends BaseActivity {
             case "B301":
                 show_one_item();
                 onekey_device.setText("直流电机名称");
+                break;
+            case "B401":
+            case "B402":
+            case "B403":
+                show_one_item();
+                onekey_device.setText("平移控制器名称");
                 break;
             default:
                 break;
@@ -563,7 +574,12 @@ public class ChangePanelAndDeviceActivity extends BaseActivity {
                     case "B201":
                     case "B101":
                     case "B301":
+                    case "B401":
+                    case "B402":
+                    case "B403":
                     case "A501":
+                    case "A601":
+                    case "A701":
                     case "A801":
                     case "A901":
                     case "AB01":
@@ -692,6 +708,9 @@ public class ChangePanelAndDeviceActivity extends BaseActivity {
             case "AD01":
             case "AC01":
             case "B301":
+            case "B401":
+            case "B402":
+            case "B403":
                 sraum_find_button(deviceList.get(position).number);
                 break;
         }
@@ -835,7 +854,6 @@ public class ChangePanelAndDeviceActivity extends BaseActivity {
                 //更新面板下的设备列表信息
 //                int count_device = deviceList.size();
                 //updateDeviceInfo();//更新设备信息\
-
             }
         } else {
             ToastUtil.showToast(ChangePanelAndDeviceActivity.this, "所输入内容重复");
@@ -1123,6 +1141,12 @@ public class ChangePanelAndDeviceActivity extends BaseActivity {
             case "AD01":
             case "AC01":
             case "B301":
+            case "B401":
+            case "B402":
+            case "B403":
+            case "A511":
+            case "A611":
+            case "A711":
                 updateDeviceInfo(onekey_device_txt.getText().toString().trim(), "", "",
                         deviceList.get(0).number, "", 0);
                 break;

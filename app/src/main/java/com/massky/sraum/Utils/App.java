@@ -70,7 +70,7 @@ public class App extends Application implements Application.ActivityLifecycleCal
 
         JPushInterface.init(this);            // 初始化 JPush
         SystemParams.init(this);
-        CrashHandlerUtil.getInstance().init_crash(_instance);
+       // CrashHandlerUtil.getInstance().init_crash(_instance);
         //用于判断log值是否打印
         LogUtil.isDebug = true;
         //okhttp网络配置

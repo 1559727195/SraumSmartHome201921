@@ -15,7 +15,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import butterknife.InjectView;
+import butterknife.BindView;
 
 
 /**
@@ -25,7 +25,7 @@ import butterknife.InjectView;
 public class DevicePagerFragment extends BaseFragment1  implements XListView.IXListViewListener{
     private List<Map> list_alarm = new ArrayList<>();
     private int currentpage = 1;
-    @InjectView(R.id.xListView_scan)
+    @BindView(R.id.xListView_scan)
     XListView xListView_scan;
     private Handler mHandler = new Handler();
     private  String [] autoElements  = {"人体传感联动","厨房联动","PM2.5联动","地下室","防盗门打开"

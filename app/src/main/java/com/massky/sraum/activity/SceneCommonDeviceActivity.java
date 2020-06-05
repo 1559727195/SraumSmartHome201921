@@ -8,16 +8,16 @@ import com.massky.sraum.base.BaseActivity;
 import com.yanzhenjie.statusview.StatusUtils;
 import com.zanelove.aircontrolprogressbar.ColorArcProgressBar;
 
-import butterknife.InjectView;
+import butterknife.BindView;
 
 /**
  * Created by zhu on 2018/1/30.
  */
 
 public class SceneCommonDeviceActivity extends BaseActivity{
-    @InjectView(R.id.bar1)
+    @BindView(R.id.bar1)
     ColorArcProgressBar bar1;
-    @InjectView(R.id.back)
+    @BindView(R.id.back)
     ImageView back;
     @Override
     protected int viewId() {

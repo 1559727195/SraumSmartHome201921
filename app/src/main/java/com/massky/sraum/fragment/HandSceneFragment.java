@@ -29,14 +29,14 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import butterknife.InjectView;
+import butterknife.BindView;
 import okhttp3.Call;
 
 /**
  * Created by zhu on 2017/11/30.
  */
 public class HandSceneFragment extends BaseFragment1 implements XListView.IXListViewListener {
-    @InjectView(R.id.xListView_scan)
+    @BindView(R.id.xListView_scan)
     XListView xListView_scan;
     private Handler mHandler = new Handler();
     private List<Map> list_hand_scene = new ArrayList<>();
@@ -66,6 +66,7 @@ public class HandSceneFragment extends BaseFragment1 implements XListView.IXList
 
     @Override
     public void onEvent(MyDialogEvent eventData) {
+
     }
 
     @Override

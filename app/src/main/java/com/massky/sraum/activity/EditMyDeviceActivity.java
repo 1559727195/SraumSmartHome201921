@@ -33,7 +33,7 @@ import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import butterknife.InjectView;
+import butterknife.BindView;
 import okhttp3.Call;
 
 /**
@@ -41,48 +41,48 @@ import okhttp3.Call;
  */
 
 public class EditMyDeviceActivity extends BaseActivity {
-    @InjectView(R.id.back)
+    @BindView(R.id.back)
     ImageView back;
-    @InjectView(R.id.status_view)
+    @BindView(R.id.status_view)
     StatusView statusView;
-    @InjectView(R.id.input_panel_name_edit)
+    @BindView(R.id.input_panel_name_edit)
     ClearLengthEditText input_panel_name_edit;
-    @InjectView(R.id.edit_one)
+    @BindView(R.id.edit_one)
     ClearLengthEditText edit_one;
-    @InjectView(R.id.button_one_id)
+    @BindView(R.id.button_one_id)
     ImageView button_one_id;
-    @InjectView(R.id.edit_two)
+    @BindView(R.id.edit_two)
     ClearLengthEditText edit_two;
-    @InjectView(R.id.button_two_id)
+    @BindView(R.id.button_two_id)
     ImageView button_two_id;
-    @InjectView(R.id.edit_three)
+    @BindView(R.id.edit_three)
     ClearLengthEditText edit_three;
-    @InjectView(R.id.button_three_id)
+    @BindView(R.id.button_three_id)
     ImageView button_three_id;
-    @InjectView(R.id.edit_four)
+    @BindView(R.id.edit_four)
     ClearLengthEditText edit_four;
-    @InjectView(R.id.button_four_id)
+    @BindView(R.id.button_four_id)
     ImageView button_four_id;
-    @InjectView(R.id.linear_one)
+    @BindView(R.id.linear_one)
     LinearLayout linear_one;
-    @InjectView(R.id.linear_two)
+    @BindView(R.id.linear_two)
     LinearLayout linear_two;
-    @InjectView(R.id.linear_three)
+    @BindView(R.id.linear_three)
     LinearLayout linear_three;
-    @InjectView(R.id.linear_four)
+    @BindView(R.id.linear_four)
     LinearLayout linear_four;
-    @InjectView(R.id.first_txt)
+    @BindView(R.id.first_txt)
     TextView first_txt;
-    @InjectView(R.id.second_txt)
+    @BindView(R.id.second_txt)
     TextView second_txt;
-    @InjectView(R.id.three_txt)
+    @BindView(R.id.three_txt)
     TextView three_txt;
-    @InjectView(R.id.four_txt)
+    @BindView(R.id.four_txt)
     TextView four_txt;
     private Map panelItem_map = new HashMap();
-    @InjectView(R.id.next_step_txt)
+    @BindView(R.id.next_step_txt)
     TextView next_step_txt;
-    @InjectView(R.id.txt_dev)
+    @BindView(R.id.txt_dev)
     TextView txt_dev;
     private String type = "";
     private String edit_one_txt_str = "";
@@ -101,12 +101,12 @@ public class EditMyDeviceActivity extends BaseActivity {
     private int device_index;
     private String deviceNumber;
     private String input_panel_name_edit_txt_str;
-    @InjectView(R.id.maclistview_id_condition)
+    @BindView(R.id.maclistview_id_condition)
     ListViewForScrollView_New list_view;
-    @InjectView(R.id.find_panel_btn)
+    @BindView(R.id.find_panel_btn)
     ImageView find_panel_btn;
     private AirModeListAdapter airmodeadapter;
-    @InjectView(R.id.list_for_air_mode)
+    @BindView(R.id.list_for_air_mode)
     LinearLayout list_for_air_mode;
     private String boxNumber;
     private String authType;
@@ -290,6 +290,9 @@ public class EditMyDeviceActivity extends BaseActivity {
                     case "B201":
                     case "B101":
                     case "B301":
+                    case "B401":
+                    case "B402":
+                    case "B403":
                     case "A501":
                     case "A601":
                     case "A701":
@@ -448,6 +451,9 @@ public class EditMyDeviceActivity extends BaseActivity {
             case "AD01":
             case "AC01":
             case "B301":
+            case "B401":
+            case "B402":
+            case "B403":
                 find_device(deviceList.get(position).number);
                 break;
         }
@@ -1079,6 +1085,9 @@ public class EditMyDeviceActivity extends BaseActivity {
             case "B101":
             case "B201":
             case "B301":
+            case "B401":
+            case "B402":
+            case "B403":
                 for (int i = 0; i < deviceList.size(); i++) {
                     input_panel_name_edit_txt_str = input_panel_name_edit.getText().toString().trim() == null
                             || input_panel_name_edit.getText().toString().trim() == "" ? "" : input_panel_name_edit.getText().toString().trim();
@@ -1451,8 +1460,17 @@ public class EditMyDeviceActivity extends BaseActivity {
                     @Override
                     public void fourCode() {
                         super.fourCode();
-                        ToastUtil.showToast(EditMyDeviceActivity.this, panelName + ":" + "面板名字已存在");
+                        ToastUtil.showToast(EditMyDeviceActivity.this, "deviceNumber 不存在");
                     }
+
+
+                    @Override
+                    public void fiveCode() {
+                        super.fiveCode();
+                        ToastUtil.showToast(EditMyDeviceActivity.this, panelName + ":" + "面板名字已存在");
+
+                    }
+
                 });
     }
 
@@ -1608,6 +1626,9 @@ public class EditMyDeviceActivity extends BaseActivity {
             case "B101":
             case "B202":
             case "B301":
+            case "B401":
+            case "B402":
+            case "B403":
             case "AA02":
             case "202":
             case "206":

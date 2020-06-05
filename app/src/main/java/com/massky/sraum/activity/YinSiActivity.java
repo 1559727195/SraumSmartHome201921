@@ -13,20 +13,20 @@ import com.massky.sraum.base.BaseActivity;
 import com.yanzhenjie.statusview.StatusUtils;
 import com.yanzhenjie.statusview.StatusView;
 
-import butterknife.InjectView;
+import butterknife.BindView;
 
 /**
  * Created by zhu on 2017/8/25.
  */
 
 public class YinSiActivity extends BaseActivity {
-    @InjectView(R.id.wvMain)
+    @BindView(R.id.wvMain)
     WebView wvMain;
-    @InjectView(R.id.pbMain)
+    @BindView(R.id.pbMain)
     ProgressBar pbMain;
-    @InjectView(R.id.back)
+    @BindView(R.id.back)
     ImageView back;
-    @InjectView(R.id.status_view)
+    @BindView(R.id.status_view)
     StatusView statusView;
     private String _url = "http://app.sraum.com/sraumApp/yinsi/index.html";
     @Override

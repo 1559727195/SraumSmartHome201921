@@ -22,7 +22,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import butterknife.InjectView;
+import butterknife.BindView;
 
 import static com.massky.sraum.activity.TimeExcuteCordinationActivity.MESSAGE_TIME_EXCUTE_ACTION;
 
@@ -33,13 +33,13 @@ import static com.massky.sraum.activity.TimeExcuteCordinationActivity.MESSAGE_TI
 public class AutoAgainSceneActivity extends BaseActivity {
     private AgainAutoSceneAdapter againAutoSceneAdapter;
     private List<Map> list_hand_scene;
-    @InjectView(R.id.xListView_scan)
+    @BindView(R.id.xListView_scan)
     ListView xListView_scan;
-    @InjectView(R.id.custom_again_time)
+    @BindView(R.id.custom_again_time)
     TextView custom_again_time;
-    @InjectView(R.id.next_step_txt)
+    @BindView(R.id.next_step_txt)
     TextView next_step_txt;
-    @InjectView(R.id.back)
+    @BindView(R.id.back)
     ImageView back;
     String[] again_elements = {"每天", "工作日", "周末", "自定义"};
     private String condition;

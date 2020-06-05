@@ -10,6 +10,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.PopupWindow;
 import android.widget.TextView;
+
 import com.AddTogenInterface.AddTogglenInterfacer;
 import com.massky.sraum.R;
 import com.massky.sraum.User;
@@ -31,8 +32,10 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import butterknife.InjectView;
+
+import butterknife.BindView;
 import okhttp3.Call;
+
 import static com.massky.sraum.Util.DipUtil.dip2px;
 
 /**
@@ -40,11 +43,11 @@ import static com.massky.sraum.Util.DipUtil.dip2px;
  */
 
 public class AddZigbeeDeviceScucessActivity extends BaseActivity {
-    @InjectView(R.id.next_step_txt)
+    @BindView(R.id.next_step_txt)
     ImageView next_step_txt;
-    @InjectView(R.id.back)
+    @BindView(R.id.back)
     ImageView back;
-    @InjectView(R.id.status_view)
+    @BindView(R.id.status_view)
     StatusView statusView;
     private PopupWindow popupWindow;
     private String device_name;
@@ -56,9 +59,9 @@ public class AddZigbeeDeviceScucessActivity extends BaseActivity {
     private String panelNumber;
     private String deviceNumber;
     private String panelMAC;
-    @InjectView(R.id.dev_name)
+    @BindView(R.id.dev_name)
     ClearLengthEditText dev_name;
-    @InjectView(R.id.btn_login_gateway)
+    @BindView(R.id.btn_login_gateway)
     Button btn_login_gateway;
 
 
@@ -68,7 +71,8 @@ public class AddZigbeeDeviceScucessActivity extends BaseActivity {
             , R.string.menci, R.string.rentiganying, R.string.jiuzuo, R.string.yanwu, R.string.tianranqi, R.string.jinjin_btn,
             R.string.zhineng, R.string.pm25, R.string.shuijin, R.string.jixieshou, R.string.cha_zuo_1, R.string.cha_zuo, R.string.wifi_hongwai,
             R.string.wifi_camera, R.string.one_light_control, R.string.two_light_control, R.string.three_light_control
-            , R.string.two_dimming_one_control, R.string.two_dimming_two_control, R.string.two_dimming_trhee_control, R.string.keshimenling
+            , R.string.two_dimming_one_control, R.string.two_dimming_two_control, R.string.two_dimming_trhee_control, R.string.keshimenling,
+            R.string.pingyi_control
     };
     private TextView type_txt;
     private TextView mac_txt;
@@ -276,6 +280,11 @@ public class AddZigbeeDeviceScucessActivity extends BaseActivity {
 //                mac_txt.setText(panelItem_map.get("controllerId").toString());
                 break;
 
+            case "B401":
+            case "B402":
+            case "B403":
+                type_txt.setText(iconName[33]);
+                break;
         }
 
 
@@ -345,7 +354,7 @@ public class AddZigbeeDeviceScucessActivity extends BaseActivity {
                         map.put("deviceId", panelNumber);
                         map.put("deviceType", panelType);
                         map.put("type", "1");
-                        map.put("areaNumber",areaNumber);
+                        map.put("areaNumber", areaNumber);
                         Intent intent = new Intent(AddZigbeeDeviceScucessActivity.this, SelectRoomActivity.class);
                         intent.putExtra("map_deivce", (Serializable) map);
                         startActivity(intent);

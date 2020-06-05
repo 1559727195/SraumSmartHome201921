@@ -32,29 +32,29 @@ import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.viewpager.widget.ViewPager;
-import butterknife.InjectView;
+import butterknife.BindView;
 import butterknife.OnClick;
 
 public class MessageActivity extends BaseActivity implements ViewPager.OnPageChangeListener {
-    @InjectView(R.id.viewpager_id)
+    @BindView(R.id.viewpager_id)
     ViewPager viewpager_id;
-    @InjectView(R.id.macrelative_id)
+    @BindView(R.id.macrelative_id)
     RelativeLayout macrelative_id;
-    @InjectView(R.id.scenerelative_id)
+    @BindView(R.id.scenerelative_id)
     RelativeLayout scenerelative_id;
-    @InjectView(R.id.viewone)
+    @BindView(R.id.viewone)
     View viewone;
-    @InjectView(R.id.viewtwo)
+    @BindView(R.id.viewtwo)
     View viewtwo;
-    //    @InjectView(R.id.viewthree)
+    //    @BindView(R.id.viewthree)
 //    View viewthree;
-    @InjectView(R.id.addtxt_text_id)
+    @BindView(R.id.addtxt_text_id)
     TextView addtxt_text_id;
-    @InjectView(R.id.mactext_id)
+    @BindView(R.id.mactext_id)
     TextView mactext_id;
-    @InjectView(R.id.scene_id)
+    @BindView(R.id.scene_id)
     TextView scene_id;
-    @InjectView(R.id.back)
+    @BindView(R.id.back)
     ImageView back;
     private FragmentManager fm;
     private List<Fragment> list = new ArrayList<Fragment>();

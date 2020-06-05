@@ -15,7 +15,7 @@ import com.massky.sraum.Util.LogUtil;
 import java.util.List;
 
 import butterknife.ButterKnife;
-import butterknife.InjectView;
+import butterknife.BindView;
 
 /**
  * Created by masskywcy on 2017-03-22.
@@ -72,15 +72,15 @@ public class AsccociatedpanelAdapter extends BaseAdapter {
     }
 
     class ViewHolder {
-        @InjectView(R.id.imageone)
+        @BindView(R.id.imageone)
         ImageView imageone;
-        @InjectView(R.id.macname_id)
+        @BindView(R.id.macname_id)
         TextView macname_id;
-        @InjectView(R.id.checkbox)
+        @BindView(R.id.checkbox)
         CheckBox cb;
 
         public ViewHolder(View view) {
-            ButterKnife.inject(this, view);
+            ButterKnife.bind(this,view);
         }
     }
 }

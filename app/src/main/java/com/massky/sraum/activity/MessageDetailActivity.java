@@ -21,7 +21,7 @@ import com.yanzhenjie.statusview.StatusUtils;
 import com.yanzhenjie.statusview.StatusView;
 import java.util.HashMap;
 import java.util.Map;
-import butterknife.InjectView;
+import butterknife.BindView;
 import okhttp3.Call;
 
 /**
@@ -30,25 +30,25 @@ import okhttp3.Call;
 
 public class MessageDetailActivity extends BaseActivity {
     Map messageList = new HashMap();
-    @InjectView(R.id.back)
+    @BindView(R.id.back)
     ImageView back;
-    @InjectView(R.id.time_txt)
+    @BindView(R.id.time_txt)
     TextView time_txt;
-    //    @InjectView(R.id.quyu_name)
+    //    @BindView(R.id.quyu_name)
 //    TextView quyu_name;
-    @InjectView(R.id.device_name)
+    @BindView(R.id.device_name)
     TextView device_name;
-    @InjectView(R.id.action_text)
+    @BindView(R.id.action_text)
     TextView action_text;
-    @InjectView(R.id.status_view)
+    @BindView(R.id.status_view)
     StatusView statusView;
     private DialogUtil dialogUtil;
     private String deviceName;
     private String messageTitle;
     private String eventTime;
-    @InjectView(R.id.first_linear)
+    @BindView(R.id.first_linear)
     LinearLayout first_linear;
-    @InjectView(R.id.second_linear)
+    @BindView(R.id.second_linear)
     LinearLayout second_linear;
 
     @Override

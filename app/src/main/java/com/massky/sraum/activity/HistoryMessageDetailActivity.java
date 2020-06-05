@@ -28,7 +28,7 @@ import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
 
-import butterknife.InjectView;
+import butterknife.BindView;
 import okhttp3.Call;
 
 import static com.massky.sraum.Utils.ApiHelper.sraum_getMessageById;
@@ -39,15 +39,15 @@ import static com.massky.sraum.Utils.ApiHelper.sraum_getMessageById;
 
 public class HistoryMessageDetailActivity extends BaseActivity {
     Map messageList = new HashMap();
-    @InjectView(R.id.back)
+    @BindView(R.id.back)
     ImageView back;
-    @InjectView(R.id.img_show_6)
+    @BindView(R.id.img_show_6)
     ImageView img_show_6;
-    @InjectView(R.id.type_txt)
+    @BindView(R.id.type_txt)
     TextView type_txt;
-    @InjectView(R.id.content_txt)
+    @BindView(R.id.content_txt)
     TextView content_txt;
-    @InjectView(R.id.time_txt)
+    @BindView(R.id.time_txt)
     TextView time_txt;
     private String id;
     private DialogUtil dialogUtil;

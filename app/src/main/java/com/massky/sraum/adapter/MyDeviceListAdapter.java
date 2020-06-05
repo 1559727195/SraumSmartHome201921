@@ -1,10 +1,8 @@
 package com.massky.sraum.adapter;
 
-import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
-import android.os.Handler;
 import android.util.DisplayMetrics;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -20,15 +18,10 @@ import com.massky.sraum.R;
 import com.massky.sraum.User;
 import com.massky.sraum.Util.MyOkHttp;
 import com.massky.sraum.Util.Mycallback;
-import com.massky.sraum.Util.SharedPreferencesUtil;
 import com.massky.sraum.Util.ToastUtil;
 import com.massky.sraum.Util.TokenUtil;
 import com.massky.sraum.Utils.ApiHelper;
-import com.massky.sraum.activity.EditSceneSecondActivity;
-import com.massky.sraum.activity.GuanLianSceneRealBtnActivity;
 import com.massky.sraum.activity.MyDeviceItemActivity;
-import com.massky.sraum.activity.MyDeviceListActivity;
-import com.massky.sraum.view.ClearEditText;
 import com.mcxtzhang.swipemenulib.SwipeMenuLayout;
 
 import java.io.Serializable;
@@ -56,15 +49,14 @@ public class MyDeviceListAdapter extends android.widget.BaseAdapter {
     private String areaNumber;
 
     public MyDeviceListAdapter(Context context, List<Map> list, List<Integer> listint, List<Integer> listintwo, String authType, String accountType, String areaNumber, RefreshListener refreshListener) {
-
         this.list = list;
-        this.listint = listint;
-        this.listintwo = listintwo;
         this.context = context;
         this.accountType = accountType;
         this.refreshListener = refreshListener;
         this.authType = authType;
         this.areaNumber = areaNumber;
+        this.listint = listint;
+        this.listintwo = listintwo;
     }
 
     @Override
@@ -101,7 +93,7 @@ public class MyDeviceListAdapter extends android.widget.BaseAdapter {
             viewHolderContentType = (ViewHolderContentType) convertView.getTag();
         }
 
-        viewHolderContentType.device_type_pic.setImageResource(listint.get(position));
+        setPicture(list.get(position).get("type").toString(), viewHolderContentType.device_type_pic);
         viewHolderContentType.hand_device_content.setText(list.get(position).get("name").toString());
 //        final String authType = (String) SharedPreferencesUtil.getData(context, "authType", "");
         viewHolderContentType.hand_gateway_name.setVisibility(View.VISIBLE);
@@ -133,12 +125,7 @@ public class MyDeviceListAdapter extends android.widget.BaseAdapter {
                     case "1":
                         break;
                     case "2":
-                        Intent intent = new Intent(context, MyDeviceItemActivity.class);
-                        intent.putExtra("panelItem", (Serializable) list.get(position));
-                        intent.putExtra("imgtype", (Serializable) listint.get(position));
-                        intent.putExtra("areaNumber", areaNumber);
-                        intent.putExtra("authType", authType);
-                        context.startActivity(intent);
+                        to_activity(position);
                         break;
                 }
             }
@@ -149,16 +136,9 @@ public class MyDeviceListAdapter extends android.widget.BaseAdapter {
 
             @Override
             public void onItemClick() {
-
 //                Intent intent = new Intent(context, EditSceneSecondActivity.class);
 //                context.startActivity(intent);
-
-                Intent intent = new Intent(context, MyDeviceItemActivity.class);
-                intent.putExtra("panelItem", (Serializable) list.get(position));
-                intent.putExtra("imgtype", (Serializable) listint.get(position));
-                intent.putExtra("areaNumber", areaNumber);
-                intent.putExtra("authType", authType);
-                context.startActivity(intent);
+                to_activity(position);
             }
 
             @Override
@@ -185,6 +165,186 @@ public class MyDeviceListAdapter extends android.widget.BaseAdapter {
         });
         return convertView;
     }
+
+    private void to_activity(int position) {
+        switch (list.get(position).get("type").toString()) {
+            case "A201":
+            case "A202":
+            case "A203":
+            case "A204":
+            case "A301":
+            case "A302":
+            case "A303":
+            case "A311":
+            case "A312":
+            case "A313":
+            case "A321":
+            case "A322":
+            case "A331":
+            case "A401":
+            case "A411":
+            case "A412":
+            case "A413":
+            case "A414":
+            case "A501":
+            case "A511":
+            case "A801":
+            case "A901":
+            case "AB01":
+            case "A902":
+            case "AB04":
+            case "AC01":
+            case "AD01":
+            case "AD02":
+            case "B001":
+            case "B101"://86插座两位
+//            case "B102"://86插座两位
+            case "网关":
+            case "B201":
+            case "AA02":
+            case "AA03":
+            case "AA04":
+            case "A611":
+            case "A601":
+            case "A711":
+            case "A701":
+            case "B301":
+            case "B401":
+            case "B402":
+            case "B403":
+                Intent intent = new Intent(context, MyDeviceItemActivity.class);
+                intent.putExtra("panelItem", (Serializable) list.get(position));
+                intent.putExtra("imgtype", (Serializable) listint.get(position));
+                intent.putExtra("areaNumber", areaNumber);
+                intent.putExtra("authType", authType);
+                context.startActivity(intent);
+                break;
+            default:
+                break;
+        }
+    }
+
+
+    private void setPicture(String type, ImageView device_type_pic) {
+        switch (type) {
+            case "A201":
+                device_type_pic.setImageResource(R.drawable.icon_yijiandk_40);
+                break;
+            case "A202":
+                device_type_pic.setImageResource(R.drawable.icon_liangjiandki_40);
+                break;
+            case "A203":
+                device_type_pic.setImageResource(R.drawable.icon_sanjiandk_40);
+                break;
+            case "A204":
+                device_type_pic.setImageResource(R.drawable.icon_kaiguan_40);
+                break;
+            case "A301":
+            case "A302":
+            case "A303":
+            case "A311":
+            case "A312":
+            case "A313":
+            case "A321":
+            case "A322":
+            case "A331":
+                device_type_pic.setImageResource(R.drawable.dimminglights);
+                break;
+            case "A401":
+            case "A411":
+            case "A412":
+            case "A413":
+            case "A414":
+                device_type_pic.setImageResource(R.drawable.home_curtain);
+                break;
+            case "A501":
+            case "A511":
+                device_type_pic.setImageResource(R.drawable.icon_kongtiao_40);
+                break;
+            case "A801":
+                device_type_pic.setImageResource(R.drawable.icon_menci_40);
+                break;
+            case "A901":
+                device_type_pic.setImageResource(R.drawable.icon_rentiganying_40);
+                break;
+            case "AB01":
+                device_type_pic.setImageResource(R.drawable.icon_yanwubjq_40);
+                break;
+            case "A902":
+                device_type_pic.setImageResource(R.drawable.icon_rucebjq_40);
+                break;
+            case "AB04":
+                device_type_pic.setImageResource(R.drawable.icon_ranqibjq_40);
+                break;
+            case "AC01":
+                device_type_pic.setImageResource(R.drawable.icon_shuijin_40);
+                break;
+            case "AD01":
+                device_type_pic.setImageResource(R.drawable.icon_pm25_40);
+                break;
+            case "AD02":
+                device_type_pic.setImageResource(R.drawable.icon_pmmofang_40_hs);
+                break;
+            case "B001":
+                device_type_pic.setImageResource(R.drawable.icon_jinjianniu_40);
+                break;
+            case "B101"://86插座两位
+                device_type_pic.setImageResource(R.drawable.icon_kaiguan_socket_40);
+                break;
+//            case "B102"://86插座两位
+            case "网关":
+                device_type_pic.setImageResource(R.drawable.icon_type_wangguan_40);
+                //-----
+                break;
+            case "B201":
+                device_type_pic.setImageResource(R.drawable.icon_zhinengmensuo_40);
+                break;
+            case "AA02":
+                device_type_pic.setImageResource(R.drawable.icon_hongwaizfq_40);
+                break;
+            case "AA03":
+                device_type_pic.setImageResource(R.drawable.icon_shexiangtou_40);
+                break;
+            case "AA04":
+                device_type_pic.setImageResource(R.drawable.icon_keshimenling_40);
+                break;
+            case "A611":
+            case "A601":
+                device_type_pic.setImageResource(R.drawable.freshair);
+                break;
+            case "A711":
+            case "A701":
+                device_type_pic.setImageResource(R.drawable.floorheating);
+                break;
+            case "B301":
+                device_type_pic.setImageResource(R.drawable.icon_jixieshou_40);
+                break;
+            case "B401":
+
+
+
+
+                device_type_pic.setImageResource(R.drawable.icon_zhinengshengjiang_70_sy);
+//                ViewGroup.MarginLayoutParams margin = new ViewGroup.MarginLayoutParams(
+//                        ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
+//                RelativeLayout.LayoutParams layoutParams = new RelativeLayout.LayoutParams(margin);
+//                layoutParams.height = 40;// 设置图片的高度
+//                layoutParams.width = 40; // 设置图片的宽度
+//                device_type_pic.setLayoutParams(layoutParams);
+                break;
+            case "B402":
+                device_type_pic.setImageResource(R.drawable.icon_zhinengpingyi_70_sy);
+                break;
+            case "B403":
+                device_type_pic.setImageResource(R.drawable.icon_zhinenggaozhongdii_70_sy);
+                break;
+            default:
+                //device_type_pic.setImageResource(R.drawable.);
+                //device_type_pic.setVisibility(View.GONE);
+                device_type_pic.setImageDrawable(context.getResources().getDrawable((R.color.transparent)));
+                break;
+        }
+    }//
 
     //自定义dialog,centerDialog删除对话框
     public void showCenterDeleteDialog(final String name, final String number, final String type, final String boxNumber) {

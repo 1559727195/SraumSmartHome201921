@@ -23,29 +23,29 @@ import com.yanzhenjie.statusview.StatusView;
 import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
-import butterknife.InjectView;
+import butterknife.BindView;
 
 /**
  * Created by masskywcy on 2016-11-14.
  */
 
 public class SelectPmDataActivity extends BaseActivity {
-    //    @InjectView(R.id.datePicker)
+    //    @BindView(R.id.datePicker)
 //    DatePicker datePicker;
     private int yearb, monthb, dayb;
-    @InjectView(R.id.wheel1)
+    @BindView(R.id.wheel1)
     WheelView wheel1;
-    @InjectView(R.id.wheel2)
+    @BindView(R.id.wheel2)
     WheelView wheel2;
-    @InjectView(R.id.wheel3)
+    @BindView(R.id.wheel3)
     WheelView wheel3;
-    @InjectView(R.id.status_view)
+    @BindView(R.id.status_view)
     StatusView statusView;
-    @InjectView(R.id.back)
+    @BindView(R.id.back)
     ImageView back;
-    @InjectView(R.id.next_step_txt)
+    @BindView(R.id.next_step_txt)
     TextView next_step_txt;
-    @InjectView(R.id.project_select)
+    @BindView(R.id.project_select)
     TextView project_select;
     int[] mData = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9};
     String text_pm = "";

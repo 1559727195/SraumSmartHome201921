@@ -45,7 +45,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import butterknife.InjectView;
+import butterknife.BindView;
 import okhttp3.Call;
 
 import static com.massky.sraum.Util.DipUtil.dip2px;
@@ -63,27 +63,27 @@ public class SystemMessageActivity extends BaseActivity implements
     private View account_view;
     private DialogUtil dialogUtil;
     private List<Map> messageLists = new ArrayList<>();
-    @InjectView(R.id.xListView_scan)
+    @BindView(R.id.xListView_scan)
     XListView_ForMessage xListView_scan;
-    @InjectView(R.id.linear_popcamera)
+    @BindView(R.id.linear_popcamera)
     LinearLayout linear_popcamera;
-    @InjectView(R.id.all_read_linear)
+    @BindView(R.id.all_read_linear)
     LinearLayout all_read_linear;
-    @InjectView(R.id.all_select_linear)
+    @BindView(R.id.all_select_linear)
     LinearLayout all_select_linear;
-    @InjectView(R.id.delete_linear)
+    @BindView(R.id.delete_linear)
     LinearLayout delete_linear;
     private Handler mHandler = new Handler();
     private List<Map> messageLists_local = new ArrayList<>();
     private String str = "全选";
-    @InjectView(R.id.all_select_txt)
+    @BindView(R.id.all_select_txt)
     TextView all_select_txt;
     private static SystemMessageFragment.OnDeviceMessageFragListener onDeviceMessageFragListener1;
     private boolean backfrom_activity;
     private String messageId = "";
-    @InjectView(R.id.addtxt_text_id)
+    @BindView(R.id.addtxt_text_id)
     TextView addtxt_text_id;
-    @InjectView(R.id.back)
+    @BindView(R.id.back)
     ImageView back;
 
     @Override

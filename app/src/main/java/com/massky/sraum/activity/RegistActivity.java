@@ -32,7 +32,7 @@ import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
 
-import butterknife.InjectView;
+import butterknife.BindView;
 import cn.smssdk.EventHandler;
 import cn.smssdk.OnSendMessageHandler;
 import cn.smssdk.SMSSDK;
@@ -43,14 +43,14 @@ import okhttp3.Call;
  */
 
 public class RegistActivity extends BaseActivity {
-    @InjectView(R.id.status_view)
+    @BindView(R.id.status_view)
     StatusView statusView;
-    @InjectView(R.id.back)
+    @BindView(R.id.back)
     ImageView back;
 
-    @InjectView(R.id.phone_id)
+    @BindView(R.id.phone_id)
     ClearEditText phone_id;
-    @InjectView(R.id.registbtn_id)
+    @BindView(R.id.registbtn_id)
     Button registbtn_id;
     private DialogUtil dialogUtil;
 

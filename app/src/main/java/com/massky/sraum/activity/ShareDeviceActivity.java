@@ -30,21 +30,21 @@ import org.chenglei.widget.datepicker.Sound;
 import java.lang.reflect.Field;
 import java.util.concurrent.CopyOnWriteArrayList;
 
-import butterknife.InjectView;
+import butterknife.BindView;
 
 /**
  * Created by zhu on 2018/1/19.
  */
 
 public class ShareDeviceActivity extends BaseActivity{
-    @InjectView(R.id.back)
+    @BindView(R.id.back)
     ImageView back;
-    @InjectView(R.id.status_view)
+    @BindView(R.id.status_view)
     StatusView statusView;
-    @InjectView(R.id.load_app_pic)
+    @BindView(R.id.load_app_pic)
     ImageView load_app_pic;
     private PopupWindow popupWindow;
-    @InjectView(R.id.input_phonenumber)
+    @BindView(R.id.input_phonenumber)
     ImageView input_phonenumber;
 
     @Override

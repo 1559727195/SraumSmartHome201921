@@ -31,7 +31,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import butterknife.InjectView;
+import butterknife.BindView;
 import okhttp3.Call;
 
 /**
@@ -41,19 +41,19 @@ import okhttp3.Call;
 public class SelectiveLinkageDeviceDetailSecondActivity extends BaseActivity implements AdapterView.OnItemClickListener
         , PullToRefreshLayout.OnRefreshListener {
 
-    @InjectView(R.id.back)
+    @BindView(R.id.back)
     ImageView back;
-    @InjectView(R.id.next_step_txt)
+    @BindView(R.id.next_step_txt)
     TextView next_step_txt;
-    @InjectView(R.id.refresh_view)
+    @BindView(R.id.refresh_view)
     PullToRefreshLayout refresh_view;
-    @InjectView(R.id.maclistview_id)
+    @BindView(R.id.maclistview_id)
     ListView maclistview_id;
-    @InjectView(R.id.status_view)
+    @BindView(R.id.status_view)
     StatusView statusView;
-    @InjectView(R.id.panel_txt_promat)
+    @BindView(R.id.panel_txt_promat)
     TextView panel_txt_promat;
-    @InjectView(R.id.project_select)
+    @BindView(R.id.project_select)
     TextView project_select;
     private DialogUtil dialogUtil;
     private String panelNumber;
@@ -228,6 +228,14 @@ public class SelectiveLinkageDeviceDetailSecondActivity extends BaseActivity imp
                 tiaoguang_light();
                 panel_txt_promat.setText("执行开关");
                 break;
+            case "B401":
+            case "B402":
+            case "B403":
+                smart_move();
+                panel_txt_promat.setText("平移控制器");
+                break;
+
+
             case "A401":
             case "A411":
             case "A412":
@@ -296,6 +304,109 @@ public class SelectiveLinkageDeviceDetailSecondActivity extends BaseActivity imp
         }
 //        ToastUtil.showToast(SelectiveLinkageDeviceDetailSecondActivity.this, "list_map:" + list_map.size());
     }
+
+    private void smart_move() {
+        for (int i = 0; i < deviceActionList.size(); i++) {
+
+            switch (deviceActionList.get(i).get("type").toString()) {
+                case "19":
+                    common_step_s("", i, deviceActionList.get(i).get("type").toString(),
+                            deviceActionList.get(i).get("name").toString(), "上升", "上升", "下降");
+                    break;
+                case "20":
+                    common_step_s("", i, deviceActionList.get(i).get("type").toString(),
+                            deviceActionList.get(i).get("name").toString(), "向左", "向左", "向右");
+                    break;
+                case "21":
+                    common_top_middle("", i, deviceActionList.get(i).get("type").toString(),
+                            deviceActionList.get(i).get("name").toString());
+                    break;
+            }
+        }
+    }
+
+
+    private void common_top_middle(String tabname, int position, String type, String name) {
+        for (int j = 0; j < 4; j++) {
+            Map map = new HashMap();
+            switch (j) {
+                case 0://开
+                    map.put("name", "高位");
+                    map.put("status", "1");
+                    map.put("action", "高位");
+
+                    break;
+                case 1://关
+                    map.put("name", "中位");
+                    map.put("status", "2");
+//                    map.put("action", "关闭");
+                    map.put("action", "中位");
+                    break;
+                case 2://切换
+                    map.put("name", "低位");
+                    map.put("status", "3");
+                    map.put("action", "低位");
+                    break;
+                case 3://切换
+                    map.put("name", "暂停");
+                    map.put("status", "0");
+                    map.put("action", "暂停");
+                    break;
+            }
+
+            common_sensor_map(map, "name1", name, tabname, type, "value", "", "tiaoguang", "", "position", position, "number", deviceActionList.get(position), list_map);
+        }
+    }
+
+
+    private void common_sensor_map(Map map, String name1, Object name2, Object tabname2, Object type2, String value, Object s, String tiaoguang, Object s2, String position2, Object position3, String number, Map map2, List<Map> list_map) {
+        map.put(name1, name2);
+        map.put("tabname", tabname2);
+        map.put("type", type2);
+        map.put(value, s);
+        map.put(tiaoguang, s2);
+        map.put(position2, position3);
+        map.put(number, map2.get(number));
+//            map.put("status", deviceActionList.get(position).get("status"));
+        map.put("dimmer", map2.get("dimmer"));
+        map.put("mode", map2.get("mode"));
+        map.put("temperature", map2.get("temperature"));
+        map.put("speed", map2.get("speed"));
+        map.put("boxName", map2.get("boxName"));
+//            map.put("name", deviceActionList.get(position).get("name"));
+        list_map.add(map);
+    }
+
+
+    private void common_step_s(String tabname, int position, String type, String name, String action1, String action2, String action3) {
+        //String 左, String 左2, String 右
+        for (int j = 0; j < 3; j++) {
+            Map map = new HashMap();
+            switch (j) {
+                case 0://开
+                    map.put("name", action1);
+                    map.put("status", "1");
+                    map.put("action", action2);
+
+                    break;
+                case 1://关
+                    map.put("name", action3);
+                    map.put("status", "2");
+//                    map.put("action", "关闭");
+                    map.put("action", action3);
+                    break;
+                case 2://切换
+                    map.put("name", "暂停");
+                    map.put("status", "0");
+                    map.put("action", "暂停");
+                    break;
+            }
+
+
+            common_sensor_map(map, "name1", name, tabname, type, "value", "", "tiaoguang", "", "position", position, "number", deviceActionList.get(position), list_map);
+        }
+    }
+
 
     /**
      * 空调控制
@@ -407,16 +518,16 @@ public class SelectiveLinkageDeviceDetailSecondActivity extends BaseActivity imp
 
         switch (name) {
             case "全部":
-                common_second(tabname, name, type, "1", "0","", i);
+                common_second(tabname, name, type, "1", "0", "", i);
                 break;
             case "内纱":
-                common_second(tabname, name, type, "4", "6","", i);
+                common_second(tabname, name, type, "4", "6", "", i);
                 break;
             case "外纱":
-                common_second(tabname, name, type, "8", "7","", i);
+                common_second(tabname, name, type, "8", "7", "", i);
                 break;
             default:
-                common_second(tabname, name, type, "1", "0", "3",i);
+                common_second(tabname, name, type, "1", "0", "3", i);
                 break;
         }
     }
@@ -431,7 +542,7 @@ public class SelectiveLinkageDeviceDetailSecondActivity extends BaseActivity imp
      * @param value4
      * @param position
      */
-    private void common_second(String tabname, String name, String type, String value2, String value4,String value5, int position) {
+    private void common_second(String tabname, String name, String type, String value2, String value4, String value5, int position) {
         switch (type) {
             case "1":
                 light_select(tabname, name, type, value2, value4, value5, position);
@@ -444,6 +555,7 @@ public class SelectiveLinkageDeviceDetailSecondActivity extends BaseActivity imp
 
     /**
      * 灯控选项
+     *
      * @param tabname
      * @param name
      * @param type
@@ -511,6 +623,7 @@ public class SelectiveLinkageDeviceDetailSecondActivity extends BaseActivity imp
 
     /**
      * 默认选项
+     *
      * @param tabname
      * @param name
      * @param type
@@ -642,6 +755,9 @@ public class SelectiveLinkageDeviceDetailSecondActivity extends BaseActivity imp
                 send_map_to_second(list_map.get(position));
                 break;
             case "B301":
+            case "B401":
+            case "B402":
+            case "B403":
                 send_map_to_second(list_map.get(position));
                 break;
         }
@@ -786,6 +902,14 @@ public class SelectiveLinkageDeviceDetailSecondActivity extends BaseActivity imp
                         SelectiveLinkageDeviceDetailSecondActivity.this,
                         AirLinkageControlActivity.class
                 );
+                Map map_panel = new HashMap();
+                map_panel.put("panelType", panelType);
+                map_panel.put("panelName", panelName);
+                map_panel.put("panelMac", panelMAC);
+                map_panel.put("gatewayMac", gatewayMAC);
+                map_panel.put("panelNumber", panelNumber);
+                map_panel.put("boxNumber", boxNumber);
+                intent.putExtra("panel_map", (Serializable) map_panel);
                 intent.putExtra("air_control_map", (Serializable) map);
                 intent.putExtra("sensor_map", (Serializable) sensor_map);
                 startActivity(intent);
@@ -882,21 +1006,7 @@ public class SelectiveLinkageDeviceDetailSecondActivity extends BaseActivity imp
             Map map_value = new HashMap();
             map_value.put("value", "" + (i + 1) * 20);
             map_value.put("name", map.get("name"));
-            map_value.put("status", map.get("status"));
-            map_value.put("tabname", map.get("tabname"));
-            map_value.put("type", map.get("type"));
-            map_value.put("name1", map.get("name1"));
-            map_value.put("action", map.get("action"));
-
-            map_value.put("number", map.get("number"));
-            map_value.put("status", map.get("status"));
-            map_value.put("dimmer", map.get("dimmer"));
-            map_value.put("mode", map.get("mode"));
-            map_value.put("temperature", map.get("temperature"));
-            map_value.put("speed", map.get("speed"));
-            map_value.put("boxName", map.get("boxName"));
-//            map_value.put("name", deviceActionList.get(position).get("name"));
-            first.add(map_value);
+            common_sensor_map(map_value, "status", map.get("status"), map.get("tabname"), map.get("type"), "name1", map.get("name1"), "action", map.get("action"), "number", map.get("number"), "status", map, first);
         }
 
         list_map.addAll(position + 1, first);

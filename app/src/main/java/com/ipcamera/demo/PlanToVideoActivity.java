@@ -16,7 +16,7 @@ import com.yanzhenjie.statusview.StatusView;
 
 import java.util.Map;
 
-import butterknife.InjectView;
+import butterknife.BindView;
 import vstc2.nativecaller.NativeCaller;
 
 import static com.ipcamera.demo.SettingSDCardActivity.strDID;
@@ -31,11 +31,11 @@ public class PlanToVideoActivity extends BaseActivity implements OnClickListener
     private MyListView lv_video_plan; //计划录像列表
     private VideoTimingAdapter adapter = null;
     private Map<Integer, Integer> planmap;
-    @InjectView(R.id.back)
+    @BindView(R.id.back)
     ImageView back;
-    @InjectView(R.id.status_view)
+    @BindView(R.id.status_view)
     StatusView statusView;
-    @InjectView(R.id.next_step_txt)
+    @BindView(R.id.next_step_txt)
     TextView next_step_txt;
     private static String cmark = "147258369"; //APP唯一标示
 

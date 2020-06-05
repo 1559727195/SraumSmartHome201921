@@ -35,6 +35,7 @@
             android:text="关于sraum"
             android:textColor="@color/white"
             android:textSize="16sp" />
+        <!--android:text="关于sraum(测试版)"-->
     </RelativeLayout>
 
     <LinearLayout
@@ -49,8 +50,8 @@
             android:layout_weight="1">
 
             <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="@dimen/x100"
+                android:layout_height="@dimen/x100"
                 android:layout_centerInParent="true"
                 app:srcCompat="@drawable/img_logo" />
         </RelativeLayout>
@@ -61,8 +62,8 @@
             android:layout_weight="1">
 
             <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="@dimen/x100"
+                android:layout_height="@dimen/x100"
                 android:layout_centerInParent="true"
                 app:srcCompat="@drawable/sraum2_down" />
         </RelativeLayout>
@@ -83,7 +84,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
-                android:text="v2.2.7"
+                android:text="v2.3.6"
                 android:textColor="@color/gray"
                 android:textSize="14sp" />
         </RelativeLayout>
@@ -106,17 +107,16 @@
     <androidx.percentlayout.widget.PercentRelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/y40"
-        android:visibility="gone">
+        android:layout_marginTop="@dimen/y40">
 
         <Button
-            android:id="@+id/btn_common_problems"
+            android:id="@+id/direct_for_use"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
             android:height="@dimen/y30"
             android:background="@drawable/add_zigbee_device_btn"
-            android:text="常见问题"
+            android:text="使用说明"
             android:textColor="@color/white"
             android:textSize="16sp"
             app:layout_widthPercent="80%" />
@@ -125,7 +125,7 @@
     <androidx.percentlayout.widget.PercentRelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/y40">
+        android:layout_marginTop="@dimen/y8">
         <!--android:layout_marginTop="@dimen/y8"-->
 
         <Button

@@ -6,7 +6,6 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.view.View;
-
 import com.AddTogenInterface.AddTogglenInterfacer;
 import com.massky.sraum.R;
 import com.massky.sraum.User;
@@ -21,15 +20,12 @@ import com.massky.sraum.base.BaseFragment1;
 import com.massky.sraum.event.MyDialogEvent;
 import com.massky.sraum.view.XListView;
 import com.ypy.eventbus.EventBus;
-
 import org.greenrobot.eventbus.Subscribe;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
-import butterknife.InjectView;
+import butterknife.BindView;
 import okhttp3.Call;
 
 /**
@@ -37,7 +33,7 @@ import okhttp3.Call;
  */
 
 public class AutoSceneFragment extends BaseFragment1 implements XListView.IXListViewListener {
-    @InjectView(R.id.xListView_scan)
+    @BindView(R.id.xListView_scan)
     XListView xListView_scan;
     private Handler mHandler = new Handler();
     private String[] autoElements = {"人体传感联动", "厨房联动", "PM2.5联动", "地下室", "防盗门打开"

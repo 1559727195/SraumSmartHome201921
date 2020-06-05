@@ -29,7 +29,7 @@ import java.util.Map;
 import java.util.Timer;
 import java.util.TimerTask;
 
-import butterknife.InjectView;
+import butterknife.BindView;
 import okhttp3.Call;
 
 /**
@@ -42,11 +42,11 @@ public class LaunghActivity extends BaseActivity {
     private Timer timer;
     private TimerTask task;
     private boolean activity_destroy;//activity是否被销毁
-    @InjectView(R.id.btn_next_step)
+    @BindView(R.id.btn_next_step)
     Button btn_next_step;
-    @InjectView(R.id.status_view)
+    @BindView(R.id.status_view)
     StatusView statusView;
-    @InjectView(R.id.three_second_btn)
+    @BindView(R.id.three_second_btn)
     Button three_second_btn;
     private List<Map> areaList = new ArrayList<>();
     private List<Map> roomList = new ArrayList<>();//fang jian lie biao
@@ -282,6 +282,9 @@ public class LaunghActivity extends BaseActivity {
                     runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
+                            if (three_second_btn == null) {
+                                return;
+                            }
                             three_second_btn.setText(add + "秒跳过");
                             add--;
                         }

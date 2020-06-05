@@ -43,7 +43,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-import butterknife.InjectView;
+import butterknife.BindView;
 import okhttp3.Call;
 
 import static com.massky.sraum.Util.DisplayUtil.dip2px;
@@ -53,19 +53,19 @@ import static com.massky.sraum.Util.DisplayUtil.dip2px;
  */
 
 public class AddWifiYaoKongQiScucessActivity extends BaseActivity {
-    @InjectView(R.id.next_step_txt)
+    @BindView(R.id.next_step_txt)
     ImageView next_step_txt;
-    @InjectView(R.id.back)
+    @BindView(R.id.back)
     ImageView back;
-    @InjectView(R.id.status_view)
+    @BindView(R.id.status_view)
     StatusView statusView;
     private PopupWindow popupWindow;
 
     private DialogUtil dialogUtil;
 
-    @InjectView(R.id.dev_name)
+    @BindView(R.id.dev_name)
     ClearEditText dev_name;
-    @InjectView(R.id.btn_login_gateway)
+    @BindView(R.id.btn_login_gateway)
     Button btn_login_gateway;
     private Map map = new HashMap();
     private YkanIRInterfaceImpl ykanInterface;

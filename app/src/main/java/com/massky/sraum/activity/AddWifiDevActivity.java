@@ -12,22 +12,22 @@ import com.massky.sraum.base.BaseActivity;
 import com.yanzhenjie.statusview.StatusUtils;
 import com.yanzhenjie.statusview.StatusView;
 
-import butterknife.InjectView;
+import butterknife.BindView;
 
 /**
  * Created by zhu on 2018/5/30.
  */
 
 public class AddWifiDevActivity extends BaseActivity {
-    @InjectView(R.id.back)
+    @BindView(R.id.back)
     ImageView back;
-    @InjectView(R.id.status_view)
+    @BindView(R.id.status_view)
     StatusView statusView;
-    @InjectView(R.id.next_step_id)
+    @BindView(R.id.next_step_id)
     Button next_step_id;
-    @InjectView(R.id.img_show_zigbee)
+    @BindView(R.id.img_show_zigbee)
     ImageView img_show_zigbee;
-    @InjectView(R.id.txt_title)
+    @BindView(R.id.txt_title)
     TextView txt_title;
 
     private int[] icon_wifi = {

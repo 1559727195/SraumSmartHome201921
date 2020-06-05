@@ -35,10 +35,10 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import butterknife.InjectView;
+import butterknife.BindView;
 
 public class BuFangBaoJingPlanActivity extends com.massky.sraum.base.BaseActivity {
-    @InjectView(R.id.status_view)
+    @BindView(R.id.status_view)
     StatusView statusView;
     private DialogUtil dialogUtil;
     public static String strDID;
@@ -46,13 +46,13 @@ public class BuFangBaoJingPlanActivity extends com.massky.sraum.base.BaseActivit
     private static SwitchBean switchBean;
     private static AlermBean alermBean;
     private static String pushmark = "147258369";
-    @InjectView(R.id.lv_info_plan)
+    @BindView(R.id.lv_info_plan)
     MyListView lv_info_plan;
-    @InjectView(R.id.next_step_txt)
+    @BindView(R.id.next_step_txt)
     TextView next_step_txt;
     private static HashMap<Integer, Integer> pushplan;
     private PushVideoTimingAdapter pushAdapter;
-    @InjectView(R.id.back)
+    @BindView(R.id.back)
     ImageView back;
     private List<Map> list_camera_list = new ArrayList<>();//录像列表
     private String areaNumber;

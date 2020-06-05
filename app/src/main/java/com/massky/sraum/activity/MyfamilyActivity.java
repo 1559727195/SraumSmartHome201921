@@ -28,25 +28,25 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import butterknife.InjectView;
+import butterknife.BindView;
 import okhttp3.Call;
 
 /**
  * Created by masskywcy on 2016-09-21.
  */
 public class MyfamilyActivity extends BaseActivity implements PullToRefreshLayout.OnRefreshListener {
-    @InjectView(R.id.myfamlistview)
+    @BindView(R.id.myfamlistview)
     ListView myfamlistview;
-    @InjectView(R.id.refresh_view)
+    @BindView(R.id.refresh_view)
     PullToRefreshLayout refresh_view;
-    @InjectView(R.id.addfamcircle)
+    @BindView(R.id.addfamcircle)
     ImageView addfamcircle;
-    @InjectView(R.id.back)
+    @BindView(R.id.back)
     ImageView back;
-    @InjectView(R.id.manager_room_txt)
+    @BindView(R.id.manager_room_txt)
     TextView manager_room_txt;
 
-    @InjectView(R.id.project_select)
+    @BindView(R.id.project_select)
     TextView project_select;
 
     private MyfamilyAdapter adapter;

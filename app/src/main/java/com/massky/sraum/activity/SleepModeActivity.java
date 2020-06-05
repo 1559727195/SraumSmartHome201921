@@ -14,25 +14,25 @@ import com.yanzhenjie.statusview.StatusView;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
-import butterknife.InjectView;
+import butterknife.BindView;
 
 /**
  * Created by zhu on 2017/12/29.
  */
 
 public class SleepModeActivity extends BaseActivity {
-    @InjectView(R.id.status_view)
+    @BindView(R.id.status_view)
     StatusView statusView;
-    @InjectView(R.id.back)
+    @BindView(R.id.back)
     ImageView back;
     private TimePickerView pvCustomTime;
-    @InjectView(R.id.sleep_time_rel)
+    @BindView(R.id.sleep_time_rel)
     RelativeLayout sleep_time_rel;
-    @InjectView(R.id.get_up_rel)
+    @BindView(R.id.get_up_rel)
     RelativeLayout get_up_rel;
-    @InjectView(R.id.sleep_time_txt)
+    @BindView(R.id.sleep_time_txt)
     TextView sleep_time_txt;
-    @InjectView(R.id.get_up_time_txt)
+    @BindView(R.id.get_up_time_txt)
     TextView get_up_time_txt;
     @Override
     protected int viewId() {
