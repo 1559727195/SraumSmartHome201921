@@ -19,6 +19,7 @@ import android.widget.ScrollView;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
@@ -33,6 +34,7 @@ import q.rorbin.verticaltablayout.widget.TabView;
 
 import static androidx.viewpager.widget.ViewPager.SCROLL_STATE_IDLE;
 import static androidx.viewpager.widget.ViewPager.SCROLL_STATE_SETTLING;
+import static q.rorbin.verticaltablayout.util.MapUtil.isEqualCollection;
 
 
 /**
@@ -65,6 +67,8 @@ public class VerticalTabLayout extends ScrollView {
     private DataSetObserver mPagerAdapterObserver;
 
     private TabFragmentManager mTabFragmentManager;
+    private String action;
+    private List<Map> list_map = new ArrayList<>();
 
     public VerticalTabLayout(Context context) {
         this(context, null);
@@ -113,6 +117,7 @@ public class VerticalTabLayout extends ScrollView {
 
     public void removeAllTabs() {
         mTabStrip.removeAllViews();
+
         mSelectedTab = null;
         for (int i = 0; i < qTabViewList.size(); i++) {
             qTabViewList.get(i).builder_bad = null;
@@ -212,7 +217,8 @@ public class VerticalTabLayout extends ScrollView {
                 @Override
                 public void onClick(View view) {
                     int position = mTabStrip.indexOfChild(view);
-                    setTabSelected(position);
+                    action = "click";
+                    setTabSelected(position, "click");
                 }
             });
         } else {
@@ -220,15 +226,17 @@ public class VerticalTabLayout extends ScrollView {
         }
     }
 
-    public void setTabSelected(final int position) {
-        setTabSelected(position, true, true);
+    public void setTabSelected(final int position, String action) {
+        this.action = action;
+        setTabSelected(position, true, true, action);
     }
 
-    private void setTabSelected(final int position, final boolean updataIndicator, final boolean callListener) {
+    private void setTabSelected(final int position, final boolean updataIndicator, final boolean callListener,
+                                final String action) {
         post(new Runnable() {
             @Override
             public void run() {
-                setTabSelectedImpl(position, updataIndicator, callListener);
+                setTabSelectedImpl(position, updataIndicator, callListener, action);
             }
         });
     }
@@ -237,7 +245,7 @@ public class VerticalTabLayout extends ScrollView {
     /**
      * 更新Tablayout背景
      */
-    public void ungradeTabback(int position) {
+    public void ungradeTabback(int position, final String action) {
         for (int i = 0; i < mTabStrip.getChildCount(); i++) {
             QTabView view = (QTabView) mTabStrip.getChildAt(i);
             view.setBackground(R.drawable.addhandscene_open_shape_gray);
@@ -257,15 +265,15 @@ public class VerticalTabLayout extends ScrollView {
         mTabStrip.post(new Runnable() {
             @Override
             public void run() {
-                mTabStrip.updataIndicator();
+                mTabStrip.updataIndicator(action);
             }
         });
     }
 
 
-    private void setTabSelectedImpl(final int position, boolean updataIndicator, boolean callListener) {
+    private void setTabSelectedImpl(final int position, boolean updataIndicator, boolean callListener, String action) {
         if (onTabClickListener != null) onTabClickListener.onTabSelected(null, position);
-        ungradeTabback(position);
+        ungradeTabback(position, action);
         TabView view = getTabAt(position);
         boolean selected;
         if (selected = (view != mSelectedTab)) {
@@ -274,7 +282,7 @@ public class VerticalTabLayout extends ScrollView {
             }
             view.setChecked(true);
             if (updataIndicator) {
-                mTabStrip.moveIndicatorWithAnimator(position);
+                mTabStrip.moveIndicatorWithAnimator(position, action);
             }
             mSelectedTab = view;
             scrollToTab(position);
@@ -320,7 +328,7 @@ public class VerticalTabLayout extends ScrollView {
         mTabStrip.post(new Runnable() {
             @Override
             public void run() {
-                mTabStrip.updataIndicator();
+                mTabStrip.updataIndicator("action");
             }
         });
     }
@@ -344,7 +352,7 @@ public class VerticalTabLayout extends ScrollView {
         mTabStrip.post(new Runnable() {
             @Override
             public void run() {
-                mTabStrip.updataIndicator();
+                mTabStrip.updataIndicator("action");
             }
         });
     }
@@ -368,7 +376,7 @@ public class VerticalTabLayout extends ScrollView {
         mTabStrip.post(new Runnable() {
             @Override
             public void run() {
-                mTabStrip.updataIndicator();
+                mTabStrip.updataIndicator("action");
             }
         });
     }
@@ -420,7 +428,21 @@ public class VerticalTabLayout extends ScrollView {
         }
     }
 
-    public void setTabAdapter(TabAdapter adapter) {
+
+    public boolean setTabAdapter(TabAdapter adapter) {
+
+        if (adapter != null) {
+            List<Map> list = new ArrayList<>();
+            if (list_map.size() != 0) {
+                list = adapter.getList();
+                if (isEqualCollection(list_map, list)) return true;
+                list_map = list;
+            } else {
+                list_map = adapter.getList();
+            }
+
+        }
+
         removeAllTabs();
         if (adapter != null) {
             mTabAdapter = adapter;
@@ -434,6 +456,8 @@ public class VerticalTabLayout extends ScrollView {
 
             }
         }
+
+        return false;
     }
 
 
@@ -479,6 +503,7 @@ public class VerticalTabLayout extends ScrollView {
             }
             viewPager.addOnPageChangeListener(mTabPageChangeListener);
 
+
             addOnTabSelectedListener(new OnTabSelectedListener() {
                 @Override
                 public void onTabSelected(TabView tab, int position) {
@@ -522,12 +547,12 @@ public class VerticalTabLayout extends ScrollView {
     List<QTabView.TabTitle.Builder> builders = new ArrayList<>();
 
     private void populateFromPagerAdapter() {
-        removeAllTabs();
         if (mPagerAdapter != null) {
             final int adapterCount = mPagerAdapter.getCount();
             if (mPagerAdapter instanceof TabAdapter) {
-                setTabAdapter((TabAdapter) mPagerAdapter);
+                if (setTabAdapter((TabAdapter) mPagerAdapter)) return;
             } else {
+                removeAllTabs();
                 for (int i = 0; i < adapterCount; i++) {
                     String title = mPagerAdapter.getPageTitle(i) == null ? "tab" + i : mPagerAdapter.getPageTitle(i).toString();
                     QTabView qTabView = new QTabView(mContext);
@@ -535,7 +560,6 @@ public class VerticalTabLayout extends ScrollView {
 
                     QTabView.TabTitle.Builder builder = new QTabView.TabTitle.Builder();
                     builders.add(builder);
-
 
                     addTab(qTabView.setTitle(
                             builder.setContent(title).build()));
@@ -546,9 +570,9 @@ public class VerticalTabLayout extends ScrollView {
             if (mViewPager != null && adapterCount > 0) {
                 final int curItem = mViewPager.getCurrentItem();
                 if (curItem != getSelectedTabPosition() && curItem < getTabCount()) {
-                    setTabSelected(curItem);
+                    setTabSelected(curItem, "");
                 }
-                ungradeTabback(curItem);
+                ungradeTabback(curItem, "action");
             }
         } else {
             removeAllTabs();
@@ -625,8 +649,8 @@ public class VerticalTabLayout extends ScrollView {
             }
         }
 
-        protected void updataIndicator() {
-            moveIndicatorWithAnimator(getSelectedTabPosition());
+        protected void updataIndicator(String action) {
+            moveIndicatorWithAnimator(getSelectedTabPosition(), action);
         }
 
         protected void moveIndicator(float offset) {
@@ -639,63 +663,92 @@ public class VerticalTabLayout extends ScrollView {
          *
          * @param index tab location's index
          */
-        protected void moveIndicatorWithAnimator(int index) {
+        protected void moveIndicatorWithAnimator(int index, String ac) {
             final int direction = index - getSelectedTabPosition();
             View childView = getChildAt(index);
             final float targetTop = childView.getTop();
             final float targetBottom = childView.getBottom();
+
             if (mIndicatorTopY == targetTop && mIndicatorBottomY == targetBottom) return;
-            if (mIndicatorAnimatorSet != null && mIndicatorAnimatorSet.isRunning()) {
-                mIndicatorAnimatorSet.end();
+
+            switch (action) {
+                case "refresh":
+                default:
+
+                    post(new Runnable() {
+                             @Override
+                             public void run() {
+                                 if (direction > 0) {
+                                     mIndicatorBottomY = targetBottom;
+                                     invalidate();
+                                 } else {
+                                     mIndicatorTopY = targetTop;
+                                     invalidate();
+                                 }
+                             }
+                         }
+                    );
+                    break;
+                case "click":
+                    if (mIndicatorAnimatorSet != null && mIndicatorAnimatorSet.isRunning()) {
+                        mIndicatorAnimatorSet.end();
+                    }
+
+
+                    post(new Runnable() {
+                        @Override
+                        public void run() {
+                            ValueAnimator startAnime = null;
+                            ValueAnimator endAnime = null;
+                            if (direction > 0) {
+                                startAnime = ValueAnimator.ofFloat(mIndicatorBottomY, targetBottom)
+                                        .setDuration(100);
+                                startAnime.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+                                    @Override
+                                    public void onAnimationUpdate(ValueAnimator animation) {
+                                        mIndicatorBottomY = Float.parseFloat(animation.getAnimatedValue().toString());
+                                        invalidate();
+                                    }
+                                });
+                                endAnime = ValueAnimator.ofFloat(mIndicatorTopY, targetTop).setDuration(100);
+                                endAnime.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+                                    @Override
+                                    public void onAnimationUpdate(ValueAnimator animation) {
+                                        mIndicatorTopY = Float.parseFloat(animation.getAnimatedValue().toString());
+                                        invalidate();
+                                    }
+                                });
+                            } else if (direction < 0) {
+                                startAnime = ValueAnimator.ofFloat(mIndicatorTopY, targetTop).setDuration(100);
+                                startAnime.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+                                    @Override
+                                    public void onAnimationUpdate(ValueAnimator animation) {
+                                        mIndicatorTopY = Float.parseFloat(animation.getAnimatedValue().toString());
+                                        invalidate();
+                                    }
+                                });
+                                endAnime = ValueAnimator.ofFloat(mIndicatorBottomY, targetBottom).setDuration(100);
+                                endAnime.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+                                    @Override
+                                    public void onAnimationUpdate(ValueAnimator animation) {
+                                        mIndicatorBottomY = Float.parseFloat(animation.getAnimatedValue().toString());
+                                        invalidate();
+                                    }
+                                });
+                            }
+                            if (startAnime != null) {
+                                mIndicatorAnimatorSet = new AnimatorSet();
+                                mIndicatorAnimatorSet.play(endAnime).after(startAnime);
+                                mIndicatorAnimatorSet.start();
+                            }
+                        }
+                    });
+                    break;
+
+
             }
-            post(new Runnable() {
-                @Override
-                public void run() {
-                    ValueAnimator startAnime = null;
-                    ValueAnimator endAnime = null;
-                    if (direction > 0) {
-                        startAnime = ValueAnimator.ofFloat(mIndicatorBottomY, targetBottom)
-                                .setDuration(100);
-                        startAnime.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
-                            @Override
-                            public void onAnimationUpdate(ValueAnimator animation) {
-                                mIndicatorBottomY = Float.parseFloat(animation.getAnimatedValue().toString());
-                                invalidate();
-                            }
-                        });
-                        endAnime = ValueAnimator.ofFloat(mIndicatorTopY, targetTop).setDuration(100);
-                        endAnime.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
-                            @Override
-                            public void onAnimationUpdate(ValueAnimator animation) {
-                                mIndicatorTopY = Float.parseFloat(animation.getAnimatedValue().toString());
-                                invalidate();
-                            }
-                        });
-                    } else if (direction < 0) {
-                        startAnime = ValueAnimator.ofFloat(mIndicatorTopY, targetTop).setDuration(100);
-                        startAnime.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
-                            @Override
-                            public void onAnimationUpdate(ValueAnimator animation) {
-                                mIndicatorTopY = Float.parseFloat(animation.getAnimatedValue().toString());
-                                invalidate();
-                            }
-                        });
-                        endAnime = ValueAnimator.ofFloat(mIndicatorBottomY, targetBottom).setDuration(100);
-                        endAnime.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
-                            @Override
-                            public void onAnimationUpdate(ValueAnimator animation) {
-                                mIndicatorBottomY = Float.parseFloat(animation.getAnimatedValue().toString());
-                                invalidate();
-                            }
-                        });
-                    }
-                    if (startAnime != null) {
-                        mIndicatorAnimatorSet = new AnimatorSet();
-                        mIndicatorAnimatorSet.play(endAnime).after(startAnime);
-                        mIndicatorAnimatorSet.start();
-                    }
-                }
-            });
+
+
         }
 
         @Override
@@ -771,7 +824,7 @@ public class VerticalTabLayout extends ScrollView {
         @Override
         public void onPageSelected(int position) {
             if (position != getSelectedTabPosition()) {
-                setTabSelected(position, !mUpdataIndicator, true);
+                setTabSelected(position, !mUpdataIndicator, true, "");
             }
         }
     }

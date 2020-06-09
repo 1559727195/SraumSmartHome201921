@@ -23,7 +23,7 @@ import butterknife.BindView;
 public class ShowGatewayListAdapter extends BaseAdapter {
     List<Map> list = new ArrayList<>();
 
-    public ShowGatewayListAdapter(Context context, List<Map> list) {
+    public ShowGatewayListAdapter(Context context, List<Map<String, Object>> list) {
         super(context, list);
     }
 

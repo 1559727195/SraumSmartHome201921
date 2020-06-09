@@ -36,7 +36,7 @@ import java.util.Map;
 import butterknife.BindView;
 import okhttp3.Call;
 
-import static com.massky.sraum.Util.DipUtil.dip2px;
+import static com.massky.sraum.Util.DisplayUtil.dip2px;
 
 /**
  * Created by zhu on 2018/1/8.

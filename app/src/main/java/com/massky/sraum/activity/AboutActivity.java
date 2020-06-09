@@ -40,7 +40,6 @@ import java.util.Map;
 
 import butterknife.BindView;
 
-import static com.massky.sraum.Util.DipUtil.dip2px;
 import static com.massky.sraum.activity.MainGateWayActivity.MESSAGE_RECEIVED_FROM_ABOUT_FRAGMENT;
 
 /**

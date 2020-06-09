@@ -53,7 +53,8 @@ import java.util.Map;
 
 import butterknife.BindView;
 
-import static com.massky.sraum.Util.DipUtil.dip2px;
+import static com.massky.sraum.Util.DisplayUtil.dip2px;
+
 
 /**
  * Created by zhu on 2017/11/30.

@@ -17,7 +17,9 @@ import com.massky.sraum.widget.ApplicationContext;
 import com.yanzhenjie.statusview.StatusUtils;
 import com.yanzhenjie.statusview.StatusView;
 import butterknife.BindView;
-import static com.massky.sraum.Util.DipUtil.dip2px;
+
+import static com.massky.sraum.Util.DisplayUtil.dip2px;
+
 
 /**
  * Created by zhu on 2018/1/8.
@@ -109,7 +111,7 @@ public class AddDeviceScucessActivity extends BaseActivity{
             case R.id.btn_login_gateway:
                 ApplicationContext.getInstance().finishActivity(ConRouInforActivity.class);
                 ApplicationContext.getInstance().finishActivity(AddWifiDeviceActivity.class);
-                ApplicationContext.getInstance().finishActivity(SelectZigbeeDeviceActivity.class);
+                ApplicationContext.getInstance().finishActivity(SelectZigbeeDeviceActivityNew.class);
                 AddDeviceScucessActivity.this.finish();
                 startActivity(new Intent(AddDeviceScucessActivity.this,SelectRoomActivity.class));
                 break;

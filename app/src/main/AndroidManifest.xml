@@ -356,7 +356,7 @@
             android:theme="@style/AppTheme.NoActionBar"></activity>
 
         <activity
-            android:name="com.massky.sraum.activity.SelectZigbeeDeviceActivity"
+            android:name="com.massky.sraum.activity.SelectZigbeeDeviceActivityNew"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar">
 

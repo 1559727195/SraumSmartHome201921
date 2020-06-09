@@ -2,6 +2,9 @@ package q.rorbin.verticaltablayout.adapter;
 
 
 
+import java.util.List;
+import java.util.Map;
+
 import q.rorbin.verticaltablayout.widget.TabView;
 
 /**
@@ -14,8 +17,11 @@ public interface TabAdapter {
     TabView.TabBadge getBadge(int position);
 
     TabView.TabIcon getIcon(int position);
+    List<Map> getList();
 
     TabView.TabTitle getTitle(int position);
+
+
 
     int getBackground(int position);
 }

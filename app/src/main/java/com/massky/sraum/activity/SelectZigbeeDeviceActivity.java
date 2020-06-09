@@ -172,7 +172,7 @@ public class SelectZigbeeDeviceActivity extends BaseActivity {
         // TODO Auto-generated method stub
         newGatewayFragment = GatewayDialogFragment.newInstance(SelectZigbeeDeviceActivity.this, "", "");//初始化快配和搜索设备dialogFragment
 //        newGatewayFragment = (GatewayDialogFragment) getGatewayInterfacer;
-        getGatewayInterfacer = (GetGatewayInterfacer) newGatewayFragment;
+       // getGatewayInterfacer = (GetGatewayInterfacer) newGatewayFragment;
     }
 
     /**

@@ -19,7 +19,9 @@ import com.massky.sraum.widget.ApplicationContext;
 import com.yanzhenjie.statusview.StatusUtils;
 import com.yanzhenjie.statusview.StatusView;
 import butterknife.BindView;
-import static com.massky.sraum.Util.DipUtil.dip2px;
+
+import static com.massky.sraum.Util.DisplayUtil.dip2px;
+
 
 /**
  * Created by zhu on 2018/1/23.

@@ -56,7 +56,7 @@ import java.util.Map;
 import butterknife.BindView;
 
 import static com.massky.sraum.Util.BitmapUtil.bitmapToString;
-import static com.massky.sraum.Util.DipUtil.dip2px;
+import static com.massky.sraum.Util.DisplayUtil.dip2px;
 
 
 /**
@@ -422,6 +422,7 @@ public class MessageSendActivity extends BaseActivity {
     }
 
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
         switch (requestCode) {
             case TAKE_PICTURE:
                 if (Bimp.tempSelectBitmap.size() < 9 && resultCode == RESULT_OK) {

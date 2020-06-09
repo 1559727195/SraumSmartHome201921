@@ -48,7 +48,6 @@ import java.util.Map;
 import butterknife.BindView;
 import okhttp3.Call;
 
-import static com.massky.sraum.Util.DipUtil.dip2px;
 import static com.massky.sraum.activity.MessageActivity.MESSAGE_FRAGMENT;
 
 /**
