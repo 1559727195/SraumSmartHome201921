@@ -1,5 +1,8 @@
 package com.massky.sraum.Utils;
 
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
+
 /**
  * Created by zhu on 2018/3/14.
  */
@@ -136,4 +139,16 @@ public class ApiHelper {
     public static String sraum_setWifiDeviceIsUseCommon = api + "sraum_setWifiDeviceIsUseCommon";
     public static String sraum_updatePwd = api + "sraum_updatePwd";
     public static String sraum_setGatewayTime = api + "sraum_setGatewayTime";
+    @Nullable
+    public static final String sraum_upgradeWifiDevice = api + "sraum_upgradeWifiDevice";
+    @Nullable
+    public static final String sraum_getWifiButtons = api + "sraum_getWifiButtons";
+    @NotNull
+    public static final String sraum_updateWifiButtonName = api + "sraum_updateWifiButtonName";
+    @NotNull
+    public static final String sraum_controlWifiButton = api + "sraum_controlWifiButton";
+    @NotNull
+    public static final String sraum_getRelateWifiDevice = api + "sraum_getRelateWifiDevice";
+    @NotNull
+    public static final String sraum_relateWifiDevice = api + "sraum_relateWifiDevice";
 }

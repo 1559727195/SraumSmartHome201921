@@ -15,7 +15,6 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-
 import com.AddTogenInterface.AddTogglenInterfacer;
 import com.massky.sraum.R;
 import com.massky.sraum.User;
@@ -29,12 +28,10 @@ import com.massky.sraum.Utils.ApiHelper;
 import com.massky.sraum.base.BaseActivity;
 import com.yanzhenjie.statusview.StatusUtils;
 import com.yanzhenjie.statusview.StatusView;
-
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Timer;
 import java.util.TimerTask;
-
 import androidx.core.app.ActivityCompat;
 import androidx.percentlayout.widget.PercentRelativeLayout;
 import butterknife.BindView;
@@ -127,7 +124,6 @@ public class GuJianWangGuanNewActivity extends BaseActivity {
                 update_complete_response();
                 break;
         }
-
         onEvent1();
         onData1();
     }
@@ -178,7 +174,6 @@ public class GuJianWangGuanNewActivity extends BaseActivity {
         };
         // 开始计时
         timer.schedule(showTimeTask, 200, 200);
-
     }
 
     protected void onEvent1() {
@@ -361,6 +356,9 @@ public class GuJianWangGuanNewActivity extends BaseActivity {
                     } else {
                         second = 90 - temp;
                     }
+
+
+                    if (progress_second__ss == null) return;
                     progress_second__ss.setText(tenMSecs % 100 + "");
                     progress_second.setText(second + "");
                     break;

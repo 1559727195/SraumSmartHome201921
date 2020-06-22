@@ -103,7 +103,7 @@ class HomeFragmentNew : BaseFragment1(), AdapterView.OnItemClickListener, IpcamC
     @JvmField
     @BindView(R.id.viewpager)
     var viewpager: ViewPager? = null
-    private var list_homedev_items = ArrayList<Map<String,Any>>()
+    private var list_homedev_items = ArrayList<Map<String, Any>>()
     private val homeDeviceListAdapter: HomeDeviceListAdapter? = null
     private var deviceListAdapter: DetailDeviceHomeAdapter? = null
     private var account_view: View? = null
@@ -145,7 +145,7 @@ class HomeFragmentNew : BaseFragment1(), AdapterView.OnItemClickListener, IpcamC
     private var deivce_type: String? = null
     private var current_room_number: String? = null
     private var listob: MutableList<Map<String, Any>> = ArrayList()
-    private val listtype= ArrayList<Any?>()
+    private val listtype = ArrayList<Any?>()
     private var status: String? = null
     private val mapdevice1: Map<*, *> = HashMap<Any?, Any?>()
 
@@ -185,7 +185,7 @@ class HomeFragmentNew : BaseFragment1(), AdapterView.OnItemClickListener, IpcamC
     private var strDID: String? = null
     private var strPwd: String? = null
     private val inde_video = 1
-    private var list:MutableList<Map<*, *>> = ArrayList()
+    private var list: MutableList<Map<*, *>> = ArrayList()
 
     /**
      * 小苹果绑定列表
@@ -341,7 +341,7 @@ class HomeFragmentNew : BaseFragment1(), AdapterView.OnItemClickListener, IpcamC
      */
     private fun device_list_show_adapter() {
         roomList = ArrayList()
-        deviceListAdapter = DetailDeviceHomeAdapter(activity, deviceList)
+        deviceListAdapter = DetailDeviceHomeAdapter(context!!, deviceList)
         mDragGridView!!.adapter = deviceListAdapter //设备侧栏列表
         // home_listview.setOnItemClickListener(this);
     }
@@ -377,7 +377,7 @@ class HomeFragmentNew : BaseFragment1(), AdapterView.OnItemClickListener, IpcamC
             return null
         }
 
-        override fun getIcon(position: Int): TabIcon?{
+        override fun getIcon(position: Int): TabIcon? {
             return null
         }
 
@@ -423,7 +423,7 @@ class HomeFragmentNew : BaseFragment1(), AdapterView.OnItemClickListener, IpcamC
             } else {
                 "1"
             }
-            val mapdevice1 = HashMap<String,Any?>()
+            val mapdevice1 = HashMap<String, Any?>()
             mapdevice1["type"] = list[position]["type"].toString()
             mapdevice1["number"] = list[position]["number"].toString()
             when (list[position]["type"].toString()) {
@@ -506,6 +506,7 @@ class HomeFragmentNew : BaseFragment1(), AdapterView.OnItemClickListener, IpcamC
                 else -> curtains_and_light(position, mapdevice1)
             }
         }
+
         mDragGridView!!.onItemLongClickListener = AdapterView.OnItemLongClickListener { parent, view, position, id ->
             if (list.size > 0) {
                 deivce_number = list[position]["number"] as String? //设备编号
@@ -682,7 +683,7 @@ class HomeFragmentNew : BaseFragment1(), AdapterView.OnItemClickListener, IpcamC
         }
         //deivce_number,roomNumber;
         //修改房间关联信息（APP->网关）
-        val map= HashMap<Any?, Any?>() // current_room_number
+        val map = HashMap<Any?, Any?>() // current_room_number
         map["token"] = TokenUtil.getToken(activity)
         map["areaNumber"] = areaNumber
         map["roomNumberNew"] = roomNumber
@@ -692,7 +693,7 @@ class HomeFragmentNew : BaseFragment1(), AdapterView.OnItemClickListener, IpcamC
 
 
 //        map.put("number", deivce_number);
-        MyOkHttp.postMapObject(ApiHelper.sraum_updateRoomInfo, map as Map<String,Any>,
+        MyOkHttp.postMapObject(ApiHelper.sraum_updateRoomInfo, map as Map<String, Any>,
                 object : Mycallback(AddTogglenInterfacer { }, activity, null) {
                     override fun onSuccess(user: User) {
 //                        project_select.setText(user.name);
@@ -791,6 +792,7 @@ class HomeFragmentNew : BaseFragment1(), AdapterView.OnItemClickListener, IpcamC
             }
         }
     }
+
 
     /**
      * 首页显示历史设备数据
@@ -1393,8 +1395,8 @@ class HomeFragmentNew : BaseFragment1(), AdapterView.OnItemClickListener, IpcamC
                 mGizWifiDevice = wifiDevices[i]
             }
         }
-      //  if (!Utility.isEmpty(mGizWifiDevice)) { //
-        if (mGizWifiDevice != null){
+        //  if (!Utility.isEmpty(mGizWifiDevice)) { //
+        if (mGizWifiDevice != null) {
 //            Object json = JSON.toJSON(mGizWifiDevice);
 //            String str = new Gson().toJson(json);
             mDeviceManager!!.bindRemoteDevice(mGizWifiDevice)
@@ -1694,10 +1696,11 @@ class HomeFragmentNew : BaseFragment1(), AdapterView.OnItemClickListener, IpcamC
      * @param mapdevice1
      */
     private fun curtains_and_light(position: Int, mapdevice1: Map<String, Any?>) {
-        if (list[position]["type"].toString() == "1" || list[position]["type"].toString() == "11" || list[position]["type"].toString() == "16" || list[position]["type"].toString() == "15" || list[position]["type"].toString() == "17" || list[position]["type"].toString() == "100") {
+        if (list[position]["type"].toString() == "111" ||
+                list[position]["type"].toString() == "1" || list[position]["type"].toString() == "11" || list[position]["type"].toString() == "16" || list[position]["type"].toString() == "15" || list[position]["type"].toString() == "17" || list[position]["type"].toString() == "100") {
             when (list[position]["type"].toString()) {
                 "100" -> sraum_manualSceneControl(list[position]["number"].toString())
-                else -> sraum_device_control(position, mapdevice1)
+                else -> sraum_device_control(list[position]["type"].toString(), position, mapdevice1)
             }
         } else {
             /*窗帘所需要的属性值*/
@@ -1732,7 +1735,7 @@ class HomeFragmentNew : BaseFragment1(), AdapterView.OnItemClickListener, IpcamC
         val areaNumber = SharedPreferencesUtil.getData(activity, "areaNumber", "") as String
         map["areaNumber"] = areaNumber
         map["sceneId"] = sceneId
-        MyOkHttp.postMapObject(ApiHelper.sraum_manualSceneControl, map as Map<String,Any>, object : Mycallback(AddTogglenInterfacer { sraum_manualSceneControl(sceneId) }, activity, dialogUtil) {
+        MyOkHttp.postMapObject(ApiHelper.sraum_manualSceneControl, map as Map<String, Any>, object : Mycallback(AddTogglenInterfacer { sraum_manualSceneControl(sceneId) }, activity, dialogUtil) {
             override fun fourCode() {
                 super.fourCode()
                 ToastUtil.showToast(activity, "控制失败")
@@ -1770,10 +1773,12 @@ class HomeFragmentNew : BaseFragment1(), AdapterView.OnItemClickListener, IpcamC
      * @param
      * @param mapdevice1
      */
-    private fun sraum_device_control(position: Int, mapdevice1: Map<String, Any?>) {
+    private fun sraum_device_control(type: String?, position: Int, mapdevice1: Map<String, Any?>) {
         val mapalldevice = HashMap<String, Any?>()
         val listobj: MutableList<Map<*, *>> = ArrayList()
+        val map_listobj = HashMap<String, Any?>()
         val map = HashMap<Any?, Any?>()
+        var api = ""
         map["type"] = mapdevice1["type"].toString()
         map["number"] = mapdevice1["number"].toString()
         map["name"] = mapdevice1["name"].toString()
@@ -1782,11 +1787,24 @@ class HomeFragmentNew : BaseFragment1(), AdapterView.OnItemClickListener, IpcamC
         map["dimmer"] = mapdevice1["dimmer"].toString()
         map["temperature"] = mapdevice1["temperature"].toString()
         map["speed"] = mapdevice1["speed"].toString()
-        listobj.add(map)
+
         mapalldevice["token"] = TokenUtil.getToken(activity)
         mapalldevice["areaNumber"] = areaNumber
-        mapalldevice["deviceInfo"] = listobj
-        MyOkHttp.postMapObject(ApiHelper.sraum_deviceControl, mapalldevice, object : Mycallback(AddTogglenInterfacer { sraum_device_control(position, mapdevice1) }, activity, dialogUtil) {
+        when (type) {
+            "111" -> {
+                api = ApiHelper.sraum_controlWifiButton
+//                listobj.add(map)
+                mapalldevice["deviceInfo"] = map
+            }
+            else -> {
+                api = ApiHelper.sraum_deviceControl
+                listobj.add(map)
+                mapalldevice["deviceInfo"] = listobj
+            }
+        }
+
+
+        MyOkHttp.postMapObject(api, mapalldevice, object : Mycallback(AddTogglenInterfacer { sraum_device_control(type,position, mapdevice1) }, activity, dialogUtil) {
             override fun fourCode() {
                 super.fourCode()
                 when (listob[0]["type"].toString()) {
@@ -1869,7 +1887,7 @@ class HomeFragmentNew : BaseFragment1(), AdapterView.OnItemClickListener, IpcamC
                 }
             } else if (intent.action == MainGateWayActivity.MESSAGE_TONGZHI) { //门铃视频预览
                 type = intent.getSerializableExtra("type") as String
-                val mapdevice= HashMap<Any?, Any?>()
+                val mapdevice = HashMap<Any?, Any?>()
                 mapdevice["dimmer"] = intent.getSerializableExtra("uid") as String
                 mapdevice["temperature"] = "888888"
                 mapdevice["mode"] = "admin" //
@@ -1902,7 +1920,7 @@ class HomeFragmentNew : BaseFragment1(), AdapterView.OnItemClickListener, IpcamC
                 val pm2_5 = extraJson.getString("pm2.5")
                 for (i in list.indices) {
                     if (list[i]["number"].toString() == id) {
-                        (list[i] as HashMap<String,Any>)["dimmer"] = pm2_5
+                        (list[i] as HashMap<String, Any>)["dimmer"] = pm2_5
                         break
                     }
                 }
@@ -2039,7 +2057,7 @@ class HomeFragmentNew : BaseFragment1(), AdapterView.OnItemClickListener, IpcamC
                     list.add(map as Map<String, Any>)
                 }
                 if (list.size != 0) {
-                    SharedPreferencesUtil.saveInfo_Second_List(App.getInstance().applicationContext, "list_old", list as List<Map<String,Any>>)
+                    SharedPreferencesUtil.saveInfo_Second_List(App.getInstance().applicationContext, "list_old", list as List<Map<String, Any>>)
                 } else {
                     SharedPreferencesUtil.saveInfo_Second_List(App.getInstance().applicationContext, "list_old", ArrayList())
                 }
@@ -2058,7 +2076,7 @@ class HomeFragmentNew : BaseFragment1(), AdapterView.OnItemClickListener, IpcamC
      * 展示首页设备列表
      */
     private fun display_home_device_list() {
-        deviceListAdapter!!.setList(list  as List<Map<String,Any>>)
+        deviceListAdapter!!.setList(list as List<Map<String, Any>>)
         deviceListAdapter!!.notifyDataSetChanged()
     }
 
@@ -2360,7 +2378,7 @@ class HomeFragmentNew : BaseFragment1(), AdapterView.OnItemClickListener, IpcamC
                 }
                 if (areaList.size != 0) {
                     SharedPreferencesUtil.saveInfo_Second_List(App.getInstance().applicationContext, "areaList_old", areaList
-                  )
+                    )
                 } else {
                     SharedPreferencesUtil.saveInfo_Second_List(App.getInstance().applicationContext, "areaList_old", ArrayList())
                 }
@@ -2433,9 +2451,9 @@ class HomeFragmentNew : BaseFragment1(), AdapterView.OnItemClickListener, IpcamC
                 SharedPreferencesUtil.saveData(activity, "areaNumber", areaNumber)
                 for (i in areaList.indices) {
                     if (areaList[i]["number"] == areaNumber) {
-                        (areaList[i] as HashMap<String,Any>)["sign"] = "1"
+                        (areaList[i] as HashMap<String, Any>)["sign"] = "1"
                     } else {
-                        (areaList[i] as HashMap<String,Any>)["sign"] = "0"
+                        (areaList[i] as HashMap<String, Any>)["sign"] = "0"
                     }
                 }
                 SharedPreferencesUtil.saveInfo_Second_List(App.getInstance().applicationContext, "areaList_old", areaList)
@@ -2498,7 +2516,7 @@ class HomeFragmentNew : BaseFragment1(), AdapterView.OnItemClickListener, IpcamC
                 //qie huan cheng gong ,获取区域的所有房间信息
                 roomList = ArrayList()
                 for (i in user.roomList.indices) {
-                    val mapdevice= HashMap<Any, Any>()
+                    val mapdevice = HashMap<Any, Any>()
                     mapdevice["name"] = user.roomList[i].name
                     mapdevice["number"] = user.roomList[i].number
                     mapdevice["count"] = user.roomList[i].count
@@ -2544,7 +2562,7 @@ class HomeFragmentNew : BaseFragment1(), AdapterView.OnItemClickListener, IpcamC
 
 //        Collections.addAll(titles, "123", "456", "789");
         tablayout_vertical!!.setupWithViewPager(viewpager)
-        tablayout_vertical!!.setTabSelected(position,"refresh")
+        tablayout_vertical!!.setTabSelected(position, "refresh")
     }
 
     /**
@@ -2760,7 +2778,7 @@ class HomeFragmentNew : BaseFragment1(), AdapterView.OnItemClickListener, IpcamC
      */
     private fun init_Camera(did: String) { //修改并完善如果Id相同就更新，没有该Id就添加
         val list_wifi_camera = SharedPreferencesUtil.getInfo_List(activity, "list_wifi_camera_first")
-        val map= HashMap<Any?, Any?>()
+        val map = HashMap<Any?, Any?>()
         map["did"] = did
         map["tag"] = tag
         var is_has = false
@@ -2867,6 +2885,7 @@ class HomeFragmentNew : BaseFragment1(), AdapterView.OnItemClickListener, IpcamC
         var ACTION_INTENT_RECEIVER_TO_SECOND_PAGE = "com.massky.secondpage.treceiver"
         var ACTION_INTENT_RECEIVER_TABLE_PM = "com.massky.receiver.table.pm"
         const val MESSAGE_TONGZHI_DOOR_FIRST = "com.fragment.massky.message.tongzhi.door.first"
+
         @JvmField
         var ACTION_INTENT_RECEIVER = "com.massky.jr.treceiver"
         const val MESSAGE_TONGZHI_VIDEO_FROM_MYDEVICE = "com.sraum.massky.from.mydevice"

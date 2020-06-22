@@ -90,7 +90,7 @@ public class MyOkHttp {
      * @param mapData 数据
      * @param back    请求返回
      */
-    public static void postMapString(String url, Map<String, String> mapData, Mycallback back) {
+    public static void postMapString(String url, Map mapData, Mycallback back) {
         LogUtil.i("传入数据", JSON.toJSONString(mapData) + "postMapString: ");
         OkHttpUtils
                 .postString()

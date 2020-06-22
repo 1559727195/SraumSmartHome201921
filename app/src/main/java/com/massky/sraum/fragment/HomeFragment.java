@@ -415,7 +415,7 @@ public class HomeFragment extends BaseFragment1 implements AdapterView.OnItemCli
      */
     private void device_list_show_adapter() {
         roomList = new ArrayList<>();
-        deviceListAdapter = new DetailDeviceHomeAdapter(getActivity(), deviceList);
+        //deviceListAdapter = new DetailDeviceHomeAdapter(getActivity(), (List<? extends Map<?, ?>>) deviceList);
         mDragGridView.setAdapter(deviceListAdapter);//设备侧栏列表
         home_listview.setOnItemClickListener(this);
     }
@@ -2502,7 +2502,7 @@ public class HomeFragment extends BaseFragment1 implements AdapterView.OnItemCli
      * 展示首页设备列表
      */
     private void display_home_device_list() {
-        deviceListAdapter.setList(list);
+       // deviceListAdapter.setList((List<? extends Map<?, ?>>) list);
         deviceListAdapter.notifyDataSetChanged();
     }
 

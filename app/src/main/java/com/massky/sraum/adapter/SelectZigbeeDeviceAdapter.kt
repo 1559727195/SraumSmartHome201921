@@ -27,7 +27,7 @@ class SelectZigbeeDeviceAdapter(fm: FragmentManager?, behavior: Int) : FragmentS
             0 -> return ZigBeeItemFragment.newInstance(bbsCategoryList!![position])
             1 -> return WifiItemFragment.newInstance(bbsCategoryList!![position])
         }
-        return  ZigBeeItemFragment.newInstance(bbsCategoryList!![position])
+        return ZigBeeItemFragment.newInstance(bbsCategoryList!![position])
     }
 
     override fun getCount(): Int {

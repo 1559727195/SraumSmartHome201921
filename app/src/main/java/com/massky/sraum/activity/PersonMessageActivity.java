@@ -256,6 +256,7 @@ public class PersonMessageActivity extends BaseActivity {
             public void onSuccess(User user) {
                 super.onSuccess(user);
                 User.userinfo userinfo = user.userInfo;
+                if (accountid_txt == null) return;
                 accountid_txt.setText(userinfo.userId);
 //                SharedPreferencesUtil.saveData(PersonMessageActivity.this, "userName", username.getText().toString());
                 nicheng_txt.setText(userinfo.nickname);

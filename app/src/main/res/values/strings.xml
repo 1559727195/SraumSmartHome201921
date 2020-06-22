@@ -856,6 +856,10 @@
     <string name="smart_up_down">智能升降</string>
     <string name="smart_pingyi">智能平移</string>
     <string name="smart_top_lower">智能高中低</string>
+    <string name="wifi_one_key">WIFI-一键灯控</string>
+    <string name="wifi_two_key">WIFI-两键灯控</string>
+    <string name="wifi_three_key">WIFI-三键灯控</string>
+    <string name="wifi_four_key">WIFI-四键灯控</string>
     <string-array name="ise_language_entries">
         <item>英语</item>
         <item>汉语</item>

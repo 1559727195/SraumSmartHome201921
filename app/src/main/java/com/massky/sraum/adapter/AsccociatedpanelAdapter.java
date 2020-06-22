@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -24,6 +25,7 @@ import butterknife.BindView;
 public class AsccociatedpanelAdapter extends BaseAdapter {
     private List<User.panellist> list;
     private List<Boolean> checkList;
+
 
     public AsccociatedpanelAdapter(Context context, List list, List<Boolean> checkList) {
         super(context, list);
@@ -68,6 +70,9 @@ public class AsccociatedpanelAdapter extends BaseAdapter {
         }
         mHolder.macname_id.setText(list.get(position).name);
         mHolder.cb.setChecked(checkList.get(position));
+
+
+
         return convertView;
     }
 

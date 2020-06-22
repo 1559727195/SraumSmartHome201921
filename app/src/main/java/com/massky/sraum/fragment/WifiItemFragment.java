@@ -71,10 +71,13 @@ public class WifiItemFragment extends Fragment {
     //wifi类型
     //wifi类型
     private String[] types_wifi = { //红外转发器类型暂定为hongwai,遥控器类型暂定为yaokong
+            "A201", "A202", "A203",
             "hongwai", "yaokong", "101", "103", "102"
     };
 
     private int[] icon_wifi = {
+            R.drawable.icon_type_yijiandk_90, R.drawable.icon_type_liangjiandk_90,
+            R.drawable.icon_type_sanjiandk_90,
             R.drawable.icon_type_hongwaizfq_90,
             R.drawable.icon_type_yaokongqi_90,
             R.drawable.icon_type_shexiangtou_90,
@@ -84,7 +87,9 @@ public class WifiItemFragment extends Fragment {
 
     };
 
-    private int[] iconNam_wifi = {R.string.hongwai, R.string.yaokongqi, R.string.shexiangtou, R.string.keshimenling, R.string.table_pm};//, R.string.pm_mofang
+    private int[] iconNam_wifi = {
+            R.string.yijianlight, R.string.liangjianlight, R.string.sanjianlight,
+            R.string.hongwai, R.string.yaokongqi, R.string.shexiangtou, R.string.keshimenling, R.string.table_pm};//, R.string.pm_mofang
 
 
     private SelectDevTypeAdapter adapter;
@@ -132,13 +137,9 @@ public class WifiItemFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-
         onView(view);
         dialogUtil = new DialogUtil(getActivity());
-
         onWifi();
-
-
         onData();
     }
 

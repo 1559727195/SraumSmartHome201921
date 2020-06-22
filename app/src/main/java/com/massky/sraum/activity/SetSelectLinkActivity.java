@@ -6,6 +6,8 @@ import android.os.Bundle;
 import android.os.Message;
 import android.util.Log;
 import android.view.View;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
@@ -226,6 +228,8 @@ public class SetSelectLinkActivity extends BaseActivity {
 
     private void initCustomTimePicker() {
 
+
+
         /**
          * @description
          *
@@ -381,6 +385,7 @@ public class SetSelectLinkActivity extends BaseActivity {
                         if (boxNumber != null && !boxNumber.equals("")) {//去关联面板
                             Bundle bundle1 = new Bundle();
                             bundle1.putString("sceneName", linkName);
+                            bundle1.putString("sceneId", linkId);
                             bundle1.putString("sceneType", "1");
                             bundle1.putString("boxNumber", boxNumber);
                             bundle1.putString("panelType", "");
@@ -444,7 +449,8 @@ public class SetSelectLinkActivity extends BaseActivity {
      * @param linkId
      * @param apiname
      */
-    private void getData(final boolean flag, final String linkName, final String linkId, final String apiname) {
+    private void getData(final boolean flag, final String linkName, final String linkId,
+                         final String apiname) {
         Map<String, Object> map = new HashMap<>();
         String areaNumber = (String) SharedPreferencesUtil.getData(SetSelectLinkActivity.this, "areaNumber", "");
         map.put("token", TokenUtil.getToken(SetSelectLinkActivity.this));

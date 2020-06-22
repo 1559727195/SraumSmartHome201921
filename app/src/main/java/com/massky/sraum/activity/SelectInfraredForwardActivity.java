@@ -295,6 +295,7 @@ public class SelectInfraredForwardActivity extends BaseActivity implements
 
             }
         }
+
         if (wifiDevices.size() != 0) {
             get_to_wifi(mac, apple_name);//绑定订阅
             toControlApplianAct();
@@ -354,6 +355,12 @@ public class SelectInfraredForwardActivity extends BaseActivity implements
                 listint.add(R.drawable.icon_hongwaizfq_40);
                 listintwo.add(R.drawable.icon_hongwaizfq_40);
                 break;
+
+            case "AD02":
+                listint.add(R.drawable.icon_pmmofang_40);
+                listintwo.add(R.drawable.icon_pmmofang_40);
+                break;
+
             case "7":
                 listint.add(R.drawable.icon_menci_40);
                 listintwo.add(R.drawable.icon_menci_40_active);
@@ -393,6 +400,10 @@ public class SelectInfraredForwardActivity extends BaseActivity implements
             case "16":
                 listint.add(R.drawable.ic_launcher);
                 listintwo.add(R.drawable.ic_launcher);
+                break;
+            default:
+                listint.add(R.drawable.light_turn_on);
+                listintwo.add(R.drawable.light_turn_on);
                 break;
         }
     }
